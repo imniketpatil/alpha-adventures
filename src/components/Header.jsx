@@ -15,7 +15,7 @@ const Header = () => {
     <nav className="flex bg-transparent    px-2 sm:px-4 py-2.5 rounded-b   absolute w-full items-center overflow-hidden z-10">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/" className="flex items-center">
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Alpha Adventures
           </span>
         </Link>
@@ -50,7 +50,7 @@ const Header = () => {
           }`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:items-center">
+          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 text-sm lg:text-lg lg:font-medium lg:items-center">
             <li>
               <NavLink
                 to="/"
@@ -107,7 +107,7 @@ const Header = () => {
               <a
                 href="https://wa.me/919403110937?text=Hey%21%20We%20are%20Alpha%20Adventures%2C%20your%20adventure%20travel%20partner.%20How%20can%20we%20assist%20you%3F"
                 target="_black"
-                className="relative inline-flex items-center justify-center leading-normal no-underline  py-2 pr-4 pl-3  text-black font-sans font-bold text-sm uppercase hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group"
+                className="relative inline-flex items-center justify-center leading-normal no-underline  py-2 pr-4 pl-3  text-black font-sans font-bold text-sm uppercase hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
               >
                 Get In Touch
                 <svg
@@ -126,20 +126,6 @@ const Header = () => {
                 </svg>
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-neutral-700 origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"></span>
               </a>
-            </li>
-            <li className="border-b-[.5px] border-gray-100 lg:border-0 z-20">
-              <Autocomplete
-                className="block py-2 pr-2 pl-2 outline-white"
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                sx={{
-                  width: ["150px", "250px"],
-                }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Treks" className="" />
-                )}
-              />
             </li>
           </ul>
         </div>

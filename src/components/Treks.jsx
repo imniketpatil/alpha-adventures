@@ -36,7 +36,7 @@ const Treks = () => {
   ];
 
   return (
-    <section className="text-black  bg-white body-font lg:mt-10 mt-20">
+    <section className="text-black  bg-white body-font lg:mt-0 mt-20">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col">
           <div className="h-1 bg-gray-800 rounded overflow-hidden">
@@ -44,7 +44,7 @@ const Treks = () => {
           </div>
           <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-6">
             <h1 className="sm:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0">
-              Trek Plans
+              Treks And Packages
             </h1>
             {/* <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
               Street art subway tile salvia four dollar toast bitters selfies

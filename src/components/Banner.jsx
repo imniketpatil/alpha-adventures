@@ -33,7 +33,7 @@ function Banner() {
 
   return (
     <div
-      className="h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-slate-400 flex flex-col gap-6 items-center justify-center relative "
+      className="h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-slate-400 flex flex-col gap-6 items-center justify-center relative"
       style={{
         backgroundImage:
           "linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url('https://images.pexels.com/photos/746386/pexels-photo-746386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
@@ -42,14 +42,13 @@ function Banner() {
       <h1 className="text-5xl text-white font-semibold text-center">
         We are{" "}
         <span className="element text-5xl text-yellow-500 text-center">
-          {" "}
           Alpha Adventures
         </span>
       </h1>
       <h1 className="text-white text-2xl font-semibold text-center">
         Your Adventure Travel Partner.
       </h1>
-      <div className=" flex bg-white items-center w-[60%] lg:w-[60%] justify-between px-1 border-4 py-2 lg:py-0 border-yellow-500 absolute bottom-[-130px] lg:bottom-[-35px] flex-col lg:flex-row h-[250px] lg:h-[80px] ">
+      <div className=" flex bg-white items-center w-[60%] lg:w-[60%] justify-between px-1 border-4 py-2 lg:py-0 border-yellow-500 absolute bottom-[-130px] lg:bottom-[-35px] flex-col lg:flex-row h-[180px] lg:h-[80px] ">
         <div className="flex items-center">
           <PlaceIcon />
           <Autocomplete
