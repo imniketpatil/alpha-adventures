@@ -1,0 +1,15 @@
+/* Add this CSS to your main stylesheet */
+.trek-card {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.trek-card:hover {
+  transform: scale(1.05);
+}
+
+.trek-card:hover,
+.trek-card:hover ~ .trek-card:hover,
+.trek-card:hover ~ .trek-card:hover ~ .trek-card:hover,
+.trek-card:hover ~ .trek-card:hover ~ .trek-card:hover ~ .trek-card:hover {
+  filter: none;
+}
