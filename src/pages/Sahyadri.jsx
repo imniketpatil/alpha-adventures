@@ -1,18 +1,18 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import FAQ from "../components/FAQ.jsx";
-import TempSpace from "../components/TempSpace.jsx";
+import TrekkingPoint from "../components/TrekkingPoint";
+import TempSpace from "../components/TempSpace";
 
-function FAQs() {
+function Sahyadri() {
   return (
     <>
       <TempSpace />
       <Header type="list" />
-      <FAQ />
+      <TrekkingPoint />
       <Footer />
     </>
   );
 }
 
-export default FAQs;
+export default Sahyadri;

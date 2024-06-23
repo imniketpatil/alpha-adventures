@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const Header = ({ type }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 350);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <nav
-      className={`flex  px-2 sm:px-4 py-2.5 rounded-b w-full items-center overflow-hidden z-10  ${
-        type === "list" ? "bg-blue-700 fixed" : "bg-transparent absolute"
-      }`}
+      className={`flex rounded-b w-full items-center overflow-hidden z-40 sm:px-4 py-6 px-2 transition-all duration-300 ease-in-out
+       ${
+         type === "list" || isSticky
+           ? "bg-slate-800 text-slate-200 fixed top-0"
+           : "bg-transparent fixed"
+       }`}
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/" className="flex items-center">
@@ -49,24 +65,23 @@ const Header = ({ type }) => {
 
         <div
           className={`w-full lg:block lg:w-auto ${
-            isMobileMenuOpen ? "" : "hidden"
+            isMobileMenuOpen ? "relative" : "hidden"
           }`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 text-sm lg:text-lg lg:font-medium lg:items-center ">
+          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 text-sm lg:text-lg lg:font-medium lg:items-center">
             <li>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
-                    isActive
-                      ? " lg:bg-transparent text-white"
-                      : "text-slate-200"
-                  }`
+                    isActive ? "lg:bg-transparent text-white" : "text-slate-200"
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
                 }
                 aria-current="page"
               >
                 HOME
+                <span className="absolute bottom-0 left-1/2 w-0 h-2 bg-white transition-all duration-400 ease-in-out"></span>
               </NavLink>
             </li>
             <li>
@@ -74,10 +89,8 @@ const Header = ({ type }) => {
                 to="/about"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
-                    isActive
-                      ? " lg:bg-transparent text-white"
-                      : "text-slate-200"
-                  }`
+                    isActive ? "lg:bg-transparent text-white" : "text-slate-200"
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
                 }
                 aria-current="page"
               >
@@ -89,10 +102,8 @@ const Header = ({ type }) => {
                 to="/shop"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
-                    isActive
-                      ? " lg:bg-transparent text-white"
-                      : "text-slate-200"
-                  }`
+                    isActive ? "lg:bg-transparent text-white" : "text-slate-200"
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
                 }
                 aria-current="page"
               >
@@ -104,10 +115,8 @@ const Header = ({ type }) => {
                 to="/faqs"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
-                    isActive
-                      ? " lg:bg-transparent text-white"
-                      : "text-slate-200"
-                  }`
+                    isActive ? "lg:bg-transparent text-white" : "text-slate-200"
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
                 }
                 aria-current="page"
               >
@@ -118,7 +127,7 @@ const Header = ({ type }) => {
               <a
                 href="https://wa.me/919403110937?text=Hey%21%20We%20are%20Alpha%20Adventures%2C%20your%20adventure%20travel%20partner.%20How%20can%20we%20assist%20you%3F"
                 target="_black"
-                className="relative inline-flex items-center justify-center leading-normal no-underline  py-2 pr-4 pl-3  text-slate-300 font-sans font-bold text-sm uppercase hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
+                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-300 font-sans font-bold text-sm uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
               >
                 Get In Touch
                 <svg
@@ -135,7 +144,7 @@ const Header = ({ type }) => {
                   <path d="M17 7l-10 10"></path>
                   <path d="M8 7l9 0l0 9"></path>
                 </svg>
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-neutral-700 origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"></span>
+                <span className="outline-none absolute bottom-0 left-0 w-full h-0.5 bg-neutral-700 origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"></span>
               </a>
             </li>
           </ul>

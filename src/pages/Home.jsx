@@ -6,15 +6,17 @@ import Treks from "../components/Treks";
 import ".././App.css";
 import Testimonal from "../components/Testimonal";
 import WhyUs from "../components/WhyUs";
-import UpcomingTreks from "../components/UpcomingTreks";
+import TeamSection from "../components/TeamSection.jsx";
 function home() {
   return (
     <>
       <Header />
       <Banner />
       <Treks />
-      <UpcomingTreks />
+
+      {/* <UpcomingTreks /> */}
       <Testimonal />
+      <TeamSection />
       <WhyUs />
       <Footer />
     </>

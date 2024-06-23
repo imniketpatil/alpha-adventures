@@ -28,8 +28,12 @@ function Banner() {
 
   const navigate = useNavigate();
 
-  const handleSearch = () => {
-    navigate("/treklist", { state: { trek } });
+  const [selectedTrek, setSelectedTrek] = useState(null);
+
+  const handleTrekChange = (event, value) => {
+    setSelectedTrek(value);
+    // Navigate to a new route with the selected trek value as a parameter
+    navigate(`/treks/${selectedTrek}`);
   };
 
   return (
@@ -49,17 +53,15 @@ function Banner() {
       <h1 className="text-white text-2xl font-semibold text-center">
         Your Adventure Travel Partner.
       </h1>
-      <div className="flex bg-white items-center w-[40%] lg:w-content justify-around px-1 border-4 py-2 lg:py-0 border-yellow-500 absolute bottom-[-35px] flex-row h-content ">
+      <div className="flex bg-white items-center w-[60%] max-w-[720px] lg:w-content justify-around px-1 border-4 py-2 lg:py-0 border-yellow-500 absolute bottom-[-35px] flex-row h-content ">
         <div className="flex items-center">
           <PlaceIcon />
           <Autocomplete
-            onChange={(event, value) => setTrek(value)}
+            onChange={handleTrekChange}
             className="block py-0 lg:py-2 pr-2 pl-2 outline-white"
             disablePortal
             id="combo-box-demo"
-            options={Object.keys(treks).map(
-              (trekName) => treks[trekName].trekName
-            )}
+            options={Object.keys(treks).map((name) => treks[name].name)}
             sx={{ width: [100, 150, 220] }}
             renderInput={(params) => (
               <TextField
@@ -74,7 +76,7 @@ function Banner() {
         <div>
           <button
             className="px-4 md:px-6 py-2 md:py-3 bg-sky-600 border border-sky-600 text-white rounded-lg hover:bg-sky-600 font-semibold"
-            onClick={handleSearch}
+            onClick={handleTrekChange}
           >
             Search
           </button>

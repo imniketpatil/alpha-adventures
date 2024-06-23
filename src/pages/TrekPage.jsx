@@ -1,9 +1,11 @@
 import React from "react";
 import Header from "../components/Header";
+import TempSpace from "../components/TempSpace";
 function TrekPage() {
   return (
     <>
-      <Header />
+      <TempSpace />
+      <Header type="list" />
       Shop
     </>
   );

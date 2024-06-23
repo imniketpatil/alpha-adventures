@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { format } from "date-fns";
 
 import DatePicker from "react-datepicker";
@@ -9,6 +9,10 @@ import TrekItem from "./TrekItem";
 
 function SearchList() {
   const location = useLocation();
+
+  const params = useParams();
+
+  console.log(params);
 
   // Use default values if location state is not available
   const defaultTrekDestination = "";

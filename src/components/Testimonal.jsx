@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import {
   CarouselProvider,
   Slider,
@@ -69,25 +69,13 @@ export default function Testimonial() {
     // Add more testimonials here
   ];
 
-  const intervalRef = useRef();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (intervalRef.current) {
-        intervalRef.current.click();
-      }
-    }, 3000); // Change slide every 3 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="">
+    <div className="bg-slate-100 bg-opacity-90">
       <div className="flex items-center justify-between h-content w-content absolute z-0">
         <div className="w-1/3 bg-white h-full" />
         <div className="w-4/6 ml-16 bg-gray-100 h-full" />
       </div>
-      <div className="xl:px-20 px-8 py-20 2xl:mx-auto 2xl:container relative z-40">
+      <div className="xl:px-20 px-8 py-20 2xl:mx-auto 2xl:container relative z-30">
         <CarouselProvider
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
@@ -110,7 +98,7 @@ export default function Testimonial() {
                       <img
                         src={testimonial.imgSrc}
                         alt="image of profile"
-                        className="w-full h-full flex-shrink-0 object-fit object-cover shadow-lg rounded"
+                        className="w-full h-full flex-shrink-0 object-fit object-cover rounded"
                       />
                       <div className="w-32 md:flex hidden items-center justify-center absolute top-0 -mr-16 -mt-14 right-0 h-32 bg-indigo-100 rounded-full">
                         <img
@@ -159,7 +147,6 @@ export default function Testimonial() {
               role="button"
               aria-label="next slide"
               className="cursor-pointer ml-2"
-              ref={intervalRef}
             >
               <img
                 className="h-12 w-12"

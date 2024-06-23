@@ -43,8 +43,8 @@ export default function CircularDemo() {
   const productTemplate = (trek) => {
     return (
       <div className="flex justify-center items-center h-full">
-        <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
-          <div className="mb-3">
+        <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 w-full">
+          <div className="mb-3 w-full">
             <img
               src="https://images.pexels.com/photos/19664944/pexels-photo-19664944/free-photo-of-climbers-exploring-mountain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
               alt="error"
