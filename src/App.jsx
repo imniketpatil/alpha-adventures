@@ -28,6 +28,10 @@ function App() {
       element: <Home />,
     },
     {
+      path: "/",
+      element: <Home />,
+    },
+    {
       path: "about",
       element: <About />,
     },
