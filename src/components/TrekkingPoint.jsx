@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TrekkingPoint = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -40,6 +43,7 @@ const TrekkingPoint = () => {
               <button
                 type="button"
                 className="bg-blue-700 text-white p-4 rounded-full font-semibold"
+                onClick={() => navigate("/Sahyadri Treks/Kalsubai Peak Trek")}
               >
                 Learn More
               </button>
@@ -79,6 +83,7 @@ const TrekkingPoint = () => {
               <button
                 type="button"
                 className="bg-blue-700 text-white p-4 rounded-full font-semibold"
+                onClick={() => navigate("/Sahyadri Treks/Ratangad Trek")}
               >
                 Learn More
               </button>
@@ -95,7 +100,7 @@ const TrekkingPoint = () => {
           <div className="p-6 relative flex flex-col justify-around h-full">
             <div>
               <h4 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-snug text-white">
-                Ratangad Trek
+                Harishchandragad Trek
                 <br />
               </h4>
             </div>
@@ -118,6 +123,9 @@ const TrekkingPoint = () => {
               <button
                 type="button"
                 className="bg-blue-700 text-white p-4 rounded-full font-semibold"
+                onClick={() =>
+                  navigate("/Sahyadri Treks/Harishchandragad Trek")
+                }
               >
                 Learn More
               </button>

@@ -82,12 +82,14 @@ export default function Testimonial() {
           totalSlides={testimonialDetails.length}
         >
           <h1 className="text-5xl font-bold xl:block hidden leading-tight text-gray-800">
-            What our customers are
+            What Trekkers are
             <br />
             saying
+            <br />
+            About Us
           </h1>
           <h1 className="text-5xl font-bold xl:hidden block leading-tight lg:leading-10 text-gray-800">
-            What our customers are saying
+            What Trekkers are saying About Us
           </h1>
           <Slider>
             {testimonialDetails.map((testimonial, index) => (

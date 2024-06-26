@@ -15,6 +15,10 @@ import TrekPage from "./pages/TrekPage.jsx";
 import Sahyadri from "./pages/Sahyadri.jsx";
 import Himalayan from "./pages/Himalayan.jsx";
 import Bagpacking from "./pages/Bagpacking.jsx";
+import TrekMainPage from "./pages/TrekMainPage.jsx";
+import KalsubaiPeakTrek from "./pages/KalsubaiPeakTrek.jsx";
+import HarishchandragadTrek from "./pages/HarishchandragadTrek.jsx";
+import RatangadTrek from "./pages/RatangadTrek.jsx";
 
 function App() {
   // Define the routes for the application
@@ -44,16 +48,28 @@ function App() {
       element: <TrekPage />,
     },
     {
-      path: "trek/1",
+      path: "trek/Sahyadri Treks",
       element: <Sahyadri />,
     },
     {
-      path: "trek/2",
+      path: "trek/Himalayan Treks",
       element: <Himalayan />,
     },
     {
-      path: "trek/3",
+      path: "trek/Backpacking Treks",
       element: <Bagpacking />,
+    },
+    {
+      path: "Sahyadri Treks/Kalsubai Peak Trek",
+      element: <KalsubaiPeakTrek />,
+    },
+    {
+      path: "Sahyadri Treks/Harishchandragad Trek",
+      element: <HarishchandragadTrek />,
+    },
+    {
+      path: "Sahyadri Treks/Ratangad Trek",
+      element: <RatangadTrek />,
     },
   ]);
 

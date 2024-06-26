@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Treks = () => {
-  const [id, setId] = useState();
+  const [title, setTitle] = useState();
   const navigate = useNavigate();
 
   const treksDetails = [
@@ -39,10 +39,10 @@ const Treks = () => {
     // },
   ];
 
-  const handleTrekClick = (id) => {
-    setId(id);
-    console.log("Selected Title:", id);
-    navigate(`/trek/${id}`);
+  const handleTrekClick = (title) => {
+    setTitle(title);
+    console.log("Selected Title:", title);
+    navigate(`/trek/${title}`);
   };
 
   return (
@@ -68,7 +68,7 @@ const Treks = () => {
             <div
               key={trek.id}
               className="trek-card p-4 lg:w-1/4 sm:w-1/2 sm:mb-0 mb-6 cursor-pointer shadow-xl border-2 border-slate-200  rounded-lg"
-              onClick={() => handleTrekClick(trek.id)}
+              onClick={() => handleTrekClick(trek.title)}
             >
               <div className="rounded-lg h-64 overflow-hidden">
                 <img
@@ -77,17 +77,17 @@ const Treks = () => {
                   src={trek.image}
                 />
               </div>
-              <h2 className="title text-xl font-medium title-font text-black mt-5">
+              <h2 className="title text-2xl font-bold title-font text-black mt-5">
                 {trek.title}
               </h2>
-              <p className="text-base leading-relaxed mt-2 line-clamp-5">
+              <p className="text-base leading-relaxed font-semibold mt-2 line-clamp-5">
                 {trek.description}
               </p>
-              <a
-                className="text-indigo-400 inline-flex items-center mt-3"
+              <span
+                className="text-indigo-400 inline-flex items-center mt-3 font-bold"
                 href="#learn-more"
               >
-                Learn More
+                More About {trek.title}
                 <svg
                   fill="none"
                   stroke="currentColor"
@@ -99,7 +99,7 @@ const Treks = () => {
                 >
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
-              </a>
+              </span>
             </div>
           ))}
         </div>

@@ -127,7 +127,7 @@ const Header = ({ type }) => {
               <a
                 href="https://wa.me/919403110937?text=Hey%21%20We%20are%20Alpha%20Adventures%2C%20your%20adventure%20travel%20partner.%20How%20can%20we%20assist%20you%3F"
                 target="_black"
-                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-300 font-sans font-bold text-sm uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
+                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-100 font-sans font-bold text-sm uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
               >
                 Get In Touch
                 <svg
@@ -144,7 +144,7 @@ const Header = ({ type }) => {
                   <path d="M17 7l-10 10"></path>
                   <path d="M8 7l9 0l0 9"></path>
                 </svg>
-                <span className="outline-none absolute bottom-0 left-0 w-full h-0.5 bg-neutral-700 origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"></span>
+                <span className="outline-none absolute bottom-0 left-0 w-full h-0.5 bg-neutral-200 origin-bottom-right transform transition duration-200 ease-out scale-x-0 group-hover:scale-x-100 group-hover:origin-bottom-left"></span>
               </a>
             </li>
           </ul>
