@@ -1,13 +1,10 @@
 {
-  "homepage": "https://imniketpatil.github.io/Alpha-Adventures",
   "name": "alpha-adventure-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -20,6 +17,7 @@
     "@mui/material": "^5.15.19",
     "@tailwindcss/line-clamp": "^0.4.4",
     "countup.js": "^2.8.0",
+    "gh-pages": "^6.1.1",
     "keen-slider": "^6.8.6",
     "mdb-react-ui-kit": "^8.0.0",
     "number-counter": "^1.0.3",
