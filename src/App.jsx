@@ -24,11 +24,11 @@ function App() {
   // Define the routes for the application
   const router = createBrowserRouter([
     {
-      path: "Alpha-Adventures/",
+      path: "/Alpha-Adventures/",
       element: <Home />,
     },
     {
-      path: "/",
+      path: "/Alpha-Adventures/",
       element: <Home />,
     },
     {
