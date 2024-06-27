@@ -16,11 +16,4 @@ export default defineConfig({
       },
     },
   },
-  esbuild: {
-    // To handle 404 redirects for GitHub Pages
-    target: "es2020",
-  },
-  server: {
-    historyApiFallback: true,
-  },
 });

@@ -4,7 +4,6 @@ import {
   RouterProvider,
   Route,
   createRoutesFromElements,
-  useNavigate,
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -20,7 +19,6 @@ import HarishchandragadTrek from "./pages/HarishchandragadTrek.jsx";
 import RatangadTrek from "./pages/RatangadTrek.jsx";
 
 function App() {
-  // Define the routes for the application with the base path
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -58,7 +56,6 @@ function App() {
     )
   );
 
-  // Return the RouterProvider with the defined router
   return (
     <>
       <RouterProvider router={router} />
