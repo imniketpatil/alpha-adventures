@@ -1,10 +1,10 @@
 import * as React from "react";
-import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
-  Link,
+  createRoutesFromElements,
+  useNavigate,
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -15,67 +15,48 @@ import TrekPage from "./pages/TrekPage.jsx";
 import Sahyadri from "./pages/Sahyadri.jsx";
 import Himalayan from "./pages/Himalayan.jsx";
 import Bagpacking from "./pages/Bagpacking.jsx";
-import TrekMainPage from "./pages/TrekMainPage.jsx";
 import KalsubaiPeakTrek from "./pages/KalsubaiPeakTrek.jsx";
 import HarishchandragadTrek from "./pages/HarishchandragadTrek.jsx";
 import RatangadTrek from "./pages/RatangadTrek.jsx";
 
 function App() {
-  // Define the routes for the application
-  const router = createBrowserRouter([
-    {
-      path: "/alpha-adventures/",
-      element: <Home />,
-    },
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "about",
-      element: <About />,
-    },
-    {
-      path: "shop",
-      element: <Shop />,
-    },
-    {
-      path: "faqs",
-      element: <FAQs />,
-    },
-    {
-      path: "treklist/:id",
-      element: <TrekList />,
-    },
-    {
-      path: "trek",
-      element: <TrekPage />,
-    },
-    {
-      path: "trek/Sahyadri Treks",
-      element: <Sahyadri />,
-    },
-    {
-      path: "trek/Himalayan Treks",
-      element: <Himalayan />,
-    },
-    {
-      path: "trek/Backpacking Treks",
-      element: <Bagpacking />,
-    },
-    {
-      path: "Sahyadri Treks/Kalsubai Peak Trek",
-      element: <KalsubaiPeakTrek />,
-    },
-    {
-      path: "Sahyadri Treks/Harishchandragad Trek",
-      element: <HarishchandragadTrek />,
-    },
-    {
-      path: "Sahyadri Treks/Ratangad Trek",
-      element: <RatangadTrek />,
-    },
-  ]);
+  // Define the routes for the application with the base path
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/alpha-adventures/" element={<Home />} />
+        <Route path="/alpha-adventures/about" element={<About />} />
+        <Route path="/alpha-adventures/shop" element={<Shop />} />
+        <Route path="/alpha-adventures/faqs" element={<FAQs />} />
+        <Route path="/alpha-adventures/treklist/:id" element={<TrekList />} />
+        <Route path="/alpha-adventures/trek" element={<TrekPage />} />
+        <Route
+          path="/alpha-adventures/trek/Sahyadri Treks"
+          element={<Sahyadri />}
+        />
+        <Route
+          path="/alpha-adventures/trek/Himalayan Treks"
+          element={<Himalayan />}
+        />
+        <Route
+          path="/alpha-adventures/trek/Backpacking Treks"
+          element={<Bagpacking />}
+        />
+        <Route
+          path="/alpha-adventures/Sahyadri Treks/Kalsubai Peak Trek"
+          element={<KalsubaiPeakTrek />}
+        />
+        <Route
+          path="/alpha-adventures/Sahyadri Treks/Harishchandragad Trek"
+          element={<HarishchandragadTrek />}
+        />
+        <Route
+          path="/alpha-adventures/Sahyadri Treks/Ratangad Trek"
+          element={<RatangadTrek />}
+        />
+      </>
+    )
+  );
 
   // Return the RouterProvider with the defined router
   return (
