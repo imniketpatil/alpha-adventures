@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=/alpha-adventures/" />
+    <meta http-equiv="refresh" content="0; url=/alpha-adventures/404" />
     <script>
-      window.location.href = "/alpha-adventures/";
+      // Extract the pathname from the current URL
+      const pathname = window.location.pathname;
+
+      // Check if the pathname starts with the base path
+      if (!pathname.startsWith("/alpha-adventures")) {
+        // Redirect to the base path with the current pathname
+        window.location.href = `/alpha-adventures${pathname}`;
+      }
     </script>
   </head>
   <body></body>
