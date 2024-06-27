@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import TempSpace from "./TempSpace";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);

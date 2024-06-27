@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { format } from "date-fns";
-
-import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import TrekItem from "./TrekItem";
