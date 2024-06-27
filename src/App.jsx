@@ -24,7 +24,7 @@ function App() {
   // Define the routes for the application
   const router = createBrowserRouter([
     {
-      path: "/alpha-adventures/",
+      path: "/",
       element: <Home />,
     },
     {
