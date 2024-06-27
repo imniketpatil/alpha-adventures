@@ -23,11 +23,11 @@ function AboutSectionUIComponent() {
       setCounters((prevCounters) =>
         prevCounters.map((counter, index) =>
           counter < achievements[index].value
-            ? counter + 2
+            ? counter + 10
             : achievements[index].value
         )
       );
-    }, 10); // Adjust the interval speed as needed (e.g., every 100 milliseconds)
+    }, 2); // Adjust the interval speed as needed (e.g., every 100 milliseconds)
 
     // Cleanup the interval when component unmounts
     return () => clearInterval(interval);
