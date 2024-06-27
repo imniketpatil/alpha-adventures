@@ -13,7 +13,7 @@ function Banner() {
   useEffect(() => {
     const typed = new Typed(".element", {
       strings: ["Alpha Adventures."],
-      typeSpeed: 50,
+      typeSpeed: 200,
     });
 
     return () => {
