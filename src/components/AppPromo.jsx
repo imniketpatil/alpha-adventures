@@ -49,9 +49,9 @@ const AppPromo = () => {
               </span>
             </div>
           </div>
-          <div className="relative mt-16 h-80 lg:mt-0 hidden md:block">
+          <div className="relative mt-16 h-80 lg:mt-0 hidden lg:block">
             <img
-              className="absolute left-0 top-0 w-[57rem] max-w-none roundedl-md  bg-white/5 ring-1 ring-white/10"
+              className="absolute left-0 top-0 w-[57rem] max-w-none  roundedl-md  bg-white/5 ring-1 ring-white/10"
               src="https://images.pexels.com/photos/3337153/pexels-photo-3337153.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
               alt="App screenshot"
               width="1824"
