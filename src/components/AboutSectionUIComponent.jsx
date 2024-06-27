@@ -27,7 +27,7 @@ function AboutSectionUIComponent() {
             : achievements[index].value
         )
       );
-    }, 2); // Adjust the interval speed as needed (e.g., every 100 milliseconds)
+    }, 10); // Adjust the interval speed as needed (e.g., every 100 milliseconds)
 
     // Cleanup the interval when component unmounts
     return () => clearInterval(interval);
