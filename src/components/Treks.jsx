@@ -42,7 +42,7 @@ const Treks = () => {
   const handleTrekClick = (title) => {
     setTitle(title);
     console.log("Selected Title:", title);
-    navigate(`/trek/${title}`);
+    navigate(`/alpha-adventures/trek/${title}`);
   };
 
   return (

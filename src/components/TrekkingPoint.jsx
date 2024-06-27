@@ -43,7 +43,11 @@ const TrekkingPoint = () => {
               <button
                 type="button"
                 className="bg-blue-700 text-white p-4 rounded-full font-semibold"
-                onClick={() => navigate("/Sahyadri Treks/Kalsubai Peak Trek")}
+                onClick={() =>
+                  navigate(
+                    "/alpha-adventures/Sahyadri Treks/Kalsubai Peak Trek"
+                  )
+                }
               >
                 Learn More
               </button>
@@ -83,7 +87,9 @@ const TrekkingPoint = () => {
               <button
                 type="button"
                 className="bg-blue-700 text-white p-4 rounded-full font-semibold"
-                onClick={() => navigate("/Sahyadri Treks/Ratangad Trek")}
+                onClick={() =>
+                  navigate("/alpha-adventures/Sahyadri Treks/Ratangad Trek")
+                }
               >
                 Learn More
               </button>
@@ -124,7 +130,9 @@ const TrekkingPoint = () => {
                 type="button"
                 className="bg-blue-700 text-white p-4 rounded-full font-semibold"
                 onClick={() =>
-                  navigate("/Sahyadri Treks/Harishchandragad Trek")
+                  navigate(
+                    "/alpha-adventures/Sahyadri Treks/Harishchandragad Trek"
+                  )
                 }
               >
                 Learn More

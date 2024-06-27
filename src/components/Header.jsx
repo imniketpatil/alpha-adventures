@@ -31,7 +31,7 @@ const Header = ({ type }) => {
        }`}
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <Link to="/" className="flex items-center">
+        <Link to="/alpha-adventures/" className="flex items-center">
           <span
             className={`self-center text-2xl font-semibold whitespace-nowrap text-white`}
           >
@@ -72,7 +72,7 @@ const Header = ({ type }) => {
           <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 text-sm lg:text-lg lg:font-medium lg:items-center">
             <li>
               <NavLink
-                to="/"
+                to="/alpha-adventures/"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
@@ -86,7 +86,7 @@ const Header = ({ type }) => {
             </li>
             <li>
               <NavLink
-                to="/about"
+                to="/alpha-adventures/about"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
@@ -99,7 +99,7 @@ const Header = ({ type }) => {
             </li>
             <li>
               <NavLink
-                to="/shop"
+                to="/alpha-adventures/shop"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
@@ -112,7 +112,7 @@ const Header = ({ type }) => {
             </li>
             <li>
               <NavLink
-                to="/faqs"
+                to="/alpha-adventures/faqs"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"

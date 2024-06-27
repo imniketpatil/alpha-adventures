@@ -30,7 +30,7 @@ function Banner() {
   const handleTrekChange = (event, value) => {
     setSelectedTrek(value);
     // Navigate to a new route with the selected trek value as a parameter
-    navigate(`/treks/${selectedTrek}`);
+    navigate(`/alpha-adventures/treks/${selectedTrek}`);
   };
 
   return (
