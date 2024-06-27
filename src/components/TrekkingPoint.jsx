@@ -98,7 +98,7 @@ const TrekkingPoint = () => {
         </div>
         <div className=" flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative  min-h-[30rem] items-end overflow-hidden">
           <img
-            src="http://www.trawellamigos.in/wp-content/uploads/2023/02/HSG-e1687801876784.jpg"
+            src="https://nomadsofindia.com/wp-content/uploads/2022/07/Harishchandragad-5.jpg.webp"
             alt="bg"
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
