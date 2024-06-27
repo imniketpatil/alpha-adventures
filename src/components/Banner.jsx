@@ -35,7 +35,7 @@ function Banner() {
 
   return (
     <div
-      className="h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-slate-400 flex flex-col gap-6 items-center justify-center relative"
+      className="h-[50vh] md:h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-slate-400 flex flex-col gap-6 items-center justify-center relative"
       style={{
         backgroundImage:
           "linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url('https://images.pexels.com/photos/746386/pexels-photo-746386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
