@@ -23,7 +23,7 @@ function AboutSectionUIComponent() {
       setCounters((prevCounters) =>
         prevCounters.map((counter, index) =>
           counter < achievements[index].value
-            ? counter + 10
+            ? counter + 30
             : achievements[index].value
         )
       );

@@ -69,7 +69,7 @@ const Header = ({ type }) => {
           }`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 text-sm lg:text-lg lg:font-medium lg:items-center">
+          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-5 lg:gap-0 text-xl lg:text-lg lg:font-medium lg:items-center">
             <li>
               <NavLink
                 to="/alpha-adventures/"
@@ -127,7 +127,7 @@ const Header = ({ type }) => {
               <a
                 href="https://wa.me/919403110937?text=Hey%21%20We%20are%20Alpha%20Adventures%2C%20your%20adventure%20travel%20partner.%20How%20can%20we%20assist%20you%3F"
                 target="_black"
-                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-100 font-sans font-bold text-sm uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
+                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-100 font-sans font-bold text-xl uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
               >
                 Get In Touch
                 <svg
