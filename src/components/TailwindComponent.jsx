@@ -60,18 +60,22 @@ const TailwindComponent = () => {
                 Better Trek With Us
               </p>
 
-              <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+              <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none ">
                 {Perks.map((perk) => (
                   <div
                     key={perk.id}
                     className={`relative pl-9 p-2 hover:cursor-pointer ${
-                      activeId === perk.id ? "shadow-custom p-6 bg-white" : ""
+                      activeId === perk.id
+                        ? "shadow-custom p-6 bg-white rounded-lg"
+                        : ""
                     }`}
                     onClick={() => handleClick(perk.id)}
                   >
                     <dt className="inline font-semibold text-gray-900">
                       <svg
-                        className="absolute left-1 top-1 h-5 w-5 text-indigo-600"
+                        className={`absolute h-5 w-5 ${
+                          activeId === perk.id ? "left-2 top-7" : "left-2 top-4"
+                        } text-indigo-600`}
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"

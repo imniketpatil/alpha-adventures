@@ -5,6 +5,8 @@ import TeamSection from "../components/TeamSection.jsx";
 import TempSpace from "../components/TempSpace.jsx";
 import AboutSectionUIComponent from "../components/AboutSectionUIComponent.jsx";
 import Details from "../components/Details.jsx";
+import Achievements from "../components/Achievements.jsx";
+import InstagramSection from "../components/InstagramSection.jsx";
 
 function About() {
   useEffect(() => {
@@ -16,6 +18,8 @@ function About() {
       <Header type="list" />
       <AboutSectionUIComponent />
       <Details />
+      <Achievements />
+      <InstagramSection />
       <TeamSection />
       <Footer />
     </>

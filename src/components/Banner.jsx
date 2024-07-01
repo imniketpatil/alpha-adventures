@@ -35,22 +35,22 @@ function Banner() {
 
   return (
     <div
-      className="h-[50vh] lg:h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-slate-400 flex flex-col gap-6 items-center justify-center relative"
+      className="h-[60vh] lg:h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-slate-400 flex flex-col gap-6 items-center justify-center relative"
       style={{
         backgroundImage:
           "linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url('https://images.pexels.com/photos/746386/pexels-photo-746386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
       }}
     >
-      <h1 className="text-5xl text-white font-semibold text-center">
+      <h1 className="text-4xl lg:text-5xl text-white font-semibold text-center">
         We are{" "}
-        <span className="element text-5xl text-yellow-500 text-center">
+        <span className="element text-4xl lg:text-5xl text-yellow-500 text-center">
           Alpha Adventures
         </span>
       </h1>
       <h1 className="text-white text-2xl font-semibold text-center">
         Your Adventure Travel Partner.
       </h1>
-      <div className="flex bg-white items-center w-[60%] max-w-[720px] lg:w-content justify-around px-1 border-4 py-2 lg:py-0 border-yellow-500 absolute bottom-[-35px] flex-row h-content ">
+      <div className="flex bg-white items-center w-[80%] md:w-[60%] max-w-[720px] lg:w-content justify-around px-1 border-4 py-2 lg:py-0 border-yellow-500 absolute bottom-[-35px] flex-row h-content ">
         <div className="flex items-center">
           <PlaceIcon />
           <Autocomplete
@@ -72,7 +72,7 @@ function Banner() {
 
         <div>
           <button
-            className="px-4 md:px-6 py-2 md:py-3 bg-sky-600 border border-sky-600 text-white rounded-lg hover:bg-sky-600 font-semibold"
+            className="px-2 md:px-6 py-2 md:py-3 bg-sky-600 border border-sky-600 text-white rounded-lg hover:bg-sky-600 font-semibold"
             onClick={handleTrekChange}
           >
             Search

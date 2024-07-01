@@ -3,6 +3,8 @@ import { NavLink, Link } from "react-router-dom";
 
 const Header = ({ type }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
 
   const handleMenuToggle = () => {
@@ -11,7 +13,10 @@ const Header = ({ type }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 250);
+      const currentScrollPos = window.scrollY;
+      setIsSticky(currentScrollPos > 300);
+      setShowNavbar(prevScrollPos > currentScrollPos || currentScrollPos < 300);
+      setPrevScrollPos(currentScrollPos);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -19,15 +24,23 @@ const Header = ({ type }) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [prevScrollPos]);
 
   return (
     <nav
       className={`flex rounded-b w-full items-center overflow-hidden z-40 sm:px-4 py-6 px-2 transition-all duration-300 ease-in-out
        ${
-         type === "list" || isSticky
-           ? "bg-slate-800 text-slate-200 fixed top-0"
-           : "bg-transparent fixed"
+         isSticky || type === "list"
+           ? `bg-slate-800 text-slate-200 fixed top-0 ${
+               showNavbar && type === "list"
+                 ? "transition-all duration-300 ease-in-out block"
+                 : "transition-all duration-300 ease-in-out hidden"
+             }`
+           : `bg-transparent fixed ${
+               showNavbar
+                 ? "transition-all duration-300 ease-in-out fixed"
+                 : "transition-all duration-300 ease-in-out hidden"
+             }`
        }`}
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -69,7 +82,7 @@ const Header = ({ type }) => {
           }`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-5 lg:gap-0 text-xl lg:text-lg lg:font-medium lg:items-center">
+          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-2 lg:gap-0 text-lg lg:text-lg lg:font-medium lg:items-center">
             <li>
               <NavLink
                 to="/alpha-adventures/"
@@ -123,11 +136,11 @@ const Header = ({ type }) => {
                 FAQs
               </NavLink>
             </li>
-            <li className="border-b-[.5px] border-gray-200 lg:border-0">
+            <li className="border-b-[.5px] border-gray-200 lg:border-0 text-md ">
               <a
-                href="https://wa.me/919403110937?text=Hey%21%20We%20are%20Alpha%20Adventures%2C%20your%20adventure%20travel%20partner.%20How%20can%20we%20assist%20you%3F"
+                href="#"
                 target="_black"
-                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-100 font-sans font-bold text-xl uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
+                className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-100 font-sans font-bold uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-md"
               >
                 Get In Touch
                 <svg

@@ -47,13 +47,13 @@ const Treks = () => {
 
   return (
     <section className="text-black  bg-white body-font lg:mt-0 mt-20">
-      <div className="container px-5 py-24 mx-auto">
+      <div className="container px-2 py-12 lg:py-24  mx-auto">
         <div className="flex flex-col ">
           <div className="h-1 bg-gray-800 rounded overflow-hidden">
             <div className="w-24 h-full bg-yellow-500"></div>
           </div>
           <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-6 items-center justify-center">
-            <h1 className="sm:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center">
+            <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center">
               Treks And Packages
             </h1>
             {/* <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
@@ -63,14 +63,14 @@ const Treks = () => {
             </p> */}
           </div>
         </div>
-        <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 items-center justify-center lg:gap-14 ">
+        <div className="flex flex-wrap sm:m-4 mx-4 -mb-10 -mt-8 items-center justify-center gap-5 lg:gap-14 ">
           {treksDetails.map((trek) => (
             <div
               key={trek.id}
-              className="trek-card p-4 lg:w-1/4 sm:w-1/2 sm:mb-0 mb-6 cursor-pointer shadow-xl border-2 border-slate-200  rounded-lg"
+              className="trek-card p-4 w-96 sm:mb-2 mb-4 cursor-pointer shadow-xl border-2 border-slate-200  rounded-lg"
               onClick={() => handleTrekClick(trek.title)}
             >
-              <div className="rounded-lg h-64 overflow-hidden">
+              <div className="rounded-lg h-56 md:h-64 overflow-hidden">
                 <img
                   alt="content"
                   className="object-cover object-center h-full w-full"

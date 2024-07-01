@@ -10,6 +10,8 @@ import TeamSection from "../components/TeamSection.jsx";
 import TailwindComponent from "../components/TailwindComponent.jsx";
 import AppPromo from "../components/AppPromo.jsx";
 import Achievements from "../components/Achievements.jsx";
+import ToTop from "../components/ToTop.jsx";
+
 function home() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,6 +30,7 @@ function home() {
       <TeamSection />
       <WhyUs />
       <Footer />
+      <ToTop />
     </>
   );
 }
