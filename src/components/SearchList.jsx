@@ -20,7 +20,7 @@ function SearchList() {
     : defaultTrekDestination;
 
   return (
-    <div className="flex justify-center pt-20">
+    <div className="flex justify-center font-body pt-20">
       <div className="w-full max-w-[1080px] flex gap-5 flex-col lg:flex-row px-2">
         <div className="w-full max-w-[1024px] md:w-1/4 bg-yellow-500 rounded-xl sticky p-3 flex flex-col gap-2 h-max ">
           <h1 className="mb-5 text-2xl m-2 text-blue-700 font-bold">Search</h1>

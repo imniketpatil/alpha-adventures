@@ -46,14 +46,14 @@ const Treks = () => {
   };
 
   return (
-    <section className="text-black  bg-white body-font lg:mt-0 mt-20">
+    <section className="text-black  bg-white body-font lg:mt-0 mt-20 font-body">
       <div className="container px-2 py-12 lg:py-24  mx-auto">
         <div className="flex flex-col ">
           <div className="h-1 bg-gray-800 rounded overflow-hidden">
             <div className="w-24 h-full bg-yellow-500"></div>
           </div>
           <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-6 items-center justify-center">
-            <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center">
+            <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center font-body">
               Treks And Packages
             </h1>
             {/* <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
@@ -80,7 +80,7 @@ const Treks = () => {
               <h2 className="title text-2xl font-bold title-font text-black mt-5">
                 {trek.title}
               </h2>
-              <p className="text-base leading-relaxed font-semibold mt-2 line-clamp-5">
+              <p className="text-base leading-relaxed font-normal mt-2 line-clamp-5">
                 {trek.description}
               </p>
               <span

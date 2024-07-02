@@ -34,7 +34,7 @@ function AboutSectionUIComponent() {
   }, [achievements]); // Include dependencies that trigger useEffect updates
 
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 font-normal font-body">
       <img
         src="https://images.pexels.com/photos/2105416/pexels-photo-2105416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         alt=""
@@ -64,35 +64,33 @@ function AboutSectionUIComponent() {
           }}
         ></div>
       </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 font-normal">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+          <h2 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
             Alpha Adventures.
           </h2>
-          <p className="mt-6 text-xl leading-8 text-white">
+          <p className="mt-6 text-xl leading-8 font-normal text-white">
             Welcome to{" "}
-            <span className="text-slate-900 font-semibold">
-              Alpha Adventures
-            </span>
+            <span className="text-slate-900 font-normal">Alpha Adventures</span>
             , your premier adventure travel partner based in{" "}
-            <span className="text-slate-900 font-semibold">
+            <span className="text-slate-900 font-normal">
               The Heart of Nagpur.
             </span>{" "}
             With over{" "}
-            <span className="text-slate-900 font-semibold"> 6 Years </span> of
+            <span className="text-slate-900 font-normal"> 6 Years </span> of
             unparalleled experience, we specialize in curating unforgettable
             trekking experiences for adventure enthusiasts. Our commitment to
             safety, excitement, and exploration has garnered the trust and
             smiles of over{" "}
-            <span className="text-slate-900 font-semibold">
+            <span className="text-slate-900 font-normal">
               {" "}
               5,000 Happy Trekkers{" "}
             </span>
             .
           </p>
         </div>
-        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-lg font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none font-normal">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-lg  leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
             <span href="#" className="hover:cursor-pointer">
               Learn More About Our Treks <span aria-hidden="true">&rarr;</span>
             </span>
@@ -110,7 +108,7 @@ function AboutSectionUIComponent() {
             className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4"
           >
             {achievements.map((achievement, index) => (
-              <div key={index} className="flex flex-col-reverse">
+              <div key={index} className="flex flex-col-reverse font-normal">
                 <dt className="text-lg leading-7 text-gray-100">
                   {achievement.label}
                 </dt>

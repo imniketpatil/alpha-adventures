@@ -70,7 +70,7 @@ export default function Testimonial() {
   ];
 
   return (
-    <div className="bg-slate-100 bg-opacity-90">
+    <div className="bg-slate-100 bg-opacity-90 font-body">
       <div className="flex items-center justify-between h-content w-content absolute z-0">
         <div className="w-1/3 bg-white h-full" />
         <div className="w-4/6 ml-16 bg-gray-100 h-full" />

@@ -41,7 +41,7 @@ const FAQ = () => {
 
   return (
     <>
-      <div className="lg:container lg:mx-auto lg:py-16 md:py-12 md:px-6 md:mt-20 py-12 px-4 ">
+      <div className="lg:container lg:mx-auto lg:py-16 md:py-12 md:px-6 md:mt-20 py-12 px-4 font-body">
         <h1 className="text-center  lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 font-semibold">
           FAQ's
         </h1>

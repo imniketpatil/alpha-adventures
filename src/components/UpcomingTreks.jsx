@@ -72,7 +72,7 @@ export default function CircularDemo() {
   };
 
   return (
-    <div className="flex justify-center items-center h-content">
+    <div className="flex justify-center items-center h-content font-body">
       <div className="card w-full max-w-[1024px]">
         <Carousel
           value={carouselData}

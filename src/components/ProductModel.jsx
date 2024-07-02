@@ -4,7 +4,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
   if (!isOpen || !product) return null; // Add a check for product being undefined
 
   return (
-    <div className="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center">
+    <div className="fixed inset-0 overflow-y-auto font-body z-50 flex items-center justify-center">
       <div
         className="fixed inset-0 transition-opacity "
         aria-hidden="true"

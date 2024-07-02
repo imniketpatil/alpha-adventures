@@ -9,7 +9,7 @@ const TrekkingPoint = () => {
   }, []);
 
   return (
-    <section className="container mx-auto px-8 py-8 lg:py-40">
+    <section className="container mx-auto px-8 py-8 lg:py-40 font-body">
       <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md   min-h-[20rem] items-end overflow-hidden">
           <img
