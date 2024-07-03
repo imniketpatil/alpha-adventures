@@ -14,9 +14,9 @@ import TrekPage from "./pages/TrekPage.jsx";
 import Sahyadri from "./pages/Sahyadri.jsx";
 import Himalayan from "./pages/Himalayan.jsx";
 import Bagpacking from "./pages/Bagpacking.jsx";
-import KalsubaiPeakTrek from "./pages/KalsubaiPeakTrek.jsx";
 import HarishchandragadTrek from "./pages/HarishchandragadTrek.jsx";
 import RatangadTrek from "./pages/RatangadTrek.jsx";
+import TrekDetailsPage from "./pages/TrekDetailsPage.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -42,7 +42,7 @@ function App() {
         />
         <Route
           path="/alpha-adventures/Sahyadri Treks/Kalsubai Peak Trek"
-          element={<KalsubaiPeakTrek />}
+          element={<TrekDetailsPage />}
         />
         <Route
           path="/alpha-adventures/Sahyadri Treks/Harishchandragad Trek"

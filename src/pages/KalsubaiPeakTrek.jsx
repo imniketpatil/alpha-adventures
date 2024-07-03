@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import TempSpace from "../components/TempSpace.jsx";
+import TrekDetailsComponent from "../components/TrekDetailsComponent.jsx";
 
 function KalsubaiPeakTrek() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <>
+      <TempSpace />
       <Header type="list" />
+      <TrekDetailsComponent />
       <Footer />
     </>
   );

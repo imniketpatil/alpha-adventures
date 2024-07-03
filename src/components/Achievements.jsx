@@ -14,7 +14,7 @@ const Achievements = () => {
     },
     {
       img: "https://res.cloudinary.com/alphaimages/image/upload/v1719861175/SuccessfullTreks_y59kgf.svg",
-      label: "Successfully Treks",
+      label: "Successful Treks",
       value: 100,
     },
   ];

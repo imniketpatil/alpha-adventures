@@ -6,6 +6,9 @@ export default {
       body: ["Lexend Deca", "sans-serif"],
     },
     extend: {
+      gridTemplateRows: {
+        "[auto,auto,1fr]": "auto auto 1fr",
+      },
       backgroundImage: {
         hero: "url('https://images.pexels.com/photos/2496880/pexels-photo-2496880.jpeg?auto=compress&cs=tinysrgb&w=600')",
       },
