@@ -1,30 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./Layout.jsx";
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import List from "./pages/List.jsx";
-import New from "./pages/New.jsx";
-import Single from "./pages/Single.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import App from "./App";
 import "./index.css";
+import TestimonialEditContextProvider from "./context/TestimonialEditContextProvider";
 
-const routes = (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="list">
-          <Route index element={<List />} />
-          <Route path="new" element={<New />} />
-          <Route path=":id" element={<Single />} />
-        </Route>
-      </Route>
-      <Route path="/login" element={<Login />} />
-    </Routes>
-  </Router>
-);
+const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>{routes}</React.StrictMode>
+const root = createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <App />
+      </Router>
+    </QueryClientProvider>
+  </React.StrictMode>
 );

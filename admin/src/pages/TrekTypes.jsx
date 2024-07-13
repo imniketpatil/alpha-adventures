@@ -1,10 +1,9 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import Widget from "../components/Widget";
-import Table from "../components/Table";
+import TestimonialsTable from "../components/TestimonialsTable";
 
-const Home = () => {
+function TrekTypes() {
   return (
     <div className="flex w-full h-screen">
       <div className="w-1/6 h-screen border-r-2 border-gray-300">
@@ -14,20 +13,19 @@ const Home = () => {
         <div className="font-body text-3xl flex-grow px-4 pb-4 h-screen bg-white">
           <Navbar />
           <hr className="border-1 border-gray-300" />
-          <div className="flex p-5 gap-5 w-full justify-evenly">
-            <Widget />
-            <Widget />
-            <Widget />
-            <Widget />
-          </div>
-          <div className="p-4 flex flex-col gap-4 ">
-            <p className="font-semibold text-gray-600 ">Treks</p>
-            <Table />
+          <div className="w-full mt-5 ">
+            <div className="flex w-full justify-between items-center my-5">
+              <h1 className="text-2xl font-medium text-blue-400">Trek Type</h1>{" "}
+              <button className="bg-blue-500 rounded-xl text-xl px-4 py-2 text-white font-medium">
+                Add New Trek Type
+              </button>
+            </div>
+            <TestimonialsTable />
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Home;
+export default TrekTypes;
