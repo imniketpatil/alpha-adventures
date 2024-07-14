@@ -1,34 +1,34 @@
 // TestimonialForm.js
 import React, { useState } from "react";
-import useCreateTestimonial from "../hooks/useCreateTestimonial";
+import useCreateTrekGuide from "../hooks/useCreateTrekGuide";
 
-function TestimonialForm({ setOpenTestimonialForm }) {
+function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
   const [name, setName] = useState("");
-  const [rating, setRating] = useState(1);
-  const [comment, setComment] = useState("");
-  const [work, setWork] = useState("");
+  const [bio, setBio] = useState("");
+  const [instagramId, setInstagramId] = useState("");
+  const [experience, setExperience] = useState(null);
   const [image, setImage] = useState(null);
-  const mutation = useCreateTestimonial();
+  const mutation = useCreateTrekGuide();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (!name || !comment || !work || !image) {
-    //   console.error("All fields are required.");
-    //   return;
-    // }
-    console.log("Submitting testimonial form with values:", {
+    if (!name || !bio || !experience || !instagramId) {
+      console.error("All fields are required.");
+      return;
+    }
+    console.log("Submitting Trek Guide form with values:", {
       name,
-      rating,
-      comment,
-      work,
+      bio,
+      instagramId,
+      experience,
       image,
     });
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("rating", rating.toString()); // Convert rating to string
-    formData.append("comment", comment);
-    formData.append("work", work);
-    formData.append("testimonialAvatar", image);
+    formData.append("experience", experience.toString()); // Convert rating to string
+    formData.append("bio", bio);
+    formData.append("instagramId", instagramId);
+    formData.append("guideAvatar", image);
     mutation.mutate(formData);
   };
 
@@ -44,7 +44,7 @@ function TestimonialForm({ setOpenTestimonialForm }) {
       <div className="w-[70%] max-w-2xl">
         <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col text-lg">
           <h2 className="text-2xl font-bold text-center text-gray-700">
-            Submit Testimonial
+            Submit Trek Guide
           </h2>
           <form className="flex flex-col gap-5 h-[80%]" onSubmit={handleSubmit}>
             <div className="flex gap-5">
@@ -63,42 +63,41 @@ function TestimonialForm({ setOpenTestimonialForm }) {
               </div>
               <div className="flex flex-col flex-1">
                 <label htmlFor="rating" className="mb-2 text-gray-700">
-                  Rating
+                  experience
                 </label>
                 <input
                   type="number"
                   id="rating"
                   className="p-2 border border-gray-300 rounded-lg"
-                  value={rating}
-                  onChange={(e) => setRating(parseInt(e.target.value))}
+                  value={experience}
+                  onChange={(e) => setExperience(parseInt(e.target.value))}
                   min="1"
-                  max="5"
                   required
                 />
               </div>
             </div>
             <div className="flex flex-col">
               <label htmlFor="comment" className="mb-2 text-gray-700">
-                Comment
+                bio
               </label>
               <textarea
                 id="comment"
                 className="p-2 border border-gray-300 rounded-lg"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
                 required
               />
             </div>
             <div className="flex flex-col">
               <label htmlFor="work" className="mb-2 text-gray-700">
-                Work
+                Instagram Id
               </label>
               <input
                 type="text"
                 id="work"
                 className="p-2 border border-gray-300 rounded-lg"
-                value={work}
-                onChange={(e) => setWork(e.target.value)}
+                value={instagramId}
+                onChange={(e) => setInstagramId(e.target.value)}
                 required
               />
             </div>
@@ -131,12 +130,12 @@ function TestimonialForm({ setOpenTestimonialForm }) {
                 type="submit"
                 className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
               >
-                Submit Testimonial
+                Add Trek Guide
               </button>
               <button
                 type="button"
                 className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
-                onClick={() => setOpenTestimonialForm(false)}
+                onClick={() => setOpenTrekGuideForm(false)}
               >
                 Cancel
               </button>
@@ -148,4 +147,4 @@ function TestimonialForm({ setOpenTestimonialForm }) {
   );
 }
 
-export default TestimonialForm;
+export default CreateTrekGuideForm;

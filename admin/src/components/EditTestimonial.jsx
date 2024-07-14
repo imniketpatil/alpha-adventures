@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import TestimonialEditContext from "../context/TestimonialEditContext";
-import TestimonialIdContext from "../context/TestimonialIdContext";
 import { useQuery } from "@tanstack/react-query";
+import TestimonialEditContext from "../context/TestimonialEditContext.js";
+import TestimonialIdContext from "../context/TestimonialIdContext.js";
 import useGetTestimonialForm from "../hooks/useGetTestimonailForm.js";
-import useChangeTestimonial from "../hooks/useChangeTestimonial";
+import useChangeTestimonial from "../hooks/useChangeTestimonial.js";
 
 const EditTestimonial = ({ testimonialId, value }) => {
   const [testimonial, setTestimonial] = useState({
@@ -13,23 +13,22 @@ const EditTestimonial = ({ testimonialId, value }) => {
     work: "",
     images: null, // State for initial image
   });
-  const [success, setSuccess] = useState(null);
   const [newImage, setNewImage] = useState(null); // State for newly uploaded image
 
-  const { setEditForm } = useContext(TestimonialEditContext);
   const { IdValue } = useContext(TestimonialIdContext);
 
-  const mutation = useChangeTestimonial();
+  const { openTestimonialEditForm, setTestimonialEditForm } = useContext(
+    TestimonialEditContext
+  );
 
-  console.log(`Editing testimonial with ID: ${IdValue}`);
+  const mutation = useChangeTestimonial();
 
   const {
     data: fetchedTestimonial,
     error,
     isLoading,
-    refetch,
   } = useQuery({
-    queryKey: ["SingleTestimonial", IdValue], // Use IdValue in the queryKey
+    queryKey: ["SingleTestimonial", IdValue],
     queryFn: async () => {
       try {
         return await useGetTestimonialForm({ id: IdValue });
@@ -40,7 +39,6 @@ const EditTestimonial = ({ testimonialId, value }) => {
     },
   });
 
-  // Update testimonial state when fetchedTestimonial changes
   useEffect(() => {
     if (fetchedTestimonial) {
       setTestimonial(fetchedTestimonial);
@@ -60,29 +58,23 @@ const EditTestimonial = ({ testimonialId, value }) => {
       const file = e.target.files[0];
       setNewImage(file);
     } else {
-      setNewImage(null); // Clear newImage state if no file selected
+      setNewImage(null);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Prepare form data
       const formData = new FormData();
-      formData.append("id", IdValue); // Ensure ID is included
-      formData.append("name", testimonial.name || fetchedTestimonial.name);
-      formData.append(
-        "rating",
-        testimonial.rating.toString() || fetchedTestimonial.rating.toString()
-      );
-      formData.append(
-        "comment",
-        testimonial.comment || fetchedTestimonial.comment
-      );
-      formData.append("work", testimonial.work || fetchedTestimonial.work);
-      formData.append("testimonialAvatar", newImage || testimonial.images);
+      formData.append("id", IdValue);
+      formData.append("name", testimonial.name);
+      formData.append("rating", testimonial.rating.toString());
+      formData.append("comment", testimonial.comment);
+      formData.append("work", testimonial.work);
+      if (newImage) {
+        formData.append("testimonialAvatar", newImage);
+      }
 
-      console.log("formData", formData);
       mutation.mutate(formData);
     } catch (error) {
       console.error("Error updating testimonial:", error);
@@ -198,7 +190,7 @@ const EditTestimonial = ({ testimonialId, value }) => {
               </button>
               <button
                 type="button"
-                onClick={() => setEditForm(false)}
+                onClick={() => setTestimonialEditForm(false)}
                 className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
               >
                 Cancel
@@ -206,7 +198,6 @@ const EditTestimonial = ({ testimonialId, value }) => {
             </div>
           </form>
           {error && <div className="text-red-500 mt-4">{error.message}</div>}
-          {success && <div className="text-green-500 mt-4">{success}</div>}
         </div>
       </div>
     </div>

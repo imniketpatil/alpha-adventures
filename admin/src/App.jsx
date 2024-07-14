@@ -14,6 +14,10 @@ import TrekGuides from "./pages/TrekGuides";
 import TrekTypes from "./pages/TrekTypes";
 import TestimonialEditContextProvider from "./context/TestimonialEditContextProvider"; // Import your context provider
 import TestimonialIdContextProvider from "./context/TestimonialIdContextProvider";
+import TrekDeleteContextProvider from "./context/TrekDeleteContextProvider";
+import TestimonialDeleteContextProvider from "./context/TestimonialDeleteContextProvider";
+import TrekGuideIdContextProvider from "./context/TrekGuideIdContextProvider";
+import TrekGuideEditContextProvider from "./context/TrekGuideEditContextProvider";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,47 +35,70 @@ function App() {
   return (
     <TestimonialEditContextProvider>
       <TestimonialIdContextProvider>
-        {" "}
-        {/* Wrap your Routes with the context provider */}
-        <Routes>
-          {/* Login route */}
-          <Route path="/login" element={<Login />} />
+        <TrekDeleteContextProvider>
+          <TestimonialDeleteContextProvider>
+            <TrekGuideIdContextProvider>
+              <TrekGuideEditContextProvider>
+                {" "}
+                {/* Wrap your Routes with the context provider */}
+                <Routes>
+                  {/* Login route */}
+                  <Route path="/login" element={<Login />} />
 
-          {/* Redirect to home if logged in, otherwise to login */}
-          <Route
-            path="/"
-            element={
-              isLoggedIn ? (
-                <Navigate to="/home" replace />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
+                  {/* Redirect to home if logged in, otherwise to login */}
+                  <Route
+                    path="/"
+                    element={
+                      isLoggedIn ? (
+                        <Navigate to="/home" replace />
+                      ) : (
+                        <Navigate to="/login" replace />
+                      )
+                    }
+                  />
 
-          {/* Private routes */}
-          <Route path="/home" element={<PrivateRoute component={Home} />} />
-          <Route path="/user" element={<PrivateRoute component={UserPage} />} />
-          <Route path="/list" element={<PrivateRoute component={List} />} />
-          <Route
-            path="/trektype"
-            element={<PrivateRoute component={TrekTypes} />}
-          />
-          <Route
-            path="/trekguides"
-            element={<PrivateRoute component={TrekGuides} />}
-          />
-          <Route
-            path="/testimonials"
-            element={<PrivateRoute component={Testimonials} />}
-          />
-          <Route path="/treks" element={<PrivateRoute component={Treks} />} />
-          <Route path="/list/new" element={<PrivateRoute component={New} />} />
-          <Route
-            path="/list/:id"
-            element={<PrivateRoute component={Single} />}
-          />
-        </Routes>
+                  {/* Private routes */}
+                  <Route
+                    path="/home"
+                    element={<PrivateRoute component={Home} />}
+                  />
+                  <Route
+                    path="/user"
+                    element={<PrivateRoute component={UserPage} />}
+                  />
+                  <Route
+                    path="/list"
+                    element={<PrivateRoute component={List} />}
+                  />
+                  <Route
+                    path="/trektype"
+                    element={<PrivateRoute component={TrekTypes} />}
+                  />
+                  <Route
+                    path="/trekguides"
+                    element={<PrivateRoute component={TrekGuides} />}
+                  />
+                  <Route
+                    path="/testimonials"
+                    element={<PrivateRoute component={Testimonials} />}
+                  />
+                  <Route
+                    path="/treks"
+                    element={<PrivateRoute component={Treks} />}
+                  />
+                  <Route
+                    path="/list/new"
+                    element={<PrivateRoute component={New} />}
+                  />
+                  <Route
+                    path="/list/:id"
+                    element={<PrivateRoute component={Single} />}
+                  />
+                </Routes>
+              </TrekGuideEditContextProvider>
+            </TrekGuideIdContextProvider>
+          </TestimonialDeleteContextProvider>
+        </TrekDeleteContextProvider>
       </TestimonialIdContextProvider>
     </TestimonialEditContextProvider>
   );

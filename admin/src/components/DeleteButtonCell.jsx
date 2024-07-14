@@ -1,22 +1,18 @@
 import { useState } from "react";
 import { useDeleteTestimonial } from "../hooks/useDeleteTestimonial";
+import { useContext } from "react";
+import TestimonialDeleteContext from "../context/TestimonialDeleteContext";
+import TestimonialIdContext from "../context/TestimonialIdContext";
 
 const DeleteButtonCell = ({ value }) => {
-  const [openDelete, setOpenDelete] = useState(false);
-  const deleteTestimonialMutation = useDeleteTestimonial();
+  const { openDeleteBox, setDeleteBox } = useContext(TestimonialDeleteContext);
 
   const handleDelete = () => {
-    setOpenDelete(true);
+    setDeleteBox(true);
+    setIdValue(value);
   };
 
-  const handleConfirmDelete = () => {
-    deleteTestimonialMutation.mutate(value);
-    setOpenDelete(false);
-  };
-
-  const handleCancelDelete = () => {
-    setOpenDelete(false);
-  };
+  const { IdValue, setIdValue } = useContext(TestimonialIdContext);
 
   return (
     <>
@@ -26,29 +22,6 @@ const DeleteButtonCell = ({ value }) => {
       >
         Delete
       </button>
-      {openDelete && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg shadow-lg p-4">
-            <p className="text-lg mb-4">
-              Do you really want to delete the testimonial?
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button
-                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-                onClick={handleConfirmDelete}
-              >
-                Yes
-              </button>
-              <button
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded"
-                onClick={handleCancelDelete}
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };

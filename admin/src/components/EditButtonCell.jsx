@@ -4,14 +4,16 @@ import TestimonialEditContext from "../context/TestimonialEditContext.js";
 import TestimonialIdContext from "../context/TestimonialIdContext.js";
 
 const EditButtonCell = ({ value }) => {
-  const { setEditForm } = useContext(TestimonialEditContext);
+  const { openTestimonialEditForm, setTestimonialEditForm } = useContext(
+    TestimonialEditContext
+  );
   const { setIdValue } = useContext(TestimonialIdContext);
 
   // Handle the edit button click
   const handleEdit = (id) => {
     console.log(`Editing testimonial with ID: ${id}`);
     setIdValue(id);
-    setEditForm(true); // Assuming you're setting editForm to true
+    setTestimonialEditForm(true); // Assuming you're setting editForm to true
   };
 
   return (

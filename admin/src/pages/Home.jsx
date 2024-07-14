@@ -22,7 +22,6 @@ const Home = () => {
           </div>
           <div className="p-4 flex flex-col gap-4 ">
             <p className="font-semibold text-gray-600 ">Treks</p>
-            <Table />
           </div>
         </div>
       </div>

@@ -5,14 +5,36 @@ import TestimonialForm from "../components/TestimonialForm";
 import TestimonialsTable from "../components/TestimonialsTable";
 import EditTestimonial from "../components/EditTestimonial";
 import TestimonialEditContext from "../context/TestimonialEditContext";
+import { useDeleteTestimonial } from "../hooks/useDeleteTestimonial";
+import TestimonialDeleteContext from "../context/TestimonialDeleteContext";
+import TestimonialIdContext from "../context/TestimonialIdContext";
 
 function Testimonials() {
   const [openTestimonialForm, setOpenTestimonialForm] = useState(false);
+  const [openEditForm, setOpenEditForm] = useState(false); // State for edit form
 
-  const { openEditForm } = useContext(TestimonialEditContext);
+  const deleteTestimonialMutation = useDeleteTestimonial();
+
+  const { openDeleteBox, setDeleteBox } = useContext(TestimonialDeleteContext);
 
   const handleNewTestimonial = () => {
     setOpenTestimonialForm(true);
+  };
+
+  const { IdValue, setIdValue } = useContext(TestimonialIdContext);
+
+  const { openTestimonialEditForm, setTestimonialEditForm } = useContext(
+    TestimonialEditContext
+  );
+
+  const handleConfirmDelete = () => {
+    console.log(IdValue);
+    deleteTestimonialMutation.mutate(IdValue);
+    setDeleteBox(false);
+  };
+
+  const handleCancelDelete = () => {
+    setDeleteBox(false);
   };
 
   return (
@@ -41,11 +63,34 @@ function Testimonials() {
                 setOpenTestimonialForm={setOpenTestimonialForm}
               />
             )}
+            {openDeleteBox && (
+              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <div className="bg-white rounded-lg shadow-lg p-4">
+                  <p className="text-lg mb-4">
+                    Do you really want to delete the testimonial?
+                  </p>
+                  <div className="flex justify-center space-x-4">
+                    <button
+                      className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+                      onClick={handleConfirmDelete}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded"
+                      onClick={handleCancelDelete}
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             <TestimonialsTable />
           </div>
         </div>
       </div>
-      {openEditForm && <EditTestimonial />}
+      {openTestimonialEditForm && <EditTestimonial />}
     </div>
   );
 }

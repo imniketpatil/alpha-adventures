@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import TestimonialEditContext from "./TestimonialEditContext.js";
 
 const TestimonialEditContextProvider = ({ children }) => {
-  const [openEditForm, setEditForm] = useState(false);
+  const [openTestimonialEditForm, setTestimonialEditForm] = useState(false);
   return (
-    <TestimonialEditContext.Provider value={{ openEditForm, setEditForm }}>
+    <TestimonialEditContext.Provider
+      value={{ openTestimonialEditForm, setTestimonialEditForm }}
+    >
       {children}
     </TestimonialEditContext.Provider>
   );
