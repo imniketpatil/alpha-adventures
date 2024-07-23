@@ -85,7 +85,7 @@ const EditTrekGuideForm = () => {
   };
 
   return (
-    <div className="fixed h-full w-full top-0 left-0 bg-slate-400 bg-opacity-70 flex flex-col gap-2 justify-center items-center z-10">
+    <div className="fixed h-full w-full top-0 left-0 bg-slate-400 bg-opacity-70 flex flex-col gap-2 justify-center items-center z-10 overflow-scroll">
       <div className="w-[70%] max-w-2xl">
         <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col text-lg">
           <h2 className="text-2xl font-bold text-center text-gray-700">

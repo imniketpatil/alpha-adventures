@@ -46,28 +46,33 @@ function Sidebar() {
           </NavLink>
           <hr />
           <p className="text-sm text-gray-400 pl-6">USEFUL</p>
-          <NavLink to={"/treks"}>
-            <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
-              <DirectionsWalkRoundedIcon className="text-blue-600" />
-              Trek
-            </li>
-          </NavLink>
           <NavLink to={"/trektype"}>
             <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
               <BorderAllRoundedIcon className="text-blue-600" />
               Trek-Type
             </li>
           </NavLink>
-          <NavLink to={"/testimonials"}>
-            <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
-              <RateReviewRoundedIcon className="text-blue-600" />
-              Testimonials
-            </li>
-          </NavLink>
+
           <NavLink to={"/trekguides"}>
             <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
               <LocalPoliceRoundedIcon className="text-blue-600" />
               Trek Guide
+            </li>
+          </NavLink>
+
+          <NavLink to={"/treks"}>
+            <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
+              <DirectionsWalkRoundedIcon className="text-blue-600" />
+              Trek
+            </li>
+          </NavLink>
+
+          <hr />
+          <p className="text-sm text-gray-400 pl-6">Trekkers</p>
+          <NavLink to={"/testimonials"}>
+            <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
+              <RateReviewRoundedIcon className="text-blue-600" />
+              Testimonials
             </li>
           </NavLink>
           <hr />

@@ -1,34 +1,27 @@
-// TestimonialForm.js
 import React, { useState } from "react";
-import useCreateTrekGuide from "../hooks/useCreateTrekGuide";
+import useCreateTrekType from "../hooks/useCreateTrekType";
 
 function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
   const [name, setName] = useState("");
-  const [bio, setBio] = useState("");
-  const [instagramId, setInstagramId] = useState("");
-  const [experience, setExperience] = useState(null);
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
-  const mutation = useCreateTrekGuide();
+  const mutation = useCreateTrekType();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !bio || !experience || !instagramId) {
+    if (!name || !description) {
       console.error("All fields are required.");
       return;
     }
     console.log("Submitting Trek Guide form with values:", {
       name,
-      bio,
-      instagramId,
-      experience,
+      description,
       image,
     });
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("experience", experience.toString()); // Convert rating to string
-    formData.append("bio", bio);
-    formData.append("instagramId", instagramId);
-    formData.append("guideAvatar", image);
+    formData.append("description", description);
+    formData.append("trekTypeImage", image);
     mutation.mutate(formData);
   };
 
@@ -62,46 +55,21 @@ function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
                 />
               </div>
               <div className="flex flex-col flex-1">
-                <label htmlFor="rating" className="mb-2 text-gray-700">
-                  experience
+                <label htmlFor="description" className="mb-2 text-gray-700">
+                  Description
                 </label>
-                <input
-                  type="number"
-                  id="rating"
+                <textarea
+                  name="description"
+                  id="description"
                   className="p-2 border border-gray-300 rounded-lg"
-                  value={experience}
-                  onChange={(e) => setExperience(parseInt(e.target.value))}
-                  min="1"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   required
                 />
               </div>
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="comment" className="mb-2 text-gray-700">
-                bio
-              </label>
-              <textarea
-                id="comment"
-                className="p-2 border border-gray-300 rounded-lg"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-                required
-              />
-            </div>
-            <div className="flex flex-col">
-              <label htmlFor="work" className="mb-2 text-gray-700">
-                Instagram Id
-              </label>
-              <input
-                type="text"
-                id="work"
-                className="p-2 border border-gray-300 rounded-lg"
-                value={instagramId}
-                onChange={(e) => setInstagramId(e.target.value)}
-                required
-              />
-            </div>
-            <div className="flex  items-center justify-between">
+
+            <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <label htmlFor="image" className="mb-2 text-gray-700">
                   Image (Upload one)

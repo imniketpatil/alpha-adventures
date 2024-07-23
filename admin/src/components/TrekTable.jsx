@@ -5,7 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import { useQuery } from "@tanstack/react-query";
-import useGetTrekGuides from "../hooks/useGetTrekGuides";
+import useGetTreks from "../hooks/useGetTreks";
 import EditTrekGuideButtonCell from "./EditTrekGuideButtonCell";
 import DeleteTrekGuideButtonCell from "./DeleteTrekGuideButtonCell";
 
@@ -21,7 +21,7 @@ const ImageCell = ({ value }) => {
     >
       <img
         src={value}
-        alt="Trek Guide"
+        alt="Trek"
         style={{
           maxWidth: "100%",
           maxHeight: "100%",
@@ -35,7 +35,19 @@ const ImageCell = ({ value }) => {
 const columns = [
   { field: "id", headerName: "ID", width: 30 },
   { field: "name", headerName: "Name", width: 150 },
-  { field: "experience", headerName: "Experience", type: "number", width: 100 },
+
+  { field: "highlights", headerName: "Highlights", width: 150 },
+  {
+    field: "description",
+    headerName: "Description",
+    width: 100,
+  },
+  { field: "location", headerName: "Location", width: 100 },
+  { field: "startDate", headerName: "Start Date", type: "number", width: 100 },
+  { field: "endDate", headerName: "End Date", type: "number", width: 100 },
+  { field: "difficulty", headerName: "Difficulty", width: 100 },
+  { field: "price", headerName: "Price", width: 150 },
+
   {
     field: "images",
     headerName: "Image",
@@ -45,8 +57,10 @@ const columns = [
     sortable: false,
     headerAlign: "center",
   },
-  { field: "bio", headerName: "Bio", width: 300 },
-  { field: "instagramId", headerName: "Instagram ID", width: 150 },
+  { field: "guideDetails", headerName: "Guide Details", width: 300 },
+  { field: "inclusions", headerName: "Inclusions", width: 150 },
+
+  { field: "trekTypeDetails", headerName: "Trek Type Details", width: 150 },
   {
     field: "edit",
     headerName: "Edit",
@@ -69,13 +83,13 @@ const columns = [
   },
 ];
 
-export default function TrekGuidesTable() {
+export default function TrekTable() {
   const {
-    data: trekGuides,
+    data: treks,
     error,
     isLoading,
     refetch,
-  } = useQuery({ queryKey: ["TrekGuides"], queryFn: useGetTrekGuides });
+  } = useQuery({ queryKey: ["Trek"], queryFn: useGetTreks });
 
   if (isLoading) {
     return <CircularProgress />;
@@ -85,16 +99,22 @@ export default function TrekGuidesTable() {
     return <Alert severity="error">Error fetching trek guides</Alert>;
   }
 
-  const rows = Array.isArray(trekGuides)
-    ? trekGuides.map((guide, index) => ({
+  const rows = Array.isArray(treks)
+    ? treks.map((trek, index) => ({
         id: index + 1,
-        name: guide.name,
-        experience: guide.experience || 0, // Ensure a default value if experience is undefined
-        images: guide.images[0], // Assuming the first image is to be displayed
-        bio: guide.bio,
-        instagramId: guide.instagramId,
-        edit: guide._id,
-        delete: guide._id,
+        name: trek.name || "",
+        highlights: trek.highlights || "",
+        description: trek.description || "", // Ensure a default value if description is undefined
+        location: trek.location || "",
+        startDate: trek.startDate || "",
+        endDate: trek.endDate || "",
+        difficulty: trek.difficulty || "",
+        price: trek.price || "",
+        images: trek.images?.[0] || "", // Assuming the first image is to be displayed
+        guideName: trek.guideDetails?.name || "", // Assuming the first guide's name is to be displayed
+        trekTypeName: trek.trekTypeDetails?.name || "",
+        edit: trek._id,
+        delete: trek._id,
       }))
     : [];
 

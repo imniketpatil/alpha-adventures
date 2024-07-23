@@ -5,7 +5,6 @@ import TrekGuideTable from "../components/TrekGuideTable";
 import CreateTrekGuideForm from "../components/CreateTrekGuideForm";
 import TrekDeleteContext from "../context/TrekDeleteContext";
 import TrekGuideIdContext from "../context/TrekGuideIdContext";
-import { useDeleteTestimonial } from "../hooks/useDeleteTestimonial";
 import { useDeleteTrekGuide } from "../hooks/useDeleteTrekGuide";
 import EditTrekGuideForm from "../components/EditTrekGuideForm";
 import TrekGuideEditContext from "../context/TrekGuideEditContext";
