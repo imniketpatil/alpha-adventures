@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: orange !important;
+}
+
+.slick-next:before {
+  color: blue !important;
+}
+
+.slick-next {
+  height: 100px;
+}
+
+.slick-prev:before {
+  color: blue;
+}
+
+.slick-track {
+  padding-bottom: 25px;
+  padding-top: 20px;
+}
+
+.button {
+  padding: 15px 20px;
+  border: none;
+  outline: none;
+  background-color: rgb(79, 70, 229);
+  color: #eee;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+}
+
+.button-span {
+  color: lightblue;
+}

@@ -5,11 +5,11 @@ const useChangeTestimonial = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (formData) => {
+    mutationFn: ({ id, formData }) => {
+      console.log("id", id);
+
       return axios.patch(
-        `http://localhost:8000/api/v1/testimonial/edit-testimonial/${formData.get(
-          "id"
-        )}`,
+        `http://localhost:8000/api/v1/testimonial/edit-testimonial/${id}`,
         formData,
         {
           withCredentials: true,
@@ -26,5 +26,4 @@ const useChangeTestimonial = () => {
     },
   });
 };
-
 export default useChangeTestimonial;

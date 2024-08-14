@@ -24,7 +24,7 @@ const useLoginMutation = () => {
       // Optionally, store user information if needed
       localStorage.setItem("user", JSON.stringify(user));
 
-      console.log("Login successful");
+      // console.log("Login successful");
       // Navigate to the desired page
       navigate("/home");
     },

@@ -1,90 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "primereact/button";
-import { Carousel } from "primereact/carousel";
-import { Tag } from "primereact/tag";
-import treks from "../db/data";
+import React, { useEffect } from "react";
+import LoadingSpinner from "./LoadingSpinner";
+import TrekSliderComponent from "./TrekSliderComponent";
+import { useQuery } from "@tanstack/react-query";
+import useGetUpcommingTreks from "../hooks/useGetUpcommingTreks";
+import useTrekStore from "../app/trekStore";
 
-export default function CircularDemo() {
-  const [carouselData, setCarouselData] = useState([]);
+function UpcomingTreks() {
+  const addTreks = useTrekStore((state) => state.addTreks);
 
-  const responsiveOptions = [
-    {
-      breakpoint: "1400px",
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "1199px",
-      numVisible: 3,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "767px",
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "575px",
-      numVisible: 1,
-      numScroll: 1,
-    },
-  ];
+  const {
+    data: upcommingtrekslist = [], // Provide a default empty array
+    error,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["UpcomingTrekList"],
+    queryFn: useGetUpcommingTreks,
+  });
 
+  // Add treks only if there are items in upcommingtrekslist
   useEffect(() => {
-    // Transform trek data into carousel-friendly format
-    const formattedData = treks.map((trek) => ({
-      trekName: trek.trekName,
-      trekStartDate: trek.trekStartDate,
-      image: `https://www.pexels.com/photo/climbers-exploring-mountain-19664944/`,
-    }));
-    setCarouselData(formattedData);
-  }, []);
-
-  const productTemplate = (trek) => {
-    return (
-      <div className="flex justify-center items-center h-full">
-        <div className="border-1 surface-border border-round m-2 text-center py-5 px-3 w-full">
-          <div className="mb-3 w-full">
-            <img
-              src="https://images.pexels.com/photos/19664944/pexels-photo-19664944/free-photo-of-climbers-exploring-mountain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt="error"
-              className="shadow-2 object-cover"
-            />
-          </div>
-          <div>
-            <h4 className="mb-1">{trek.trekName}</h4>
-            <h6 className="mt-0 mb-3">{trek.trekStartDate}</h6>
-
-            <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
-              <Button
-                icon="pi pi-search"
-                className="p-button p-button-rounded"
-              />
-              <Button
-                icon="pi pi-star-fill"
-                className="p-button-success p-button-rounded"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+    if (upcommingtrekslist.length > 0) {
+      addTreks(upcommingtrekslist);
+    }
+  }, [upcommingtrekslist, addTreks]);
 
   return (
-    <div className="flex justify-center items-center h-content font-body">
-      <div className="card w-full max-w-[1024px]">
-        <Carousel
-          value={carouselData}
-          numVisible={3}
-          numScroll={2}
-          className="custom-carousel"
-          responsiveOptions={responsiveOptions}
-          circular
-          autoplayInterval={8000}
-          itemTemplate={productTemplate}
-        />
+    <>
+      <div className="flex flex-col">
+        {/* <div className="h-1 bg-gray-800 rounded overflow-hidden">
+          <div className="w-24 h-full bg-yellow-500"></div>
+        </div> */}
+        <div className="flex flex-wrap sm:flex-row flex-col py-2 mt-0 items-center justify-center">
+          <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center font-body">
+            Upcoming Treks
+          </h1>
+        </div>
       </div>
-    </div>
+      <div className="ml-10">
+        {/* Buttons for filtering treks */}
+        <button
+          type="button"
+          className=" border border-blue-700  bg-blue-500 ring-4 outline-none text-white ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+        >
+          Upcomming Treks
+        </button>
+      </div>
+      <div className="flex flex-wrap sm:m-4 mx-4 mb-10 mt-8 items-center justify-center gap-5 lg:gap-14">
+        {isLoading ? <LoadingSpinner /> : <TrekSliderComponent />}
+      </div>
+    </>
   );
 }
+
+export default UpcomingTreks;

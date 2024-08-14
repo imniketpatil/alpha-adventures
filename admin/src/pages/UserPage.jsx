@@ -50,25 +50,19 @@ function UserPage() {
     deleteMutation.mutate({ userId: "user-id" });
   };
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  if (error) {
-    return <div>Error loading user data</div>;
-  }
-
   return (
-    <div className="flex w-full h-screen">
-      <div className="w-1/6 h-screen border-r-2 border-gray-300">
+    <div className="flex w-full h-screen bg-gray-100">
+      <div className="w-1/6 h-screen border-r border-gray-300 shadow-lg">
         <Sidebar />
       </div>
       <div className="w-5/6 h-screen">
-        <div className="font-body text-3xl flex-grow px-4 pb-4 h-screen bg-white">
+        <div className="font-body text-3xl px-6 py-4 h-screen bg-white shadow-lg overflow-auto">
           <Navbar />
-          <hr className="border-1 border-gray-300" />
-          <div className="w-full mt-10">
-            <div className="flex flex-col gap-10 justify-between items-center mb-6">
+          <hr className="border-t-2 border-gray-300 my-4" />
+          <div className="w-full">
+            {isLoading && <>Loading...</>}
+            {error && <div>Error loading user data</div>}
+            <div className="flex w-full flex-col gap-10 mb-6 px-6">
               <div className="flex flex-col gap-5">
                 <h2 className="text-2xl font-semibold">
                   Name: {user.fullName}
@@ -79,7 +73,7 @@ function UserPage() {
               </div>
               <div className="space-x-4">
                 <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+                  className="bg-blue-500 hover:bg-blue-600 transition duration-200 ease-in-out text-white px-4 py-2 rounded-md shadow-md"
                   onClick={() => setChangePassword(!openChangePassword)}
                 >
                   {openChangePassword
@@ -87,19 +81,19 @@ function UserPage() {
                     : "Change Password"}
                 </button>
                 <button
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+                  className="bg-red-500 hover:bg-red-600 transition duration-200 ease-in-out text-white px-4 py-2 rounded-md shadow-md"
                   onClick={confirmDelete}
                 >
                   Delete Account
                 </button>
                 <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md"
+                  className="bg-gray-500 hover:bg-gray-600 transition duration-200 ease-in-out text-white px-4 py-2 rounded-md shadow-md"
                   onClick={handleEditProfile}
                 >
                   Edit Profile
                 </button>
                 <button
-                  className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-md"
+                  className="bg-gray-800 hover:bg-gray-900 transition duration-200 ease-in-out text-white px-4 py-2 rounded-md shadow-md"
                   onClick={handleCreateNewUser}
                 >
                   Create New User
@@ -111,19 +105,19 @@ function UserPage() {
             )}
             {openDelete && (
               <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
-                <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg text-center max-w-md">
-                  <p className="text-gray-800 text-lg md:text-xl mb-4">
+                <div className="bg-white rounded-lg shadow-lg p-6 text-center max-w-md">
+                  <p className="text-lg mb-4">
                     Are you sure you want to delete your account?
                   </p>
-                  <div className="flex justify-center gap-4">
+                  <div className="flex justify-center space-x-4">
                     <button
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors focus:outline-none"
-                      onClick={handleDeleteAccount} // Confirm deletion
+                      className="bg-red-500 hover:bg-red-600 transition duration-200 ease-in-out text-white py-2 px-4 rounded shadow-md"
+                      onClick={handleDeleteAccount}
                     >
                       Yes, Delete
                     </button>
                     <button
-                      className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors focus:outline-none"
+                      className="bg-gray-300 hover:bg-gray-400 transition duration-200 ease-in-out text-gray-800 py-2 px-4 rounded shadow-md"
                       onClick={() => setDelete(false)}
                     >
                       Cancel

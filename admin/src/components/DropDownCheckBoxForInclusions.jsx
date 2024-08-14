@@ -23,7 +23,7 @@ export default function DropDownCheckBoxForInclusions({
       : [];
     setSelectedOption(selectedValues);
     setInclusionsSelectedOption(selectedValues);
-    console.log("selectedValues", selectedValues);
+    // console.log("selectedValues", selectedValues);
   };
 
   return (

@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useCourseStore from "../app/courseStore";
+import useGetTrekListForHome from "../hooks/useGetTrekListForHome";
 
 const Header = ({ type }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   useEffect(() => {
@@ -26,28 +34,34 @@ const Header = ({ type }) => {
     };
   }, [prevScrollPos]);
 
+  const addCourse = useCourseStore((state) => state.addCourse);
+  const addDateId = useCourseStore((state) => state.addDateId);
+  const {
+    data: treks = [],
+    error,
+    isLoading,
+    refetch,
+  } = useQuery({ queryKey: ["TrekName"], queryFn: useGetTrekListForHome });
+
   return (
     <nav
-      className={`flex font-body rounded-b w-full items-center overflow-hidden z-40 sm:px-4 py-6 px-2 transition-all duration-300 ease-in-out
-       ${
-         isSticky || type === "list"
-           ? `bg-slate-800 text-slate-200 fixed top-0 ${
-               showNavbar && type === "list"
-                 ? "transition-all duration-300 ease-in-out block"
-                 : "transition-all duration-300 ease-in-out hidden"
-             }`
-           : `bg-transparent fixed ${
-               showNavbar
-                 ? "transition-all duration-300 ease-in-out fixed"
-                 : "transition-all duration-300 ease-in-out hidden"
-             }`
-       }`}
+      className={`flex font-body rounded-b w-full items-center overflow-hidden z-50 sm:px-4 py-6 px-2 transition-all duration-300 ease-in-out ${
+        isSticky || type === "list"
+          ? `bg-slate-800 text-slate-200 fixed top-0 ${
+              showNavbar && type === "list"
+                ? "transition-all duration-300 ease-in-out block"
+                : "transition-all duration-300 ease-in-out hidden"
+            }`
+          : `bg-transparent fixed ${
+              showNavbar
+                ? "transition-all duration-300 ease-in-out"
+                : "transition-all duration-300 ease-in-out hidden"
+            }`
+      }`}
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/alpha-adventures/" className="flex items-center">
-          <span
-            className={`self-center text-2xl font-semibold whitespace-nowrap text-white`}
-          >
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white hover:text-blue-300">
             Alpha Adventures
           </span>
         </Link>
@@ -82,19 +96,67 @@ const Header = ({ type }) => {
           }`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col mt-4 bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-2 lg:gap-0 text-lg lg:text-lg lg:font-medium lg:items-center">
+          <ul className="flex flex-col mt-4  bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-2 lg:gap-0 text-lg lg:text-lg lg:font-medium lg:items-center">
+            <li>
+              <button
+                id="dropdownNavbarLink"
+                onClick={handleDropdownToggle}
+                className="flex items-center w-full justify-between py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-400   dark:text-white"
+              >
+                Treks{" "}
+                <svg
+                  className="w-2.5 h-2.5 ms-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+
+              <div
+                id="dropdownNavbar"
+                className={`z-10 font-normal md:w-[60%] lg:w-44 w-[90%]  divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700 dark:divide-gray-600 ${
+                  isDropdownOpen ? "fixed" : "hidden"
+                }`}
+              >
+                <ul
+                  className="absolute py-2 pr-4 pl-3 w-full rounded text-sm bg-gray-900 lg:-left-16 text-gray-700 dark:text-gray-400"
+                  aria-labelledby="dropdownLargeButton"
+                >
+                  {treks.map((trek) => (
+                    <li className="py-2 pr-4 pl-3 lg:p-0 ">
+                      <a
+                        href="#"
+                        className="block px-4 py-2  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        {trek.trekName}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+
+            {/* Other NavLinks */}
             <li>
               <NavLink
                 to="/alpha-adventures/"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
-                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none  hover:text-blue-400  `
                 }
                 aria-current="page"
               >
                 HOME
-                <span className="absolute bottom-0 left-1/2 w-0 h-2 bg-white transition-all duration-400 ease-in-out"></span>
               </NavLink>
             </li>
             <li>
@@ -103,24 +165,25 @@ const Header = ({ type }) => {
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
-                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-blue-400`
                 }
                 aria-current="page"
               >
                 ABOUT US
               </NavLink>
             </li>
+            {/* Add other NavLinks here */}
             <li>
               <NavLink
                 to="/alpha-adventures/shop"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
-                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-blue-400`
                 }
                 aria-current="page"
               >
-                SHOP
+                Shop
               </NavLink>
             </li>
             <li>
@@ -129,11 +192,11 @@ const Header = ({ type }) => {
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
-                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-white`
+                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none hover:text-blue-400`
                 }
                 aria-current="page"
               >
-                FAQs
+                FAQ's
               </NavLink>
             </li>
             <li className="border-b-[.5px] border-gray-200 lg:border-0 text-md ">

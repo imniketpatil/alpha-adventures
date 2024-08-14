@@ -11,6 +11,8 @@ import TailwindComponent from "../components/TailwindComponent.jsx";
 import AppPromo from "../components/AppPromo.jsx";
 import Achievements from "../components/Achievements.jsx";
 import ToTop from "../components/ToTop.jsx";
+import TrekSliderComponent from "../components/TrekSliderComponent.jsx";
+import TrekFilterSectionHome from "../components/TrekFilterSectionHome.jsx";
 
 function home() {
   useEffect(() => {
@@ -20,7 +22,8 @@ function home() {
     <>
       <Header />
       <Banner />
-      <Treks />
+      <TrekFilterSectionHome />
+      {/* <Treks /> */}
       {/* <UpcomingTreks /> */}
       <TailwindComponent />
 

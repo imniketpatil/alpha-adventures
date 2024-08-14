@@ -11,24 +11,21 @@ import TestimonialIdContext from "../context/TestimonialIdContext";
 
 function Testimonials() {
   const [openTestimonialForm, setOpenTestimonialForm] = useState(false);
-  const [openEditForm, setOpenEditForm] = useState(false); // State for edit form
+  const [openEditForm, setOpenEditForm] = useState(false);
 
   const deleteTestimonialMutation = useDeleteTestimonial();
-
   const { openDeleteBox, setDeleteBox } = useContext(TestimonialDeleteContext);
+  const { IdValue, setIdValue } = useContext(TestimonialIdContext);
 
   const handleNewTestimonial = () => {
     setOpenTestimonialForm(true);
   };
-
-  const { IdValue, setIdValue } = useContext(TestimonialIdContext);
 
   const { openTestimonialEditForm, setTestimonialEditForm } = useContext(
     TestimonialEditContext
   );
 
   const handleConfirmDelete = () => {
-    console.log(IdValue);
     deleteTestimonialMutation.mutate(IdValue);
     setDeleteBox(false);
   };
@@ -38,21 +35,21 @@ function Testimonials() {
   };
 
   return (
-    <div className="flex w-full h-screen">
-      <div className="w-1/6 h-screen border-r-2 border-gray-300">
+    <div className="flex w-full h-screen bg-gray-100">
+      <div className="w-1/6 h-screen border-r border-gray-300 shadow-lg">
         <Sidebar />
       </div>
       <div className="w-5/6 h-screen">
-        <div className="font-body text-3xl flex-grow px-4 pb-4 h-screen bg-white">
+        <div className="font-body text-3xl px-6 py-4 h-full bg-white shadow-lg overflow-auto">
           <Navbar />
-          <hr className="border-1 border-gray-300" />
-          <div className="w-full mt-5 ">
-            <div className="flex w-full justify-between items-center my-5">
+          <hr className="border-t-2 border-gray-300 my-4" />
+          <div className="flex flex-col h-full">
+            <div className="flex justify-between items-center mb-4">
               <h1 className="text-2xl font-medium text-blue-400">
                 Testimonials
-              </h1>{" "}
+              </h1>
               <button
-                className="bg-blue-500 rounded-xl text-xl px-4 py-2 text-white font-medium"
+                className="bg-blue-500 hover:bg-blue-600 rounded-xl text-xl px-4 py-2 text-white font-medium"
                 onClick={handleNewTestimonial}
               >
                 Add New Testimonial
@@ -86,7 +83,9 @@ function Testimonials() {
                 </div>
               </div>
             )}
-            <TestimonialsTable />
+            <div className="overflow-auto">
+              <TestimonialsTable />
+            </div>
           </div>
         </div>
       </div>

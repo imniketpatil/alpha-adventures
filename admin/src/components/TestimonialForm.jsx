@@ -1,4 +1,3 @@
-// TestimonialForm.js
 import React, { useState } from "react";
 import useCreateTestimonial from "../hooks/useCreateTestimonial";
 
@@ -7,27 +6,26 @@ function TestimonialForm({ setOpenTestimonialForm }) {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
   const [work, setWork] = useState("");
+  const [trek, setTrek] = useState("");
+
   const [image, setImage] = useState(null);
+
   const mutation = useCreateTestimonial();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (!name || !comment || !work || !image) {
-    //   console.error("All fields are required.");
-    //   return;
-    // }
-    console.log("Submitting testimonial form with values:", {
-      name,
-      rating,
-      comment,
-      work,
-      image,
-    });
+
+    if (!name || !comment || !work || !trek || !image) {
+      console.error("All fields are required.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("rating", rating.toString()); // Convert rating to string
+    formData.append("rating", rating.toString());
     formData.append("comment", comment);
     formData.append("work", work);
+    formData.append("trek", trek);
     formData.append("testimonialAvatar", image);
     mutation.mutate(formData);
   };
@@ -102,7 +100,20 @@ function TestimonialForm({ setOpenTestimonialForm }) {
                 required
               />
             </div>
-            <div className="flex  items-center justify-between">
+            <div className="flex flex-col">
+              <label htmlFor="work" className="mb-2 text-gray-700">
+                Work
+              </label>
+              <input
+                type="text"
+                id="work"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={trek}
+                onChange={(e) => setTrek(e.target.value)}
+                required
+              />
+            </div>
+            <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <label htmlFor="image" className="mb-2 text-gray-700">
                   Image (Upload one)

@@ -1,18 +1,15 @@
-import { useState } from "react";
-import { useDeleteTestimonial } from "../hooks/useDeleteTestimonial";
 import { useContext } from "react";
-import TestimonialDeleteContext from "../context/TestimonialDeleteContext";
-import TestimonialIdContext from "../context/TestimonialIdContext";
+import TrekDeleteContext from "../context/TrekDeleteContext";
+import TrekIdContext from "../context/TrekIdContext";
 
 const DeleteButtonCell = ({ value }) => {
-  const { openDeleteBox, setDeleteBox } = useContext(TestimonialDeleteContext);
+  const { openDeleteBox, setDeleteBox } = useContext(TrekDeleteContext);
+  const { IdValue, setIdValue } = useContext(TrekIdContext);
 
   const handleDelete = () => {
     setDeleteBox(true);
     setIdValue(value);
   };
-
-  const { IdValue, setIdValue } = useContext(TestimonialIdContext);
 
   return (
     <>

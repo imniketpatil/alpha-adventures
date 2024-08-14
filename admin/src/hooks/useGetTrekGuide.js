@@ -2,7 +2,7 @@ import axios from "axios";
 
 const useGetTrekGuide = async ({ id }) => {
   try {
-    console.log("id", id);
+    // console.log("id", id);
     const response = await axios.get(
       `http://localhost:8000/api/v1/trekguide/trekGuides/${id}`,
       {

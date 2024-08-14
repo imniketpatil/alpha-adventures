@@ -17,6 +17,7 @@ import Bagpacking from "./pages/Bagpacking.jsx";
 import HarishchandragadTrek from "./pages/HarishchandragadTrek.jsx";
 import RatangadTrek from "./pages/RatangadTrek.jsx";
 import TrekDetailsPage from "./pages/TrekDetailsPage.jsx";
+import TrekDetailsComponent from "./components/TrekDetailsComponent.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -26,8 +27,15 @@ function App() {
         <Route path="/alpha-adventures/about" element={<About />} />
         <Route path="/alpha-adventures/shop" element={<Shop />} />
         <Route path="/alpha-adventures/faqs" element={<FAQs />} />
+        <Route
+          path="/alpha-adventures/mainpage"
+          element={<TrekDetailsComponent />}
+        />
         <Route path="/alpha-adventures/treklist/:id" element={<TrekList />} />
-        <Route path="/alpha-adventures/trek" element={<TrekPage />} />
+        <Route
+          path="/alpha-adventures/trek"
+          element={<TrekDetailsComponent />}
+        />
         <Route
           path="/alpha-adventures/trek/Sahyadri Treks"
           element={<Sahyadri />}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useCreateTrekType from "../hooks/useCreateTrekType";
 
-function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
+function CreateTrekGuideForm({ setOpenTrekTypeForm }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
@@ -13,11 +13,11 @@ function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
       console.error("All fields are required.");
       return;
     }
-    console.log("Submitting Trek Guide form with values:", {
-      name,
-      description,
-      image,
-    });
+    // console.log("Submitting Trek Guide form with values:", {
+    //   name,
+    //   description,
+    //   image,
+    // });
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
@@ -103,7 +103,7 @@ function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
               <button
                 type="button"
                 className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
-                onClick={() => setOpenTrekGuideForm(false)}
+                onClick={() => setOpenTrekTypeForm(false)}
               >
                 Cancel
               </button>

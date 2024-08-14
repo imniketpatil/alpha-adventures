@@ -12,8 +12,9 @@ const EditTrekGuideButtonCell = ({ value }) => {
 
   // Handle the edit button click
   const handleEdit = (id) => {
-    console.log(`Editing testimonial with ID: ${id}`);
+    // console.log(`Editing testimonial with ID: ${id}`);
     setIdValue(id);
+
     setEditForm(true); // Assuming you're setting editForm to true
   };
 

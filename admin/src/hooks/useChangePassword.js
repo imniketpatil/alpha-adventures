@@ -16,7 +16,7 @@ const useChangePassword = () => {
   return useMutation({
     mutationFn: changePasswordMutationFn,
     onSuccess: (response) => {
-      console.log("Password changed successfully:", response);
+      // console.log("Password changed successfully:", response);
       // Redirect to user page
       navigate("/user");
     },

@@ -6,6 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import EditButtonCell from "./EditButtonCell";
 import DeleteButtonCell from "./DeleteButtonCell.jsx";
+import TestimonialDeleteButton from "./TestimonialDeleteButton.jsx";
 
 const ImageCell = (params) => {
   return (
@@ -60,7 +61,7 @@ const columns = [
     headerName: "Delete",
     type: "boolean",
     width: 90,
-    renderCell: DeleteButtonCell,
+    renderCell: TestimonialDeleteButton,
     sortable: false,
     headerAlign: "center",
     align: "center",

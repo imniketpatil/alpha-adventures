@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 
 const useCreateTrekGuide = () => {
   const queryClient = useQueryClient();

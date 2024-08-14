@@ -6,8 +6,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import { useQuery } from "@tanstack/react-query";
 import useGetTreks from "../hooks/useGetTreks";
-import EditTrekGuideButtonCell from "./EditTrekGuideButtonCell";
-import DeleteTrekGuideButtonCell from "./DeleteTrekGuideButtonCell";
+import DeleteButtonCell from "./DeleteButtonCell";
+import CheckDatesButtonCell from "./CheckDatesButtonCell";
+import EditTrekButton from "./EditTrekButton";
 
 const ImageCell = ({ value }) => {
   return (
@@ -34,20 +35,23 @@ const ImageCell = ({ value }) => {
 
 const columns = [
   { field: "id", headerName: "ID", width: 30 },
-  { field: "name", headerName: "Name", width: 150 },
-
-  { field: "highlights", headerName: "Highlights", width: 150 },
+  { field: "trekName", headerName: "Trek Name", width: 150 },
+  { field: "trekTitle", headerName: "Trek Title", width: 150 },
+  { field: "suitableForAge", headerName: "Suitable For Age", width: 70 },
+  { field: "altitude", type: "number", headerName: "Altitude", width: 70 },
+  { field: "trekLocation", headerName: "Location", width: 100 },
+  { field: "trekDescription", headerName: "Description", width: 150 },
+  { field: "trekInfo", headerName: "Information", width: 150 },
+  { field: "trekHighlights", headerName: "Highlights", width: 150 },
+  { field: "trekInclusions", headerName: "Inclusions", width: 150 },
+  { field: "trekExclusions", headerName: "Exclusions", width: 150 },
   {
-    field: "description",
-    headerName: "Description",
-    width: 100,
+    field: "trekCancellationPolicy",
+    headerName: "Cancellation Policy",
+    width: 150,
   },
-  { field: "location", headerName: "Location", width: 100 },
-  { field: "startDate", headerName: "Start Date", type: "number", width: 100 },
-  { field: "endDate", headerName: "End Date", type: "number", width: 100 },
-  { field: "difficulty", headerName: "Difficulty", width: 100 },
-  { field: "price", headerName: "Price", width: 150 },
-
+  { field: "trekDifficulty", headerName: "Difficulty", width: 80 },
+  { field: "trekTypeName", headerName: "Trek Type", width: 150 },
   {
     field: "images",
     headerName: "Image",
@@ -57,16 +61,22 @@ const columns = [
     sortable: false,
     headerAlign: "center",
   },
-  { field: "guideDetails", headerName: "Guide Details", width: 300 },
-  { field: "inclusions", headerName: "Inclusions", width: 150 },
-
-  { field: "trekTypeDetails", headerName: "Trek Type Details", width: 150 },
+  {
+    field: "dates",
+    headerName: "Dates",
+    type: "boolean",
+    width: 90,
+    renderCell: CheckDatesButtonCell,
+    sortable: false,
+    headerAlign: "center",
+    align: "center",
+  },
   {
     field: "edit",
     headerName: "Edit",
     type: "boolean",
     width: 90,
-    renderCell: EditTrekGuideButtonCell,
+    renderCell: EditTrekButton,
     sortable: false,
     headerAlign: "center",
     align: "center",
@@ -76,7 +86,7 @@ const columns = [
     headerName: "Delete",
     type: "boolean",
     width: 90,
-    renderCell: DeleteTrekGuideButtonCell,
+    renderCell: DeleteButtonCell,
     sortable: false,
     headerAlign: "center",
     align: "center",
@@ -102,17 +112,21 @@ export default function TrekTable() {
   const rows = Array.isArray(treks)
     ? treks.map((trek, index) => ({
         id: index + 1,
-        name: trek.name || "",
-        highlights: trek.highlights || "",
-        description: trek.description || "", // Ensure a default value if description is undefined
-        location: trek.location || "",
-        startDate: trek.startDate || "",
-        endDate: trek.endDate || "",
-        difficulty: trek.difficulty || "",
-        price: trek.price || "",
-        images: trek.images?.[0] || "", // Assuming the first image is to be displayed
-        guideName: trek.guideDetails?.name || "", // Assuming the first guide's name is to be displayed
-        trekTypeName: trek.trekTypeDetails?.name || "",
+        trekName: trek.trekName || "",
+        trekTitle: trek.trekTitle || "",
+        suitableForAge: trek.suitableForAge || "",
+        altitude: trek.altitude || "",
+        trekLocation: trek.trekLocation || "",
+        trekDescription: trek.trekDescription || "",
+        trekInfo: trek.trekInfo || "",
+        trekHighlights: trek.trekHighlights || "",
+        trekInclusions: trek.trekInclusions || "",
+        trekExclusions: trek.trekExclusions || "",
+        trekCancellationPolicy: trek.trekCancellationPolicy || "",
+        trekDifficulty: trek.trekDifficulty || "",
+        images: trek.images?.[0] || "", // Displaying the first image
+        trekTypeName: trek.trekTypeName || "", // Displaying trek type name
+        dates: trek._id,
         edit: trek._id,
         delete: trek._id,
       }))
@@ -120,7 +134,26 @@ export default function TrekTable() {
 
   return (
     <div style={{ height: "600px", minHeight: "400px", width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} pageSize={8} pagination />
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={8}
+        pagination
+        componentsProps={{
+          cell: {
+            style: {
+              fontSize: "16px",
+              fontWeight: "bold",
+            },
+          },
+          columnHeader: {
+            style: {
+              fontSize: "24px",
+              fontWeight: "bold",
+            },
+          },
+        }}
+      />
     </div>
   );
 }

@@ -2,36 +2,30 @@ import React, { useContext, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import TestimonialEditContext from "../context/TestimonialEditContext.js";
 import TestimonialIdContext from "../context/TestimonialIdContext.js";
-import useGetTestimonialForm from "../hooks/useGetTestimonailForm.js";
 import useChangeTestimonial from "../hooks/useChangeTestimonial.js";
+import useGetTestimonailById from "../hooks/useGetTestimonailById.js";
 
-const EditTestimonial = ({ testimonialId, value }) => {
-  const [testimonial, setTestimonial] = useState({
-    name: "",
-    rating: 1,
-    comment: "",
-    work: "",
-    images: null, // State for initial image
-  });
-  const [newImage, setNewImage] = useState(null); // State for newly uploaded image
+const EditTestimonial = () => {
+  const [name, setName] = useState("");
+  const [rating, setRating] = useState(1);
+  const [comment, setComment] = useState("");
+  const [work, setWork] = useState("");
+  const [trek, setTrek] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const [image, setImage] = useState(null);
+  const [newImage, setNewImage] = useState(null);
 
   const { IdValue } = useContext(TestimonialIdContext);
-
-  const { openTestimonialEditForm, setTestimonialEditForm } = useContext(
-    TestimonialEditContext
-  );
-
+  const { setTestimonialEditForm } = useContext(TestimonialEditContext);
   const mutation = useChangeTestimonial();
 
-  const {
-    data: fetchedTestimonial,
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: fetchedTestimonial, err } = useQuery({
     queryKey: ["SingleTestimonial", IdValue],
     queryFn: async () => {
       try {
-        return await useGetTestimonialForm({ id: IdValue });
+        return await useGetTestimonailById({ id: IdValue });
       } catch (error) {
         console.error("Error fetching testimonial:", error);
         throw new Error("Failed to fetch testimonial.");
@@ -41,80 +35,105 @@ const EditTestimonial = ({ testimonialId, value }) => {
 
   useEffect(() => {
     if (fetchedTestimonial) {
-      setTestimonial(fetchedTestimonial);
+      setName(fetchedTestimonial.name || "");
+      setRating(fetchedTestimonial.rating || 1);
+      setComment(fetchedTestimonial.comment || "");
+      setWork(fetchedTestimonial.work || "");
+      setTrek(fetchedTestimonial.trek || "");
+      setImage(fetchedTestimonial.testimonialAvatar || null);
     }
   }, [fetchedTestimonial]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setTestimonial((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleImageChange = (e) => {
-    if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setNewImage(file);
+    const files = Array.from(e.target.files);
+    if (files.length) {
+      setNewImage(files[0]);
+
+      const preview = URL.createObjectURL(files[0]);
+      setImage(preview);
     } else {
       setNewImage(null);
+      setImage(null);
     }
+  };
+
+  const handleRemoveImage = () => {
+    setNewImage(null);
+    setImage(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!name || !rating || !comment || !work || !trek) {
+      setError("All fields are required.");
+      return;
+    }
+    setError("");
+    setSuccess("");
+
     try {
       const formData = new FormData();
       formData.append("id", IdValue);
-      formData.append("name", testimonial.name);
-      formData.append("rating", testimonial.rating.toString());
-      formData.append("comment", testimonial.comment);
-      formData.append("work", testimonial.work);
+      formData.append("name", name);
+      formData.append("rating", rating.toString());
+      formData.append("comment", comment);
+      formData.append("work", work);
+      formData.append("trek", trek);
       if (newImage) {
         formData.append("testimonialAvatar", newImage);
+      } else if (image) {
+        formData.append("testimonialAvatar", image);
       }
 
-      mutation.mutate(formData);
+      mutation.mutate(
+        { id: IdValue, formData },
+        {
+          onError: (error) =>
+            console.error("Error updating testimonial:", error),
+          onSuccess: () => {
+            setSuccess("Testimonial updated successfully!");
+            // Handle success (e.g., show a success message or redirect)
+          },
+        }
+      );
     } catch (error) {
-      console.error("Error updating testimonial:", error);
+      console.error("Error preparing form data:", error);
     }
   };
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen bg-gray-900 bg-opacity-70 flex justify-center items-center">
-      <div className="w-content max-w-2xl">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+    <div className="fixed h-full w-full top-0 left-0 bg-slate-400 bg-opacity-70 flex flex-col gap-2 justify-center items-center z-10 overflow-scroll">
+      <div className="w-[70%] max-w-2xl">
+        <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col text-lg">
+          <h2 className="text-2xl font-bold text-center text-gray-700">
             Edit Testimonial
           </h2>
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div className="flex gap-4">
-              <div className="flex flex-col">
-                <label htmlFor="name" className="text-gray-800 mb-2">
+          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+            <div className="flex gap-5">
+              <div className="flex flex-col flex-1">
+                <label htmlFor="name" className="mb-2 text-gray-700">
                   Name
                 </label>
                 <input
                   type="text"
                   id="name"
-                  name="name"
-                  value={testimonial.name}
-                  onChange={handleChange}
-                  className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="p-2 border border-gray-300 rounded-lg"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
-              <div className="flex flex-col w-full">
-                <label htmlFor="rating" className="text-gray-800 mb-2">
+              <div className="flex flex-col flex-1">
+                <label htmlFor="rating" className="mb-2 text-gray-700">
                   Rating
                 </label>
                 <input
                   type="number"
                   id="rating"
-                  name="rating"
-                  value={testimonial.rating}
-                  onChange={handleChange}
-                  className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="p-2 border border-gray-300 rounded-lg"
+                  value={rating}
+                  onChange={(e) => setRating(parseInt(e.target.value))}
                   min="1"
                   max="5"
                   required
@@ -122,29 +141,40 @@ const EditTestimonial = ({ testimonialId, value }) => {
               </div>
             </div>
             <div className="flex flex-col">
-              <label htmlFor="comment" className="text-gray-800 mb-2">
+              <label htmlFor="comment" className="mb-2 text-gray-700">
                 Comment
               </label>
               <textarea
                 id="comment"
-                name="comment"
-                value={testimonial.comment}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
                 required
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="work" className="text-gray-800 mb-2">
+              <label htmlFor="work" className="mb-2 text-gray-700">
                 Work
               </label>
               <input
                 type="text"
                 id="work"
-                name="work"
-                value={testimonial.work}
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={work}
+                onChange={(e) => setWork(e.target.value)}
+                required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="trek" className="mb-2 text-gray-700">
+                Trek
+              </label>
+              <input
+                type="text"
+                id="trek"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={trek}
+                onChange={(e) => setTrek(e.target.value)}
                 required
               />
             </div>
@@ -161,24 +191,21 @@ const EditTestimonial = ({ testimonialId, value }) => {
                   accept="image/*"
                 />
               </div>
-              {newImage ? (
-                <div className="flex justify-center">
+              {image && (
+                <div className="flex justify-center mt-2">
                   <img
-                    src={URL.createObjectURL(newImage)}
+                    src={image}
                     alt="Uploaded"
-                    className="max-w-[200px] mt-2 rounded-lg"
+                    className="max-w-[200px] rounded-lg"
                   />
+                  <button
+                    type="button"
+                    className="ml-2 p-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                    onClick={handleRemoveImage}
+                  >
+                    Remove
+                  </button>
                 </div>
-              ) : (
-                testimonial.images && (
-                  <div className="flex justify-center">
-                    <img
-                      src={testimonial.images}
-                      alt="Uploaded"
-                      className="max-w-[200px] mt-2 rounded-lg"
-                    />
-                  </div>
-                )
               )}
             </div>
             <div className="flex justify-between mt-4">
@@ -190,14 +217,13 @@ const EditTestimonial = ({ testimonialId, value }) => {
               </button>
               <button
                 type="button"
-                onClick={() => setTestimonialEditForm(false)}
                 className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
+                onClick={() => setTestimonialEditForm(false)}
               >
                 Cancel
               </button>
             </div>
           </form>
-          {error && <div className="text-red-500 mt-4">{error.message}</div>}
         </div>
       </div>
     </div>

@@ -46,8 +46,8 @@ const Treks = () => {
   };
 
   return (
-    <section className="text-black  bg-white body-font lg:mt-0 mt-20 font-body">
-      <div className="container px-2 py-12 lg:py-24  mx-auto">
+    <section className="text-black  bg-white body-font lg:mt-0 font-body">
+      <div className="container px-2 pb-12 lg:pb-24  mx-auto">
         <div className="flex flex-col ">
           <div className="h-1 bg-gray-800 rounded overflow-hidden">
             <div className="w-24 h-full bg-yellow-500"></div>

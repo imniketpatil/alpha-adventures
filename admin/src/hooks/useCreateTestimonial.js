@@ -7,6 +7,8 @@ const useCreateTestimonial = () => {
 
   return useMutation({
     mutationFn: (formData) => {
+      console.log("formData", formData);
+
       return axios.post(
         "http://localhost:8000/api/v1/testimonial/create-testimonial",
         formData,

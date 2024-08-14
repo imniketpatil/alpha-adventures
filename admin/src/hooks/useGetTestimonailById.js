@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const useGetTestimonialForm = async ({ id }) => {
+const useGetTestimonailById = async ({ id }) => {
   try {
-    console.log("id", id);
+    // console.log("id", id);
     const response = await axios.get(
-      `http://localhost:8000/api/v1/testimonial/testimonial/${id}`,
+      `http://localhost:8000/api/v1/testimonial/getAllTestimonial/${id}`,
       {
         withCredentials: true, // To send cookies with the request
       }
@@ -17,4 +17,4 @@ const useGetTestimonialForm = async ({ id }) => {
   }
 };
 
-export default useGetTestimonialForm;
+export default useGetTestimonailById;

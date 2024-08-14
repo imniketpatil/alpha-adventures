@@ -1,76 +1,81 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 
-function AddHighlightsInTrek({ setHighlights }) {
-  const [inputList, setInputList] = useState([{ highlight: "" }]);
+function AddHighlightsInTrek({ trekHighlights, setTrekHighlights }) {
+  const [inputList, setInputList] = useState(
+    trekHighlights.length
+      ? trekHighlights
+          .filter((highlight) => typeof highlight === "string")
+          .map((highlight) => ({ highlight }))
+      : [{ highlight: "" }]
+  );
 
-  // handle input change
+  useEffect(() => {
+    // Initialize inputList with trekHighlights
+    if (trekHighlights.length > 0) {
+      const validHighlights = trekHighlights.filter(
+        (highlight) => typeof highlight === "string"
+      );
+      setInputList(validHighlights.map((highlight) => ({ highlight })));
+    }
+  }, [trekHighlights]);
+
   const handleInputChange = (e, index) => {
     const { value } = e.target;
     const list = [...inputList];
-    list[index] = { highlight: value };
+    list[index].highlight = String(value); // Ensure it's a string
     setInputList(list);
-
-    // Update the highlights state in the CreateTrek component
-    const updatedHighlights = list.filter((item) => item.highlight !== "");
-    setHighlights(updatedHighlights.map((item) => item.highlight));
+    setTrekHighlights(list.map((item) => item.highlight));
   };
 
-  // handle click event of the Remove button
   const handleRemoveClick = (index) => {
     const list = [...inputList];
     list.splice(index, 1);
     setInputList(list);
-
-    // Update the highlights state in the CreateTrek component
-    const updatedHighlights = list.filter((item) => item.highlight !== "");
-    setHighlights(updatedHighlights.map((item) => item.highlight));
+    setTrekHighlights(list.map((item) => item.highlight));
   };
 
-  // handle click event of the Add button
   const handleAddClick = () => {
-    if (inputList[inputList.length - 1].highlight !== "") {
+    if (allFieldsFilled) {
       setInputList([...inputList, { highlight: "" }]);
     }
   };
 
-  return (
-    <>
-      <div className="flex gap-5 flex-wrap">
-        {inputList.map((item, i) => (
-          <div key={i} className="box flex">
-            <input
-              name="highlight"
-              id={`highlight-${i}`}
-              placeholder="Enter Highlight"
-              className="p-2 border border-gray-300 rounded-lg"
-              value={item.highlight}
-              onChange={(e) => handleInputChange(e, i)}
-            />
+  const allFieldsFilled = inputList.every(
+    (item) => typeof item.highlight === "string" && item.highlight.trim() !== ""
+  );
 
-            <div className="btn-box flex flex-col justify-between">
-              {inputList.length !== 1 && (
-                <CloseRoundedIcon
-                  className="mr-2 cursor-pointer"
-                  onClick={() => handleRemoveClick(i)}
-                />
-              )}
-              {inputList.length - 1 === i && (
-                <AddBoxRoundedIcon
-                  className={`cursor-pointer ${
-                    inputList[inputList.length - 1].highlight === ""
-                      ? "cursor-not-allowed text-gray-400"
-                      : ""
-                  }`}
-                  onClick={handleAddClick}
-                />
-              )}
-            </div>
+  return (
+    <div className="flex gap-5 flex-wrap">
+      {inputList.map((x, i) => (
+        <div key={i} className="flex items-center gap-2 mb-2">
+          <input
+            className="p-2 border border-gray-300 rounded-lg flex-1"
+            name="highlight"
+            value={x.highlight}
+            onChange={(e) => handleInputChange(e, i)}
+            placeholder="Enter highlight"
+          />
+          <div className="flex gap-1">
+            {inputList.length !== 1 && (
+              <CloseRoundedIcon
+                className="bg-red-500 text-white rounded-full p-1 cursor-pointer"
+                onClick={() => handleRemoveClick(i)}
+              />
+            )}
+            {inputList.length - 1 === i && (
+              <AddBoxRoundedIcon
+                className={`rounded-full p-1 ${
+                  allFieldsFilled ? "bg-blue-500" : "bg-gray-400"
+                } text-white cursor-pointer`}
+                onClick={handleAddClick}
+              />
+            )}
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
 

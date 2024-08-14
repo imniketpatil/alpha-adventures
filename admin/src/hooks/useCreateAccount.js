@@ -12,7 +12,7 @@ const useCreateAccount = () => {
       );
     },
     onSuccess: () => {
-      console.log("Account creation successful");
+      // console.log("Account creation successful");
       // Navigate to the desired page
     },
     onError: (error) => {
