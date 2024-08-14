@@ -3,10 +3,10 @@ import LoadingSpinner from "./LoadingSpinner";
 import TrekSliderComponent from "./TrekSliderComponent";
 import { useQuery } from "@tanstack/react-query";
 import useGetUpcommingTreks from "../hooks/useGetUpcommingTreks";
-import useTrekStore from "../app/trekStore";
+// import useTrekStore from "../app/trekStore";
 
 function UpcomingTreks() {
-  const addTreks = useTrekStore((state) => state.addTreks);
+  // const addTreks = useTrekStore((state) => state.addTreks);
 
   const {
     data: upcommingtrekslist = [], // Provide a default empty array
@@ -19,11 +19,11 @@ function UpcomingTreks() {
   });
 
   // Add treks only if there are items in upcommingtrekslist
-  useEffect(() => {
-    if (upcommingtrekslist.length > 0) {
-      addTreks(upcommingtrekslist);
-    }
-  }, [upcommingtrekslist, addTreks]);
+  // useEffect(() => {
+  //   if (upcommingtrekslist.length > 0) {
+  //     addTreks(upcommingtrekslist);
+  //   }
+  // }, [upcommingtrekslist, addTreks]);
 
   return (
     <>
@@ -31,7 +31,7 @@ function UpcomingTreks() {
         {/* <div className="h-1 bg-gray-800 rounded overflow-hidden">
           <div className="w-24 h-full bg-yellow-500"></div>
         </div> */}
-        <div className="flex flex-wrap sm:flex-row flex-col py-2 mt-0 items-center justify-center">
+        <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-6 mt-0 items-center justify-center">
           <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center font-body">
             Upcoming Treks
           </h1>
@@ -47,7 +47,11 @@ function UpcomingTreks() {
         </button>
       </div>
       <div className="flex flex-wrap sm:m-4 mx-4 mb-10 mt-8 items-center justify-center gap-5 lg:gap-14">
-        {isLoading ? <LoadingSpinner /> : <TrekSliderComponent />}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <TrekSliderComponent upcommingtrekslist={upcommingtrekslist} />
+        )}
       </div>
     </>
   );

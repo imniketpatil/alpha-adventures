@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import useTrekPricingStore from "../app/trekPricingStore";
+// import useTrekPricingStore from "../app/trekPricingStore";
 import useCourseStore from "../app/courseStore";
 
-function TrekSliderForPrice() {
+function TrekSliderForPrice({ trekbasedonprice }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
-  const trekPriceList =
-    useTrekPricingStore((state) => state.trekPriceList) || [];
+  // const trekPriceList =
+  //   useTrekPricingStore((state) => state.trekPriceList) || [];
 
   const settings = {
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -51,11 +52,11 @@ function TrekSliderForPrice() {
   return (
     <div className="w-full">
       <div className="w-[98%] m-auto">
-        {trekPriceList.length === 0 ? (
+        {trekbasedonprice.length === 0 ? (
           <p>No treks available at the moment.</p>
         ) : (
           <Slider {...settings}>
-            {trekPriceList.map((trek, index) => {
+            {trekbasedonprice.map((trek, index) => {
               const [loading, setLoading] = useState(true);
 
               return (

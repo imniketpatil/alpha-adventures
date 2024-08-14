@@ -1,16 +1,17 @@
 import React from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import TempSpace from "../components/TempSpace";
+import Footer from "../components/Footer";
 
-function Himalayan() {
+function TrekDetails() {
   return (
     <>
-      <TempSpace />
       <Header type="list" />
+      <TempSpace />
+      Better
       <Footer />
     </>
   );
 }
 
-export default Himalayan;
+export default TrekDetails;

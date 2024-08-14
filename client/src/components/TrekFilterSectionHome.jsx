@@ -2,25 +2,30 @@ import React, { useEffect, useState } from "react";
 import useGetUpcommingTreks from "../hooks/useGetUpcommingTreks";
 import TrekSliderComponent from "./TrekSliderComponent";
 import { useQuery } from "@tanstack/react-query";
-import useTrekStore from "../app/trekStore";
+// import useTrekStore from "../app/trekStore";
 import LoadingSpinner from "./LoadingSpinner";
 import UpcomingTreks from "./UpcomingTreks";
 import TrekBasedOnPrice from "./TrekBasedOnPrice";
 import TreksBasedOnDifficulty from "./TreksBasedOnDifficulty";
+import TrekTypesButtonAndSlider from "./TrekTypesButtonAndSlider";
 
 const TrekFilterSectionHome = () => {
   return (
-    <section className="text-black bg-white body-font lg:mt-0 mt-20 font-body">
+    <section className="text-black bg-white body-font lg:mt-0  font-body">
       <div className="container px-2 pt-8 pb-8 lg:pb-12 lg:pt-8 mx-auto">
         <UpcomingTreks />
-        <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+
+        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
+
+        <TrekTypesButtonAndSlider />
+
+        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
 
         <TrekBasedOnPrice />
 
-        <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
 
         <TreksBasedOnDifficulty />
-        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
       </div>
     </section>
   );

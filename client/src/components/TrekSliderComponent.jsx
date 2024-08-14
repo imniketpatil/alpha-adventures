@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import useTrekStore from "../app/trekStore";
+// import useTrekStore from "../app/trekStore";
 import useCourseStore from "../app/courseStore";
 
-function TrekSliderComponent() {
+function TrekSliderComponent({ upcommingtrekslist }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
 
-  const { trekList } = useTrekStore((state) => ({ trekList: state.trekList }));
+  // const { trekList } = useTrekStore((state) => ({ trekList: state.trekList }));
 
   const settings = {
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -50,11 +51,11 @@ function TrekSliderComponent() {
   return (
     <div className="w-full">
       <div className="w-[98%] m-auto">
-        {trekList.length === 0 ? (
+        {upcommingtrekslist.length === 0 ? (
           <p>No treks available at the moment.</p>
         ) : (
           <Slider {...settings}>
-            {trekList.map((trek, index) => {
+            {upcommingtrekslist.map((trek, index) => {
               const [loading, setLoading] = useState(true);
 
               return (

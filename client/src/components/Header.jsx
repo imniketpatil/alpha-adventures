@@ -43,6 +43,15 @@ const Header = ({ type }) => {
     refetch,
   } = useQuery({ queryKey: ["TrekName"], queryFn: useGetTrekListForHome });
 
+  // console.log("treks", treks);
+
+  const handleTrekListClick = (trekId, dateId) => {
+    // console.log("trekId", trekId);
+    addCourse(trekId);
+    addDateId(dateId);
+    // console.log("dateId", dateId);
+  };
+
   return (
     <nav
       className={`flex font-body rounded-b w-full items-center overflow-hidden z-50 sm:px-4 py-6 px-2 transition-all duration-300 ease-in-out ${
@@ -61,9 +70,14 @@ const Header = ({ type }) => {
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/alpha-adventures/" className="flex items-center">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white hover:text-blue-300">
+          {/* <span className="self-center text-2xl font-semibold whitespace-nowrap text-white hover:text-blue-300">
             Alpha Adventures
-          </span>
+          </span> */}
+          <img
+            src="https://res.cloudinary.com/alphaimages/image/upload/v1723654240/AALogo_white_wpnbvs.png"
+            alt="Alpha Adventures Logo"
+            className="h-10 lg:h-20 hover:mix-blend-luminosity"
+          />
         </Link>
 
         <div className="flex items-center">
@@ -132,13 +146,17 @@ const Header = ({ type }) => {
                   aria-labelledby="dropdownLargeButton"
                 >
                   {treks.map((trek) => (
-                    <li className="py-2 pr-4 pl-3 lg:p-0 ">
-                      <a
-                        href="#"
-                        className="block px-4 py-2  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        {trek.trekName}
-                      </a>
+                    <li key={trek._id} className="py-2 pr-4 pl-3 lg:p-0 ">
+                      <NavLink to="/alpha-adventures/trekdetails">
+                        <div
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          onClick={() =>
+                            handleTrekListClick(trek._id, trek.dates[0])
+                          }
+                        >
+                          {trek.trekName}
+                        </div>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>
@@ -201,7 +219,7 @@ const Header = ({ type }) => {
             </li>
             <li className="border-b-[.5px] border-gray-200 lg:border-0 text-md ">
               <a
-                href="#"
+                href="https://wa.me/+919403449240"
                 target="_black"
                 className="outline-none relative inline-flex items-center justify-center leading-normal no-underline py-2 pr-4 pl-3 text-slate-100 font-sans font-bold uppercase hover:text-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-md"
               >

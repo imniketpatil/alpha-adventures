@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import useTrekDifficultyStore from "../app/trekDifficultyStore";
 import useCourseStore from "../app/courseStore";
 
-function TrekSliderForDifficulty({ trekbasedondifficulty }) {
+function TrekSliderForTrekType({ TreksForTrekType }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
 
-  // const trekDifficultyList =
-  //   useTrekDifficultyStore((state) => state.trekDifficultyList) || [];
-
   const [loadingStates, setLoadingStates] = useState(
-    trekbasedondifficulty.map(() => true)
+    TreksForTrekType.map(() => true)
   );
 
   const handleImageLoad = (index) => {
     setLoadingStates((prev) => {
       const newLoadingStates = [...prev];
       newLoadingStates[index] = false;
+      return newLoadingStates;
+    });
+  };
+
+  const handleImageError = (index) => {
+    setLoadingStates((prev) => {
+      const newLoadingStates = [...prev];
+      newLoadingStates[index] = false; // Hide the spinner if image fails
       return newLoadingStates;
     });
   };
@@ -54,14 +58,6 @@ function TrekSliderForDifficulty({ trekbasedondifficulty }) {
     ],
   };
 
-  const singleSlideSettings = {
-    ...settings,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: false,
-    variableWidth: false,
-  };
-
   const handleGetInfo = (id, trekDateId) => {
     if (id && trekDateId) {
       addCourse(id);
@@ -72,85 +68,11 @@ function TrekSliderForDifficulty({ trekbasedondifficulty }) {
   return (
     <div className="w-full">
       <div className="w-[98%] m-auto">
-        {trekbasedondifficulty.length === 0 ? (
-          <p className="ml-2 ">No treks available at the moment.</p>
+        {TreksForTrekType?.length === 0 ? (
+          <p>No treks available at the moment.</p>
         ) : (
-          /* trekbasedondifficulty.length === 1 ? (
-          <div className="flex justify-center">
-            <div className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer transform hover:scale-105 transition-transform duration-300">
-              <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden">
-                {loadingStates[0] && (
-                  <div className="spinner absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-                    <span>Loading...</span>
-                  </div>
-                )}
-                <img
-                  src={trekbasedondifficulty[0].images[0]}
-                  alt={trekbasedondifficulty[0].trekName}
-                  className={`object-cover h-full w-full ${
-                    loadingStates[0] ? "hidden" : ""
-                  }`}
-                  onLoad={() => handleImageLoad(0)}
-                />
-              </div>
-              <div className="flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
-                <h2 className="text-2xl font-bold text-indigo-600 mb-0 md:mb-2">
-                  {trekbasedondifficulty[0].trekName}
-                </h2>
-                <h3 className="text-lg font-medium text-gray-700 mb-0 md:mb-4">
-                  {trekbasedondifficulty[0].trekTitle}
-                </h3>
-                <div className="w-full text-gray-600 mb-0 md:mb-4">
-                  <p className="mb-2">
-                    <span className="font-semibold">Type:</span>{" "}
-                    {trekbasedondifficulty[0].trekType}
-                  </p>
-                  <p className="mb-2">
-                    <span className="font-semibold">Location:</span>{" "}
-                    {trekbasedondifficulty[0].trekLocation}
-                  </p>
-                  <p className="mb-2">
-                    <span className="font-semibold">Suitable Age:</span>{" "}
-                    {trekbasedondifficulty[0].suitableForAge}
-                  </p>
-                  <p className="mb-2">
-                    <span className="font-semibold">Trek Start Date:</span>{" "}
-                    {new Date(
-                      trekbasedondifficulty[0].startDate
-                    ).toLocaleDateString("en-GB")}
-                  </p>
-                  <div className="flex justify-between">
-                    <p className="mb-2">
-                      <span className="font-semibold">Duration:</span>{" "}
-                      {trekbasedondifficulty[0].dateDifference} days
-                    </p>
-                    <p className="mb-2">
-                      <span className="font-semibold">Difficulty:</span>{" "}
-                      {trekbasedondifficulty[0].trekDifficulty
-                        .charAt(0)
-                        .toUpperCase() +
-                        trekbasedondifficulty[0].trekDifficulty.slice(1)}
-                    </p>
-                  </div>
-                </div>
-                <button
-                  className="button"
-                  onClick={() =>
-                    handleGetInfo(
-                      trekbasedondifficulty[0]._id,
-                      trekbasedondifficulty[0].trekDateId
-                    )
-                  }
-                >
-                  Get Trek
-                  <span className="button-span"> ─ Information & Dates</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        ) :  */
           <Slider {...settings}>
-            {trekbasedondifficulty.map((trek, index) => (
+            {TreksForTrekType?.map((trek, index) => (
               <div
                 key={index}
                 className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer transform hover:scale-105 transition-transform duration-300"
@@ -168,6 +90,7 @@ function TrekSliderForDifficulty({ trekbasedondifficulty }) {
                       loadingStates[index] ? "hidden" : ""
                     }`}
                     onLoad={() => handleImageLoad(index)}
+                    onError={() => handleImageError(index)}
                   />
                 </div>
                 <div className="flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
@@ -223,4 +146,4 @@ function TrekSliderForDifficulty({ trekbasedondifficulty }) {
   );
 }
 
-export default TrekSliderForDifficulty;
+export default TrekSliderForTrekType;

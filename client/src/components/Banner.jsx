@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Typed from "typed.js";
-import PlaceIcon from "@mui/icons-material/Place";
-import { Autocomplete } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file

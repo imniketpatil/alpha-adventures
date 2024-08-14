@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import useTrekPricingStore from "../app/trekPricingStore";
+// import useTrekPricingStore from "../app/trekPricingStore";
 import LoadingSpinner from "./LoadingSpinner";
 import useGetTrekPriceDesc from "../hooks/useGetTrekPriceDesc";
 import useGetTrekPriceAsc from "../hooks/useGetTrekPriceAsc"; // Assuming you have a hook for ascending prices
 import TrekSliderForPrice from "./TrekSliderForPrice";
 
 function TrekBasedOnPrice() {
-  const addTreks = useTrekPricingStore((state) => state.addTreks);
+  // const addTreks = useTrekPricingStore((state) => state.addTreks);
   const [activeButton, setActiveButton] = useState("PricingHighToLow");
 
   const {
@@ -23,11 +23,11 @@ function TrekBasedOnPrice() {
         : useGetTrekPriceAsc,
   });
 
-  useEffect(() => {
-    if (trekbasedonprice.length > 0) {
-      addTreks(trekbasedonprice);
-    }
-  }, [trekbasedonprice, addTreks]);
+  // useEffect(() => {
+  //   if (trekbasedonprice.length > 0) {
+  //     addTreks(trekbasedonprice);
+  //   }
+  // }, [trekbasedonprice, addTreks]);
 
   // console.log("trekbasedonprice", trekbasedonprice);
 
@@ -66,7 +66,11 @@ function TrekBasedOnPrice() {
         </button>
       </div>
       <div className="flex flex-wrap sm:m-4 mx-4 mb-10 mt-8 items-center justify-center gap-5 lg:gap-14">
-        {isLoading ? <LoadingSpinner /> : <TrekSliderForPrice />}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <TrekSliderForPrice trekbasedonprice={trekbasedonprice} />
+        )}
       </div>
     </>
   );

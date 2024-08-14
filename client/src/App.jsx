@@ -9,15 +9,7 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import FAQs from "./pages/FAQs.jsx";
 import Shop from "./pages/Shop.jsx";
-import TrekList from "./pages/TrekList.jsx";
-import TrekPage from "./pages/TrekPage.jsx";
-import Sahyadri from "./pages/Sahyadri.jsx";
-import Himalayan from "./pages/Himalayan.jsx";
-import Bagpacking from "./pages/Bagpacking.jsx";
-import HarishchandragadTrek from "./pages/HarishchandragadTrek.jsx";
-import RatangadTrek from "./pages/RatangadTrek.jsx";
-import TrekDetailsPage from "./pages/TrekDetailsPage.jsx";
-import TrekDetailsComponent from "./components/TrekDetailsComponent.jsx";
+import TrekDetails from "./pages/TrekDetails.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -27,39 +19,7 @@ function App() {
         <Route path="/alpha-adventures/about" element={<About />} />
         <Route path="/alpha-adventures/shop" element={<Shop />} />
         <Route path="/alpha-adventures/faqs" element={<FAQs />} />
-        <Route
-          path="/alpha-adventures/mainpage"
-          element={<TrekDetailsComponent />}
-        />
-        <Route path="/alpha-adventures/treklist/:id" element={<TrekList />} />
-        <Route
-          path="/alpha-adventures/trek"
-          element={<TrekDetailsComponent />}
-        />
-        <Route
-          path="/alpha-adventures/trek/Sahyadri Treks"
-          element={<Sahyadri />}
-        />
-        <Route
-          path="/alpha-adventures/trek/Himalayan Treks"
-          element={<Himalayan />}
-        />
-        <Route
-          path="/alpha-adventures/trek/Backpacking Treks"
-          element={<Bagpacking />}
-        />
-        <Route
-          path="/alpha-adventures/Sahyadri Treks/Kalsubai Peak Trek"
-          element={<TrekDetailsPage />}
-        />
-        <Route
-          path="/alpha-adventures/Sahyadri Treks/Harishchandragad Trek"
-          element={<HarishchandragadTrek />}
-        />
-        <Route
-          path="/alpha-adventures/Sahyadri Treks/Ratangad Trek"
-          element={<RatangadTrek />}
-        />
+        <Route path="/alpha-adventures/trekdetails" element={<TrekDetails />} />
       </>
     )
   );

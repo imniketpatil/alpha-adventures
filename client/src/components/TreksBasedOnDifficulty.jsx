@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import useTrekDifficultyStore from "../app/trekDifficultyStore";
+// import useTrekDifficultyStore from "../app/trekDifficultyStore";
 import LoadingSpinner from "./LoadingSpinner";
 import TrekSliderComponent from "./TrekSliderComponent";
 import useGetEasyTreks from "../hooks/useGetEasyTreks";
@@ -10,7 +10,7 @@ import TrekSliderForDifficulty from "./TrekSliderForDifficulty";
 import useCourseStore from "../app/courseStore";
 
 function TreksBasedOnDifficulty() {
-  const addTreks = useTrekDifficultyStore((state) => state.addTreks);
+  // const addTreks = useTrekDifficultyStore((state) => state.addTreks);
 
   const [activeButton, setActiveButton] = useState("Easy");
 
@@ -29,11 +29,11 @@ function TreksBasedOnDifficulty() {
 
   // console.log("trekbasedondifficulty", trekbasedondifficulty);
 
-  useEffect(() => {
-    if (trekbasedondifficulty.length > 0) {
-      addTreks(trekbasedondifficulty);
-    }
-  }, [trekbasedondifficulty, addTreks]);
+  // useEffect(() => {
+  //   // if (trekbasedondifficulty.length > ) {
+  //   addTreks(trekbasedondifficulty);
+  //   // }
+  // }, [trekbasedondifficulty, addTreks]);
 
   const handleButtonClick = (difficulty) => {
     setActiveButton(difficulty);
@@ -85,7 +85,13 @@ function TreksBasedOnDifficulty() {
         </button>
       </div>
       <div className="flex flex-wrap sm:m-4 mx-4 mb-10 mt-8 items-center justify-center gap-5 lg:gap-14">
-        {isLoading ? <LoadingSpinner /> : <TrekSliderForDifficulty />}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <TrekSliderForDifficulty
+            trekbasedondifficulty={trekbasedondifficulty}
+          />
+        )}
       </div>
     </>
   );

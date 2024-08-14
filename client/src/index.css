@@ -46,3 +46,13 @@
 .button-span {
   color: lightblue;
 }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.faq-answer.open {
+  max-height: 1000px; /* Adjust this value based on your content height */
+}
