@@ -3,10 +3,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useCourseStore from "../app/courseStore";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function TrekSliderForTrekType({ TreksForTrekType }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
+  const navigate = useNavigate();
 
   const [loadingStates, setLoadingStates] = useState(
     TreksForTrekType.map(() => true)
@@ -62,6 +64,7 @@ function TrekSliderForTrekType({ TreksForTrekType }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
+      navigate("/alpha-adventures/trekdetails");
     }
   };
 
@@ -75,7 +78,7 @@ function TrekSliderForTrekType({ TreksForTrekType }) {
             {TreksForTrekType?.map((trek, index) => (
               <div
                 key={index}
-                className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer "
               >
                 <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden">
                   {loadingStates[index] && (

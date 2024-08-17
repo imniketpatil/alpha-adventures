@@ -22,7 +22,7 @@ const Header = ({ type }) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-      setIsSticky(currentScrollPos > 300);
+      setIsSticky(currentScrollPos > 50);
       setShowNavbar(prevScrollPos > currentScrollPos || currentScrollPos < 300);
       setPrevScrollPos(currentScrollPos);
     };

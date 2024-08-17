@@ -6,6 +6,10 @@
   margin: 0 10px;
 }
 
+.slick-slide {
+  min-height: 600px;
+}
+
 .slick-dots li.slick-active button:before {
   color: orange !important;
 }
@@ -21,6 +25,18 @@
 .slick-prev:before {
   color: blue;
 }
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+}
+
+/* .slick-track .info {
+  height: 100%;
+} */
 
 .slick-track {
   padding-bottom: 25px;

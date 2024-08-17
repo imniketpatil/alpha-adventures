@@ -4,30 +4,22 @@ import { devtools, persist } from "zustand/middleware";
 
 const courseStore = (set) => ({
   courses: "",
-
   trekDateId: "",
+  trekTypeId: "",
 
   addDateId: (dateId) => {
     set((state) => ({
       trekDateId: dateId,
     }));
   },
-
-  removeDateId: () => {
+  addTrekTypeId: (trektypeId) => {
     set((state) => ({
-      trekDateId: "",
+      trekTypeId: trektypeId,
     }));
   },
-
   addCourse: (course) => {
     set((state) => ({
       courses: course,
-    }));
-  },
-
-  removeCourse: () => {
-    set((state) => ({
-      courses: "",
     }));
   },
 });

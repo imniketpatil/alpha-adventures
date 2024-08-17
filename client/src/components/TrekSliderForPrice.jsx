@@ -4,10 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import useTrekPricingStore from "../app/trekPricingStore";
 import useCourseStore from "../app/courseStore";
+import { useNavigate } from "react-router-dom";
 
 function TrekSliderForPrice({ trekbasedonprice }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
+
+  const navigate = useNavigate();
   // const trekPriceList =
   //   useTrekPricingStore((state) => state.trekPriceList) || [];
 
@@ -45,6 +48,7 @@ function TrekSliderForPrice({ trekbasedonprice }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
+      navigate("/alpha-adventures/trekdetails");
     }
     // console.log("trekDateId", trekDateId);
   };
@@ -62,7 +66,7 @@ function TrekSliderForPrice({ trekbasedonprice }) {
               return (
                 <div
                   key={index}
-                  className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                  className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer"
                 >
                   <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden">
                     {loading && (

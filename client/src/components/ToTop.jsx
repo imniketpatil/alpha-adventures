@@ -7,7 +7,7 @@ function ToTop() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
-      setShow(currentScrollPos > 300);
+      setShow(currentScrollPos > 50);
     };
 
     window.addEventListener("scroll", handleScroll);

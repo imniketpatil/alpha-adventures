@@ -4,10 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import useTrekStore from "../app/trekStore";
 import useCourseStore from "../app/courseStore";
+import { useNavigate } from "react-router-dom";
 
 function TrekSliderComponent({ upcommingtrekslist }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
+
+  const navigate = useNavigate();
 
   // const { trekList } = useTrekStore((state) => ({ trekList: state.trekList }));
 
@@ -45,6 +48,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
+      navigate("/alpha-adventures/trekdetails");
     }
   };
 
@@ -61,7 +65,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
               return (
                 <div
                   key={index}
-                  className="bg-slate-200  shadow-lg rounded-xl hover:cursor-pointer transform hover:scale-105 transition-transform duration-300"
+                  className="bg-slate-200  shadow-lg rounded-xl hover:cursor-pointer "
                 >
                   <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden">
                     {loading && (
@@ -78,7 +82,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                       onLoad={() => setLoading(false)}
                     />
                   </div>
-                  <div className="flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
+                  <div className="info flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
                     <h2 className="text-2xl font-bold text-indigo-600 mb-0 md:mb-2">
                       {trek.trekName}
                     </h2>
