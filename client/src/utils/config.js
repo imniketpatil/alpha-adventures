@@ -1,4 +1,4 @@
 // config.js
-const client_url = "http://localhost:8000/api/v1";
+const client_url = "https://alpha-adventures-backend.onrender.com";
 
 export default client_url;
