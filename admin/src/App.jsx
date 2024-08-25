@@ -2,9 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import List from "./pages/List";
-import New from "./pages/New";
-import Single from "./pages/Single";
 import Login from "./pages/Login";
 import PrivateRoute from "./utility/PrivateRoute";
 import UserPage from "./pages/UserPage";
@@ -100,12 +97,7 @@ function App() {
                                             />
                                           }
                                         />
-                                        <Route
-                                          path="/list"
-                                          element={
-                                            <PrivateRoute component={List} />
-                                          }
-                                        />
+
                                         <Route
                                           path="/trektype"
                                           element={

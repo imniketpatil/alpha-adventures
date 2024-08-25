@@ -11,18 +11,13 @@ function CreateTrekGuideForm({ setOpenTrekGuideForm }) {
   const mutation = useCreateTrekGuide();
 
   const handleSubmit = (e) => {
+    setOpenTrekGuideForm(false);
     e.preventDefault();
     if (!name || !bio || !experience || !instagramId) {
       console.error("All fields are required.");
       return;
     }
-    // console.log("Submitting Trek Guide form with values:", {
-    //   name,
-    //   bio,
-    //   instagramId,
-    //   experience,
-    //   image,
-    // });
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("experience", experience.toString()); // Convert rating to string

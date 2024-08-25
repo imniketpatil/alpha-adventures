@@ -18,7 +18,6 @@ function Sidebar() {
   };
 
   const confirmLogout = () => {
-    // Add the userId if needed
     logoutMutation.mutate({ userId: "user-id" });
     setLogout(false);
   };
@@ -53,22 +52,23 @@ function Sidebar() {
             </li>
           </NavLink>
 
-          <NavLink to={"/trekguides"}>
-            <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
-              <LocalPoliceRoundedIcon className="text-blue-600" />
-              Trek Guide
-            </li>
-          </NavLink>
-
           <NavLink to={"/treks"}>
             <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
               <DirectionsWalkRoundedIcon className="text-blue-600" />
               Trek
             </li>
           </NavLink>
-
           <hr />
-          <p className="text-sm text-gray-400 pl-6">Trekkers</p>
+          <p className="text-sm text-gray-400 pl-6">Guides and Members</p>
+
+          <NavLink to={"/trekguides"}>
+            <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
+              <LocalPoliceRoundedIcon className="text-blue-600" />
+              Trek Guide
+            </li>
+          </NavLink>
+          <hr />
+          <p className="text-sm text-gray-400 pl-6">Trekkers Testimonials</p>
           <NavLink to={"/testimonials"}>
             <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
               <RateReviewRoundedIcon className="text-blue-600" />

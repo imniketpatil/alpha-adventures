@@ -11,9 +11,8 @@ const EditButtonCell = ({ value }) => {
 
   // Handle the edit button click
   const handleEdit = (id) => {
-    // console.log(`Editing testimonial with ID: ${id}`);
     setIdValue(id);
-    setTestimonialEditForm(true); // Assuming you're setting editForm to true
+    setTestimonialEditForm(true);
   };
 
   return (

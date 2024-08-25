@@ -7,7 +7,6 @@ import useGetTrekPriceAsc from "../hooks/useGetTrekPriceAsc"; // Assuming you ha
 import TrekSliderForPrice from "./TrekSliderForPrice";
 
 function TrekBasedOnPrice() {
-  // const addTreks = useTrekPricingStore((state) => state.addTreks);
   const [activeButton, setActiveButton] = useState("PricingHighToLow");
 
   const {
@@ -22,14 +21,6 @@ function TrekBasedOnPrice() {
         ? useGetTrekPriceDesc
         : useGetTrekPriceAsc,
   });
-
-  // useEffect(() => {
-  //   if (trekbasedonprice.length > 0) {
-  //     addTreks(trekbasedonprice);
-  //   }
-  // }, [trekbasedonprice, addTreks]);
-
-  // console.log("trekbasedonprice", trekbasedonprice);
 
   return (
     <>

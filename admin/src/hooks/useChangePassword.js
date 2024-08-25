@@ -1,10 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import client_url from "../utility/config.js";
 
 const changePasswordMutationFn = ({ oldPassword, newPassword }) => {
   return axios.patch(
-    "http://localhost:8000/api/v1/users/change-password",
+    `${client_url}/users/change-password`,
     { oldPassword, newPassword },
     { withCredentials: true }
   );
@@ -16,13 +17,10 @@ const useChangePassword = () => {
   return useMutation({
     mutationFn: changePasswordMutationFn,
     onSuccess: (response) => {
-      // console.log("Password changed successfully:", response);
-      // Redirect to user page
       navigate("/user");
     },
     onError: (error) => {
       console.error("Failed to change password:", error);
-      // Handle error, such as displaying an error message to the user
     },
   });
 };

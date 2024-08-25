@@ -8,10 +8,14 @@ import TestimonialEditContext from "../context/TestimonialEditContext";
 import { useDeleteTestimonial } from "../hooks/useDeleteTestimonial";
 import TestimonialDeleteContext from "../context/TestimonialDeleteContext";
 import TestimonialIdContext from "../context/TestimonialIdContext";
+import useIdStore from "../app/IdStore";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function Testimonials() {
   const [openTestimonialForm, setOpenTestimonialForm] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
+
+  const loading = useIdStore((state) => state.loading);
 
   const deleteTestimonialMutation = useDeleteTestimonial();
   const { openDeleteBox, setDeleteBox } = useContext(TestimonialDeleteContext);
@@ -83,13 +87,20 @@ function Testimonials() {
                 </div>
               </div>
             )}
+            {loading && (
+              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <LoadingSpinner />
+              </div>
+            )}
             <div className="overflow-auto">
               <TestimonialsTable />
             </div>
           </div>
         </div>
       </div>
-      {openTestimonialEditForm && <EditTestimonial />}
+      {openTestimonialEditForm && (
+        <EditTestimonial setTestimonialEditForm={setTestimonialEditForm} />
+      )}
     </div>
   );
 }

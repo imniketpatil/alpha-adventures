@@ -8,16 +8,13 @@ function CreateTrekGuideForm({ setOpenTrekTypeForm }) {
   const mutation = useCreateTrekType();
 
   const handleSubmit = (e) => {
+    setOpenTrekTypeForm(false);
     e.preventDefault();
     if (!name || !description) {
       console.error("All fields are required.");
       return;
     }
-    // console.log("Submitting Trek Guide form with values:", {
-    //   name,
-    //   description,
-    //   image,
-    // });
+    //
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);

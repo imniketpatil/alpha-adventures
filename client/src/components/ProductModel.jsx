@@ -1,47 +1,44 @@
 import React from "react";
 
 const ProductModal = ({ isOpen, onClose, product }) => {
-  if (!isOpen || !product) return null; // Add a check for product being undefined
+  if (!isOpen || !product) return null;
 
   return (
-    <div className="fixed inset-0 overflow-y-auto font-body z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center font-body overflow-y-auto">
       <div
-        className="fixed inset-0 transition-opacity "
+        className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
         aria-hidden="true"
         onClick={onClose}
-      >
-        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-      </div>
+      ></div>
 
-      <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-xl sm:max-h-2xl sm:w-full ">
-        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+      <div className="relative bg-white rounded-lg shadow-lg transform transition-all sm:max-w-2xl sm:w-full">
+        <div className="px-6 py-5">
           <div className="sm:flex sm:items-start">
-            <div className="text-center sm:text-left w-full">
-              <h3
-                className="text-xl font-semibold leading-6 text-gray-900"
-                id="modal-headline"
-              >
+            <div className="w-full text-center sm:text-left">
+              <h3 className="text-2xl font-bold leading-6 text-gray-900 mb-4">
                 {product.name}
               </h3>
-              <div className="mt-2  flex justify-center items-center">
+              <div className="mb-4 flex justify-center items-center">
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
-                  className="h-64 w-full object-contain"
+                  className="rounded-lg max-h-[500px] w-full object-contain"
                 />
               </div>
-              <div className="mt-2">
-                <p className="text-lg text-gray-500">
-                  Price: Rs {product.price}
+
+              <div className="mb-4">
+                <p className="text-lg font-semibold text-gray-700">
+                  Price:{" "}
+                  <span className="text-indigo-600">Rs {product.price}</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <div className="px-6 py-3 bg-gray-50 flex justify-end">
           <button
             onClick={onClose}
-            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
           >
             Close
           </button>

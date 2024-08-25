@@ -1,12 +1,10 @@
 import { useContext } from "react";
-import TrekDeleteContext from "../context/TrekDeleteContext";
-import TrekIdContext from "../context/TrekIdContext";
 import TestimonialDeleteContext from "../context/TestimonialDeleteContext";
 import TestimonialIdContext from "../context/TestimonialIdContext";
 
 const TestimonialDeleteButton = ({ value }) => {
-  const { openDeleteBox, setDeleteBox } = useContext(TestimonialDeleteContext);
-  const { IdValue, setIdValue } = useContext(TestimonialIdContext);
+  const { setDeleteBox } = useContext(TestimonialDeleteContext);
+  const { setIdValue } = useContext(TestimonialIdContext);
 
   const handleDelete = () => {
     setDeleteBox(true);

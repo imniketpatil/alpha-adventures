@@ -7,15 +7,13 @@ import ChangePassword from "../components/ChangePassword";
 import useDeleteAccount from "../hooks/useDeleteAccount";
 import EditAccount from "../components/EditAccount";
 import CreateAccount from "../components/CreateAccount.jsx";
+import client_url from "../utility/config.js";
 
 // Function to fetch current user data
 const fetchCurrentUser = async () => {
-  const response = await axios.get(
-    "http://localhost:8000/api/v1/users/currentuser",
-    {
-      withCredentials: true, // To send cookies with the request
-    }
-  );
+  const response = await axios.get(`${client_url}/users/currentuser`, {
+    withCredentials: true, // To send cookies with the request
+  });
   return response.data.data;
 };
 
@@ -31,11 +29,15 @@ function UserPage() {
     data: user,
     error,
     isLoading,
-    refetch, // Function to refetch user data after mutation
-  } = useQuery({ queryKey: ["currentUser"], queryFn: fetchCurrentUser });
+    refetch,
+  } = useQuery({
+    queryKey: ["currentUser"],
+    queryFn: fetchCurrentUser,
+    enabled: !!fetchCurrentUser,
+  });
 
   const confirmDelete = () => {
-    setDelete(true); // Open the delete confirmation modal
+    setDelete(true);
   };
 
   const handleEditProfile = () => {
@@ -64,12 +66,20 @@ function UserPage() {
             {error && <div>Error loading user data</div>}
             <div className="flex w-full flex-col gap-10 mb-6 px-6">
               <div className="flex flex-col gap-5">
-                <h2 className="text-2xl font-semibold">
-                  Name: {user.fullName}
-                </h2>
-                <p className="text-gray-600 text-2xl">
-                  Username: @{user.username}
-                </p>
+                {user ? (
+                  <>
+                    <h2 className="text-2xl font-semibold">
+                      Name: {user.fullName}
+                    </h2>
+                    <p className="text-gray-600 text-2xl">
+                      Username: @{user.username}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-gray-600 text-2xl">
+                    No user data available
+                  </p>
+                )}
               </div>
               <div className="space-x-4">
                 <button

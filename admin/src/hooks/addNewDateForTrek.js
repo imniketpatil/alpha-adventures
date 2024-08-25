@@ -1,25 +1,22 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import AddNewTrekDateTrekIdContext from "../context/AddNewTrekDateTrekIdContext";
 import { useContext } from "react";
 import TrekDatesContext from "../context/TrekDatesContext";
+import client_url from "../utility/config.js";
 
 const addNewDateForTrek = () => {
   const navigate = useNavigate();
 
-  const { IdForTrek, setIdForTrek } = useContext(AddNewTrekDateTrekIdContext);
-  const { openDatesBox, setDatesBox } = useContext(TrekDatesContext);
+  const { setDatesBox } = useContext(TrekDatesContext);
 
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ id, formData }) => {
-      return axios.post(
-        `http://localhost:8000/api/v1/trek/add-new-date/${id}`,
-        formData,
-        { withCredentials: true }
-      );
+      return axios.post(`${client_url}/trek/add-new-date/${id}`, formData, {
+        withCredentials: true,
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries("Trek");

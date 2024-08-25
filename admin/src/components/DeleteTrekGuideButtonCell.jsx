@@ -7,12 +7,11 @@ const DeleteTrekGuideButtonCell = ({ value }) => {
   const { setDeleteBox } = useContext(TrekDeleteContext);
 
   const handleDelete = () => {
-    // console.log("value at delte trek guide", value);
     setIdValue(value);
     setDeleteBox(true);
   };
 
-  const { IdValue, setIdValue } = useContext(TrekGuideIdContext);
+  const { setIdValue } = useContext(TrekGuideIdContext);
 
   return (
     <>

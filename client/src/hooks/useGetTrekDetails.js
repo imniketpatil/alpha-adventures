@@ -1,8 +1,9 @@
 import axios from "axios";
+import client_url from "../utils/config.js";
 
 const useGetTrekPriceAsc = async (id) => {
   const response = await axios.get(
-    `http://localhost:8000/api/v1/trek/getDateDetailsForClient/${id}`,
+    `${client_url}/trek/getDateDetailsForClient/${id}`,
     {
       withCredentials: true, // To send cookies with the request
     }

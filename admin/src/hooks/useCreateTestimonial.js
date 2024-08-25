@@ -1,31 +1,41 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+
+import useIdStore from "../app/IdStore";
+import client_url from "../utility/config.js";
 
 const useCreateTestimonial = () => {
   const queryClient = useQueryClient();
 
+  const setLoading = useIdStore((state) => state.setLoading);
+
   return useMutation({
     mutationFn: (formData) => {
-      console.log("formData", formData);
-
       return axios.post(
-        "http://localhost:8000/api/v1/testimonial/create-testimonial",
+        `${client_url}/testimonial/create-testimonial`,
         formData,
         { withCredentials: true }
       );
     },
+    onMutate: () => {
+      setLoading(true);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries("testimonials");
-      alert("Testimonial Created Successfully"); // Invalidate and refetch data
+      setLoading(false);
+      setOpenTestimonialForm(false);
     },
     onError: (error) => {
+      setLoading(false);
+
       if (error.response && error.response.data) {
         console.error("Testimonial creation failed:", error.response.data);
       } else {
         console.error("Testimonial creation failed:", error.message);
       }
-      // Handle error, such as displaying an error message to the user
+    },
+    onSettled: () => {
+      setLoading(false);
     },
   });
 };

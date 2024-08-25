@@ -1,6 +1,5 @@
 import React from "react";
 
-// Define your data array with text content and image URLs
 const sections = [
   {
     title: "About Us",

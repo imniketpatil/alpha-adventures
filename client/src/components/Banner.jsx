@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Typed from "typed.js";
-import "react-datepicker/dist/react-datepicker.css";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import useGetTrekListForHome from "../hooks/useGetTrekListForHome.js";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import useCourseStore from "../app/courseStore";
+import HomeBannerBG from "/images/pexels-photo-746386.jpeg";
 
 function Banner() {
   useEffect(() => {
@@ -22,26 +17,13 @@ function Banner() {
 
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
-  const {
-    data: treks = [], // Provide a default empty array
-    error,
-    isLoading,
-    refetch,
-  } = useQuery({ queryKey: ["TrekName"], queryFn: useGetTrekListForHome });
-
-  // console.log("Names Of Treks", treks);
-
-  const navigate = useNavigate();
 
   const [selectedTrek, setSelectedTrek] = useState(null);
   const [selectedTrekDateId, setSelectedTrekDateId] = useState(null);
 
   const handleTrekChange = (event, value) => {
-    // console.log("Selected trek:", value);
     if (value) {
-      // console.log("value", value);
-
-      setSelectedTrek(value._id); // Set selected trek ID
+      setSelectedTrek(value._id);
       setSelectedTrekDateId(value.dates[0]);
     }
   };
@@ -50,18 +32,16 @@ function Banner() {
     if (selectedTrek) {
       addCourse(selectedTrek);
       addDateId(selectedTrekDateId);
-      // console.log("selectedTrekDateId", selectedTrekDateId);
-
-      // navigate(`/alpha-adventures/treks/${selectedTrek}`);
     }
   };
+
+  const HomeBanner = "/images/pexels-photo-746386.jpeg";
 
   return (
     <div
       className="h-[60vh] lg:h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-transparent bg-slate-400 flex flex-col gap-6 items-center justify-center font-body z-0"
       style={{
-        backgroundImage:
-          "linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url('https://images.pexels.com/photos/746386/pexels-photo-746386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url(${HomeBannerBG})`,
       }}
     >
       <h1 className="text-4xl lg:text-5xl text-white font-semibold text-center">

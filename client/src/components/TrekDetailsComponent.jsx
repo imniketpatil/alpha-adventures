@@ -83,108 +83,10 @@ export default function TrekDetailsComponent() {
     altitude,
     trekLocation,
     trekDescription,
-    trekInfo,
-    trekHighlights,
-    trekInclusions,
-    trekExclusions,
-    trekCancellationPolicy,
     trekDifficulty,
-    images,
     trekType,
     trekTypeDescription,
-    startDate,
-    endDate,
-    withTravel,
-    withoutTravel,
-    scheduleTimeline,
   } = trekDetail;
-
-  console.log("Trek Name:", trekName);
-  console.log("Trek Title:", trekTitle);
-  console.log("Suitable for Age:", suitableForAge);
-  console.log("Altitude:", altitude);
-  console.log("Trek Location:", trekLocation);
-  console.log("Trek Description:", trekDescription);
-
-  // Trek Info
-  trekInfo.forEach((info, index) => {
-    console.log(`Trek Info [${index + 1}]:`, info);
-  });
-
-  // Trek Highlights
-  trekHighlights.forEach((highlight, index) => {
-    console.log(`Trek Highlight [${index + 1}]:`, highlight);
-  });
-
-  // Trek Inclusions
-  trekInclusions.forEach((inclusion, index) => {
-    console.log(`Trek Inclusion [${index + 1}]:`, inclusion);
-  });
-
-  // Trek Exclusions
-  trekExclusions.forEach((exclusion, index) => {
-    console.log(`Trek Exclusion [${index + 1}]:`, exclusion);
-  });
-
-  // Trek Cancellation Policy
-  trekCancellationPolicy.forEach((policy, index) => {
-    console.log(`Trek Cancellation Policy [${index + 1}]:`, policy);
-  });
-
-  console.log("Trek Difficulty:", trekDifficulty);
-
-  // Images
-  images.forEach((image, index) => {
-    console.log(`Image [${index + 1}]:`, image);
-  });
-
-  // Trek Type
-  trekType.forEach((type, index) => {
-    console.log(`Trek Type [${index + 1}]:`, type);
-  });
-
-  // Trek Type Description
-  trekTypeDescription.forEach((description, index) => {
-    console.log(`Trek Type Description [${index + 1}]:`, description);
-  });
-
-  // Start Dates
-  startDate.forEach((date, index) => {
-    console.log(`Start Date [${index + 1}]:`, new Date(date).toDateString());
-  });
-
-  // End Dates
-  endDate.forEach((date, index) => {
-    console.log(`End Date [${index + 1}]:`, new Date(date).toDateString());
-  });
-
-  // With Travel
-  withTravel.forEach((travel, index) => {
-    console.log(
-      `With Travel [${index + 1}]: Description: ${travel.description}, From: ${
-        travel.from
-      }, To: ${travel.to}, Price: ${travel.price}`
-    );
-  });
-
-  // Without Travel
-  withoutTravel.forEach((travel, index) => {
-    console.log(
-      `Without Travel [${index + 1}]: Description: ${
-        travel.description
-      }, From: ${travel.from}, To: ${travel.to}, Price: ${travel.price}`
-    );
-  });
-
-  // Schedule Timeline
-  scheduleTimeline.forEach((timeline, index) => {
-    console.log(`Schedule Timeline [Set ${index + 1}]:`);
-    timeline.forEach((schedule, scheduleIndex) => {
-      console.log(
-        `  Day: ${schedule.day}, Time: ${schedule.time}, Work: ${schedule.work}`
-      );
-    });
-  });
 
   const settings = {
     // infinite: true,

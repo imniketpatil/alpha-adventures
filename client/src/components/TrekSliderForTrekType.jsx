@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useCourseStore from "../app/courseStore";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function TrekSliderForTrekType({ TreksForTrekType }) {
   const addCourse = useCourseStore((state) => state.addCourse);
@@ -64,7 +64,7 @@ function TrekSliderForTrekType({ TreksForTrekType }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
-      navigate("/alpha-adventures/trekdetails");
+      // navigate("/alpha-adventures/trekdetails");
     }
   };
 
@@ -132,13 +132,18 @@ function TrekSliderForTrekType({ TreksForTrekType }) {
                       </p>
                     </div>
                   </div>
-                  <button
-                    className="button"
-                    onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
-                  >
-                    Get Trek
-                    <span className="button-span"> ─ Information & Dates</span>
-                  </button>
+                  <Link to="/alpha-adventures/trekdetails">
+                    <button
+                      className="button"
+                      onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
+                    >
+                      Get Trek
+                      <span className="button-span">
+                        {" "}
+                        ─ Information & Dates
+                      </span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}

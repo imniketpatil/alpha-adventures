@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import LoadingSpinner from "./LoadingSpinner"; // Assuming you have a LoadingSpinner component
 
-function SliderTrekDetailsMainPage({ images, trekName, trekTitle }) {
+function TrekDetailsPageSlider({
+  images,
+  trekName,
+  trekTitle,
+  isLoadingTrek,
+  isLoadingDate,
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -21,45 +28,81 @@ function SliderTrekDetailsMainPage({ images, trekName, trekTitle }) {
     setCurrentIndex(slideIndex);
   };
 
+  if (isLoadingTrek || isLoadingDate) {
+    return (
+      <div className="relative h-[380px] lg:h-[530px] w-full m-auto mb-10 flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  const handleBooking = (trekName) => {
+    const message = `Hey Alpha Adventures, I'm interested in the ${trekName}. Can you provide more details?`;
+    const whatsappNumber = "+919403449240"; // Replace with your actual WhatsApp number
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    // Open the URL in a new tab or window
+    window.open(url, "_blank");
+  };
+
   return (
-    <div className="relative group h-[380px] lg:h-[530px] w-full mx-auto mb-10">
+    <div className="relative h-[380px] lg:h-[530px] w-full m-auto mb-10 group">
+      {/* Slide */}
       <div
-        className="relative w-full h-full bg-center bg-cover bg-no-repeat duration-500"
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
-      >
-        <div className="absolute inset-0 w-full h-full bg-black/50"></div>
-        <div className="relative z-10 h-full w-full flex flex-col justify-center items-center gap-10 text-center text-white">
-          <p className="text-4xl lg:text-6xl font-bold shadow-lg">{trekName}</p>
-          <p className="text-2xl lg:text-4xl font-bold shadow-2xl">
-            {trekTitle}
-          </p>
-          <button className="bg-blue-500 border border-blue-700 text-white rounded-lg text-sm px-5 py-2.5 font-medium hover:bg-blue-600 transition duration-200 hover:shadow-lg">
-            Enquire For {trekName}
-          </button>
-        </div>
+        className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat duration-500 filter brightness-75"
+        role="img"
+        aria-label={`${trekName} slide ${currentIndex + 1}`}
+      ></div>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col justify-center items-center h-full gap-6 text-white px-4">
+        <h1 className="text-4xl lg:text-6xl font-bold text-center">
+          {trekName}
+        </h1>
+        <p className="text-2xl lg:text-4xl font-semibold text-center">
+          {trekTitle}
+        </p>
+        <button
+          className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105 hover:shadow-2xl"
+          aria-label={`Enquire for ${trekName}`}
+          onClick={() => {
+            handleBooking(trekName);
+          }}
+        >
+          Enquire For {trekName}
+        </button>
       </div>
-
       {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] left-5 transform -translate-y-1/2 text-white bg-black/50 rounded-full p-2 cursor-pointer z-20">
-        <BsChevronCompactLeft onClick={prevSlide} size={30} />
-      </div>
-
+      <button
+        className="absolute top-[50%] left-4 transform -translate-y-1/2 text-white text-3xl p-2 bg-gray-800 bg-opacity-50 rounded-full transition duration-300 ease-in-out hover:bg-gray-700 hover:bg-opacity-70 shadow-md hover:shadow-lg z-20"
+        onClick={prevSlide}
+        aria-label="Previous slide"
+      >
+        <BsChevronCompactLeft size={24} />
+      </button>
       {/* Right Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] right-5 transform -translate-y-1/2 text-white bg-black/50 rounded-full p-2 cursor-pointer z-20">
-        <BsChevronCompactRight onClick={nextSlide} size={30} />
-      </div>
-
+      <button
+        className="absolute top-[50%] right-4 transform -translate-y-1/2 text-white text-3xl p-2 bg-gray-800 bg-opacity-50 rounded-full transition duration-300 ease-in-out hover:bg-gray-700 hover:bg-opacity-70 shadow-md hover:shadow-lg z-20"
+        onClick={nextSlide}
+        aria-label="Next slide"
+      >
+        <BsChevronCompactRight size={24} />
+      </button>
       {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {images.map((_, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
-            className={`cursor-pointer text-2xl ${
-              currentIndex === slideIndex ? "text-yellow-500" : "text-gray-300"
+            className={`cursor-pointer ${
+              slideIndex === currentIndex ? "text-blue-500" : "text-gray-300"
             }`}
+            role="button"
+            aria-label={`Go to slide ${slideIndex + 1}`}
           >
-            <RxDotFilled />
+            <RxDotFilled size={24} />
           </div>
         ))}
       </div>
@@ -67,4 +110,4 @@ function SliderTrekDetailsMainPage({ images, trekName, trekTitle }) {
   );
 }
 
-export default SliderTrekDetailsMainPage;
+export default TrekDetailsPageSlider;

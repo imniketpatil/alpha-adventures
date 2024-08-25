@@ -61,6 +61,7 @@ const EditTrekGuideForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    setEditForm(false);
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -70,11 +71,9 @@ const EditTrekGuideForm = () => {
       formData.append("bio", trekGuide.bio);
       formData.append("instagramId", trekGuide.instagramId);
 
-      // Check if newImage is set, otherwise use the existing image from fetchedTrekGuide
       if (newImage) {
         formData.append("guideAvatar", newImage);
       } else if (fetchedTrekGuide.images) {
-        // Append the existing image if newImage is not set
         formData.append("guideAvatar", fetchedTrekGuide.images);
       }
 

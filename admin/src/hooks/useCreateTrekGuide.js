@@ -1,20 +1,23 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useIdStore from "../app/IdStore";
+import client_url from "../utility/config.js";
 
 const useCreateTrekGuide = () => {
   const queryClient = useQueryClient();
+  const setLoading = useIdStore((state) => state.setLoading);
 
   return useMutation({
     mutationFn: (formData) => {
-      return axios.post(
-        "http://localhost:8000/api/v1/trekguide/add-guide",
-        formData,
-        { withCredentials: true }
-      );
+      return axios.post(`${client_url}/trekguide/add-guide`, formData, {
+        withCredentials: true,
+      });
+    },
+    onMutate: () => {
+      setLoading(true);
     },
     onSuccess: () => {
       queryClient.invalidateQueries("TrekGuides");
-      alert("Trek Guide Added Successfully"); // Invalidate and refetch data
     },
     onError: (error) => {
       if (error.response && error.response.data) {
@@ -22,7 +25,9 @@ const useCreateTrekGuide = () => {
       } else {
         console.error("Testimonial creation failed:", error.message);
       }
-      // Handle error, such as displaying an error message to the user
+    },
+    onSettled: () => {
+      setLoading(false);
     },
   });
 };

@@ -1,172 +1,81 @@
 import React from "react";
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-} from "@mui/lab";
-import {
-  Typography,
-  Card,
-  CardContent,
-  Divider,
-  Chip,
-  Box,
-} from "@mui/material";
-import { styled } from "@mui/system";
-
-// Custom styled components
-const StyledCard = styled(Card)(({ theme }) => ({
-  flex: 1,
-  background: "linear-gradient(135deg, #f0f4ff, #e0e8ff)",
-  boxShadow: theme.shadows[3],
-  transition: "transform 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-5px)",
-    boxShadow: theme.shadows[5],
-  },
-}));
-
-const StyledTimelineItem = styled(TimelineItem)(({ theme }) => ({
-  "&:before": {
-    flex: 0,
-    padding: 0,
-  },
-  "& .MuiTimelineDot-outlined": {
-    borderColor: theme.palette.primary.main,
-  },
-}));
-
-const StyledTimelineContent = styled(TimelineContent)(({ theme }) => ({
-  backgroundColor: "#f7f9ff",
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(2),
-  boxShadow: theme.shadows[1],
-}));
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import ScheduleTimeline from "./ScheduleTimeline";
 
 function TrekSheduleAndDateDetails({
-  withTravel = {},
-  withoutTravel = {},
-  scheduleTimeline = [],
-  allStartDate = [],
+  startDate,
+  endDate,
+  withTravelByDateId,
+  withoutTravelByDateId,
+  scheduleTimeline,
 }) {
   return (
-    <div className="relative mx-auto max-w-[1380px] w-full p-8 rounded-xl mb-6">
-      {/* Travel Options */}
-      <Box
-        className="mb-8 p-4 rounded-lg"
-        sx={{
-          background: "linear-gradient(135deg, #e8f0ff, #d0e4ff)",
-          boxShadow: 3,
-        }}
-      >
-        <Typography
-          variant="h4"
-          component="h2"
-          className="text-center mb-4 font-bold text-blue-600"
-          sx={{
-            textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
-          }}
-        >
-          Travel Options
-        </Typography>
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* With Travel Option */}
-          {withTravel.from && (
-            <StyledCard variant="outlined">
-              <CardContent>
-                <Typography variant="h6" component="h3" color="primary">
-                  With Travel
-                </Typography>
-                <Divider className="my-2" />
-                <Typography variant="body1" className="mb-2">
-                  From: {withTravel.from} to {withTravel.to}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {withTravel.description}
-                </Typography>
-                <Chip
-                  label={`Price: ${withTravel.price}`}
-                  color="primary"
-                  className="mt-4"
-                />
-              </CardContent>
-            </StyledCard>
-          )}
-
-          {/* Without Travel Option */}
-          {withoutTravel.from && (
-            <StyledCard variant="outlined">
-              <CardContent>
-                <Typography variant="h6" component="h3" color="primary">
-                  Without Travel
-                </Typography>
-                <Divider className="my-2" />
-                <Typography variant="body1" className="mb-2">
-                  From: {withoutTravel.from} to {withoutTravel.to}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {withoutTravel.description}
-                </Typography>
-                <Chip
-                  label={`Price: ${withoutTravel.price}`}
-                  color="secondary"
-                  className="mt-4"
-                />
-              </CardContent>
-            </StyledCard>
-          )}
+    <div className="container mx-auto max-w-[1450px] w-full p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* With Travel */}
+        <div className="flex flex-col justify-center items-center p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-md ">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+            With Travel
+          </h2>
+          <div className="space-y-4 w-full">
+            <p className="text-gray-700 text-base md:text-lg font-medium">
+              {withTravelByDateId.description}
+            </p>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+              <p className="flex  gap-2 items-center text-lg md:text-xl font-bold text-gray-700">
+                <LocationOnIcon className="text-blue-600" />
+                From: {withTravelByDateId.from}
+              </p>
+              <p className="flex gap-2 items-center text-lg md:text-xl font-bold text-gray-700">
+                <LocationOnIcon className="text-blue-600" />
+                To: {withTravelByDateId.to}
+              </p>
+            </div>
+            <p className="flex items-center text-lg md:text-xl font-bold text-gray-700">
+              Price: {withTravelByDateId.price}
+              <CurrencyRupeeIcon className="ml-1" />
+            </p>
+          </div>
         </div>
-      </Box>
 
-      {/* Schedule Timeline */}
-      <Box
-        className="p-4 rounded-lg"
-        sx={{
-          background: "linear-gradient(135deg, #f7faff, #e0f0ff)",
-          boxShadow: 3,
-        }}
-      >
-        <Typography
-          variant="h4"
-          component="h2"
-          className="text-center mb-4 font-bold text-blue-600"
-          sx={{
-            textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)",
-          }}
-        >
-          Trek Schedule
-        </Typography>
-        <Timeline position="alternate">
-          {scheduleTimeline.length > 0 ? (
-            scheduleTimeline.map((item, index) => (
-              <StyledTimelineItem key={index}>
-                <TimelineSeparator>
-                  <TimelineDot
-                    variant="outlined"
-                    color={index % 2 === 0 ? "primary" : "secondary"}
-                  />
-                  {index < scheduleTimeline.length - 1 && <TimelineConnector />}
-                </TimelineSeparator>
-                <StyledTimelineContent>
-                  <Typography variant="h6" component="h3">
-                    {item.day}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {item.time} - {item.work}
-                  </Typography>
-                </StyledTimelineContent>
-              </StyledTimelineItem>
-            ))
-          ) : (
-            <Typography variant="body1" className="text-center">
-              No schedule available.
-            </Typography>
-          )}
-        </Timeline>
-      </Box>
+        {/* Without Travel */}
+        <div className="flex flex-col justify-center items-center p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-md ">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+            Without Travel
+          </h2>
+          <div className="space-y-4 w-full">
+            <p className="text-gray-700 text-base md:text-lg font-medium">
+              {withoutTravelByDateId.description}
+            </p>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+              <p className="flex gap-2 items-center text-lg md:text-xl font-bold text-gray-700">
+                <LocationOnIcon className="text-blue-600" />
+                From: {withoutTravelByDateId.from}
+              </p>
+              <p className="flex gap-2 items-center text-lg md:text-xl font-bold text-gray-700">
+                <LocationOnIcon className="text-blue-600" />
+                To: {withoutTravelByDateId.to}
+              </p>
+            </div>
+            <p className="flex items-center text-lg md:text-xl font-bold text-gray-700">
+              Price: {withoutTravelByDateId.price}
+              <CurrencyRupeeIcon className="ml-1" />
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Trek Timeline Section */}
+      <div className="p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-lg">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
+          Trek Timeline
+        </h2>
+        {/* Render your timeline content here */}
+        <div>
+          <ScheduleTimeline scheduleTimeline={scheduleTimeline} />
+        </div>
+      </div>
     </div>
   );
 }

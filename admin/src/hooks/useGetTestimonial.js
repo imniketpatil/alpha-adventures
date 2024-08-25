@@ -1,10 +1,11 @@
 import axios from "axios";
+import client_url from "../utility/config.js";
 
 const useGetTestimonial = async () => {
   const response = await axios.get(
-    "http://localhost:8000/api/v1/testimonial/getAllTestimonials",
+    `${client_url}/testimonial/getAllTestimonials`,
     {
-      withCredentials: true, // To send cookies with the request
+      withCredentials: true,
     }
   );
   return response.data.data;

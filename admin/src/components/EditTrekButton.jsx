@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import EditTrekDetailsIdContext from "../context/EditTrekDetailsIdContext";
+import useIdStore from "../app/IdStore";
 
 const EditTrekButton = ({ value }) => {
+  const { addTrekId } = useIdStore((state) => ({
+    addTrekId: state.addTrekId,
+  }));
+
   const { setIdForTrekDetails } = useContext(EditTrekDetailsIdContext);
   const navigate = useNavigate();
 
   const handleClick = () => {
     setIdForTrekDetails(value);
+    addTrekId(value);
     navigate("/edittrek", { replace: true });
   };
 

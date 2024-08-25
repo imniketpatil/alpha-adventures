@@ -1,5 +1,3 @@
-// src/components/TrekGuidesTable.jsx
-
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -89,8 +87,8 @@ export default function TrekGuidesTable() {
     ? trekGuides.map((guide, index) => ({
         id: index + 1,
         name: guide.name,
-        experience: guide.experience || 0, // Ensure a default value if experience is undefined
-        images: guide.images[0], // Assuming the first image is to be displayed
+        experience: guide.experience || 0,
+        images: guide.images[0],
         bio: guide.bio,
         instagramId: guide.instagramId,
         edit: guide._id,

@@ -20,7 +20,7 @@ function ContactUsMainPage() {
           </p>
           <span>
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdx4WTbRoQkz__oGEgA8_atNDbIql3TpUXXci_SVm1WO2-Zqg/viewform"
+              href=""
               className="text-yellow-400 font-bold underline transition-transform duration-400 transform hover:scale-125 hover:text-yellow-500"
             >
               Talk to our Trek Advisors

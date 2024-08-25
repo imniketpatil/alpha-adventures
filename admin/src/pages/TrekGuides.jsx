@@ -8,14 +8,18 @@ import TrekGuideIdContext from "../context/TrekGuideIdContext";
 import { useDeleteTrekGuide } from "../hooks/useDeleteTrekGuide";
 import EditTrekGuideForm from "../components/EditTrekGuideForm";
 import TrekGuideEditContext from "../context/TrekGuideEditContext";
+import useIdStore from "../app/IdStore";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function TrekGuides() {
   const deleteTrekGuideMutation = useDeleteTrekGuide();
   const [OpenTrekGuideForm, setOpenTrekGuideForm] = useState(false);
 
+  const loading = useIdStore((state) => state.loading);
+
   const { openDeleteBox, setDeleteBox } = useContext(TrekDeleteContext);
   const { IdValue, setIdValue } = useContext(TrekGuideIdContext);
-  const { openEditForm } = useContext(TrekGuideEditContext);
+  const { openEditForm, setEditForm } = useContext(TrekGuideEditContext);
 
   const handleNewTrekGuide = () => {
     setOpenTrekGuideForm(true);
@@ -91,8 +95,13 @@ function TrekGuides() {
                 </div>
               </div>
             )}
+            {loading && (
+              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <LoadingSpinner />
+              </div>
+            )}
             <TrekGuideTable />
-            {openEditForm && <EditTrekGuideForm />}
+            {openEditForm && <EditTrekGuideForm setEditForm={setEditForm} />}
           </div>
         </div>
       </div>

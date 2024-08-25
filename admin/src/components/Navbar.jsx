@@ -8,7 +8,7 @@ const fetchCurrentUser = async () => {
   const response = await axios.get(
     "http://localhost:8000/api/v1/users/currentuser",
     {
-      withCredentials: true, // To send cookies with the request
+      withCredentials: true,
     }
   );
 
@@ -22,7 +22,7 @@ function Navbar() {
     isLoading,
   } = useQuery({ queryKey: ["currentUser"], queryFn: fetchCurrentUser });
 
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const [showUserInfo, setShowUserInfo] = useState(false);
 
@@ -35,7 +35,7 @@ function Navbar() {
   };
 
   const navigateToUser = () => {
-    navigate("/user"); // Navigate to /user route using navigate function
+    navigate("/user");
   };
 
   return (
@@ -45,7 +45,7 @@ function Navbar() {
           className="text-2xl rounded-full hover:cursor-pointer text-blue-500"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          onClick={navigateToUser} // Call navigateToUser function on click
+          onClick={navigateToUser}
         />
 
         {user && (

@@ -8,6 +8,12 @@ import DeleteTrekTypeButtonCell from "./DeleteTrekTypeButtonCell.jsx";
 import useGetTrekTypes from "../hooks/useGetTrekTypes.js";
 
 const ImageCell = (params) => {
+  const imageUrl = params.value?.[0];
+
+  if (!imageUrl) {
+    return <div>No Image</div>;
+  }
+
   return (
     <div
       style={{
@@ -18,8 +24,8 @@ const ImageCell = (params) => {
       }}
     >
       <img
-        src={params.value}
-        alt="Testimonial"
+        src={imageUrl}
+        alt="TrekType"
         style={{
           maxWidth: "100%",
           maxHeight: "100%",
@@ -33,7 +39,7 @@ const ImageCell = (params) => {
 const columns = [
   { field: "id", headerName: "ID", width: 30 },
   { field: "name", headerName: "Name", width: 200 },
-  { field: "description", headerName: "Work", width: 200 },
+  { field: "description", headerName: "Description", width: 200 },
   {
     field: "images",
     headerName: "Image",
@@ -78,33 +84,24 @@ export default function TrekTypeTable() {
   }
 
   if (error) {
-    return <Alert severity="error">Error fetching testimonials</Alert>;
+    return <Alert severity="error">Error fetching trek types</Alert>;
   }
 
-  // Calculate row heights based on the tallest image in the current data
   const rows = Array.isArray(trektypes)
-    ? trektypes.map((trektypes, index) => ({
+    ? trektypes.map((trektype, index) => ({
         id: index + 1,
-        name: trektypes.name,
-        description: trektypes.description,
-        images: trektypes.images,
-        edit: trektypes._id,
-        delete: trektypes._id,
-        rowHeight: 100, // Set a default row height (adjust as needed)
+        name: trektype.name,
+        description: trektype.description,
+        images: trektype.images,
+        edit: trektype._id,
+        delete: trektype._id,
+        rowHeight: 100,
       }))
     : [];
 
   return (
-    <>
-      <div style={{ height: "600px", minHeight: "400px", width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={8} // Set default page size
-          pagination
-          // checkboxSelection
-        />
-      </div>
-    </>
+    <div style={{ height: "600px", minHeight: "400px", width: "100%" }}>
+      <DataGrid rows={rows} columns={columns} pageSize={8} pagination />
+    </div>
   );
 }

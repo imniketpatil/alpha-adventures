@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AboutUsBannerBG from "/images/pexels-photo-2105416.png";
 
 function AboutSectionUIComponent() {
   const achievements = [
@@ -27,16 +28,15 @@ function AboutSectionUIComponent() {
             : achievements[index].value
         )
       );
-    }, 10); // Adjust the interval speed as needed (e.g., every 100 milliseconds)
+    }, 10);
 
-    // Cleanup the interval when component unmounts
     return () => clearInterval(interval);
-  }, [achievements]); // Include dependencies that trigger useEffect updates
+  }, [achievements]);
 
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32 font-normal font-body">
       <img
-        src="https://images.pexels.com/photos/2105416/pexels-photo-2105416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        src={AboutUsBannerBG}
         alt=""
         className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center opacity-80"
       />

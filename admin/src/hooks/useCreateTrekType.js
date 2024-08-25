@@ -1,20 +1,23 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import useIdStore from "../app/IdStore";
+import client_url from "../utility/config.js";
 
 const useCreateTrekType = () => {
   const queryClient = useQueryClient();
+  const setLoading = useIdStore((state) => state.setLoading);
 
   return useMutation({
     mutationFn: (formData) => {
-      return axios.post(
-        "http://localhost:8000/api/v1/trektype/add-trek-type",
-        formData,
-        { withCredentials: true }
-      );
+      return axios.post(`${client_url}/trektype/add-trek-type`, formData, {
+        withCredentials: true,
+      });
+    },
+    onMutate: () => {
+      setLoading(true);
     },
     onSuccess: () => {
       queryClient.invalidateQueries("TrekType");
-      alert("Trek Type Added Successfully"); // Invalidate and refetch data
     },
     onError: (error) => {
       if (error.response && error.response.data) {
@@ -22,7 +25,9 @@ const useCreateTrekType = () => {
       } else {
         console.error("Trek Type creation failed:", error.message);
       }
-      // Handle error, such as displaying an error message to the user
+    },
+    onSettled: () => {
+      setLoading(false);
     },
   });
 };

@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import AppBanner from "/images/image.png";
 const AppPromo = () => {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white font-body">
-      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8  ">
+      <div className="mx-auto max-w-7xl py-16 sm:px-6 sm:py-24 lg:px-8  ">
         <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 ">
           <svg
             viewBox="0 0 1024 1024"
@@ -52,7 +52,7 @@ const AppPromo = () => {
           <div className="relative mt-16 h-80 lg:mt-0 hidden lg:block">
             <img
               className="absolute left-0 top-0 w-[57rem] max-w-none  roundedl-md  bg-white/5 ring-1 ring-white/10"
-              src="https://images.pexels.com/photos/3337153/pexels-photo-3337153.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src={AppBanner}
               alt="App screenshot"
               width="1824"
               height="1080"

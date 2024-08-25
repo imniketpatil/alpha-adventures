@@ -1,9 +1,10 @@
 import axios from "axios";
+import client_url from "../utility/config.js";
 
 const getDateDetailsById = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:8000/api/v1/trek/getDateDetails/${id}`,
+      `${client_url}/trek/getDateDetails/${id}`,
       {
         withCredentials: true, // To send cookies with the request
       }

@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useCourseStore from "../app/courseStore";
 import useGetTrekListForHome from "../hooks/useGetTrekListForHome";
+import LogoAA from "/images/Adpilot-8_24_2024.jpeg";
 
 const Header = ({ type }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,9 +75,9 @@ const Header = ({ type }) => {
             Alpha Adventures
           </span> */}
           <img
-            src="https://res.cloudinary.com/alphaimages/image/upload/v1723654240/AALogo_white_wpnbvs.png"
+            src={LogoAA}
             alt="Alpha Adventures Logo"
-            className="h-10 lg:h-20 hover:mix-blend-luminosity"
+            className="h-10 w-10 lg:h-20 lg:w-20 hover:mix-blend-luminosity bg-white rounded-full"
           />
         </Link>
 

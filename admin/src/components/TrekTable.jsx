@@ -1,5 +1,3 @@
-// src/components/TrekGuidesTable.jsx
-
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -9,6 +7,7 @@ import useGetTreks from "../hooks/useGetTreks";
 import DeleteButtonCell from "./DeleteButtonCell";
 import CheckDatesButtonCell from "./CheckDatesButtonCell";
 import EditTrekButton from "./EditTrekButton";
+import useIdStore from "../app/IdStore";
 
 const ImageCell = ({ value }) => {
   return (
@@ -124,8 +123,8 @@ export default function TrekTable() {
         trekExclusions: trek.trekExclusions || "",
         trekCancellationPolicy: trek.trekCancellationPolicy || "",
         trekDifficulty: trek.trekDifficulty || "",
-        images: trek.images?.[0] || "", // Displaying the first image
-        trekTypeName: trek.trekTypeName || "", // Displaying trek type name
+        images: trek.images?.[0] || "",
+        trekTypeName: trek.trekTypeName || "",
         dates: trek._id,
         edit: trek._id,
         delete: trek._id,

@@ -4,8 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import useGetTestimonial from "../hooks/useGetTestimonial.js";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
-import EditButtonCell from "./EditButtonCell";
-import DeleteButtonCell from "./DeleteButtonCell.jsx";
 import TestimonialDeleteButton from "./TestimonialDeleteButton.jsx";
 
 const ImageCell = (params) => {
@@ -36,6 +34,8 @@ const columns = [
   { field: "name", headerName: "Name", width: 100 },
   { field: "rating", headerName: "Rating", type: "number", width: 70 },
   { field: "work", headerName: "Work", width: 100 },
+  { field: "trek", headerName: "Trek", width: 100 },
+
   {
     field: "images",
     headerName: "Image",
@@ -46,16 +46,7 @@ const columns = [
     headerAlign: "center",
   },
   { field: "comment", headerName: "Comment", width: 300 },
-  {
-    field: "edit",
-    headerName: "Edit",
-    type: "boolean",
-    width: 90,
-    renderCell: EditButtonCell,
-    sortable: false,
-    headerAlign: "center",
-    align: "center",
-  },
+
   {
     field: "delete",
     headerName: "Delete",
@@ -93,21 +84,17 @@ export default function TestimonialsTable() {
     name: testimonial.name,
     rating: testimonial.rating,
     work: testimonial.work,
+    trek: testimonial.trek,
     images: testimonial.images,
     comment: testimonial.comment,
     edit: testimonial._id,
     delete: testimonial._id,
-    rowHeight: 100, // Set a default row height (adjust as needed)
+    rowHeight: 100,
   }));
 
   return (
     <div style={{ height: "600px", minHeight: "400px", width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={8} // Set default page size
-        pagination
-      />
+      <DataGrid rows={rows} columns={columns} pageSize={8} pagination />
     </div>
   );
 }

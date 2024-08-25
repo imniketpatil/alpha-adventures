@@ -18,19 +18,9 @@ function UpcomingTreks() {
     queryFn: useGetUpcommingTreks,
   });
 
-  // Add treks only if there are items in upcommingtrekslist
-  // useEffect(() => {
-  //   if (upcommingtrekslist.length > 0) {
-  //     addTreks(upcommingtrekslist);
-  //   }
-  // }, [upcommingtrekslist, addTreks]);
-
   return (
     <>
       <div className="flex flex-col">
-        {/* <div className="h-1 bg-gray-800 rounded overflow-hidden">
-          <div className="w-24 h-full bg-yellow-500"></div>
-        </div> */}
         <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-6 mt-0 items-center justify-center">
           <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center font-body">
             Upcoming Treks

@@ -1,12 +1,10 @@
 import axios from "axios";
+import client_url from "../utility/config.js";
 
 const useGetTrekGuides = async () => {
-  const response = await axios.get(
-    "http://localhost:8000/api/v1/trekguide/trekGuides",
-    {
-      withCredentials: true, // To send cookies with the request
-    }
-  );
+  const response = await axios.get(`${client_url}/trekguide/trekGuides`, {
+    withCredentials: true,
+  });
   return response.data.data;
 };
 

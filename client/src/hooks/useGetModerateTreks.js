@@ -1,10 +1,11 @@
 import axios from "axios";
+import client_url from "../utils/config.js";
 
 const useGetTrekPriceAsc = async () => {
   // console.log("Moderate");
 
   const response = await axios.get(
-    "http://localhost:8000/api/v1/trek/slider-treks-with-modrate",
+    `${client_url}/trek/slider-treks-with-modrate`,
     {
       withCredentials: true, // To send cookies with the request
     }

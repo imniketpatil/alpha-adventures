@@ -15,15 +15,9 @@ const TrekFilterSectionHome = () => {
       <div className="container px-2 pt-8 pb-8 lg:pb-12 lg:pt-8 mx-auto">
         <UpcomingTreks />
 
-        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
-
         <TrekTypesButtonAndSlider />
 
-        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
-
         <TrekBasedOnPrice />
-
-        {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
 
         <TreksBasedOnDifficulty />
       </div>

@@ -13,11 +13,7 @@ function CreateAccount({ setCreateAccount }) {
       console.error("All fields are required.");
       return;
     }
-    // console.log("Submitting form with values:", {
-    //   fullName,
-    //   username,
-    //   password,
-    // });
+
     mutation.mutate({ fullName, username, password });
   };
 

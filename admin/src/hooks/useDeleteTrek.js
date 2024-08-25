@@ -1,24 +1,33 @@
-// useDeleteTestimonial.js
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import useIdStore from "../app/IdStore";
+import client_url from "../utility/config.js";
 
 const useDeleteTrek = () => {
   const queryClient = useQueryClient();
+  const setLoading = useIdStore((state) => state.setLoading);
 
   return useMutation({
     mutationFn: (id) => {
-      return axios.delete(
-        `http://localhost:8000/api/v1/trek/delete-trek/${id}`,
-        { withCredentials: true } // Send cookies with the request
-      );
+      return axios.delete(`${client_url}/trek/delete-trek/${id}`, {
+        withCredentials: true,
+      });
+    },
+    onMutate: () => {
+      setLoading(true);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("Trek"); // Invalidate and refetch data
+      queryClient.invalidateQueries("Trek");
+      setLoading(false);
     },
     onError: (error) => {
       console.error("Trek deletion failed:", error);
-      // Handle error, such as displaying an error message to the user
+      setLoading(false);
+
+      alert("Failed to delete trek. Please try again.");
+    },
+    onSettled: () => {
+      setLoading(false);
     },
   });
 };

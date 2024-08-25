@@ -8,9 +8,13 @@ import TrekTypeIdContext from "../context/TrekTypeIdContext";
 import EditTrekTypeForm from "../components/EditTrekTypeForm";
 import TrekTypeEditContext from "../context/TrekTypeEditContext";
 import { useDeleteTrekType } from "../hooks/useDeleteTrekType";
+import useIdStore from "../app/IdStore";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function TrekTypes() {
   const deleteTrekTypeMutation = useDeleteTrekType();
+
+  const loading = useIdStore((state) => state.loading);
 
   const [openTrekTypeForm, setOpenTrekTypeForm] = useState(false);
 
@@ -18,7 +22,7 @@ function TrekTypes() {
 
   const { IdValue } = useContext(TrekTypeIdContext);
 
-  const { openEditForm } = useContext(TrekTypeEditContext);
+  const { openEditForm, setEditForm } = useContext(TrekTypeEditContext);
 
   const handleNewTrekType = () => {
     setOpenTrekTypeForm(true);
@@ -92,8 +96,13 @@ function TrekTypes() {
                 </div>
               </div>
             )}
+            {loading && (
+              <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <LoadingSpinner />
+              </div>
+            )}
             <TrekTypeTable />
-            {openEditForm && <EditTrekTypeForm />}
+            {openEditForm && <EditTrekTypeForm setEditForm={setEditForm} />}
           </div>
         </div>
       </div>

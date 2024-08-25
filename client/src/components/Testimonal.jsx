@@ -7,7 +7,6 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-/* Install pure-react-carousel using -> npm i pure-react-carousel */
 
 export default function Testimonial() {
   const testimonialDetails = [

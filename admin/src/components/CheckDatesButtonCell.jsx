@@ -1,17 +1,13 @@
 import { useContext } from "react";
 import TrekIdContext from "../context/TrekIdContext";
-import { useNavigate } from "react-router-dom";
 import TrekDatesContext from "../context/TrekDatesContext";
 import AddNewTrekDateTrekIdContext from "../context/AddNewTrekDateTrekIdContext";
-import DateIdContext from "../context/DateIdContext";
 
 const CheckDatesButtonCell = ({ value }) => {
-  const { openDatesBox, setDatesBox } = useContext(TrekDatesContext);
+  const { setDatesBox } = useContext(TrekDatesContext);
 
-  const { IdValue, setIdValue } = useContext(TrekIdContext);
-  const { IdForTrek, setIdForTrek } = useContext(AddNewTrekDateTrekIdContext);
-
-  const navigate = useNavigate();
+  const { setIdValue } = useContext(TrekIdContext);
+  const { setIdForTrek } = useContext(AddNewTrekDateTrekIdContext);
 
   const handleCheckDates = () => {
     setDatesBox(true);

@@ -3,8 +3,8 @@ import TrekDeleteContext from "../context/TrekDeleteContext";
 import TrekIdContext from "../context/TrekIdContext";
 
 const DeleteButtonCell = ({ value }) => {
-  const { openDeleteBox, setDeleteBox } = useContext(TrekDeleteContext);
-  const { IdValue, setIdValue } = useContext(TrekIdContext);
+  const { setDeleteBox } = useContext(TrekDeleteContext);
+  const { setIdValue } = useContext(TrekIdContext);
 
   const handleDelete = () => {
     setDeleteBox(true);

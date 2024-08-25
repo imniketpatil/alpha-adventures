@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import useChangePassword from "../hooks/useChangePassword";
 
 const ChangePassword = ({ setChangePassword }) => {

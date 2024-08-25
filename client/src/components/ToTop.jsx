@@ -23,7 +23,7 @@ function ToTop() {
 
   return (
     <div
-      className={`bg-slate-800 h-16 font-body w-16 md:h-20 md:w-20 rounded-full right-8 bottom-8 md:right-12 md:bottom-12 flex items-center justify-center fixed hover:cursor-pointer transition-all duration-300 ease-in-out ${
+      className={`bg-slate-800 h-16 font-body w-16 md:h-20 md:w-20 rounded-full right-8 bottom-28 md:bottom-40 md:right-12  flex items-center justify-center fixed hover:cursor-pointer transition-all duration-300 ease-in-out ${
         show ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
       onClick={handleClick}

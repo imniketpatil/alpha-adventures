@@ -1,8 +1,9 @@
 import axios from "axios";
+import client_url from "../utils/config.js";
 
 const useGetTrekPriceDesc = async () => {
   const response = await axios.get(
-    "http://localhost:8000/api/v1/trek/slider-all-treks-sortbypricedesc",
+    `${client_url}/trek/slider-all-treks-sortbypricedesc`,
     {
       withCredentials: true, // To send cookies with the request
     }

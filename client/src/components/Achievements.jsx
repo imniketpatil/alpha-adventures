@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
+import Experience from "/images/yvwpa2zrzzg09olibtm4.svg";
+import HappyTrekkers from "/images/4187094_16528_xcmkpj.svg";
+import SuccessfulTreks from "/images/SuccessfullTreks_y59kgf.svg";
 
 const Achievements = () => {
   const achievements = [
     {
-      img: "https://res.cloudinary.com/alphaimages/image/upload/v1719861175/Experience_kuf04w.svg",
+      img: Experience,
       label: "Years of Experience",
       value: 6,
     },
     {
-      img: "https://res.cloudinary.com/alphaimages/image/upload/v1719862016/4187094_16528_xcmkpj.svg",
+      img: HappyTrekkers,
       label: "Happy Trekkers",
       value: 5000,
     },
     {
-      img: "https://res.cloudinary.com/alphaimages/image/upload/v1719861175/SuccessfullTreks_y59kgf.svg",
+      img: SuccessfulTreks,
       label: "Successful Treks",
       value: 100,
     },
@@ -51,7 +54,10 @@ const Achievements = () => {
   }, [achievements]);
 
   return (
-    <div id="achievements" className="bg-white py-4 sm:py-32 font-body">
+    <div
+      id="achievements"
+      className="bg-white py-4 sm:py-8 sm:pb-16  font-body"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full text-center">
         <h1 className="text-5xl font-bold mb-10 text-slate-700">
           Alpha Adventures By the Numbers

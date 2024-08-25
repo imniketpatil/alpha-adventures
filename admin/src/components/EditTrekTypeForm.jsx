@@ -57,6 +57,7 @@ const EditTrekTypeForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    setEditForm(false);
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -64,7 +65,6 @@ const EditTrekTypeForm = () => {
       formData.append("name", trekType.name);
       formData.append("description", trekType.description);
 
-      // Check if newImage is set, otherwise use the existing image from fetchedTrekType
       if (newImage) {
         formData.append("trekTypeImage", newImage);
       }
