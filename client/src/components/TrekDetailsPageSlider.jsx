@@ -38,7 +38,7 @@ function TrekDetailsPageSlider({
 
   const handleBooking = (trekName) => {
     const message = `Hey Alpha Adventures, I'm interested in the ${trekName}. Can you provide more details?`;
-    const whatsappNumber = "+919403449240"; // Replace with your actual WhatsApp number
+    const whatsappNumber = "919403449240"; // No '+' sign in the URL
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       message
     )}`;
