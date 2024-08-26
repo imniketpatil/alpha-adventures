@@ -1,4 +1,5 @@
 // config.js
-const client_url = "http://localhost:8000/api/v1";
+const client_url =
+  "https://alpha-adventure-backend-pufvl2eyp-niket-patils-projects.vercel.app";
 
 export default client_url;
