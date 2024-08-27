@@ -11,7 +11,9 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   const [openLogout, setLogout] = useState(false);
-  const logoutMutation = useLogout();
+  const authToken = localStorage.getItem("accessToken");
+
+  const logoutMutation = useLogout(authToken);
 
   const handleLogout = () => {
     setLogout((prev) => !prev);

@@ -4,16 +4,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import client_url from "../utility/config.js";
 
-const useLogout = () => {
+const useLogout = (authToken) => {
   const navigate = useNavigate();
 
   return useMutation({
     mutationFn: () => {
-      return axios.post(
-        `${client_url}/users/logout`,
-        {},
-        { withCredentials: true }
-      );
+      return axios.post(`${client_url}/users/logout`, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`, // If you are using Bearer tokens
+        },
+      });
     },
     onSuccess: () => {
       localStorage.removeItem("accessToken");

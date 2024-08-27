@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import client_url from "../utility/config.js";
 
-const useChangeAccountDetails = () => {
+const useChangeAccountDetails = (authToken) => {
   const navigate = useNavigate();
 
   return useMutation({
@@ -11,7 +11,13 @@ const useChangeAccountDetails = () => {
       return axios.patch(
         `${client_url}/users/edit-user`,
         { fullName, username },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`, // If you are using Bearer tokens
+          },
+        }
       );
     },
     onSuccess: () => {

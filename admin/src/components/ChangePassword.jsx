@@ -6,13 +6,14 @@ const ChangePassword = ({ setChangePassword }) => {
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const authToken = localStorage.getItem("accessToken");
 
   const mutation = useChangePassword();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(
-      { oldPassword, newPassword },
+      { oldPassword, newPassword, authToken },
       {
         onSuccess: () => {
           setSuccess("Password changed successfully!");

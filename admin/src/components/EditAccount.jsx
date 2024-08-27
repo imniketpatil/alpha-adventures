@@ -6,7 +6,8 @@ const EditAccount = ({ setEditAccount, user }) => {
   const [username, setUserName] = useState(user.username || "");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const editMutation = useChangeAccountDetails();
+  const authToken = localStorage.getItem("accessToken");
+  const editMutation = useChangeAccountDetails(authToken);
 
   useEffect(() => {
     if (editMutation.isSuccess) {
@@ -25,7 +26,7 @@ const EditAccount = ({ setEditAccount, user }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editMutation.mutate({ fullName, username });
+    editMutation.mutate({ fullName, username, authToken });
   };
 
   return (

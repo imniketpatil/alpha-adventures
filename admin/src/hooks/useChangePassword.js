@@ -3,11 +3,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import client_url from "../utility/config.js";
 
-const changePasswordMutationFn = ({ oldPassword, newPassword }) => {
+const changePasswordMutationFn = ({ oldPassword, newPassword, authToken }) => {
   return axios.patch(
     `${client_url}/users/change-password`,
     { oldPassword, newPassword },
-    { withCredentials: true }
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`, // If you are using Bearer tokens
+      },
+    }
   );
 };
 

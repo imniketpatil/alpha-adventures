@@ -27,7 +27,7 @@ function UserPage() {
   const [openEditAccount, setEditAccount] = useState(false);
   const [openCreateAccount, setCreateAccount] = useState(false);
   const [openDelete, setDelete] = useState(false);
-  const deleteMutation = useDeleteAccount();
+  const deleteMutation = useDeleteAccount(authToken);
 
   // Use React Query to fetch user data
   const {
