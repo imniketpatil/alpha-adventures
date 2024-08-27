@@ -3,14 +3,12 @@ import axios from "axios";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import client_url from "../utility/config";
 
 const fetchCurrentUser = async () => {
-  const response = await axios.get(
-    "http://localhost:8000/api/v1/users/currentuser",
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await axios.get(`${client_url}/users/currentuser`, {
+    withCredentials: true,
+  });
 
   return response.data.data;
 };
