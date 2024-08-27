@@ -11,8 +11,13 @@ import client_url from "../utility/config.js";
 
 // Function to fetch current user data
 const fetchCurrentUser = async () => {
+  const authToken = localStorage.getItem("accessToken");
   const response = await axios.get(`${client_url}/users/currentuser`, {
     withCredentials: true, // To send cookies with the request
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`, // If you are using Bearer tokens
+    },
   });
   return response.data.data;
 };
