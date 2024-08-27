@@ -43,7 +43,7 @@ const AppPromo = () => {
               </a>
               <span
                 className="text-sm font-semibold leading-6 text-white hover:cursor-pointer"
-                onClick={() => navigate("/alpha-adventures/about")}
+                onClick={() => navigate("/about")}
               >
                 Know more About Us <span aria-hidden="true">→</span>
               </span>

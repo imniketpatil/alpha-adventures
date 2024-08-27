@@ -64,7 +64,7 @@ function TrekSliderForTrekType({ TreksForTrekType }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
-      // navigate("/alpha-adventures/trekdetails");
+      // navigate("/trekdetails");
     }
   };
 
@@ -132,7 +132,7 @@ function TrekSliderForTrekType({ TreksForTrekType }) {
                       </p>
                     </div>
                   </div>
-                  <Link to="/alpha-adventures/trekdetails">
+                  <Link to="/trekdetails">
                     <button
                       className="button"
                       onClick={() => handleGetInfo(trek._id, trek.trekDateId)}

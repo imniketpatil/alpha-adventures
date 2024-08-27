@@ -50,7 +50,7 @@ function DateDropDown({ allStartDate = [] }) {
           {Array.isArray(allStartDate) && allStartDate.length > 0 ? (
             allStartDate.map((startDate) => (
               <li key={startDate._id} className="py-2 pr-4 pl-3 lg:p-0 ">
-                <NavLink to="/alpha-adventures/trekdetails">
+                <NavLink to="/trekdetails">
                   <div
                     className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     onClick={() =>

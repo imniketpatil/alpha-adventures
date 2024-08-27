@@ -48,7 +48,7 @@ function TrekSliderForPrice({ trekbasedonprice }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
-      navigate("/alpha-adventures/trekdetails");
+      navigate("/trekdetails");
     }
     // console.log("trekDateId", trekDateId);
   };

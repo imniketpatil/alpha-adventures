@@ -48,7 +48,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
-      navigate("/alpha-adventures/trekdetails");
+      navigate("/trekdetails");
     }
   };
 

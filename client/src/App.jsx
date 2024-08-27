@@ -15,11 +15,11 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/alpha-adventures/" element={<Home />} />
-        <Route path="/alpha-adventures/about" element={<About />} />
-        <Route path="/alpha-adventures/shop" element={<Shop />} />
-        <Route path="/alpha-adventures/faqs" element={<FAQs />} />
-        <Route path="/alpha-adventures/trekdetails" element={<TrekDetails />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/trekdetails" element={<TrekDetails />} />
       </>
     )
   );

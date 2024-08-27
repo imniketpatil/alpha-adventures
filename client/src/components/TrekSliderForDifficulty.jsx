@@ -69,7 +69,7 @@ function TrekSliderForDifficulty({ trekbasedondifficulty }) {
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
-      navigate("/alpha-adventures/trekdetails");
+      navigate("/trekdetails");
     }
   };
 

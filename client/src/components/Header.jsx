@@ -70,7 +70,7 @@ const Header = ({ type }) => {
       }`}
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <Link to="/alpha-adventures/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           {/* <span className="self-center text-2xl font-semibold whitespace-nowrap text-white hover:text-blue-300">
             Alpha Adventures
           </span> */}
@@ -148,7 +148,7 @@ const Header = ({ type }) => {
                 >
                   {treks.map((trek) => (
                     <li key={trek._id} className="py-2 pr-4 pl-3 lg:p-0 ">
-                      <NavLink to="/alpha-adventures/trekdetails">
+                      <NavLink to="/trekdetails">
                         <div
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                           onClick={() =>
@@ -167,7 +167,7 @@ const Header = ({ type }) => {
             {/* Other NavLinks */}
             <li>
               <NavLink
-                to="/alpha-adventures/"
+                to="/"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
@@ -180,7 +180,7 @@ const Header = ({ type }) => {
             </li>
             <li>
               <NavLink
-                to="/alpha-adventures/about"
+                to="/about"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
@@ -194,7 +194,7 @@ const Header = ({ type }) => {
             {/* Add other NavLinks here */}
             <li>
               <NavLink
-                to="/alpha-adventures/shop"
+                to="/shop"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
@@ -207,7 +207,7 @@ const Header = ({ type }) => {
             </li>
             <li>
               <NavLink
-                to="/alpha-adventures/faqs"
+                to="/faqs"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
