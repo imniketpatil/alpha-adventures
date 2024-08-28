@@ -114,7 +114,7 @@ const ShopMain = () => {
                   className="object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
                 />
               </div>
-              <div className="mt-4 text-center">
+              <div className="mt-4 text-start">
                 <h3 className="text-lg font-semibold text-gray-900">
                   {product.name}
                 </h3>

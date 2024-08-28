@@ -10,8 +10,7 @@ function InstagramSection() {
           </h1>
         </div>
         <div className="w-full flex items-center justify-center">
-          <div className="relative w-full pb-[56.25%] h-0">
-            {" "}
+          <div className="relative flex justify-center items-center w-full max-w-[600px] pb-[100%] lg:pb-[40%] h-0">
             {/* 16:9 Aspect Ratio */}
             <iframe
               className="absolute top-0 left-0 w-full h-full"
