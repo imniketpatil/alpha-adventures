@@ -325,7 +325,7 @@ function Treks() {
           </div>
         </div>
       </div>
-      {loading && <LoadingSpinner />}
+      {/* {loading && <LoadingSpinner />} */}
     </>
   );
 }

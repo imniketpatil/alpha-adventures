@@ -87,11 +87,11 @@ function Testimonials() {
                 </div>
               </div>
             )}
-            {loading && (
+            {/* {loading && (
               <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
                 <LoadingSpinner />
               </div>
-            )}
+            )} */}
             <div className="overflow-auto">
               <TestimonialsTable />
             </div>
