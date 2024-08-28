@@ -116,7 +116,7 @@ const Header = ({ type }) => {
               <button
                 id="dropdownNavbarLink"
                 onClick={handleDropdownToggle}
-                className="flex items-center w-full justify-between py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-400   dark:text-white"
+                className="flex items-center w-full justify-between py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-400   text-white"
               >
                 Treks{" "}
                 <svg
