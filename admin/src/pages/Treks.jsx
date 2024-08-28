@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import TrekDeleteContext from "../context/TrekDeleteContext";
 import TrekIdContext from "../context/TrekIdContext";
 import { useDeleteTrek } from "../hooks/useDeleteTrek";
-
 import TrekDatesContext from "../context/TrekDatesContext";
 import getTrekDates from "../hooks/useGetTrekDates";
 import { useQuery } from "@tanstack/react-query";
@@ -18,7 +17,6 @@ import DateDeleteContext from "../context/DateDeleteContext";
 import { useDeleteTrekDate } from "../hooks/useDeleteTrekDate";
 import DateIdContext from "../context/DateIdContext";
 import EditDateDetailsIdContext from "../context/EditDateDetailsIdContext";
-
 import useIdStore from "../app/IdStore";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -49,7 +47,7 @@ function Treks() {
   } = useQuery({
     queryKey: ["TrekDates", IdValue],
     queryFn: () => getTrekDates(IdValue),
-    enabled: !!IdValue,
+    enabled: !!IdValue && openDatesBox,
   });
 
   const handleConfirmDelete = () => {
@@ -225,7 +223,7 @@ function Treks() {
                                   </span>
                                 </p>
 
-                                {isDateHovered && (
+                                {/* {isDateHovered && (
                                   <div
                                     className="absolute top-full left-80 mt-2 bg-white border border-gray-300 shadow-lg rounded-lg p-2 z-10"
                                     style={{
@@ -248,37 +246,49 @@ function Treks() {
                                         }
                                       }}
                                       view="month"
-                                      className="text-xs"
+                                      // calendarType="US" // Ensure this is capitalized correctly
+                                      tileDisabled={() => true}
                                     />
                                   </div>
-                                )}
-                                <EditIcon
-                                  className="hover:cursor-pointer"
-                                  onClick={() =>
-                                    handleEditTrekClick(trekDate._id)
-                                  }
-                                />
-                                <DeleteOutlineIcon
-                                  className="hover:cursor-pointer"
-                                  onClick={() =>
-                                    handleDeleteTrekDateClick(trekDate._id)
-                                  }
-                                />
+                                )} */}
+
+                                <div className="flex justify-between gap-6">
+                                  <button
+                                    onClick={() =>
+                                      handleEditTrekClick(trekDate._id)
+                                    }
+                                  >
+                                    <EditIcon
+                                      style={{ color: "#4F46E5", fontSize: 32 }}
+                                    />
+                                  </button>
+
+                                  <button
+                                    onClick={() =>
+                                      handleDeleteTrekDateClick(trekDate._id)
+                                    }
+                                  >
+                                    <DeleteOutlineIcon
+                                      style={{ color: "red", fontSize: 32 }}
+                                    />
+                                  </button>
+                                </div>
                               </div>
                             );
                           })
                         )}
                       </div>
                     )}
-                    <div className="flex justify-center mt-8">
+
+                    <div className="flex justify-center gap-4 mt-6">
                       <button
-                        className="bg-blue-500 hover:bg-blue-600 transition duration-200 ease-in-out text-white py-2 px-4 rounded shadow-md mr-4"
+                        className="bg-blue-500 hover:bg-blue-600 transition duration-200 ease-in-out text-white py-2 px-4 rounded-lg shadow-md"
                         onClick={handleNewDateClick}
                       >
                         Add New Date
                       </button>
                       <button
-                        className="bg-gray-300 hover:bg-gray-400 transition duration-200 ease-in-out text-gray-800 py-2 px-4 rounded shadow-md"
+                        className="bg-gray-300 hover:bg-gray-400 transition duration-200 ease-in-out text-gray-800 py-2 px-4 rounded-lg shadow-md"
                         onClick={handleCancelDate}
                       >
                         Close
@@ -291,7 +301,7 @@ function Treks() {
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
                   <div className="bg-white rounded-lg shadow-lg p-6">
                     <p className="text-lg mb-4">
-                      Do you really want to delete the Trek Date?
+                      Do you really want to delete this Trek Date?
                     </p>
                     <div className="flex justify-center space-x-4">
                       <button
@@ -310,17 +320,12 @@ function Treks() {
                   </div>
                 </div>
               )}
-              {loading && (
-                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
-                  <LoadingSpinner />
-                </div>
-              )}
-
-              <TrekTable />
             </div>
+            <TrekTable />
           </div>
         </div>
       </div>
+      {loading && <LoadingSpinner />}
     </>
   );
 }

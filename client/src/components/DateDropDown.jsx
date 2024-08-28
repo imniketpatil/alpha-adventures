@@ -9,7 +9,7 @@ function DateDropDown({ allStartDate = [] }) {
   };
 
   const handleTrekListClick = (id, startDate) => {
-    console.log(`Selected Trek ID: ${id}`, startDate); // Replace this with actual navigation or state update logic
+    // console.log(`Selected Trek ID: ${id}`, startDate); // Replace this with actual navigation or state update logic
   };
 
   return (

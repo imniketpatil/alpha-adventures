@@ -3,7 +3,7 @@ import client_url from "../utility/config.js";
 
 const getTrekDates = async (id) => {
   try {
-    // console.log("id", id);
+    console.log("Run");
     const response = await axios.get(`${client_url}/trek/getTrekDates/${id}`, {
       withCredentials: true,
     });

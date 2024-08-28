@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand"; // Update your Zustand import
 
 import { devtools, persist } from "zustand/middleware";
 

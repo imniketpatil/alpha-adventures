@@ -8,10 +8,10 @@ import useDeleteAccount from "../hooks/useDeleteAccount";
 import EditAccount from "../components/EditAccount";
 import CreateAccount from "../components/CreateAccount.jsx";
 import client_url from "../utility/config.js";
+const authToken = localStorage.getItem("accessToken");
 
 // Function to fetch current user data
 const fetchCurrentUser = async () => {
-  const authToken = localStorage.getItem("accessToken");
   const response = await axios.get(`${client_url}/users/currentuser`, {
     withCredentials: true, // To send cookies with the request
     headers: {

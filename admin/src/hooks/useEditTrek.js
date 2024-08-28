@@ -20,11 +20,9 @@ const useEditTrek = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("Trek");
-      setLoading(false);
       navigate("/treks");
     },
     onError: (error) => {
-      setLoading(false);
       if (error.response && error.response.data) {
         console.error("Trek Updation failed:", error.response.data);
       } else {

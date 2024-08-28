@@ -13,14 +13,16 @@ function Sidebar() {
   const [openLogout, setLogout] = useState(false);
   const authToken = localStorage.getItem("accessToken");
 
-  const logoutMutation = useLogout(authToken);
+  const logoutMutation = useLogout();
 
   const handleLogout = () => {
     setLogout((prev) => !prev);
   };
 
   const confirmLogout = () => {
-    logoutMutation.mutate({ userId: "user-id" });
+    // console.log("refreshToken for SideBar", authToken);
+    logoutMutation.mutate({ authToken });
+
     setLogout(false);
   };
 

@@ -30,12 +30,12 @@ export const useChangeTestimonial = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("testimonials");
-      setLoading(false);
+
       alert("Changes Applied!");
     },
     onError: (error) => {
       console.error("Failed to update testimonial:", error);
-      setLoading(false);
+
       alert("Failed to update testimonial. Please try again.");
     },
     onSettled: () => {

@@ -75,10 +75,6 @@ export default function TestimonialsTable() {
     return <Alert severity="error">Error fetching testimonials</Alert>;
   }
 
-  if (!testimonials || testimonials.length === 0) {
-    return <Alert severity="info">No testimonials found</Alert>;
-  }
-
   const rows = testimonials.map((testimonial, index) => ({
     id: index + 1,
     name: testimonial.name,

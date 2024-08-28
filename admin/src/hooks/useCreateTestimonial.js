@@ -22,12 +22,10 @@ const useCreateTestimonial = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("testimonials");
-      setLoading(false);
+
       setOpenTestimonialForm(false);
     },
     onError: (error) => {
-      setLoading(false);
-
       if (error.response && error.response.data) {
         console.error("Testimonial creation failed:", error.response.data);
       } else {

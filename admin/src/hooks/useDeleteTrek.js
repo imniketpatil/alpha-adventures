@@ -18,11 +18,9 @@ const useDeleteTrek = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("Trek");
-      setLoading(false);
     },
     onError: (error) => {
       console.error("Trek deletion failed:", error);
-      setLoading(false);
 
       alert("Failed to delete trek. Please try again.");
     },

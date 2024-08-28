@@ -5,6 +5,7 @@ function CreateAccount({ setCreateAccount }) {
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const authToken = localStorage.getItem("accessToken");
   const mutation = useCreateAccount();
 
   const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ function CreateAccount({ setCreateAccount }) {
       return;
     }
 
-    mutation.mutate({ fullName, username, password });
+    mutation.mutate({ fullName, username, password, authToken });
   };
 
   return (

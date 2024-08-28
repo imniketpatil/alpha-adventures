@@ -16,14 +16,14 @@ const Home = () => {
           <hr className="border-t-2 border-gray-300 my-4" />
           <main className="flex flex-col h-full">
             <section className="flex p-5 gap-5">
+              {/* <Widget />
               <Widget />
               <Widget />
-              <Widget />
-              <Widget />
+              <Widget /> */}
             </section>
             <section className="p-6 flex flex-col gap-4">
-              <p className="font-semibold text-gray-600 text-3xl">Treks</p>
-              <Table />
+              {/* <p className="font-semibold text-gray-600 text-3xl">Treks</p>
+              <Table /> */}
             </section>
           </main>
         </div>

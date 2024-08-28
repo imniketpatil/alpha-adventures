@@ -4,14 +4,23 @@ import client_url from "../utility/config.js";
 
 const useCreateAccount = () => {
   return useMutation({
-    mutationFn: ({ fullName, username, password }) => {
+    mutationFn: ({ fullName, username, password, authToken }) => {
       return axios.post(
         `${client_url}/users/register`,
         { fullName, username, password },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`, // Assuming you are using Bearer tokens
+          },
+        }
       );
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      // You can add any success handling logic here, like showing a notification
+      alert("New  account created");
+    },
     onError: (error) => {
       if (error.response && error.response.data) {
         console.error("Account creation failed:", error.response.data);
