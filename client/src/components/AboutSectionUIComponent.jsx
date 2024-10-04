@@ -66,10 +66,10 @@ function AboutSectionUIComponent() {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 font-normal">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
             Alpha Adventures.
           </h2>
-          <p className="mt-6 text-xl leading-8 font-normal text-white">
+          <p className="mt-6 text-lg leading-8 font-normal text-white">
             Welcome to{" "}
             <span className="text-slate-900 font-normal">Alpha Adventures</span>
             , your premier adventure travel partner based in{" "}
@@ -90,7 +90,7 @@ function AboutSectionUIComponent() {
           </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none font-normal">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-lg  leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+          {/* <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-lg  leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
             <span href="#" className="hover:cursor-pointer">
               Learn More About Our Treks <span aria-hidden="true">&rarr;</span>
             </span>
@@ -102,7 +102,7 @@ function AboutSectionUIComponent() {
             <span href="#" className="hover:cursor-pointer">
               Meet our Guides <span aria-hidden="true">&rarr;</span>
             </span>
-          </div>
+          </div> */}
           <dl
             id="achievements"
             className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4"
@@ -112,7 +112,7 @@ function AboutSectionUIComponent() {
                 <dt className="text-lg leading-7 text-gray-100">
                   {achievement.label}
                 </dt>
-                <dd className="text-2xl font-bold leading-9 tracking-tight text-white">
+                <dd className="text-xl font-bold leading-9 tracking-tight text-white">
                   {counters[index]}+
                 </dd>
               </div>
