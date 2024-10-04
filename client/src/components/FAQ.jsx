@@ -152,14 +152,14 @@ const FAQ = () => {
   return (
     <>
       <div className="lg:container lg:mx-auto lg:py-16 md:py-12 md:px-6 md:mt-20 py-12 px-4 font-body">
-        <h1 className="text-center  lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 font-semibold">
+        <h1 className="text-center  lg:text-2xl text-xl lg:leading-9 leading-7 text-gray-800 font-semibold">
           FAQ's
         </h1>
 
         <div className="lg:mt-12 bg-gray-100 md:mt-10 mt-8 lg:py-7 lg:px-6 md:p-6 py-6 px-4 lg:w-8/12 w-full mx-auto">
           <div className="flex justify-between md:flex-row flex-col">
             <div className="md:mb-0 mb-8 md:text-left text-center">
-              <h2 className="font-medium  text-xl leading-5 text-gray-800 lg:mb-2 mb-4">
+              <h2 className="font-medium  text-lg leading-5 text-gray-800 lg:mb-2 mb-4">
                 Questions
               </h2>
               <p className="font-normal text-sm lg:text-md leading-5 text-gray-600 md:w-full md:ml-0 w-11/12 mx-auto md:font-semibold ">
@@ -174,7 +174,7 @@ const FAQ = () => {
                 <a
                   href="https://wa.me/919403110937?text=Hey%21%20We%20are%20Alpha%20Adventures%2C%20your%20adventure%20travel%20partner.%20How%20can%20we%20assist%20you%3F"
                   target="_black"
-                  className=" outline-none relative inline-flex items-center justify-center leading-normal no-underline  py-2 pr-4 pl-3  text-slate-700 font-sans font-bold text-sm uppercase hover:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-lg"
+                  className=" outline-none relative inline-flex items-center justify-center leading-normal no-underline  py-2 pr-4 pl-3  text-slate-700 font-sans font-bold text-sm uppercase hover:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neutral-500 transition group lg:text-md"
                 >
                   Get In Touch
                   <svg
@@ -207,7 +207,7 @@ const FAQ = () => {
                 <div className="flex justify-between items-center w-full">
                   <div>
                     <p className="flex justify-center items-center  font-medium text-md lg:text-lg leading-6 text-gray-800">
-                      <span className="lg:mr-6 mr-4 lg:text-2xl md:text-xl text-lg leading-6 font-semibold text-gray-800">
+                      <span className="lg:mr-6 mr-4 lg:text-xl md:text-lg text-md leading-6 font-semibold text-gray-800">
                         Q{index + 1}.
                       </span>
                       {faq.question}
@@ -231,7 +231,7 @@ const FAQ = () => {
                     activeIndex === index ? "open" : ""
                   } mt-6 w-full`}
                 >
-                  <p className="text-md lg:text-xl leading-6 text-gray-600 font-normal">
+                  <p className="text-md lg:text-lg leading-6 text-gray-600 font-normal">
                     {faq.answer}
                   </p>
                 </div>

@@ -36,7 +36,7 @@ export default function ScheduleTimeline({ scheduleTimeline }) {
               }}
             >
               <Typography variant="h6" component="p" className="text-sm">
-                <span className=" text-sm md:text-xl font-bold text-gray-800">
+                <span className=" text-sm md:text-lg font-bold text-gray-800">
                   {item.day}
                 </span>
               </Typography>

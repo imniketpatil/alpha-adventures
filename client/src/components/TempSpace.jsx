@@ -1,7 +1,7 @@
 import React from "react";
 
 function TempSpace() {
-  return <div className="mt-20 lg:mt-32"></div>;
+  return <div className="mt-[88px] lg:mt-[112px]"></div>;
 }
 
 export default TempSpace;

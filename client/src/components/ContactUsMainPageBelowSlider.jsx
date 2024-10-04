@@ -5,7 +5,7 @@ function ContactUsMainPageBelowSlider() {
     <div className="bg-[#3a652d]  text-white p-4 flex justify-center">
       <div className="max-w-[1400px] flex flex-col lg:flex-row items-start justify-around lg:gap-6">
         <div className="mb-2 lg:mb-0">
-          <h2 className="text-xl lg:text-2xl font-bold">
+          <h2 className="text-lg lg:text-xl font-bold">
             Have questions? Speak to our expert Trek Advisors
           </h2>
         </div>

@@ -58,14 +58,14 @@ function TrekDetailsPageSlider({
       ></div>
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full gap-6 text-white px-4">
-        <h1 className="text-4xl lg:text-6xl font-bold text-center">
+        <h1 className="text-3xl lg:text-5xl font-bold text-center">
           {trekName}
         </h1>
-        <p className="text-2xl lg:text-4xl font-semibold text-center">
+        <p className="text-xl lg:text-2xl font-semibold text-center">
           {trekTitle}
         </p>
         <button
-          className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105 hover:shadow-2xl"
+          className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105 hover:shadow-2xl"
           aria-label={`Enquire for ${trekName}`}
           onClick={() => {
             handleBooking(trekName);
@@ -76,7 +76,7 @@ function TrekDetailsPageSlider({
       </div>
       {/* Left Arrow */}
       <button
-        className="absolute top-[50%] left-4 transform -translate-y-1/2 text-white text-3xl p-2 bg-gray-800 bg-opacity-50 rounded-full transition duration-300 ease-in-out hover:bg-gray-700 hover:bg-opacity-70 shadow-md hover:shadow-lg z-20"
+        className="absolute top-[50%] left-4 transform -translate-y-1/2 text-white text-2xl p-2 bg-gray-800 bg-opacity-50 rounded-full transition duration-300 ease-in-out hover:bg-gray-700 hover:bg-opacity-70 shadow-md hover:shadow-lg z-20"
         onClick={prevSlide}
         aria-label="Previous slide"
       >

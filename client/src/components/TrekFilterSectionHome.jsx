@@ -12,10 +12,10 @@ import TrekTypesButtonAndSlider from "./TrekTypesButtonAndSlider";
 const TrekFilterSectionHome = () => {
   return (
     <section className="text-black bg-white body-font lg:mt-0  font-body">
-      <div className="container px-2 pt-8 pb-8 lg:pb-12 lg:pt-8 mx-auto">
+      <div className="container px-2 pt-8  lg:pt-8 mx-auto">
         <UpcomingTreks />
 
-        <TrekTypesButtonAndSlider />
+        {/* <TrekTypesButtonAndSlider /> */}
         {/* 
         <TrekBasedOnPrice />
 

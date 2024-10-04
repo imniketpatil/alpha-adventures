@@ -65,27 +65,27 @@ function TrekInfoAndDate({
       ) : (
         <div className="flex flex-col lg:flex-row lg:items-start gap-8">
           <div className="lg:w-2/3">
-            <h1 className="text-4xl font-extrabold mb-4">
+            <h1 className="text-2xl font-extrabold mb-4">
               {trekName}
-              <span className="text-3xl text-gray-600">: {trekTitle}</span>
+              <span className="text-xl text-gray-600">: {trekTitle}</span>
             </h1>
-            <p className="text-xl font-medium text-gray-700 flex items-center mb-4">
+            <p className="text-lg font-medium text-gray-700 flex items-center mb-4">
               <FaMapMarkerAlt className="mr-2 text-blue-600" /> {trekLocation}
             </p>
-            <p className="text-lg text-gray-800 leading-relaxed mb-8">
+            <p className="text-md text-gray-800 leading-relaxed mb-8">
               {trekDescription}
             </p>
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+            {/* <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <p className="text-lg font-semibold flex items-center mb-2">
                 <FaTag className="mr-2 text-blue-600" />
                 Trek Type: {trekType}
               </p>
               <p className="text-gray-700 text-lg">{trekTypeDescription}</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:w-1/3 bg-gray-50 p-6 rounded-lg shadow-md border-4 border-yellow-500">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+            <h2 className="text-xl font-bold text-center text-gray-800 mb-4">
               Trek Dates with Prices
             </h2>
             {hasDates ? (
@@ -100,10 +100,10 @@ function TrekInfoAndDate({
                   onClick={() => toggleActive(index, dateid[index])}
                 >
                   <div className="p-4 text-center">
-                    <p className="text-xl font-bold text-gray-800 mb-2">
+                    <p className="text-lg font-bold text-gray-800 mb-2">
                       Batch {index + 1}
                     </p>
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-md font-medium text-gray-700">
                       {formatDate(d)} to {formatDate(allEndDate[index])}
                     </p>
                   </div>

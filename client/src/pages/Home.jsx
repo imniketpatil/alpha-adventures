@@ -22,7 +22,7 @@ function home() {
       <Banner />
       <TrekFilterSectionHome />
       <TailwindComponent />
-      <AppPromo />
+      {/* <AppPromo /> */}
       <Achievements />
       <Testimonal />
       <TeamSection />

@@ -83,35 +83,35 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                     />
                   </div>
                   <div className="info flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
-                    <h2 className="text-2xl font-bold text-indigo-600 mb-0 md:mb-2">
+                    <h2 className="text-xl font-bold text-indigo-600 mb-0 md:mb-2">
                       {trek.trekName}
                     </h2>
-                    <h3 className="text-lg font-medium text-gray-700 mb-0 md:mb-4">
+                    <h3 className="text-md font-medium text-gray-700 mb-0 md:mb-4">
                       {trek.trekTitle}
                     </h3>
                     <div className="w-full text-gray-600 mb-0 md:mb-4">
-                      <p className="mb-2">
+                      <p className="mb-2 text-sm">
                         <span className="font-semibold">Type:</span>{" "}
                         {trek.trekType}
                       </p>
-                      <p className="mb-2">
+                      <p className="mb-2 text-sm">
                         <span className="font-semibold">Location:</span>{" "}
                         {trek.trekLocation}
                       </p>
-                      <p className="mb-2">
+                      <p className="mb-2 text-sm">
                         <span className="font-semibold">Suitable Age:</span>{" "}
                         {trek.suitableForAge}
                       </p>
-                      <p className="mb-2">
+                      <p className="mb-2 text-sm">
                         <span className="font-semibold">Trek Start Date:</span>{" "}
                         {new Date(trek.startDate).toLocaleDateString("en-GB")}
                       </p>
                       <div className="flex justify-between">
-                        <p className="mb-2">
+                        <p className="mb-2 text-sm">
                           <span className="font-semibold">Duration:</span>{" "}
                           {trek.dateDifference} days
                         </p>
-                        <p className="mb-2">
+                        <p className="mb-2 text-sm">
                           <span className="font-semibold">Difficulty:</span>{" "}
                           {trek.trekDifficulty.charAt(0).toUpperCase() +
                             trek.trekDifficulty.slice(1)}
@@ -123,10 +123,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                       onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
                     >
                       Get Trek
-                      <span className="button-span">
-                        {" "}
-                        ─ Information & Dates
-                      </span>
+                      <span className=" text-sm"> ─ Information & Dates</span>
                     </button>
                   </div>
                 </div>

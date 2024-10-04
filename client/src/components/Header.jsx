@@ -36,6 +36,8 @@ const Header = ({ type }) => {
   }, [prevScrollPos]);
 
   const addCourse = useCourseStore((state) => state.addCourse);
+  const addTrekTypeId = useCourseStore((state) => state.addTrekTypeId);
+
   const addDateId = useCourseStore((state) => state.addDateId);
   const {
     data: treks = [],
@@ -48,7 +50,7 @@ const Header = ({ type }) => {
 
   const handleTrekListClick = (trekId) => {
     // console.log("trekId", trekId);
-    addCourse(trekId);
+    addTrekTypeId(trekId);
     // console.log("dateId", dateId);
   };
 
@@ -76,7 +78,7 @@ const Header = ({ type }) => {
           <img
             src={LogoAA}
             alt="Alpha Adventures Logo"
-            className="h-10 w-10 lg:h-20 lg:w-20 hover:mix-blend-luminosity bg-white rounded-full"
+            className="h-10 w-10 lg:h-16 lg:w-16 bg-white rounded-full"
           />
         </Link>
 
@@ -110,7 +112,7 @@ const Header = ({ type }) => {
           }`}
           id="mobile-menu"
         >
-          <ul className="flex flex-col mt-4  bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-2 lg:gap-0 text-lg lg:text-lg lg:font-medium lg:items-center">
+          <ul className="flex flex-col mt-4  bg-gray-800 lg:bg-transparent lg:flex-row lg:space-x-8 lg:mt-0 gap-2 lg:gap-0 text-md lg:text-md lg:font-medium lg:items-center">
             <li>
               <button
                 id="dropdownNavbarLink"
@@ -147,7 +149,7 @@ const Header = ({ type }) => {
                 >
                   {treks.map((trek) => (
                     <li key={trek._id} className="py-2 pr-4 pl-3 lg:p-0 ">
-                      <NavLink to="/trekdetails">
+                      <NavLink to="/trektypetreks">
                         <div
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                           onClick={() => handleTrekListClick(trek._id)}

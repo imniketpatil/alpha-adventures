@@ -56,7 +56,7 @@ const TrekDetailsIconSection = ({
                 <p className="font-bold text-sm text-gray-600 uppercase">
                   {label}
                 </p>
-                <p className="text-lg font-semibold text-gray-900">{value}</p>
+                <p className="text-md font-semibold text-gray-900">{value}</p>
               </div>
             </div>
           ))

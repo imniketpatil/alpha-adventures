@@ -1,7 +1,12 @@
 import React from "react";
+import StackOfTreks from "./StackOfTreks";
 
-function TrekTypeTreksComponent() {
-  return <div>TrekTypeTreksComponent</div>;
+function TrekTypeTreksComponent({ treksBasedOnTrekType }) {
+  return (
+    <>
+      <StackOfTreks treksBasedOnTrekType={treksBasedOnTrekType} />
+    </>
+  );
 }
 
 export default TrekTypeTreksComponent;
