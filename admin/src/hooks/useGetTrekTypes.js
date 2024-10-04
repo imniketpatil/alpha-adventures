@@ -1,5 +1,5 @@
 import axios from "axios";
-import client_url from "../utility/config.js";
+import client_url from "../utility/config";
 
 const useGetTrekTypes = async () => {
   const response = await axios.get(`${client_url}/trektype/getalltrektypes`, {
