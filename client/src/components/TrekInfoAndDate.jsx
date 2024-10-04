@@ -108,7 +108,7 @@ function TrekInfoAndDate({
                     </p>
                   </div>
                   {activeIndex === index && (
-                    <div className="p-4">
+                    <div className="p-4 text-lg">
                       <div className="flex justify-between mb-2">
                         <span className="font-bold text-gray-700">
                           Price with Travel:
@@ -129,13 +129,15 @@ function TrekInfoAndDate({
                             "N/A"}
                         </span>
                       </div>
-                      <button
-                        className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105"
-                        aria-label={`Enquire for ${trekName}`}
-                        onClick={() => handleBooking(trekName, date[index])} // Pass the date parameter here
-                      >
-                        Enquire For {trekName}
-                      </button>
+                      <div className="flex items-center justify-center">
+                        <button
+                          className="px-3 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-100 hover:shadow-xl"
+                          aria-label={`Enquire for ${trekName}`}
+                          onClick={() => handleBooking(trekName, date[index])} // Pass the date parameter here
+                        >
+                          Enquire For {trekName}
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
