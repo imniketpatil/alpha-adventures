@@ -16,10 +16,10 @@ const TrekFilterSectionHome = () => {
         <UpcomingTreks />
 
         <TrekTypesButtonAndSlider />
-
+        {/* 
         <TrekBasedOnPrice />
 
-        <TreksBasedOnDifficulty />
+        <TreksBasedOnDifficulty /> */}
       </div>
     </section>
   );

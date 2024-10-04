@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useCourseStore from "../app/courseStore";
 import useGetTrekListForHome from "../hooks/useGetTrekListForHome";
 import LogoAA from "/images/Adpilot-8_24_2024.jpeg";
+import useGetTrekTypes from "../../../admin/src/hooks/useGetTrekTypes";
 
 const Header = ({ type }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,14 +43,13 @@ const Header = ({ type }) => {
     error,
     isLoading,
     refetch,
-  } = useQuery({ queryKey: ["TrekName"], queryFn: useGetTrekListForHome });
+  } = useQuery({ queryKey: ["TrekName"], queryFn: useGetTrekTypes });
 
-  // console.log("treks", treks);
+  console.log("treks", treks);
 
-  const handleTrekListClick = (trekId, dateId) => {
+  const handleTrekListClick = (trekId) => {
     // console.log("trekId", trekId);
     addCourse(trekId);
-    addDateId(dateId);
     // console.log("dateId", dateId);
   };
 
@@ -118,7 +118,7 @@ const Header = ({ type }) => {
                 onClick={handleDropdownToggle}
                 className="flex items-center w-full justify-between py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-400   text-white"
               >
-                Treks{" "}
+                Upcoming Trek{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-2.5"
                   aria-hidden="true"
@@ -138,7 +138,7 @@ const Header = ({ type }) => {
 
               <div
                 id="dropdownNavbar"
-                className={`z-10 font-normal md:w-[60%] lg:w-44 w-[90%]  divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700 dark:divide-gray-600 ${
+                className={`z-10 font-normal md:w-[60%] lg:w-80 w-[90%]  divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700 dark:divide-gray-600 ${
                   isDropdownOpen ? "fixed" : "hidden"
                 }`}
               >
@@ -151,11 +151,9 @@ const Header = ({ type }) => {
                       <NavLink to="/trekdetails">
                         <div
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          onClick={() =>
-                            handleTrekListClick(trek._id, trek.dates[0])
-                          }
+                          onClick={() => handleTrekListClick(trek._id)}
                         >
-                          {trek.trekName}
+                          {trek.name}
                         </div>
                       </NavLink>
                     </li>

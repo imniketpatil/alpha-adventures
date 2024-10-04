@@ -20,18 +20,18 @@ function UpcomingTreks() {
 
   return (
     <>
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-6 mt-0 items-center justify-center">
           <h1 className="md:w-2/5 text-black font-medium title-font text-4xl mb-1 sm:mb-0 text-center font-body">
             Upcoming Treks
           </h1>
         </div>
-      </div>
-      <div className="ml-10">
+      </div> */}
+      <div className="flex justify-center items-center">
         {/* Buttons for filtering treks */}
         <button
           type="button"
-          className=" border border-blue-700  bg-blue-500 ring-4 outline-none text-white ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+          className=" border border-blue-700  bg-blue-500 ring-4 outline-none text-white ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2  "
         >
           Upcomming Treks
         </button>

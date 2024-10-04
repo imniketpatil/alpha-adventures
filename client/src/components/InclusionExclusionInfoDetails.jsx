@@ -41,7 +41,7 @@ function InclusionExclusionInfoDetails({
         </div>
 
         {/* Highlights Section */}
-        <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
+        {/* <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 mb-4">
             <span role="img" aria-label="Trek Highlights">
               🌟
@@ -64,7 +64,7 @@ function InclusionExclusionInfoDetails({
               ))
             )}
           </ul>
-        </div>
+        </div> */}
 
         {/* Cancellation Policy Section */}
         <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
