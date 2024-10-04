@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useCourseStore from "../app/courseStore";
-import useGetTrekListForHome from "../hooks/useGetTrekListForHome";
 import LogoAA from "/images/Adpilot-8_24_2024.jpeg";
-import useGetTrekTypes from "../../../admin/src/hooks/useGetTrekTypes";
+import useGetTrekTypes from "../hooks/useGetTrekTypes";
 
 const Header = ({ type }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
