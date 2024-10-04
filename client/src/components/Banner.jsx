@@ -44,13 +44,13 @@ function Banner() {
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url(${HomeBannerBG})`,
       }}
     >
-      <h1 className="text-4xl lg:text-5xl text-white font-semibold text-center">
+      <h1 className="text-2xl lg:text-4xl text-white font-semibold text-center">
         We are{" "}
-        <span className="element text-4xl lg:text-5xl text-yellow-500 text-center">
+        <span className="element text-2xl lg:text-4xl text-yellow-500 text-center">
           Alpha Adventures
         </span>
       </h1>
-      <h1 className="text-white text-2xl font-normal text-center">
+      <h1 className="text-white text-xl font-normal text-center">
         Your Adventure Travel Partner.
       </h1>
     </div>

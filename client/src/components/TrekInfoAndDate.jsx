@@ -63,8 +63,8 @@ function TrekInfoAndDate({
           <LoadingSpinner /> {/* Display the loading spinner */}
         </div>
       ) : (
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8">
-          <div className="lg:w-2/3">
+        <div className="flex flex-col justify-center items-center lg:flex-row lg:items-start gap-8">
+          <div className="lg:max-w-screen-md">
             <h1 className="text-4xl font-extrabold mb-4">
               {trekName}
               <span className="text-3xl text-gray-600">: {trekTitle}</span>
@@ -75,13 +75,13 @@ function TrekInfoAndDate({
             <p className="text-lg text-gray-800 leading-relaxed mb-8">
               {trekDescription}
             </p>
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+            {/* <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <p className="text-lg font-semibold flex items-center mb-2">
                 <FaTag className="mr-2 text-blue-600" />
                 Trek Type: {trekType}
               </p>
               <p className="text-gray-700 text-lg">{trekTypeDescription}</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:w-1/3 bg-gray-50 p-6 rounded-lg shadow-md border-4 border-yellow-500">

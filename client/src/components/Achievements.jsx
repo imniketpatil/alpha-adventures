@@ -59,7 +59,7 @@ const Achievements = () => {
       className="bg-white py-4 sm:py-8 sm:pb-16  font-body"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full text-center">
-        <h1 className="text-5xl font-bold mb-10 text-slate-700">
+        <h1 className="text-4xl font-bold mb-10 text-slate-700">
           Alpha Adventures By the Numbers
         </h1>
         <dl className="grid grid-cols-1 gap-x-4 gap-y-8 text-center lg:grid-cols-3">
@@ -69,12 +69,12 @@ const Achievements = () => {
                 <img className="h h-60 w-60 " src={achievement.img} alt="" />
               </div>
               <div>
-                <dt className="text-2xl leading-7 text-gray-600">
+                <dt className="text-xl leading-7 text-gray-600">
                   {achievement.label}
                 </dt>
               </div>
               <div>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                <dd className="order-first text-2xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
                   {counters[index]}+
                 </dd>
               </div>

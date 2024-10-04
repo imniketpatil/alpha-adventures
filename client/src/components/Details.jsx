@@ -84,10 +84,10 @@ function Details() {
             }`}
           >
             <div className="flex flex-col gap-8 w-full h-auto">
-              <h1 className="text-start font-semibold text-4xl mt-10 text-gray-700">
+              <h1 className="text-start font-semibold text-2xl mt-10 text-gray-700">
                 {section.title}
               </h1>
-              <p className="text-xl lg:text-2xl font-light mb-10">
+              <p className="text-lg lg:text-xl font-light mb-10">
                 {section.text}
               </p>
             </div>
@@ -109,10 +109,10 @@ function Details() {
               }`}
             >
               <div className="flex flex-col gap-8 w-full h-auto">
-                <h1 className="text-start font-semibold text-4xl text-gray-700">
+                <h1 className="text-start font-semibold text-2xl text-gray-700">
                   {aim.title}
                 </h1>
-                <ul className="text-xl lg:text-2xl font-light mb-10 flex flex-col gap-4">
+                <ul className="text-lg lg:text-xl font-light mb-10 flex flex-col gap-4">
                   {aim.points.map((point, i) => (
                     <li key={i} className="flex flex-col gap-2">
                       <span className="font-medium">{point.heading}</span>
@@ -136,10 +136,10 @@ function Details() {
           className={`flex m-4 sm:m-4 mx-4 mb-20 items-center justify-center gap-5 flex-col md:flex-row`}
         >
           <div className="flex flex-col gap-8 w-full h-auto">
-            <h1 className="text-start font-semibold text-4xl mt-10 text-gray-700">
+            <h1 className="text-start font-semibold text-2xl mt-10 text-gray-700">
               Our Commitment
             </h1>
-            <p className="text-xl lg:text-2xl font-light mb-10">
+            <p className="text-lg lg:text-xl font-light mb-10">
               We are committed to seeing our country become a beacon of fitness,
               responsibility, and care for wildlife and nature. From the
               majestic Himalayas to the lush Western Ghats, the serene Eastern

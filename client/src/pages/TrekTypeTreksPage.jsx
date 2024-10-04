@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import TempSpace from "../components/TempSpace";
 import Footer from "../components/Footer";
 import TrekTypeTreksComponent from "../components/TrekTypeTreksComponent";
+import ShopMain from "../components/ShopMain";
 
 function TrekTypeTreksPage() {
   return (
@@ -10,6 +11,7 @@ function TrekTypeTreksPage() {
       <Header type="list" />
       <TempSpace />
       <TrekTypeTreksComponent />
+      {/* <ShopMain /> */}
       <Footer />
     </>
   );

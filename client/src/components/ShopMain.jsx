@@ -93,12 +93,12 @@ const ShopMain = () => {
   };
 
   return (
-    <div className="bg-gray-100 font-body min-h-screen">
-      <div className="container mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+    <div className="bg-gray-100 font-body ">
+      <div className=" mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
           Explore Our Shoes Collection
         </h2>
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-4">
           {products.map((product, index) => (
             <div
               key={index}

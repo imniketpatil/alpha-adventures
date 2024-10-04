@@ -2,6 +2,8 @@ import axios from "axios";
 import client_url from "../utils/config.js";
 
 const useGetTreksForTrekTypeById = async ({ id }) => {
+  console.log(id);
+
   try {
     // console.log("id", id);
     const response = await axios.get(
@@ -10,6 +12,8 @@ const useGetTreksForTrekTypeById = async ({ id }) => {
         withCredentials: true, // To send cookies with the request
       }
     );
+    console.log(response.data.data);
+
     return response.data.data;
   } catch (error) {
     // Handle errors, e.g., log them or throw a custom error
