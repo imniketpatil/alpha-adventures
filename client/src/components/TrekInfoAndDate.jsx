@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaTag } from "react-icons/fa";
 import PropTypes from "prop-types";
 import useCourseStore from "../app/courseStore";
 import LoadingSpinner from "./LoadingSpinner";
-
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 function TrekInfoAndDate({
   trekName,
   trekTitle,
@@ -29,6 +30,19 @@ function TrekInfoAndDate({
 
   const addDateId = useCourseStore((state) => state.addDateId);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const trekRef = useRef(null);
+
+  const toggleExpand = () => {
+    if (isExpanded) {
+      trekRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setIsExpanded(!isExpanded);
+  };
 
   const toggleActive = (index, dateid) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -57,35 +71,129 @@ function TrekInfoAndDate({
   };
 
   return (
-    <div className="container mx-auto p-6 bg-white rounded-xl shadow-lg mb-8">
+    <div
+      ref={trekRef}
+      className="container mx-auto p-6 bg-white rounded-xl shadow-lg mb-8"
+    >
       {isLoadingDate || isLoadingTrek ? (
         <div className="flex justify-center py-6">
           <LoadingSpinner /> {/* Display the loading spinner */}
         </div>
       ) : (
         <div className="flex flex-col lg:flex-row lg:items-start gap-8">
-          <div className="lg:w-2/3">
-            <h1 className="text-2xl font-extrabold mb-4">
+          <div className="lg:w-2/3 relative mb-10">
+            <h1 className="text-4xl font-extrabold mb-4">
               {trekName}
-              <span className="text-xl text-gray-600">: {trekTitle}</span>
+              <span className="text-3xl text-gray-600">: {trekTitle}</span>
             </h1>
-            <p className="text-lg font-medium text-gray-700 flex items-center mb-4">
+            <p className="text-xl font-medium text-gray-700 flex items-center mb-4">
               <FaMapMarkerAlt className="mr-2 text-blue-600" /> {trekLocation}
             </p>
-            <p className="text-md text-gray-800 leading-relaxed mb-8">
-              {trekDescription}
-            </p>
-            {/* <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+            <div
+              style={{
+                maxHeight: isExpanded ? "none" : "150px",
+                overflow: "hidden",
+                position: "relative", // For absolute positioning of the gradient
+                transition: "max-height 0.3s ease",
+              }}
+            >
+              <p className="text-lg text-gray-800 leading-relaxed mb-8">
+                {trekDescription}
+              </p>
+              {!isExpanded && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "80px",
+                    background:
+                      "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))", // Change 'rgba(255, 255, 255, 1)' to your background color
+                    pointerEvents: "none",
+                  }}
+                />
+              )}
+            </div>
+            <div className="flex flex-col items-center mt-2">
+              <button
+                onClick={() => {
+                  toggleExpand();
+                  setIsHovered(false);
+                }}
+                style={{ cursor: "pointer" }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                {isExpanded ? (
+                  <>
+                    <KeyboardDoubleArrowUpIcon
+                      fontSize="large"
+                      style={{
+                        transition: "transform 0.5s, opacity 0.5s",
+                        transform: isHovered ? "scale(1.2)" : "scale(1)",
+                        color: isHovered ? "black" : "gray",
+                      }}
+                    />
+                    {isHovered && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          bottom: "15px",
+                          backgroundColor: "rgba(0, 0, 0, 0.1)",
+                          padding: "5px 10px",
+                          borderRadius: "3px",
+                          fontSize: "0.9rem",
+                          transition: "opacity 0.5s",
+                          opacity: isHovered ? 1 : 0,
+                        }}
+                      >
+                        Read Less
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <KeyboardDoubleArrowDownIcon
+                      fontSize="large"
+                      style={{
+                        transition: "transform 0.5s, opacity 0.5s",
+                        transform: isHovered ? "scale(1.2)" : "scale(1)",
+                        color: isHovered ? "black" : "gray",
+                      }}
+                    />
+                    {isHovered && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          bottom: "15px",
+                          backgroundColor: "rgba(0, 0, 0, 0.1)",
+                          padding: "5px 10px",
+                          borderRadius: "3px",
+                          fontSize: "0.9rem",
+                          transition: "opacity 0.5s",
+                          opacity: isHovered ? 1 : 0,
+                        }}
+                      >
+                        Read More
+                      </span>
+                    )}
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <p className="text-lg font-semibold flex items-center mb-2">
                 <FaTag className="mr-2 text-blue-600" />
                 Trek Type: {trekType}
               </p>
               <p className="text-gray-700 text-lg">{trekTypeDescription}</p>
             </div> */}
-          </div>
 
           <div className="lg:w-1/3 bg-gray-50 p-6 rounded-lg shadow-md border-4 border-yellow-500">
-            <h2 className="text-xl font-bold text-center text-gray-800 mb-4">
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
               Trek Dates with Prices
             </h2>
             {hasDates ? (
@@ -100,15 +208,15 @@ function TrekInfoAndDate({
                   onClick={() => toggleActive(index, dateid[index])}
                 >
                   <div className="p-4 text-center">
-                    <p className="text-lg font-bold text-gray-800 mb-2">
+                    <p className="text-xl font-bold text-gray-800 mb-2">
                       Batch {index + 1}
                     </p>
-                    <p className="text-md font-medium text-gray-700">
+                    <p className="text-lg font-medium text-gray-700">
                       {formatDate(d)} to {formatDate(allEndDate[index])}
                     </p>
                   </div>
                   {activeIndex === index && (
-                    <div className="p-4 text-lg">
+                    <div className="p-4">
                       <div className="flex justify-between mb-2">
                         <span className="font-bold text-gray-700">
                           Price with Travel:
@@ -129,15 +237,13 @@ function TrekInfoAndDate({
                             "N/A"}
                         </span>
                       </div>
-                      <div className="flex items-center justify-center">
-                        <button
-                          className="px-3 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-100 hover:shadow-xl"
-                          aria-label={`Enquire for ${trekName}`}
-                          onClick={() => handleBooking(trekName, date[index])} // Pass the date parameter here
-                        >
-                          Enquire For {trekName}
-                        </button>
-                      </div>
+                      <button
+                        className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105"
+                        aria-label={`Enquire for ${trekName}`}
+                        onClick={() => handleBooking(trekName, date[index])} // Pass the date parameter here
+                      >
+                        Enquire For {trekName}
+                      </button>
                     </div>
                   )}
                 </div>
