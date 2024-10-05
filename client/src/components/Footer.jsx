@@ -35,7 +35,7 @@ const Footer = () => {
                 </a>
                 <a
                   className="ml-3 text-gray-500 cursor-pointer hover:text-gray-700"
-                  href="https://wa.me/your-number" // Replace with your WhatsApp contact link
+                  href="https://wa.me/+919403449240" // Replace with your WhatsApp contact link
                   target="_blank"
                   rel="noopener noreferrer"
                 >
