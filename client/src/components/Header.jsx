@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useCourseStore from "../app/courseStore";
-import LogoAA from "/images/Adpilot-8_24_2024.jpeg";
+import LogoAA from "/images/Alpha Logo.png";
 import useGetTrekTypes from "../hooks/useGetTrekTypes";
 
 const Header = ({ type }) => {
@@ -78,7 +78,7 @@ const Header = ({ type }) => {
           <img
             src={LogoAA}
             alt="Alpha Adventures Logo"
-            className="h-10 w-10 lg:h-16 lg:w-16 bg-white rounded-full"
+            className="h-10 w-10 lg:h-16 lg:w-16 object-cover bg-white rounded-full"
           />
         </Link>
 
@@ -164,13 +164,13 @@ const Header = ({ type }) => {
             </li>
 
             {/* Other NavLinks */}
-            <li>
+            <li className="text-base">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   `block py-2 pr-4 pl-3 lg:p-0 rounded ${
                     isActive ? "lg:bg-transparent text-white" : "text-slate-200"
-                  } transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none  hover:text-blue-400  `
+                  }  transition duration-400 ease-in-out relative border-none bg-transparent cursor-pointer focus:outline-none  hover:text-blue-400  `
                 }
                 aria-current="page"
               >
