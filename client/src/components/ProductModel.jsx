@@ -22,7 +22,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
                 <img
                   src={product.imageSrc}
                   alt={product.imageAlt}
-                  className="rounded-lg max-h-[500px] w-full object-contain"
+                  className="rounded-lg max-h-[400px] w-full object-contain"
                 />
               </div>
 
@@ -35,7 +35,7 @@ const ProductModal = ({ isOpen, onClose, product }) => {
             </div>
           </div>
         </div>
-        <div className="px-6 py-3 bg-gray-50 flex justify-end">
+        <div className="px-6 py-3 bg-gray-50 flex justify-end rounded-lg">
           <button
             onClick={onClose}
             className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"

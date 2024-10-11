@@ -7,7 +7,7 @@
 }
 
 .slick-slide {
-  min-height: 600px;
+  min-height: fit-content;
 }
 
 .slick-dots li.slick-active button:before {

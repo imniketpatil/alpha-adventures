@@ -46,7 +46,7 @@ const Header = ({ type }) => {
     refetch,
   } = useQuery({ queryKey: ["TrekName"], queryFn: useGetTrekTypes });
 
-  console.log("treks", treks);
+  // console.log("treks", treks);
 
   const handleTrekListClick = (trekId) => {
     // console.log("trekId", trekId);

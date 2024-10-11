@@ -27,18 +27,20 @@ function EditDateForTrek() {
     queryFn: async () => getDateDetailsById(trekId),
   });
 
+  console.log(fetchedTrekGuide);
+
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [showStartDate, setShowStartDate] = useState("");
   const [showEndDate, setShowEndDate] = useState("");
-  const [withTravelDescription, setWithTravelDescription] = useState("");
-  const [withTravelFrom, setwithTravelFrom] = useState("");
-  const [withTravelTo, setwithTravelTo] = useState("");
-  const [withTravelPrice, setWithTravelPrice] = useState("");
-  const [withoutTravelDescription, setWithoutTravelDescription] = useState("");
-  const [withoutTravelFrom, setWithoutTravelFrom] = useState("");
-  const [withoutTravelTo, setWithoutTravelTo] = useState("");
-  const [withoutTravelPrice, setWithoutTravelPrice] = useState("");
+  const [withTravel, setwithTravel] = useState([
+    { description: "", from: "", to: "", price: 0 },
+  ]);
+
+  const [withoutTravel, setwithoutTravel] = useState([
+    { description: "", from: "", to: "", price: 0 },
+  ]);
+
   const [scheduleTimeline, setScheduleTimeline] = useState([]);
 
   useEffect(() => {
@@ -51,14 +53,12 @@ function EditDateForTrek() {
       setEndDate(endDate);
       setShowStartDate(formatDate(startDate));
       setShowEndDate(formatDate(endDate));
-      setWithTravelDescription(withTravel.description);
-      setwithTravelFrom(withTravel.from);
-      setwithTravelTo(withTravel.to);
-      setWithTravelPrice(withTravel.price);
-      setWithoutTravelDescription(withoutTravel.description);
-      setWithoutTravelFrom(withoutTravel.from);
-      setWithoutTravelTo(withoutTravel.to);
-      setWithoutTravelPrice(withoutTravel.price);
+      setwithoutTravel(
+        withoutTravel || [{ description: "", from: "", to: "", price: 0 }]
+      );
+      setwithTravel(
+        withTravel || [{ description: "", from: "", to: "", price: 0 }]
+      );
       setScheduleTimeline(trekTimelineData.scheduleTimeline || []);
     }
   }, [fetchedTrekGuide]);
@@ -73,14 +73,17 @@ function EditDateForTrek() {
     if (
       !startDate ||
       !endDate ||
-      !withTravelDescription ||
-      !withTravelFrom ||
-      !withTravelTo ||
-      !withTravelPrice ||
-      !withoutTravelDescription ||
-      !withoutTravelFrom ||
-      !withoutTravelTo ||
-      !withoutTravelPrice ||
+      withTravel.some(
+        (withT) =>
+          !withT.description || !withT.from || !withT.to || !withT.price
+      ) ||
+      withoutTravel.some(
+        (withoutT) =>
+          !withoutT.description ||
+          !withoutT.from ||
+          !withoutT.to ||
+          !withoutT.price
+      ) ||
       scheduleTimeline.some(
         (timeline) => !timeline.day || !timeline.work || !timeline.time
       )
@@ -91,19 +94,17 @@ function EditDateForTrek() {
     setFormError("");
     setSuccess("");
 
-    const formData = {
-      startDate,
-      endDate,
-      withTravelDescription,
-      withTravelFrom,
-      withTravelTo,
-      withTravelPrice,
-      withoutTravelDescription,
-      withoutTravelFrom,
-      withoutTravelTo,
-      withoutTravelPrice,
-      scheduleTimeline,
-    };
+    const formData = new FormData();
+
+    formData.append("startDate", startDate);
+    formData.append("endDate", endDate);
+
+    // Important: Stringify travel-related fields
+    formData.append("withTravel", JSON.stringify(withTravel));
+    formData.append("withoutTravel", JSON.stringify(withoutTravel));
+
+    // Stringify scheduleTimeline
+    formData.append("scheduleTimeline", JSON.stringify(scheduleTimeline));
 
     try {
       await mutation.mutateAsync({ id: trekId, formData });
@@ -117,14 +118,8 @@ function EditDateForTrek() {
   const resetForm = () => {
     setStartDate("");
     setEndDate("");
-    setWithTravelDescription("");
-    setwithTravelFrom("");
-    setwithTravelTo("");
-    setWithTravelPrice("");
-    setWithoutTravelDescription("");
-    setWithoutTravelFrom("");
-    setWithoutTravelTo("");
-    setWithoutTravelPrice("");
+    setwithTravel([{ description: "", from: "", to: "", price: 0 }]);
+    setwithoutTravel([{ description: "", from: "", to: "", price: 0 }]);
     setScheduleTimeline([{ day: "", time: "", work: "" }]);
     setFormError("");
     setSuccess("");
@@ -193,125 +188,176 @@ function EditDateForTrek() {
               </div>
             </div>
             <hr />
-            <h1 className="text-2xl font-bold text-gray-700">Trek Prices</h1>
-            <div className="flex flex-col">
-              <label
-                htmlFor="withTravelDescription"
-                className="mb-2 text-gray-700"
-              >
-                With Travel Description
+            <div className="flex flex-col gap-2">
+              <label htmlFor="WithTravel" className="mb-2 text-gray-700">
+                With Travel
               </label>
-              <textarea
-                id="withTravelDescription"
-                className="p-2 border border-gray-300 rounded-lg"
-                value={withTravelDescription}
-                onChange={(e) => setWithTravelDescription(e.target.value)}
-                required
-              />
-            </div>
-            <div className="flex gap-5">
-              <div className="flex flex-col flex-1">
-                <label htmlFor="withTravelFrom" className="mb-2 text-gray-700">
-                  With Travel From
-                </label>
-                <input
-                  type="text"
-                  id="withTravelFrom"
-                  className="p-2 border border-gray-300 rounded-lg"
-                  value={withTravelFrom}
-                  onChange={(e) => setwithTravelFrom(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="flex flex-col flex-1">
-                <label htmlFor="withTravelTo" className="mb-2 text-gray-700">
-                  With Travel To
-                </label>
-                <input
-                  type="text"
-                  id="withTravelTo"
-                  className="p-2 border border-gray-300 rounded-lg"
-                  value={withTravelTo}
-                  onChange={(e) => setwithTravelTo(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="flex flex-col flex-1">
-                <label htmlFor="withTravelPrice" className="mb-2 text-gray-700">
-                  With Travel Price
-                </label>
-                <input
-                  type="number"
-                  id="withTravelPrice"
-                  className="p-2 border border-gray-300 rounded-lg"
-                  value={withTravelPrice}
-                  onChange={(e) => setWithTravelPrice(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-            <hr />
-            <div className="flex flex-col">
-              <label
-                htmlFor="withoutTravelDescription"
-                className="mb-2 text-gray-700"
+              {withTravel.map((withT, index) => (
+                <div key={index} className="flex flex-col gap-5">
+                  <div className="flex ">
+                    <input
+                      type="text"
+                      placeholder="With Travel Description"
+                      value={withT.description}
+                      onChange={(e) => {
+                        const newwithTravelDetails = [...withTravel];
+                        newwithTravelDetails[index].description =
+                          e.target.value;
+                        setwithTravel(newwithTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <input
+                      type="text"
+                      placeholder="With Travel To"
+                      value={withT.from}
+                      onChange={(e) => {
+                        const newwithTravelDetails = [...withTravel];
+                        newwithTravelDetails[index].from = e.target.value;
+                        setwithTravel(newwithTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="With Travel Price"
+                      value={withT.to}
+                      onChange={(e) => {
+                        const newwithTravelDetails = [...withTravel];
+                        newwithTravelDetails[index].to = e.target.value;
+                        setwithTravel(newwithTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                    <input
+                      type="number"
+                      placeholder="With Travel From"
+                      value={withT.price}
+                      onChange={(e) => {
+                        const newwithTravelDetails = [...withTravel];
+                        newwithTravelDetails[index].price = e.target.value;
+                        setwithTravel(newwithTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newwithTravelDetails = [...withTravel];
+                      newwithTravelDetails.splice(index, 1);
+                      setwithTravel(newwithTravelDetails);
+                    }}
+                    className="p-2 border border-gray-300 rounded-lg bg-red-500 text-white"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  setwithTravel([
+                    ...withTravel,
+                    { description: "", from: "", to: "", price: 0 },
+                  ])
+                }
+                className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"
               >
-                Without Travel Description
-              </label>
-              <textarea
-                id="withoutTravelDescription"
-                className="p-2 border border-gray-300 rounded-lg"
-                value={withoutTravelDescription}
-                onChange={(e) => setWithoutTravelDescription(e.target.value)}
-                required
-              />
+                Add Schedule
+              </button>
             </div>
-            <div className="flex gap-5">
-              <div className="flex flex-col flex-1">
-                <label
-                  htmlFor="withoutTravelFrom"
-                  className="mb-2 text-gray-700"
-                >
-                  Without Travel From
-                </label>
-                <input
-                  type="text"
-                  id="withoutTravelFrom"
-                  className="p-2 border border-gray-300 rounded-lg"
-                  value={withoutTravelFrom}
-                  onChange={(e) => setWithoutTravelFrom(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="flex flex-col flex-1">
-                <label htmlFor="withoutTravelTo" className="mb-2 text-gray-700">
-                  Without Travel To
-                </label>
-                <input
-                  type="text"
-                  id="withoutTravelTo"
-                  className="p-2 border border-gray-300 rounded-lg"
-                  value={withoutTravelTo}
-                  onChange={(e) => setWithoutTravelTo(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="flex flex-col flex-1">
-                <label
-                  htmlFor="withoutTravelPrice"
-                  className="mb-2 text-gray-700"
-                >
-                  Without Travel Price
-                </label>
-                <input
-                  type="number"
-                  id="withoutTravelPrice"
-                  className="p-2 border border-gray-300 rounded-lg"
-                  value={withoutTravelPrice}
-                  onChange={(e) => setWithoutTravelPrice(e.target.value)}
-                  required
-                />
-              </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="WithoutTravel" className="mb-2 text-gray-700">
+                Without Travel
+              </label>
+              {withoutTravel.map((withoutT, index) => (
+                <div key={index} className="flex flex-col gap-5">
+                  <div className="flex ">
+                    <input
+                      type="text"
+                      placeholder="With Travel Description"
+                      value={withoutT.description}
+                      onChange={(e) => {
+                        const newwithTravelDetails = [...withoutTravel];
+                        newwithTravelDetails[index].description =
+                          e.target.value;
+                        setwithoutTravel(newwithTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <input
+                      type="text"
+                      placeholder="With Travel To"
+                      value={withoutT.from}
+                      onChange={(e) => {
+                        const newwithoutTravelDetails = [...withoutTravel];
+                        newwithoutTravelDetails[index].from = e.target.value;
+                        setwithoutTravel(newwithoutTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="With Travel Price"
+                      value={withoutT.to}
+                      onChange={(e) => {
+                        const newwithoutTravelDetails = [...withoutTravel];
+                        newwithoutTravelDetails[index].to = e.target.value;
+                        setwithoutTravel(newwithoutTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                    <input
+                      type="number"
+                      placeholder="With Travel From"
+                      value={withoutT.price}
+                      onChange={(e) => {
+                        const newwithoutTravelDetails = [...withoutTravel];
+                        newwithoutTravelDetails[index].price = e.target.value;
+                        setwithoutTravel(newwithoutTravelDetails);
+                      }}
+                      className="p-2 border border-gray-300 rounded-lg flex-1"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newwithoutTravelDetails = [...withoutTravel];
+                      newwithoutTravelDetails.splice(index, 1);
+                      setwithoutTravel(newwithoutTravelDetails);
+                    }}
+                    className="p-2 border border-gray-300 rounded-lg bg-red-500 text-white"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  setwithoutTravel([
+                    ...withoutTravel,
+                    { description: "", from: "", to: "", price: 0 },
+                  ])
+                }
+                className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"
+              >
+                Add Schedule
+              </button>
             </div>
             <hr />
             <div>

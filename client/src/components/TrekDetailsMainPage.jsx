@@ -42,6 +42,8 @@ function TrekDetailsMainPage() {
       console.error("Error fetching Trek Date Details:", error),
   });
 
+  console.log(trekDateData);
+
   const trekDetails = trekData[0] || {};
   const {
     trekName,
@@ -51,6 +53,7 @@ function TrekDetailsMainPage() {
     trekLocation,
     trekHighlights,
     trekDescription,
+    subDescription,
     trekType = [],
     trekTypeDescription = [],
     trekInfo,
@@ -59,8 +62,6 @@ function TrekDetailsMainPage() {
     trekCancellationPolicy,
     trekDifficulty,
     images,
-    withTravel = [],
-    withoutTravel = [],
     allStartDate = {},
     allEndDate = [],
   } = trekDetails;
@@ -72,6 +73,8 @@ function TrekDetailsMainPage() {
     withoutTravel: startDateWithoutTravel = [],
   } = allStartDate;
 
+  console.log(allStartDate);
+
   const {
     trekTimelineDetails = {},
     endDate,
@@ -80,12 +83,15 @@ function TrekDetailsMainPage() {
     dateDifference = [],
   } = trekDateData[0] || {};
 
-  const {
-    withTravel: withTravelByDateId = [],
-    withoutTravel: withoutTravelByDateId = [],
-  } = priceDetails;
+  const { withTravel: withTravel = [], withoutTravel: withoutTravel = [] } =
+    priceDetails;
+
+  console.log(withTravel);
+  console.log(withoutTravel);
 
   const { scheduleTimeline = [] } = trekTimelineDetails;
+
+  console.log("trekDateData", trekDateData);
 
   return (
     <div>
@@ -110,6 +116,7 @@ function TrekDetailsMainPage() {
         trekTitle={trekTitle}
         trekLocation={trekLocation}
         trekDescription={trekDescription}
+        subDescription={subDescription}
         trekType={trekType}
         trekTypeDescription={trekTypeDescription}
         dateid={dateid}
@@ -117,6 +124,8 @@ function TrekDetailsMainPage() {
         startDateWithTravel={startDateWithTravel}
         startDateWithoutTravel={startDateWithoutTravel}
         allEndDate={allEndDate}
+        withTravel={withTravel}
+        withoutTravel={withoutTravel}
         isLoadingDate={isLoadingDate}
         isLoadingTrek={isLoadingTrek}
       />
@@ -130,10 +139,7 @@ function TrekDetailsMainPage() {
         isLoadingTrek={isLoadingTrek}
       />
       <TrekSheduleAndDateDetails
-        startDate={startDate}
-        endDate={endDate}
-        withTravelByDateId={withTravelByDateId}
-        withoutTravelByDateId={withoutTravelByDateId}
+        trekDateData={trekDateData}
         scheduleTimeline={scheduleTimeline}
       />
     </div>

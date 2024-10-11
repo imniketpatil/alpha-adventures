@@ -12,6 +12,8 @@ const useCreateTrek = () => {
 
   return useMutation({
     mutationFn: (formData) => {
+      console.log(formData);
+
       return axios.post(`${client_url}/trek/create-trek`, formData, {
         withCredentials: true,
       });

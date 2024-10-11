@@ -19,6 +19,9 @@ function EditTrekForm({ setOpenTrekForm }) {
   const [altitude, setAltitude] = useState(0);
   const [trekLocation, setTrekLocation] = useState("");
   const [trekDescription, setTrekDescription] = useState("");
+  const [trekSubDescription, setTrekSubDescription] = useState([
+    { descTitle: "", desc: "" },
+  ]);
   const [trekInfo, setTrekInfo] = useState([]);
   const [trekHighlights, setTrekHighlights] = useState([]);
   const [trekType, setTrekType] = useState("");
@@ -47,6 +50,8 @@ function EditTrekForm({ setOpenTrekForm }) {
     queryFn: async () => getTrekDetailsById(trekId),
   });
 
+  console.log("fetchedTrekData", fetchedTrekData);
+
   useEffect(() => {
     if (fetchedTrekData) {
       const {
@@ -57,6 +62,7 @@ function EditTrekForm({ setOpenTrekForm }) {
         altitude,
         trekLocation,
         trekDescription,
+        subDescription,
         trekInfo,
         trekHighlights,
         trekTypeName,
@@ -73,6 +79,7 @@ function EditTrekForm({ setOpenTrekForm }) {
       setAltitude(altitude || 0);
       setTrekLocation(trekLocation || "");
       setTrekDescription(trekDescription || "");
+      setTrekSubDescription(subDescription || [{ descTitle: "", desc: "" }]);
       setTrekInfo(trekInfo || []);
       setTrekHighlights(trekHighlights || []);
       setTrekType(trekTypeName || "");
@@ -113,6 +120,8 @@ function EditTrekForm({ setOpenTrekForm }) {
 
     formData.append("suitableForAge", suitableForAge);
     formData.append("trekDescription", trekDescription);
+    formData.append("subDescription", JSON.stringify(trekSubDescription));
+
     formData.append("trekInfo", JSON.stringify(trekInfo));
     formData.append("trekHighlights", JSON.stringify(trekHighlights));
     formData.append("trekInclusions", JSON.stringify(trekInclusions));
@@ -144,6 +153,8 @@ function EditTrekForm({ setOpenTrekForm }) {
     setAltitude(0);
     setTrekLocation("");
     setTrekDescription("");
+    setTrekSubDescription([{ descTitle: "", desc: "" }]);
+
     setTrekInfo([]);
     setTrekHighlights([]);
     setTrekType("");
@@ -297,6 +308,62 @@ function EditTrekForm({ setOpenTrekForm }) {
                 onChange={(e) => setTrekDescription(e.target.value)}
                 required
               />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label htmlFor="subDesc" className="mb-2 text-gray-700">
+                Sub Description
+              </label>
+              {trekSubDescription.map((subDesc, index) => (
+                <div key={index} className="flex gap-5">
+                  <input
+                    type="text"
+                    placeholder="Desc Title"
+                    value={subDesc.descTitle}
+                    onChange={(e) => {
+                      const newSubDescription = [...trekSubDescription];
+                      newSubDescription[index].descTitle = e.target.value;
+                      setTrekSubDescription(newSubDescription);
+                    }}
+                    className="p-2 border border-gray-300 rounded-lg flex-1"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Description"
+                    value={subDesc.desc}
+                    onChange={(e) => {
+                      const newSubDescription = [...trekSubDescription];
+                      newSubDescription[index].desc = e.target.value;
+                      setTrekSubDescription(newSubDescription);
+                    }}
+                    className="p-2 border border-gray-300 rounded-lg flex-1"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newSubDescription = [...trekSubDescription];
+                      newSubDescription.splice(index, 1);
+                      setTrekSubDescription(newSubDescription);
+                    }}
+                    className="p-2 border border-gray-300 rounded-lg bg-red-500 text-white"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  setTrekSubDescription([
+                    ...trekSubDescription,
+                    { descTitle: "", desc: "" },
+                  ])
+                }
+                className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"
+              >
+                Add New Description
+              </button>
             </div>
 
             <hr className="h-4" />

@@ -6,10 +6,13 @@ import LoadingSpinner from "./LoadingSpinner";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 function TrekInfoAndDate({
+  withTravel,
+  withoutTravel,
   trekName,
   trekTitle,
   trekType,
   trekDescription,
+  subDescription,
   trekLocation,
   trekTypeDescription,
   dateid,
@@ -70,6 +73,9 @@ function TrekInfoAndDate({
     window.open(url, "_blank");
   };
 
+  console.log(withTravel);
+  console.log(withoutTravel);
+
   return (
     <div
       ref={trekRef}
@@ -97,9 +103,21 @@ function TrekInfoAndDate({
                 transition: "max-height 0.3s ease",
               }}
             >
-              <p className="text-lg text-gray-800 leading-relaxed mb-8">
+              <p className="text-lg text-gray-800 leading-relaxed mb-4">
                 {trekDescription}
               </p>
+              {subDescription
+                ? subDescription.map((subD, index) => (
+                    <>
+                      <h1 className="text-xl font-medium text-gray-700 flex items-center mb-2">
+                        {subD.descTitle}
+                      </h1>
+                      <p className="text-lg text-gray-800 leading-relaxed mb-4">
+                        {subD.desc}
+                      </p>
+                    </>
+                  ))
+                : null}
               {!isExpanded && (
                 <div
                   style={{
@@ -192,55 +210,77 @@ function TrekInfoAndDate({
               <p className="text-gray-700 text-lg">{trekTypeDescription}</p>
             </div> */}
 
-          <div className="lg:w-1/3 bg-gray-50 p-6 rounded-lg shadow-md border-4 border-yellow-500">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+          <div className="lg:w-1/3 bg-gray-50 px-6 py-3 rounded-lg shadow-lg border-4 border-yellow-400">
+            <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-6">
               Trek Dates with Prices
             </h2>
             {hasDates ? (
               date.map((d, index) => (
                 <div
                   key={index}
-                  className={`mb-4  hover:cursor-pointer rounded-lg transition-transform duration-200 transform ${
+                  className={`mb-4 p-2 transition-transform duration-300 transform hover:scale-105 rounded-lg shadow-md ${
                     activeIndex === index
-                      ? "bg-yellow-100 scale-105 "
-                      : "hover:bg-yellow-50 hover:scale-105"
+                      ? "bg-yellow-100 scale-105 shadow-lg"
+                      : "bg-white hover:bg-yellow-100"
                   }`}
                   onClick={() => toggleActive(index, dateid[index])}
                 >
-                  <div className="p-4 text-center">
-                    <p className="text-xl font-bold text-gray-800 mb-2">
+                  <div className="py-1 text-center">
+                    <p className="text-lg font-bold text-slate-800 mb-1">
                       Batch {index + 1}
                     </p>
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-md font-bold text-gray-600">
                       {formatDate(d)} to {formatDate(allEndDate[index])}
                     </p>
                   </div>
                   {activeIndex === index && (
-                    <div className="p-4">
-                      <div className="flex justify-between mb-2">
-                        <span className="font-bold text-gray-700">
+                    <div className="py-2 px-4 bg-yellow-100 rounded-b-lg">
+                      <div className="mb-2">
+                        <p className="font-bold text-base text-gray-800 mb-1">
                           Price with Travel:
-                        </span>
-                        <span className="text-green-700 font-bold">
-                          ₹{" "}
-                          {startDateWithTravel[index]?.toLocaleString() ||
-                            "N/A"}
-                        </span>
+                        </p>
+                        <div className="space-y-2">
+                          {withTravel.map((withT, idx) => (
+                            <div
+                              key={idx}
+                              className="flex justify-between items-center bg-yellow-100  rounded-lg "
+                            >
+                              <p className="font-semibold text-gray-800">
+                                {withT.description}
+                              </p>
+                              <p className="text-green-700 font-bold">
+                                {withT.price}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex justify-between mb-4">
-                        <span className="font-bold text-gray-700">
+
+                      <div className="mb-2">
+                        <p className="font-bold text-base text-gray-800 mb-1">
                           Price without Travel:
-                        </span>
-                        <span className="text-green-700 font-bold">
-                          ₹{" "}
-                          {startDateWithoutTravel[index]?.toLocaleString() ||
-                            "N/A"}
-                        </span>
+                        </p>
+                        <div className="space-y-2">
+                          {withoutTravel.map((withoutT, idx) => (
+                            <div
+                              key={idx}
+                              className="flex justify-between items-center bg-yellow-100  rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                            >
+                              <p className="font-semibold text-gray-800">
+                                {withoutT.description}
+                              </p>
+                              <p className="text-green-700 font-bold">
+                                {withoutT.price}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
+
                       <button
-                        className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105"
+                        className="w-full mt-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-600 hover:to-purple-600 text-white font-bold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105"
                         aria-label={`Enquire for ${trekName}`}
-                        onClick={() => handleBooking(trekName, date[index])} // Pass the date parameter here
+                        onClick={() => handleBooking(trekName, date[index])}
                       >
                         Enquire For {trekName}
                       </button>

@@ -11,6 +11,8 @@ import FAQs from "./pages/FAQs.jsx";
 import Shop from "./pages/Shop.jsx";
 import TrekDetails from "./pages/TrekDetails.jsx";
 import TrekTypeTreksPage from "./pages/TrekTypeTreksPage.jsx";
+import TermsAndCondition from "./pages/TermsAndCondition.jsx";
+import RefundCancellationPolicy from "./pages/RefundCancellationPolicy.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -22,6 +24,11 @@ function App() {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/trekdetails" element={<TrekDetails />} />
         <Route path="/trektypetreks" element={<TrekTypeTreksPage />} />
+        <Route path="/termsandcondition" element={<TermsAndCondition />} />
+        <Route
+          path="/RefundCancellationPolicy"
+          element={<RefundCancellationPolicy />}
+        />
       </>
     )
   );

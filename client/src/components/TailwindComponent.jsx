@@ -1,105 +1,140 @@
 import React, { useState } from "react";
-import Bed from "/images/bed.jpeg";
-import Meal from "/images/Meal.jpeg";
-import Bus from "/images/Bus.png";
-import Guide from "/images/Travel.jpeg";
-import LocalHotelTwoToneIcon from "@mui/icons-material/LocalHotelTwoTone";
-import RestaurantMenuTwoToneIcon from "@mui/icons-material/RestaurantMenuTwoTone";
-import DirectionsBusTwoToneIcon from "@mui/icons-material/DirectionsBusTwoTone";
-import EmojiPeopleTwoToneIcon from "@mui/icons-material/EmojiPeopleTwoTone";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import CelebrationIcon from "@mui/icons-material/Celebration";
+import VrpanoIcon from "@mui/icons-material/Vrpano";
+import GroupsIcon from "@mui/icons-material/Groups";
+import RecyclingIcon from "@mui/icons-material/Recycling";
+import HikingIcon from "@mui/icons-material/Hiking";
+import PolicyIcon from "@mui/icons-material/Policy";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import HandshakeIcon from "@mui/icons-material/Handshake";
+import AnnouncementIcon from "@mui/icons-material/Announcement";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
+import HealingIcon from "@mui/icons-material/Healing";
 
 const TailwindComponent = () => {
-  const Perks = [
+  const uniqueSellingPoints = [
     {
       id: 1,
-      image: Bed,
-      title: "Stays",
-      description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-      icon: <LocalHotelTwoToneIcon />,
+      title: "Unmatched Safety Standards",
+      points: [
+        "Your safety is our top priority; we follow industry-leading safety protocols.",
+        "Guides are trained in first aid and emergency response for your peace of mind.",
+      ],
+      icon: <HealthAndSafetyIcon fontSize="medium" />,
     },
     {
       id: 2,
-      image: Meal,
-      title: "Meals",
-      description:
-        "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
-      icon: <RestaurantMenuTwoToneIcon />,
+      title: "Exceptional Customer Experience",
+      points: [
+        "We tailor each trek to your preferences for a seamless experience.",
+        "Continuous improvement based on your feedback ensures better journeys.",
+      ],
+      icon: <AutoAwesomeIcon fontSize="medium" />,
     },
     {
       id: 3,
-      image: Bus,
-      title: "Transport",
-      description:
-        "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
-      icon: <DirectionsBusTwoToneIcon />,
+      title: "Passionate and Dedicated Team",
+      points: [
+        "Our guides are passionate adventurers committed to your experience.",
+        "Their enthusiasm makes every trek joyful and enriching.",
+      ],
+      icon: <GroupsIcon fontSize="medium" />,
     },
     {
       id: 4,
-      image: Guide,
-      title: "Guide",
-      description:
-        "Curabitur aliquam, augue sed scelerisque ultricies, nunc sapien varius sapien, a bibendum magna velit vitae odio.",
-      icon: <EmojiPeopleTwoToneIcon />,
+      title: "Fun-Filled and Engaging Journeys",
+      points: [
+        "Incorporate fun activities and cultural experiences during treks.",
+        "Every moment is an opportunity for laughter and memories.",
+      ],
+      icon: <CelebrationIcon fontSize="medium" />,
+    },
+    {
+      id: 5,
+      title: "Life-Changing Perspectives",
+      points: [
+        "Treks foster a deep connection with nature and new life perspectives.",
+        "Rediscover yourself and your place in the world through our adventures.",
+      ],
+      icon: <VrpanoIcon fontSize="medium" />,
+    },
+    {
+      id: 6,
+      title: "Commitment to Eco-Friendly Practices",
+      points: [
+        "Follow strict Leave No Trace principles to preserve natural beauty.",
+        "Your trekking helps protect pristine landscapes for future generations.",
+      ],
+      icon: <RecyclingIcon fontSize="medium" />,
+    },
+    {
+      id: 7,
+      title: "Adventure for All Levels",
+      points: [
+        "Wide range of treks caters to all fitness levels and interests.",
+        "Everyone can experience the thrill of the outdoors with us.",
+      ],
+      icon: <HikingIcon fontSize="medium" />,
     },
   ];
 
-  const [selectedImage, setSelectedImage] = useState(Perks[0].image);
+  const [selectedImage, setSelectedImage] = useState(
+    uniqueSellingPoints[0].image
+  );
   const [activeId, setActiveId] = useState(1);
 
   const handleClick = (id) => {
     setActiveId(id);
-    const perk = Perks.find((perk) => perk.id === id);
+    const perk = uniqueSellingPoints.find((perk) => perk.id === id);
     if (perk) {
       setSelectedImage(perk.image);
     }
   };
 
   return (
-    <div className="overflow-hidden bg-slate-100 py-24 font-body sm:py-20">
+    <div className="overflow-hidden bg-slate-100 py-24 font-body sm:py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div className="lg:pr-8 lg:pt-4">
-            <div className="lg:max-w-lg">
-              <h2 className="text-sm font-semibold leading-7 text-indigo-600">
-                Explore Beyond Limits, Embrace the Journey
-              </h2>
-              <p className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                Why Trek With Us
-              </p>
+        <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 ">
+          {/* Content Column */}
+          <div className="flex flex-col justify-center items-center lg:pr-8 lg:pt-4">
+            <h2 className="text-sm font-semibold text-center leading-7 text-indigo-600">
+              Explore Beyond Limits, Embrace the Journey
+            </h2>
+            <p className="mt-2 text-2xl text-center font-bold tracking-tight text-gray-900 sm:text-3xl">
+              Why Trek With Us
+            </p>
 
-              <dl className="mt-10 max-w-xl space-y-2 text-base leading-7 text-gray-600 lg:max-w-none ">
-                {Perks.map((perk) => (
-                  <div
-                    key={perk.id}
-                    className={`relative pl-9 p-2 hover:cursor-pointer ${
-                      activeId === perk.id
-                        ? "shadow-custom py-6    bg-white rounded-lg"
-                        : ""
-                    }`}
-                    onClick={() => handleClick(perk.id)}
-                  >
-                    <dt className=" flex items-center font-semibold text-gray-900">
-                      <div
-                        className={`absolute ${
-                          activeId === perk.id ? "left-2 top-6" : "left-2 top-2"
-                        } text-indigo-600`}
-                      >
-                        {perk.icon}
-                      </div>
-                      {perk.title}
-                    </dt>
-                    <dd className="inline"> {perk.description}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+            <dl className="mt-10 max-w-xl space-y-6 text-base leading-7 text-gray-600 lg:max-w-none">
+              {uniqueSellingPoints.map((perk) => (
+                <div
+                  key={perk.id}
+                  className={`relative p-4 transition-transform transform rounded-lg shadow-lg hover:shadow-xl  bg-white ${
+                    activeId === perk.id
+                      ? "border-2 border-indigo-600"
+                      : "border border-transparent"
+                  }`}
+                  onClick={() => handleClick(perk.id)}
+                >
+                  <dt className="flex items-center font-semibold text-gray-900 justify-center">
+                    <div className="mr-3 text-indigo-600">{perk.icon}</div>
+                    {perk.title}
+                  </dt>
+                  {perk.points.map((point) => (
+                    <dd className="mt-1 text-gray-600 text-center">{point}</dd>
+                  ))}
+                </div>
+              ))}
+            </dl>
           </div>
+          {/* Image Column */}
           <div className="flex items-center justify-center">
             <img
               src={selectedImage}
               alt="Selected Perk"
-              className="max-w-full h-auto rounded-lg shadow-lg"
+              className="max-w-full h-auto rounded-lg "
             />
           </div>
         </div>
