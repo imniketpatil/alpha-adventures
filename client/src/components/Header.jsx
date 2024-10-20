@@ -119,7 +119,7 @@ const Header = ({ type }) => {
                 onClick={handleDropdownToggle}
                 className="flex items-center w-full justify-between py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-blue-400   text-white"
               >
-                Upcoming Trek{" "}
+                Upcoming Trips{" "}
                 <svg
                   className="w-2.5 h-2.5 ms-2.5"
                   aria-hidden="true"

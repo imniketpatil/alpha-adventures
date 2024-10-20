@@ -1,4 +1,9 @@
 import React from "react";
+import AboutUs from "/images/About Us.jpg";
+import OurVision from "/images/Our Vision Main.jpg";
+import OurMission from "/images/Our Mission.jpg";
+import WeAim from "/images/We aim to_.jpg";
+import OurCommitment from "/images/IMG_7465.jpg";
 
 const sections = [
   {
@@ -17,8 +22,7 @@ const sections = [
         exploring the great outdoors while preserving its pristine beauty.
       </>
     ),
-    imageUrl:
-      "https://images.pexels.com/photos/7163372/pexels-photo-7163372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imageUrl: AboutUs,
   },
   {
     title: "Our Vision",
@@ -29,8 +33,7 @@ const sections = [
       environment, ensuring that future generations can also bask in the
       glory of untouched landscapes and thriving wildlife.
     `,
-    imageUrl:
-      "https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imageUrl: OurVision,
   },
   {
     title: "Our Mission",
@@ -40,8 +43,7 @@ const sections = [
       horizons, discover their potential, and embrace a healthier,
       more active lifestyle.
     `,
-    imageUrl:
-      "https://images.pexels.com/photos/2609459/pexels-photo-2609459.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    imageUrl: OurMission,
   },
 ];
 
@@ -66,8 +68,7 @@ const Aims = [
         text: "Deliver quality tours that create lasting memories and foster a lifelong appreciation for the natural world.",
       },
     ],
-    imageUrl:
-      "https://images.pexels.com/photos/2424236/pexels-photo-2424236.jpeg?auto=compress&cs=tinysrgb&w=600",
+    imageUrl: WeAim,
   },
   // Add other sections here if needed
 ];
@@ -157,7 +158,7 @@ function Details() {
           <div className="w-full h-auto">
             <img
               className="object-cover object-center w-full h-full md:h-auto"
-              src="https://images.pexels.com/photos/711009/pexels-photo-711009.jpeg"
+              src={OurCommitment}
               alt="Image Error"
             />
           </div>

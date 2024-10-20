@@ -13,6 +13,13 @@ import AnnouncementIcon from "@mui/icons-material/Announcement";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import HealingIcon from "@mui/icons-material/Healing";
+import UnmatchedSafetyStandards from "/images/Unmatched Safety Standards.png";
+import ExceptionalCustomerExperience from "/images/Exceptional Customer Experience.jpg";
+import PassionateandDedicatedTeam from "/images/Passionate and Dedicated Team.jpg";
+import FunFilledandEngagingJourneys from "/images/Fun-Filled and Engaging Journeys.jpg";
+import LifeChangingPerspectives from "/images/Life-Changing Perspectives.jpg";
+import IMG_7451 from "/images/IMG_7451.jpg";
+import AdventureforAllLevels from "/images/Adventure for All Levels.jpg";
 
 const TailwindComponent = () => {
   const uniqueSellingPoints = [
@@ -24,6 +31,7 @@ const TailwindComponent = () => {
         "Guides are trained in first aid and emergency response for your peace of mind.",
       ],
       icon: <HealthAndSafetyIcon fontSize="medium" />,
+      image: UnmatchedSafetyStandards,
     },
     {
       id: 2,
@@ -33,6 +41,7 @@ const TailwindComponent = () => {
         "Continuous improvement based on your feedback ensures better journeys.",
       ],
       icon: <AutoAwesomeIcon fontSize="medium" />,
+      image: ExceptionalCustomerExperience,
     },
     {
       id: 3,
@@ -42,6 +51,7 @@ const TailwindComponent = () => {
         "Their enthusiasm makes every trek joyful and enriching.",
       ],
       icon: <GroupsIcon fontSize="medium" />,
+      image: PassionateandDedicatedTeam,
     },
     {
       id: 4,
@@ -51,6 +61,7 @@ const TailwindComponent = () => {
         "Every moment is an opportunity for laughter and memories.",
       ],
       icon: <CelebrationIcon fontSize="medium" />,
+      image: FunFilledandEngagingJourneys,
     },
     {
       id: 5,
@@ -60,6 +71,7 @@ const TailwindComponent = () => {
         "Rediscover yourself and your place in the world through our adventures.",
       ],
       icon: <VrpanoIcon fontSize="medium" />,
+      image: LifeChangingPerspectives,
     },
     {
       id: 6,
@@ -69,6 +81,7 @@ const TailwindComponent = () => {
         "Your trekking helps protect pristine landscapes for future generations.",
       ],
       icon: <RecyclingIcon fontSize="medium" />,
+      image: IMG_7451,
     },
     {
       id: 7,
@@ -78,6 +91,7 @@ const TailwindComponent = () => {
         "Everyone can experience the thrill of the outdoors with us.",
       ],
       icon: <HikingIcon fontSize="medium" />,
+      image: AdventureforAllLevels,
     },
   ];
 
