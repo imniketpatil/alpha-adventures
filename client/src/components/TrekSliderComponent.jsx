@@ -83,13 +83,13 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                     />
                   </div>
                   <div className="info flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
-                    <h2 className="text-xl font-bold text-indigo-600 mb-0 md:mb-2">
+                    <h2 className="text-xl font-bold text-indigo-600 mb-0 md:mb-2 text-center">
                       {trek.trekName}
                     </h2>
-                    <h3 className="text-md font-medium text-gray-700 mb-0 md:mb-4">
+                    <h3 className="text-md font-medium text-gray-700 mb-0 md:mb-4 text-center">
                       {trek.trekTitle}
                     </h3>
-                    <div className="w-full text-gray-600 mb-0 md:mb-4">
+                    {/* <div className="w-full text-gray-600 mb-0 md:mb-4">
                       <p className="mb-2 text-sm">
                         <span className="font-semibold">Type:</span>{" "}
                         {trek.trekType}
@@ -117,7 +117,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                             trek.trekDifficulty.slice(1)}
                         </p>
                       </div>
-                    </div>
+                    </div> */}
                     <button
                       className="button"
                       onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
