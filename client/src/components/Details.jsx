@@ -92,7 +92,7 @@ function Details() {
             </div>
             <div className="w-full h-auto flex justify-center items-center">
               <img
-                className="object-cover object-center max-h-[350px] w-auto md:w-auto aspect-video"
+                className="object-cover object-center max-h-[400px] w-auto md:w-auto aspect-video"
                 src={section.imageUrl}
                 alt={`${section.title} Image`}
               />
