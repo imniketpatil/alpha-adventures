@@ -218,7 +218,7 @@ function TrekInfoAndDate({
               date.map((d, index) => (
                 <div
                   key={index}
-                  className={`mb-4 p-2 transition-transform duration-300 transform hover:scale-105 rounded-lg shadow-md ${
+                  className={`mb-4 p-1 transition-transform duration-300 transform hover:scale-105 rounded-lg shadow-md ${
                     activeIndex === index
                       ? "bg-yellow-100 scale-105 shadow-lg"
                       : "bg-white hover:bg-yellow-100"
@@ -234,7 +234,7 @@ function TrekInfoAndDate({
                     </p>
                   </div>
                   {activeIndex === index && (
-                    <div className="py-2 px-4 bg-yellow-100 rounded-b-lg">
+                    <div className="py-2 px-2 bg-yellow-100 rounded-b-lg">
                       <div className="mb-2">
                         <p className="font-bold text-base text-gray-800 mb-1">
                           Price with Travel:

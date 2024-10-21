@@ -92,9 +92,9 @@ function Details() {
                 {section.text}
               </p>
             </div>
-            <div className="w-full h-auto">
+            <div className="w-full h-auto flex justify-center items-center">
               <img
-                className="object-cover object-center w-full h-full md:h-auto"
+                className="object-cover object-center max-h-[350px] w-auto md:w-auto"
                 src={section.imageUrl}
                 alt={`${section.title} Image`}
               />
@@ -122,9 +122,9 @@ function Details() {
                   ))}
                 </ul>
               </div>
-              <div className="w-full h-auto">
+              <div className="w-full h-auto flex justify-center items-center">
                 <img
-                  className="object-cover object-center w-full h-full md:h-auto"
+                  className="object-cover object-center max-w-[550px] h-auto md:h-auto"
                   src={aim.imageUrl}
                   alt={`${aim.title} Image`}
                 />
@@ -155,9 +155,9 @@ function Details() {
               ecosystems we explore.
             </p>
           </div>
-          <div className="w-full h-auto">
+          <div className="w-full h-auto flex justify-center items-center">
             <img
-              className="object-cover object-center w-full h-full md:h-auto"
+              className="object-cover object-center max-w-[450px] h-full md:h-auto"
               src={OurCommitment}
               alt="Image Error"
             />

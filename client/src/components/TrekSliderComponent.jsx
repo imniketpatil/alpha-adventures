@@ -83,10 +83,10 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                     />
                   </div>
                   <div className="info flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
-                    <h2 className="text-xl font-bold text-indigo-600 mb-0 md:mb-2 text-center">
+                    <h2 className="text-xl font-bold text-indigo-600 mb-2 md:mb-2 text-center">
                       {trek.trekName}
                     </h2>
-                    <h3 className="text-md font-medium text-gray-700 mb-0 md:mb-4 text-center">
+                    <h3 className="text-md font-medium text-gray-700 mb-2 md:mb-4 text-center">
                       {trek.trekTitle}
                     </h3>
                     {/* <div className="w-full text-gray-600 mb-0 md:mb-4">
@@ -119,11 +119,11 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                       </div>
                     </div> */}
                     <button
-                      className="button"
+                      className="button mb-2 md:mb-0"
                       onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
                     >
                       Get Trek
-                      <span className=" text-sm"> ─ Information & Dates</span>
+                      <span className=" text-sm "> ─ Information & Dates</span>
                     </button>
                   </div>
                 </div>
