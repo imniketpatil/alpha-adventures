@@ -18,7 +18,7 @@ export default function Testimonial() {
 
   const settings = {
     dots: true,
-    // arrows: true,
+    arrows: false,
     infinite: false,
     speed: 500,
     autoplay: true,
