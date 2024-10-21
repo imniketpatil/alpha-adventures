@@ -26,24 +26,22 @@ const sections = [
   },
   {
     title: "Our Vision",
-    text: `
-      At Alpha Adventures, we believe in living harmoniously with nature,
-      fostering a deep connection, love, and respect for the wild. Our
-      vision is to cultivate a community that values and protects the
-      environment, ensuring that future generations can also bask in the
-      glory of untouched landscapes and thriving wildlife.
-    `,
+    text: (
+      <>
+        At Alpha Adventures, we believe in living harmoniously with nature,
+        fostering a deep connection, love, and respect for the wild. Our vision
+        is to cultivate a community that values and protects the environment,
+        ensuring that future generations can also bask in the glory of untouched
+        landscapes and thriving wildlife.
+        <br />
+        <br />
+        We are driven by the desire to inspire, motivate, and educate. Our
+        mission is to empower individuals to explore beyond their horizons,
+        discover their potential, and embrace a healthier, more active
+        lifestyle.
+      </>
+    ),
     imageUrl: OurVision,
-  },
-  {
-    title: "Our Mission",
-    text: `
-      We are driven by the desire to inspire, motivate, and educate.
-      Our mission is to empower individuals to explore beyond their
-      horizons, discover their potential, and embrace a healthier,
-      more active lifestyle.
-    `,
-    imageUrl: OurMission,
   },
 ];
 
@@ -94,7 +92,7 @@ function Details() {
             </div>
             <div className="w-full h-auto flex justify-center items-center">
               <img
-                className="object-cover object-center max-h-[350px] w-auto md:w-auto"
+                className="object-cover object-center max-h-[350px] w-auto md:w-auto aspect-video"
                 src={section.imageUrl}
                 alt={`${section.title} Image`}
               />
@@ -106,7 +104,7 @@ function Details() {
             <div
               key={index}
               className={`flex m-4 sm:m-4 mx-4 mb-20 items-center justify-center gap-5 flex-col ${
-                index % 2 == 0 ? "md:flex-row-reverse" : "md:flex-row"
+                index % 2 !== 0 ? "md:flex-row-reverse" : "md:flex-row"
               }`}
             >
               <div className="flex flex-col gap-8 w-full h-auto">
@@ -124,7 +122,7 @@ function Details() {
               </div>
               <div className="w-full h-auto flex justify-center items-center">
                 <img
-                  className="object-cover object-center max-w-[550px] h-auto md:h-auto"
+                  className="object-cover object-center max-h-[450px] w-auto md:w-auto aspect-video"
                   src={aim.imageUrl}
                   alt={`${aim.title} Image`}
                 />
@@ -134,7 +132,7 @@ function Details() {
         </div>
         <div
           key=""
-          className={`flex m-4 sm:m-4 mx-4 mb-20 items-center justify-center gap-5 flex-col md:flex-row`}
+          className={`flex m-4 sm:m-4 mx-4 mb-20 items-center justify-center gap-5 flex-col md:flex-row-reverse`}
         >
           <div className="flex flex-col gap-8 w-full h-auto">
             <h1 className="text-start font-semibold text-2xl mt-10 text-gray-700">
@@ -157,7 +155,7 @@ function Details() {
           </div>
           <div className="w-full h-auto flex justify-center items-center">
             <img
-              className="object-cover object-center max-w-[450px] h-full md:h-auto"
+              className="object-cover object-center max-h-[400px] h-auto md:h-auto aspect-video"
               src={OurCommitment}
               alt="Image Error"
             />
