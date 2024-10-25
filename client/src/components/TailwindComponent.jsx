@@ -6,13 +6,6 @@ import VrpanoIcon from "@mui/icons-material/Vrpano";
 import GroupsIcon from "@mui/icons-material/Groups";
 import RecyclingIcon from "@mui/icons-material/Recycling";
 import HikingIcon from "@mui/icons-material/Hiking";
-import PolicyIcon from "@mui/icons-material/Policy";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import HandshakeIcon from "@mui/icons-material/Handshake";
-import AnnouncementIcon from "@mui/icons-material/Announcement";
-import ReceiptIcon from "@mui/icons-material/Receipt";
-import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
-import HealingIcon from "@mui/icons-material/Healing";
 import UnmatchedSafetyStandards from "/images/Unmatched Safety Standards.png";
 import ExceptionalCustomerExperience from "/images/Exceptional Customer Experience.jpg";
 import PassionateandDedicatedTeam from "/images/Passionate and Dedicated Team.jpg";
@@ -20,6 +13,7 @@ import FunFilledandEngagingJourneys from "/images/Fun-Filled and Engaging Journe
 import LifeChangingPerspectives from "/images/Life-Changing Perspectives.jpg";
 import IMG_7451 from "/images/IMG_7451.jpg";
 import AdventureforAllLevels from "/images/Adventure for All Levels.jpg";
+import Slider from "react-slick";
 
 const TailwindComponent = () => {
   const uniqueSellingPoints = [
@@ -108,11 +102,40 @@ const TailwindComponent = () => {
     }
   };
 
+  const settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="overflow-hidden bg-slate-100 py-24 font-body sm:py-10">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 ">
-          {/* Content Column */}
+    <section className="text-black bg-slate-100 body-font lg:mt-0 pb-6 font-body">
+      <div className="container px-2 pt-8  lg:pt-4 mx-auto">
+        <div className="flex flex-wrap sm:m-4 mx-4 mb-10 mt-8 items-center justify-center gap-5 ">
           <div className="flex flex-col justify-center items-center lg:pr-8 lg:pt-4">
             <h2 className="text-sm font-semibold text-center leading-7 text-indigo-600">
               Explore Beyond Limits, Embrace the Journey
@@ -120,40 +143,66 @@ const TailwindComponent = () => {
             <p className="mt-2 text-2xl text-center font-bold tracking-tight text-gray-900 sm:text-3xl">
               Why Trek With Us
             </p>
-
-            <dl className="mt-10 max-w-xl space-y-6 text-base leading-7 text-gray-600 lg:max-w-none">
-              {uniqueSellingPoints.map((perk) => (
-                <div
-                  key={perk.id}
-                  className={`relative p-4 transition-transform transform rounded-lg shadow-lg hover:shadow-xl  bg-white ${
-                    activeId === perk.id
-                      ? "border-2 border-indigo-600"
-                      : "border border-transparent"
-                  }`}
-                  onClick={() => handleClick(perk.id)}
-                >
-                  <dt className="flex items-center font-semibold text-gray-900 justify-center">
-                    <div className="mr-3 text-indigo-600">{perk.icon}</div>
-                    {perk.title}
-                  </dt>
-                  {perk.points.map((point) => (
-                    <dd className="mt-1 text-gray-600 text-center">{point}</dd>
-                  ))}
-                </div>
-              ))}
-            </dl>
           </div>
-          {/* Image Column */}
-          <div className="flex items-center justify-center">
-            <img
-              src={selectedImage}
-              alt="Selected Perk"
-              className="max-w-full h-auto rounded-lg "
-            />
+          <div className="w-full">
+            <div className="w-[98%] m-auto">
+              {uniqueSellingPoints.length === 0 ? (
+                <p>No treks available at the moment.</p>
+              ) : (
+                <Slider {...settings}>
+                  {uniqueSellingPoints.map((trek, index) => {
+                    const [loading, setLoading] = useState(true);
+                    return (
+                      <div
+                        key={index}
+                        className="bg-white shadow-lg rounded-xl"
+                      >
+                        {/* Image Section */}
+                        <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden relative">
+                          {loading && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80">
+                              <div className="spinner">Loading...</div>
+                            </div>
+                          )}
+                          <img
+                            src={trek.image}
+                            alt={trek.title}
+                            className={`object-cover h-full w-full ${
+                              loading ? "hidden" : ""
+                            }`}
+                            onLoad={() => setLoading(false)}
+                          />
+                        </div>
+
+                        {/* Info Section */}
+                        <div className="min-h-60 info flex flex-col items-start justify-center px-6 py-4 md:py-6 md:px-6">
+                          <div className="flex text-indigo-600 items-start gap-4 flex-[1]">
+                            <span>{trek.icon}</span>
+                            <h2 className="text-lg w-full font-bold text-indigo-600 mb-1 md:mb-2 text-start ">
+                              {trek.title}
+                            </h2>
+                          </div>
+                          <ul className=" text-gray-600 text-sm mt-2 space-y-2 flex-[1]">
+                            {trek.points.map((point, idx) => (
+                              <li
+                                key={idx}
+                                className="text-md w-full font-medium text-gray-700 mb-2 md:mb-4 "
+                              >
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </Slider>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -48,7 +48,7 @@ function TrekDetailsPageSlider({
   };
 
   return (
-    <div className="relative h-screen lg:h-screen w-full m-auto mb-10 group">
+    <div className="relative h-screen lg:max-h-[550px] w-full m-auto mb-10 group">
       {/* Slide */}
       <div
         style={{ backgroundImage: `url(${images[currentIndex]})` }}

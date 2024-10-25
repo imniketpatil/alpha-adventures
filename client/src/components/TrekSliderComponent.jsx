@@ -12,6 +12,8 @@ function TrekSliderComponent({ upcommingtrekslist }) {
 
   const navigate = useNavigate();
 
+  console.log(upcommingtrekslist);
+
   // const { trekList } = useTrekStore((state) => ({ trekList: state.trekList }));
 
   const settings = {
@@ -45,6 +47,8 @@ function TrekSliderComponent({ upcommingtrekslist }) {
   };
 
   const handleGetInfo = (id, trekDateId) => {
+    console.log(trekDateId);
+
     if (id && trekDateId) {
       addCourse(id);
       addDateId(trekDateId);
@@ -82,11 +86,11 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                       onLoad={() => setLoading(false)}
                     />
                   </div>
-                  <div className="info flex flex-col items-center px-6 py-2 md:py-6 md:px-6">
-                    <h2 className="text-xl font-bold text-indigo-600 mb-2 md:mb-2 text-center">
+                  <div className="info flex flex-col items-start justify-start px-6 py-2 md:py-6 md:px-6 min-h-60">
+                    <h2 className="text-lg w-full font-bold text-indigo-600 mb-2 md:mb-2 text-start flex-1 ">
                       {trek.trekName}
                     </h2>
-                    <h3 className="text-md font-medium text-gray-700 mb-2 md:mb-4 text-center">
+                    <h3 className="text-md w-full font-medium text-gray-700 mb-2 md:mb-4 text-start flex-1 ">
                       {trek.trekTitle}
                     </h3>
                     {/* <div className="w-full text-gray-600 mb-0 md:mb-4">
@@ -119,8 +123,8 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                       </div>
                     </div> */}
                     <button
-                      className="button mb-2 md:mb-0"
-                      onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
+                      className="button mb-2 md:mb-0 "
+                      onClick={() => handleGetInfo(trek._id, trek.dates[0])}
                     >
                       Get Trek
                       <span className=" text-sm "> ─ Information & Dates</span>

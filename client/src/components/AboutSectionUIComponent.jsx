@@ -66,23 +66,25 @@ function AboutSectionUIComponent() {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 font-normal">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-yellow-500 sm:text-4xl">
             Alpha Adventures.
           </h2>
           <p className="mt-6 text-lg leading-8 font-normal text-white">
             Welcome to{" "}
-            <span className="text-slate-900 font-normal">Alpha Adventures</span>
+            <span className="text-yellow-500 font-normal">
+              Alpha Adventures
+            </span>
             , your premier adventure travel partner based in{" "}
-            <span className="text-slate-900 font-normal">
+            <span className="text-yellow-500 font-normal">
               The Heart of Nagpur.
             </span>{" "}
             With over{" "}
-            <span className="text-slate-900 font-normal"> 6 Years </span> of
+            <span className="text-yellow-500 font-normal"> 6 Years </span> of
             unparalleled experience, we specialize in curating unforgettable
             trekking experiences for adventure enthusiasts. Our commitment to
             safety, excitement, and exploration has garnered the trust and
             smiles of over{" "}
-            <span className="text-slate-900 font-normal">
+            <span className="text-yellow-500 font-normal">
               {" "}
               5,000 Happy Trekkers{" "}
             </span>

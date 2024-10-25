@@ -73,8 +73,8 @@ function TrekInfoAndDate({
     window.open(url, "_blank");
   };
 
-  console.log(withTravel);
-  console.log(withoutTravel);
+  console.log(withTravel.length);
+  console.log(withoutTravel.length);
 
   return (
     <div
@@ -235,47 +235,51 @@ function TrekInfoAndDate({
                   </div>
                   {activeIndex === index && (
                     <div className="py-2 px-2 bg-yellow-100 rounded-b-lg">
-                      <div className="mb-2">
-                        <p className="font-bold text-base text-gray-800 mb-1">
-                          Price with Travel:
-                        </p>
-                        <div className="space-y-2">
-                          {withTravel.map((withT, idx) => (
-                            <div
-                              key={idx}
-                              className="flex justify-between items-center bg-yellow-100  rounded-lg "
-                            >
-                              <p className="font-semibold text-gray-800">
-                                {withT.description}
-                              </p>
-                              <p className="text-green-700 font-bold">
-                                {withT.price}
-                              </p>
-                            </div>
-                          ))}
+                      {withTravel.length !== 0 ? (
+                        <div className="mb-2">
+                          <p className="font-bold text-base text-gray-800 mb-1">
+                            Price with Travel:
+                          </p>
+                          <div className="space-y-2">
+                            {withTravel.map((withT, idx) => (
+                              <div
+                                key={idx}
+                                className="flex justify-between items-center bg-yellow-100  rounded-lg "
+                              >
+                                <p className="font-semibold text-gray-800">
+                                  {withT.description}
+                                </p>
+                                <p className="text-green-700 font-bold">
+                                  {withT.price}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      ) : null}
 
-                      <div className="mb-2">
-                        <p className="font-bold text-base text-gray-800 mb-1">
-                          Price without Travel:
-                        </p>
-                        <div className="space-y-2">
-                          {withoutTravel.map((withoutT, idx) => (
-                            <div
-                              key={idx}
-                              className="flex justify-between items-center bg-yellow-100  rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                            >
-                              <p className="font-semibold text-gray-800">
-                                {withoutT.description}
-                              </p>
-                              <p className="text-green-700 font-bold">
-                                {withoutT.price}
-                              </p>
-                            </div>
-                          ))}
+                      {withoutTravel.length !== 0 ? (
+                        <div className="mb-2">
+                          <p className="font-bold text-base text-gray-800 mb-1">
+                            Price without Travel:
+                          </p>
+                          <div className="space-y-2">
+                            {withoutTravel.map((withoutT, idx) => (
+                              <div
+                                key={idx}
+                                className="flex justify-between items-center bg-yellow-100  rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                              >
+                                <p className="font-semibold text-gray-800">
+                                  {withoutT.description}
+                                </p>
+                                <p className="text-green-700 font-bold">
+                                  {withoutT.price}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      ) : null}
 
                       <button
                         className="w-full mt-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-600 hover:to-purple-600 text-white font-bold rounded-full transition duration-300 transform hover:-translate-y-1 hover:scale-105"

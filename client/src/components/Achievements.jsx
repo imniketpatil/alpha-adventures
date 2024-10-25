@@ -54,10 +54,7 @@ const Achievements = () => {
   }, [achievements]);
 
   return (
-    <div
-      id="achievements"
-      className="bg-white py-4 sm:py-8 sm:pb-16  font-body"
-    >
+    <div id="achievements" className="bg-white py-4 sm:py-8  font-body">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full text-center">
         <h1 className="text-3xl font-bold mb-10 text-slate-700">
           Alpha Adventures By the Numbers

@@ -28,11 +28,11 @@ function CreateTrek({ setOpenTrekForm }) {
   const [endDate, setEndDate] = useState("");
 
   const [withTravel, setwithTravel] = useState([
-    { description: "", from: "", to: "", price: 0 },
+    { description: "", from: "", to: "", price: "" },
   ]);
 
   const [withoutTravel, setwithoutTravel] = useState([
-    { description: "", from: "", to: "", price: 0 },
+    { description: "", from: "", to: "", price: "" },
   ]);
 
   const [scheduleTimeline, setScheduleTimeline] = useState([
@@ -61,17 +61,6 @@ function CreateTrek({ setOpenTrekForm }) {
       !trekCancellationPolicy.length ||
       !startDate ||
       !endDate ||
-      withTravel.some(
-        (withT) =>
-          !withT.description || !withT.from || !withT.to || !withT.price
-      ) ||
-      withoutTravel.some(
-        (withoutT) =>
-          !withoutT.description ||
-          !withoutT.from ||
-          !withoutT.to ||
-          !withoutT.price
-      ) ||
       scheduleTimeline.some(
         (timeline) => !timeline.day || !timeline.work || !timeline.time
       )
@@ -487,7 +476,6 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <div className="flex gap-4">
@@ -501,7 +489,6 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
                       type="text"
@@ -513,10 +500,9 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
-                      type="number"
+                      type="text"
                       placeholder="With Travel From"
                       value={withT.price}
                       onChange={(e) => {
@@ -525,7 +511,6 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <button
@@ -573,7 +558,6 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithoutTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <div className="flex gap-4">
@@ -587,7 +571,6 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithoutTravel(newwithoutTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
                       type="text"
@@ -599,10 +582,9 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithoutTravel(newwithoutTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
-                      type="number"
+                      type="text"
                       placeholder="With Travel From"
                       value={withoutT.price}
                       onChange={(e) => {
@@ -611,7 +593,6 @@ function CreateTrek({ setOpenTrekForm }) {
                         setwithoutTravel(newwithoutTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <button

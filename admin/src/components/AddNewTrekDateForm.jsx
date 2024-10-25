@@ -6,10 +6,10 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [withTravel, setWithTravel] = useState([
-    { description: "", from: "", to: "", price: 0 },
+    { description: "", from: "", to: "", price: "" },
   ]);
   const [withoutTravel, setWithoutTravel] = useState([
-    { description: "", from: "", to: "", price: 0 },
+    { description: "", from: "", to: "", price: "" },
   ]);
   const [scheduleTimeline, setScheduleTimeline] = useState([]);
 
@@ -28,17 +28,6 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
     if (
       !startDate ||
       !endDate ||
-      withTravel.some(
-        (withT) =>
-          !withT.description || !withT.from || !withT.to || !withT.price
-      ) ||
-      withoutTravel.some(
-        (withoutT) =>
-          !withoutT.description ||
-          !withoutT.from ||
-          !withoutT.to ||
-          !withoutT.price
-      ) ||
       scheduleTimeline.some(
         (timeline) => !timeline.day || !timeline.work || !timeline.time
       )
@@ -69,8 +58,8 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
   const resetForm = () => {
     setStartDate("");
     setEndDate("");
-    setWithTravel([{ description: "", from: "", to: "", price: 0 }]);
-    setWithoutTravel([{ description: "", from: "", to: "", price: 0 }]);
+    setWithTravel([{ description: "", from: "", to: "", price: "" }]);
+    setWithoutTravel([{ description: "", from: "", to: "", price: "" }]);
     setScheduleTimeline([{ day: "", time: "", work: "" }]);
     setError("");
     setSuccess("");
@@ -131,7 +120,6 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                       setWithTravel(newWithTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                 </div>
                 <div className="flex gap-4">
@@ -145,7 +133,6 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                       setWithTravel(newWithTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                   <input
                     type="text"
@@ -157,21 +144,18 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                       setWithTravel(newWithTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                   <input
-                    type="number"
+                    type="text"
                     placeholder="Price"
                     value={withT.price}
                     onChange={(e) => {
                       const newWithTravelDetails = [...withTravel];
-                      newWithTravelDetails[index].price = Number(
-                        e.target.value
-                      );
+                      newWithTravelDetails[index].price = e.target.value;
+
                       setWithTravel(newWithTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                 </div>
                 <button
@@ -192,7 +176,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
               onClick={() =>
                 setWithTravel([
                   ...withTravel,
-                  { description: "", from: "", to: "", price: 0 },
+                  { description: "", from: "", to: "", price: "" },
                 ])
               }
               className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"
@@ -219,7 +203,6 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                       setWithoutTravel(newWithoutTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                 </div>
                 <div className="flex gap-4">
@@ -233,7 +216,6 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                       setWithoutTravel(newWithoutTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                   <input
                     type="text"
@@ -245,21 +227,18 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                       setWithoutTravel(newWithoutTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                   <input
-                    type="number"
+                    type="text"
                     placeholder="Price"
                     value={withoutT.price}
                     onChange={(e) => {
                       const newWithoutTravelDetails = [...withoutTravel];
-                      newWithoutTravelDetails[index].price = Number(
-                        e.target.value
-                      );
+                      newWithoutTravelDetails[index].price = e.target.value;
+
                       setWithoutTravel(newWithoutTravelDetails);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
                   />
                 </div>
                 <button
@@ -280,7 +259,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
               onClick={() =>
                 setWithoutTravel([
                   ...withoutTravel,
-                  { description: "", from: "", to: "", price: 0 },
+                  { description: "", from: "", to: "", price: "" },
                 ])
               }
               className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"

@@ -34,11 +34,11 @@ function EditDateForTrek() {
   const [showStartDate, setShowStartDate] = useState("");
   const [showEndDate, setShowEndDate] = useState("");
   const [withTravel, setwithTravel] = useState([
-    { description: "", from: "", to: "", price: 0 },
+    { description: "", from: "", to: "", price: "" },
   ]);
 
   const [withoutTravel, setwithoutTravel] = useState([
-    { description: "", from: "", to: "", price: 0 },
+    { description: "", from: "", to: "", price: "" },
   ]);
 
   const [scheduleTimeline, setScheduleTimeline] = useState([]);
@@ -54,10 +54,10 @@ function EditDateForTrek() {
       setShowStartDate(formatDate(startDate));
       setShowEndDate(formatDate(endDate));
       setwithoutTravel(
-        withoutTravel || [{ description: "", from: "", to: "", price: 0 }]
+        withoutTravel || [{ description: "", from: "", to: "", price: "" }]
       );
       setwithTravel(
-        withTravel || [{ description: "", from: "", to: "", price: 0 }]
+        withTravel || [{ description: "", from: "", to: "", price: "" }]
       );
       setScheduleTimeline(trekTimelineData.scheduleTimeline || []);
     }
@@ -73,17 +73,6 @@ function EditDateForTrek() {
     if (
       !startDate ||
       !endDate ||
-      withTravel.some(
-        (withT) =>
-          !withT.description || !withT.from || !withT.to || !withT.price
-      ) ||
-      withoutTravel.some(
-        (withoutT) =>
-          !withoutT.description ||
-          !withoutT.from ||
-          !withoutT.to ||
-          !withoutT.price
-      ) ||
       scheduleTimeline.some(
         (timeline) => !timeline.day || !timeline.work || !timeline.time
       )
@@ -118,8 +107,8 @@ function EditDateForTrek() {
   const resetForm = () => {
     setStartDate("");
     setEndDate("");
-    setwithTravel([{ description: "", from: "", to: "", price: 0 }]);
-    setwithoutTravel([{ description: "", from: "", to: "", price: 0 }]);
+    setwithTravel([{ description: "", from: "", to: "", price: "" }]);
+    setwithoutTravel([{ description: "", from: "", to: "", price: "" }]);
     setScheduleTimeline([{ day: "", time: "", work: "" }]);
     setFormError("");
     setSuccess("");
@@ -206,7 +195,6 @@ function EditDateForTrek() {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <div className="flex gap-4">
@@ -220,7 +208,6 @@ function EditDateForTrek() {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
                       type="text"
@@ -232,10 +219,9 @@ function EditDateForTrek() {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
-                      type="number"
+                      type="text"
                       placeholder="With Travel From"
                       value={withT.price}
                       onChange={(e) => {
@@ -244,7 +230,6 @@ function EditDateForTrek() {
                         setwithTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <button
@@ -265,7 +250,7 @@ function EditDateForTrek() {
                 onClick={() =>
                   setwithTravel([
                     ...withTravel,
-                    { description: "", from: "", to: "", price: 0 },
+                    { description: "", from: "", to: "", price: "" },
                   ])
                 }
                 className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"
@@ -292,7 +277,6 @@ function EditDateForTrek() {
                         setwithoutTravel(newwithTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <div className="flex gap-4">
@@ -306,7 +290,6 @@ function EditDateForTrek() {
                         setwithoutTravel(newwithoutTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
                       type="text"
@@ -318,10 +301,9 @@ function EditDateForTrek() {
                         setwithoutTravel(newwithoutTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                     <input
-                      type="number"
+                      type="text"
                       placeholder="With Travel From"
                       value={withoutT.price}
                       onChange={(e) => {
@@ -330,7 +312,6 @@ function EditDateForTrek() {
                         setwithoutTravel(newwithoutTravelDetails);
                       }}
                       className="p-2 border border-gray-300 rounded-lg flex-1"
-                      required
                     />
                   </div>
                   <button
@@ -351,7 +332,7 @@ function EditDateForTrek() {
                 onClick={() =>
                   setwithoutTravel([
                     ...withoutTravel,
-                    { description: "", from: "", to: "", price: 0 },
+                    { description: "", from: "", to: "", price: "" },
                   ])
                 }
                 className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"

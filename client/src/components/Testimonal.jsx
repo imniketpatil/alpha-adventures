@@ -61,7 +61,7 @@ export default function Testimonial() {
   }
 
   return (
-    <div className="py-14 mb-10 bg-gray-50">
+    <div className="py-14 mb-2 bg-gray-100">
       <div className="flex justify-center items-center">
         <div className="space-y-4 p-6 text-center max-w-screen-xl mx-auto mb-6">
           <h1 className="uppercase font-semibold text-blue-600 tracking-wider">
@@ -84,32 +84,37 @@ export default function Testimonial() {
           <Slider {...settings}>
             {testimonialDetails.map((item) => (
               <div key={item._id}>
-                <div className="flex flex-col gap-4 p-8 shadow-md mx-4 rounded-xl bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                  <div className="flex justify-start items-center gap-5">
-                    <img
-                      src={item.images[0]}
-                      alt={item.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
+                <div className="flex flex-col gap-6 p-8 shadow-lg mx-6 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 ">
+                  <div className="flex justify-start items-center gap-6">
+                    {/* Optional Profile Image */}
+                    {/* <img
+            src={item.images[0]}
+            alt={item.name}
+            className="w-20 h-20 rounded-full object-cover shadow-md"
+          /> */}
                     <div>
-                      <p className="text-xl font-semibold text-black">
+                      <p className="text-2xl font-bold text-gray-800">
                         {item.name}
                       </p>
-                      <p className="text-gray-500">{item.work}</p>
+                      {/* <p className="text-gray-500">{item.work}</p> */}
                     </div>
                   </div>
-                  <div className="py-6 space-y-2">
-                    <p className="text-slate-900 font-bold text-lg">
+                  <div className="py-4 space-y-3">
+                    <p className="text-lg font-semibold text-indigo-700">
                       {item.trek}
                     </p>
-                    <p className="text-yellow-500">
+                    <div className="flex text-yellow-500">
                       {Array(item.rating)
                         .fill()
                         .map((_, i) => (
-                          <span key={i}>⭐</span>
+                          <span key={i} className="text-xl">
+                            ⭐
+                          </span>
                         ))}
+                    </div>
+                    <p className="text-gray-600 text-md leading-relaxed">
+                      {item.comment}
                     </p>
-                    <p className="text-gray-700">{item.comment}</p>
                   </div>
                 </div>
               </div>

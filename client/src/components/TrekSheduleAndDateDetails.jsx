@@ -4,18 +4,42 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import ScheduleTimeline from "./ScheduleTimeline";
 
 function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
-  console.log(trekDateData);
+  // Check if trekDateData has at least one element
+  const firstTrek = trekDateData.length > 0 ? trekDateData[0] : null;
+
+  // Initialize flags for travel options
+  let hasWithTravel = false;
+  let hasWithoutTravel = false;
+
+  // Check for price details if firstTrek exists
+  if (firstTrek?.priceDetails) {
+    if (
+      firstTrek.priceDetails.withTravel?.length > 0 &&
+      firstTrek.priceDetails.withTravel[0]?.price !== ""
+    ) {
+      hasWithTravel = true;
+    }
+    if (
+      firstTrek.priceDetails.withoutTravel?.length > 0 &&
+      firstTrek.priceDetails.withoutTravel[0]?.price !== ""
+    ) {
+      hasWithoutTravel = true;
+    }
+  }
+
+  console.log(firstTrek?.priceDetails?.withTravel);
+  console.log(firstTrek?.priceDetails?.withoutTravel);
 
   return (
     <div className="container mx-auto max-w-[1450px] w-full p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl mb-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        {/* With Travel */}
-        <div className="flex flex-col justify-center items-center p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-md ">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
-            With Travel
-          </h2>
-          {trekDateData?.map((trek) =>
-            trek.priceDetails.withTravel.map((data) => (
+      <div className="flex flex-col lg:flex-row gap-6 mb-8">
+        {/* With Travel Section */}
+        {hasWithTravel && (
+          <div className="flex flex-col justify-center items-center p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-md flex-1">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+              With Travel
+            </h2>
+            {firstTrek.priceDetails.withTravel.map((data) => (
               <div className="space-y-4 w-full mt-4" key={data?._id}>
                 <p className="text-gray-700 text-base md:text-md font-medium">
                   {data?.description}
@@ -31,21 +55,20 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
                   </p>
                 </div>
                 <p className="flex items-center text-md md:text-lg font-bold text-gray-700">
-                  Price: {data?.price}
-                  <CurrencyRupeeIcon className="ml-1" />
+                  Price: {data?.price} <CurrencyRupeeIcon className="ml-1" />
                 </p>
               </div>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
 
-        {/* Without Travel */}
-        <div className="flex flex-col justify-center items-center p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-md ">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
-            Without Travel
-          </h2>
-          {trekDateData?.map((trek) =>
-            trek.priceDetails.withoutTravel.map((data) => (
+        {/* Without Travel Section */}
+        {hasWithoutTravel && (
+          <div className="flex flex-col justify-center items-center p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-md flex-1">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+              Without Travel
+            </h2>
+            {firstTrek.priceDetails.withoutTravel.map((data) => (
               <div className="space-y-4 w-full" key={data?._id}>
                 <p className="text-gray-700 text-base md:text-md font-medium">
                   {data?.description}
@@ -61,13 +84,12 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
                   </p>
                 </div>
                 <p className="flex items-center text-md md:text-lg font-bold text-gray-700">
-                  Price: {data?.price}
-                  <CurrencyRupeeIcon className="ml-1" />
+                  Price: {data?.price} <CurrencyRupeeIcon className="ml-1" />
                 </p>
               </div>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Trek Timeline Section */}
@@ -75,9 +97,7 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 text-center mb-6">
           Trek Timeline
         </h2>
-        <div>
-          <ScheduleTimeline scheduleTimeline={scheduleTimeline} />
-        </div>
+        <ScheduleTimeline scheduleTimeline={scheduleTimeline} />
       </div>
     </div>
   );
