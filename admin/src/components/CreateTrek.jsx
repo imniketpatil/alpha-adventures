@@ -12,7 +12,7 @@ function CreateTrek({ setOpenTrekForm }) {
   const [trekTitle, setTrekTitle] = useState("");
   const [trekDifficulty, setTrekDifficulty] = useState("easy");
   const [suitableForAge, setSuitableForAge] = useState("Suitable For All");
-  const [altitude, setAltitude] = useState(null);
+  const [altitude, setAltitude] = useState(0);
   const [trekLocation, setTrekLocation] = useState("");
   const [trekDescription, setTrekDescription] = useState("");
   const [trekSubDescription, setTrekSubDescription] = useState([
@@ -51,11 +51,9 @@ function CreateTrek({ setOpenTrekForm }) {
     if (
       !trekName ||
       !trekTitle ||
-      !altitude ||
       !trekLocation ||
       !trekDescription ||
       !trekInfo.length ||
-      !trekHighlights.length ||
       !trekInclusions.length ||
       !trekExclusions.length ||
       !trekCancellationPolicy.length ||
@@ -68,6 +66,7 @@ function CreateTrek({ setOpenTrekForm }) {
       setError("All fields are required.");
       return;
     }
+
     setError("");
     setSuccess("");
 
@@ -84,7 +83,12 @@ function CreateTrek({ setOpenTrekForm }) {
     // Stringify the complex fields before appending them
     formData.append("subDescription", JSON.stringify(trekSubDescription));
     formData.append("trekInfo", JSON.stringify(trekInfo));
-    formData.append("trekHighlights", JSON.stringify(trekHighlights));
+
+    // Optional field: Only append if it has data
+    if (trekHighlights.length > 0) {
+      formData.append("trekHighlights", JSON.stringify(trekHighlights));
+    }
+
     formData.append("trekInclusions", JSON.stringify(trekInclusions));
     formData.append("trekExclusions", JSON.stringify(trekExclusions));
     formData.append(
@@ -206,7 +210,7 @@ function CreateTrek({ setOpenTrekForm }) {
                 />
               </div>
 
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <label htmlFor="trekDifficulty" className="mb-2 text-gray-700">
                   Trek Difficulty
                 </label>
@@ -221,7 +225,7 @@ function CreateTrek({ setOpenTrekForm }) {
                   <option value="moderate">Moderate</option>
                   <option value="difficult">Difficult</option>
                 </select>
-              </div>
+              </div> */}
 
               <div className="flex flex-col flex-1">
                 <label htmlFor="suitableForAge" className="mb-2 text-gray-700">
@@ -249,7 +253,7 @@ function CreateTrek({ setOpenTrekForm }) {
                   required={false}
                 />
               </div>
-              <div className="flex flex-col flex-1">
+              {/* <div className="flex flex-col flex-1">
                 <label htmlFor="altitude" className="mb-2 text-gray-700">
                   Altitude
                 </label>
@@ -261,7 +265,7 @@ function CreateTrek({ setOpenTrekForm }) {
                   onChange={(e) => setAltitude(e.target.value)}
                   required
                 />
-              </div>
+              </div> */}
 
               <div className="flex flex-col flex-1">
                 <label htmlFor="trekLocation" className="mb-2 text-gray-700">
@@ -362,12 +366,10 @@ function CreateTrek({ setOpenTrekForm }) {
             </div>
 
             <hr />
-            <h1 className="text-2xl font-bold text-gray-700">
-              Trek Highlights
-            </h1>
+            <h1 className="text-2xl font-bold text-gray-700">Trek Notes</h1>
             <div className="flex flex-col">
               <label htmlFor="trekHighlights" className="mb-2 text-gray-700">
-                Trek Highlights
+                Trek Notes
               </label>
               <AddHighlightsInTrek
                 id="trekHighlights"

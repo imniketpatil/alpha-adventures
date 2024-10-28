@@ -14,23 +14,23 @@ const TrekDetailsIconSection = ({
   isLoadingTrek,
 }) => {
   const details = [
-    {
-      imgSrc: ClimbingIcon,
-      label: "TREK DIFFICULTY",
-      value: trekDifficulty
-        ? trekDifficulty.charAt(0).toUpperCase() + trekDifficulty.slice(1)
-        : "N/A", // Provide a default value or handle the undefined case
-    },
+    // {
+    //   imgSrc: ClimbingIcon,
+    //   label: "TREK DIFFICULTY",
+    //   value: trekDifficulty
+    //     ? trekDifficulty.charAt(0).toUpperCase() + trekDifficulty.slice(1)
+    //     : "N/A", // Provide a default value or handle the undefined case
+    // },
     {
       imgSrc: DurationIcon,
       label: "TREK DURATION",
       value: dateDifference ? `${dateDifference} Days` : "N/A", // Handle case where dateDifference is undefined or null
     },
-    {
-      imgSrc: MountainIcon,
-      label: "HIGHEST ALTITUDE",
-      value: altitude ? `${altitude} Meters` : "N/A", // Handle case where altitude is undefined
-    },
+    // {
+    //   imgSrc: MountainIcon,
+    //   label: "HIGHEST ALTITUDE",
+    //   value: altitude ? `${altitude} Meters` : "N/A", // Handle case where altitude is undefined
+    // },
     {
       imgSrc: AgeIcon,
       label: "AGE LIMIT",

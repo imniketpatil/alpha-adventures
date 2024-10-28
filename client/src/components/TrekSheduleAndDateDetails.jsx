@@ -31,7 +31,7 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
   console.log(firstTrek?.priceDetails?.withoutTravel);
 
   return (
-    <div className="container mx-auto max-w-[1450px] w-full p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl mb-8">
+    <div className="container mx-auto max-w-[1450px] w-full px-4 sm:px-6 md:px-8 lg:px-10 rounded-xl pt-4 mb-8">
       <div className="flex flex-col lg:flex-row gap-6 mb-8">
         {/* With Travel Section */}
         {hasWithTravel && (

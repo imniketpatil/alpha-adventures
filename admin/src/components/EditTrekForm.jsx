@@ -95,11 +95,9 @@ function EditTrekForm({ setOpenTrekForm }) {
     if (
       !trekName ||
       !trekTitle ||
-      !altitude ||
       !trekLocation ||
       !trekDescription ||
       !trekInfo.length ||
-      !trekHighlights.length ||
       !trekInclusions.length ||
       !trekExclusions.length ||
       !trekCancellationPolicy.length
@@ -123,7 +121,9 @@ function EditTrekForm({ setOpenTrekForm }) {
     formData.append("subDescription", JSON.stringify(trekSubDescription));
 
     formData.append("trekInfo", JSON.stringify(trekInfo));
-    formData.append("trekHighlights", JSON.stringify(trekHighlights));
+    if (trekHighlights.length > 0) {
+      formData.append("trekHighlights", JSON.stringify(trekHighlights));
+    }
     formData.append("trekInclusions", JSON.stringify(trekInclusions));
     formData.append("trekExclusions", JSON.stringify(trekExclusions));
     formData.append(
@@ -222,7 +222,7 @@ function EditTrekForm({ setOpenTrekForm }) {
                 />
               </div>
 
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <label htmlFor="trekDifficulty" className="mb-2 text-gray-700">
                   Trek Difficulty
                 </label>
@@ -237,7 +237,7 @@ function EditTrekForm({ setOpenTrekForm }) {
                   <option value="moderate">Moderate</option>
                   <option value="difficult">Difficult</option>
                 </select>
-              </div>
+              </div> */}
 
               <div className="flex flex-col flex-1">
                 <label htmlFor="suitableForAge" className="mb-2 text-gray-700">
@@ -255,7 +255,7 @@ function EditTrekForm({ setOpenTrekForm }) {
             </div>
 
             <div className="flex gap-5">
-              <div className="flex flex-col flex-1">
+              {/* <div className="flex flex-col flex-1">
                 <label htmlFor="altitude" className="mb-2 text-gray-700">
                   Altitude (m)
                 </label>
@@ -267,7 +267,7 @@ function EditTrekForm({ setOpenTrekForm }) {
                   onChange={(e) => setAltitude(e.target.value)}
                   required
                 />
-              </div>
+              </div> */}
 
               <div className="flex flex-col flex-1">
                 <label htmlFor="trekLocation" className="mb-2 text-gray-700">
@@ -368,9 +368,7 @@ function EditTrekForm({ setOpenTrekForm }) {
 
             <hr className="h-4" />
 
-            <h1 className="text-2xl font-bold text-gray-700">
-              Trek Highlights
-            </h1>
+            <h1 className="text-2xl font-bold text-gray-700">Trek Notes</h1>
             <div className="flex gap-5">
               <AddHighlightsInTrek
                 trekHighlights={trekHighlights}

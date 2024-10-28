@@ -31,6 +31,9 @@ function TrekInfoAndDate({
     });
   };
 
+  console.log(withTravel.length);
+  console.log(withoutTravel.length);
+
   const addDateId = useCourseStore((state) => state.addDateId);
   const [activeIndex, setActiveIndex] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -54,6 +57,38 @@ function TrekInfoAndDate({
 
   const hasDates = date?.length > 0;
   const hasEndDates = allEndDate?.length > 0;
+
+  // const firstTrek = trekDateData.length > 0 ? trekDateData[0] : null;
+
+  // // Initialize flags for travel options
+  // let hasWithTravel = false;
+  // let hasWithoutTravel = false;
+
+  // // Check for price details if firstTrek exists
+  // if (firstTrek?.priceDetails) {
+  //   if (
+  //     firstTrek.priceDetails.withTravel?.length > 0 &&
+  //     firstTrek.priceDetails.withTravel[0]?.price !== ""
+  //   ) {
+  //     hasWithTravel = true;
+  //   }
+  //   if (
+  //     firstTrek.priceDetails.withoutTravel?.length > 0 &&
+  //     firstTrek.priceDetails.withoutTravel[0]?.price !== ""
+  //   ) {
+  //     hasWithoutTravel = true;
+  //   }
+  // }
+
+  let hasWithTravel = false;
+  let hasWithoutTravel = false;
+
+  if (withTravel?.length > 0 && withTravel[0]?.price !== "") {
+    hasWithTravel = true;
+  }
+  if (withoutTravel?.length > 0 && withoutTravel[0]?.price !== "") {
+    hasWithoutTravel = true;
+  }
 
   const handleBooking = (trekName, date) => {
     const formattedDate = date
@@ -235,7 +270,7 @@ function TrekInfoAndDate({
                   </div>
                   {activeIndex === index && (
                     <div className="py-2 px-2 bg-yellow-100 rounded-b-lg">
-                      {withTravel.length !== 0 ? (
+                      {hasWithTravel ? (
                         <div className="mb-2">
                           <p className="font-bold text-base text-gray-800 mb-1">
                             Price with Travel:
@@ -258,7 +293,7 @@ function TrekInfoAndDate({
                         </div>
                       ) : null}
 
-                      {withoutTravel.length !== 0 ? (
+                      {hasWithoutTravel ? (
                         <div className="mb-2">
                           <p className="font-bold text-base text-gray-800 mb-1">
                             Price without Travel:
@@ -267,7 +302,7 @@ function TrekInfoAndDate({
                             {withoutTravel.map((withoutT, idx) => (
                               <div
                                 key={idx}
-                                className="flex justify-between items-center bg-yellow-100  rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                                className="flex justify-between items-center bg-yellow-100  rounded-lg"
                               >
                                 <p className="font-semibold text-gray-800">
                                   {withoutT.description}
