@@ -40,8 +40,34 @@ const TeamSection = () => {
                   alt={leader.name}
                 />
                 <div>
-                  <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
+                  <h3 className="text-base flex items-center font-semibold leading-7 tracking-tight text-gray-900">
                     {leader.name}
+
+                    <a
+                      className="ml-3 text-indigo-300 cursor-pointer hover:text-indigo-600"
+                      href={leader.instagramId}
+                      target="_blank"
+                    >
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        className="w-5 h-5"
+                        viewBox="0 0 24 24"
+                      >
+                        <rect
+                          width="20"
+                          height="20"
+                          x="2"
+                          y="2"
+                          rx="5"
+                          ry="5"
+                        ></rect>
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                      </svg>
+                    </a>
                   </h3>
                   <p className="text-sm font-semibold leading-6 text-indigo-600">
                     {leader.bio}
