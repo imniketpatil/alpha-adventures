@@ -144,7 +144,7 @@ const Header = ({ type }) => {
                 }`}
               >
                 <ul
-                  className="absolute py-2 pr-4 pl-3 w-full rounded text-sm bg-gray-900 lg:-left-16 text-gray-700 dark:text-gray-400"
+                  className="absolute py-2 pr-4 pl-3 w-full rounded text-sm bg-gray-200 lg:-left-16 text-gray-700 "
                   aria-labelledby="dropdownLargeButton"
                 >
                   {treks.map((trek) => (
