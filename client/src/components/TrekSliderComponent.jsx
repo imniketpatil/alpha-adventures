@@ -18,7 +18,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
 
   const settings = {
     arrows: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     autoplay: true,
     autoplaySpeed: 3000,
