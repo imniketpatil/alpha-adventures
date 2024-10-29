@@ -17,8 +17,13 @@ function TrekSliderComponent({ upcommingtrekslist }) {
   // const { trekList } = useTrekStore((state) => ({ trekList: state.trekList }));
 
   const settings = {
+    arrows: true,
     infinite: false,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    pauseOnHover: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [

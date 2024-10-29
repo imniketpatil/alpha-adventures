@@ -23,7 +23,7 @@ function StackOfTreks({ treksBasedOnTrekType }) {
       {treksBasedOnTrekType.length === 0 ? (
         <div className="flex justify-center h-screen">
           <p className="text-xl text-gray-500">
-            No treks available at the moment.
+            No tripss available at the moment.
           </p>
         </div>
       ) : (
@@ -62,20 +62,20 @@ function StackOfTreks({ treksBasedOnTrekType }) {
                     </p>
                   </div>
 
-                  <p className="text-md font-semibold text-gray-800 mt-2">
+                  <p className="text-md font-semibold text-gray-800 ">
                     Suitable for Ages : {trek.suitableForAge}
                   </p>
 
-                  <div className="mt-6 md:mt-0">
-                    <div className="flex items-center justify-between">
-                      <span className="text-lg font-semibold text-gray-800">
-                        {trek.altitude}m Height
-                      </span>
-                      <span className="bg-green-600 text-white text-md px-3 py-1 rounded-md">
-                        {trek.trekDifficulty.charAt(0).toUpperCase() +
-                          trek.trekDifficulty.slice(1)}
-                      </span>
-                    </div>
+                  <div className="mt-4 md:mt-0">
+                    {/* <div className="flex items-center justify-between">
+                      <span className="text-lg font-semibold text-gray-800"> */}
+                    {/* {trek.altitude}m Height */}
+                    {/* </span>
+                      <span className="bg-green-600 text-white text-md px-3 py-1 rounded-md"> */}
+                    {/* {trek.trekDifficulty.charAt(0).toUpperCase() +
+                          trek.trekDifficulty.slice(1)} */}
+                    {/* </span>
+                    </div> */}
 
                     <div className="flex items-center justify-between">
                       <p className="text-md font-semibold text-gray-800 mt-2">

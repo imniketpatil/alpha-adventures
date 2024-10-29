@@ -26,7 +26,7 @@ function InclusionExclusionInfoDetails({
             <span role="img" aria-label="Trek Overview">
               🏞️
             </span>
-            Trek Overview
+            Trip Overview
           </h2>
           <div className="space-y-3 md:space-y-4">
             {isLoadingDate || isLoadingTrek ? (

@@ -12,7 +12,7 @@ function AboutSectionUIComponent() {
       value: 5000,
     },
     {
-      label: "Successfully Treks",
+      label: "Successfully Trips",
       value: 100,
     },
   ];

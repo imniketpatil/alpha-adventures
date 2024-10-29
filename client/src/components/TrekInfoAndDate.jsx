@@ -125,7 +125,8 @@ function TrekInfoAndDate({
           <div className="lg:w-2/3 relative mb-10">
             <h1 className="text-4xl font-extrabold mb-4">
               {trekName}
-              <span className="text-3xl text-gray-600">: {trekTitle}</span>
+              <br />
+              <span className="text-3xl text-gray-600">{trekTitle}</span>
             </h1>
             <p className="text-xl font-medium text-gray-700 flex items-center mb-4">
               <FaMapMarkerAlt className="mr-2 text-blue-600" /> {trekLocation}

@@ -17,7 +17,7 @@ const Achievements = () => {
     },
     {
       img: SuccessfulTreks,
-      label: "Successful Treks",
+      label: "Successful Trips",
       value: 100,
     },
   ];

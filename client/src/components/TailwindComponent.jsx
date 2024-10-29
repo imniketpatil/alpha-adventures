@@ -103,8 +103,14 @@ const TailwindComponent = () => {
   };
 
   const settings = {
-    infinite: false,
+    dots: true,
+    arrows: false,
+    infinite: true,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    pauseOnHover: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
@@ -141,7 +147,7 @@ const TailwindComponent = () => {
               Explore Beyond Limits, Embrace the Journey
             </h2>
             <p className="mt-2 text-2xl text-center font-bold tracking-tight text-gray-900 sm:text-3xl">
-              Why Trek With Us
+              Why Trip With Us
             </p>
           </div>
           <div className="w-full">

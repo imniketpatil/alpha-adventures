@@ -19,13 +19,13 @@ export default function Testimonial() {
   const settings = {
     dots: true,
     arrows: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "linear",
     pauseOnHover: true,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     responsive: [
       {
@@ -84,8 +84,8 @@ export default function Testimonial() {
           <Slider {...settings}>
             {testimonialDetails.map((item) => (
               <div key={item._id}>
-                <div className="flex flex-col gap-6 p-8 shadow-lg mx-6 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 ">
-                  <div className="flex justify-start items-center gap-6">
+                <div className="flex flex-col  p-8 shadow-lg mx-6 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 ">
+                  <div className="flex justify-start items-center ">
                     {/* Optional Profile Image */}
                     {/* <img
             src={item.images[0]}
@@ -93,16 +93,16 @@ export default function Testimonial() {
             className="w-20 h-20 rounded-full object-cover shadow-md"
           /> */}
                     <div>
-                      <p className="text-2xl font-bold text-gray-800">
+                      <p className="text-2xl font-bold text-gray-800 flex">
                         {item.name}
                       </p>
                       {/* <p className="text-gray-500">{item.work}</p> */}
                     </div>
                   </div>
-                  <div className="py-4 space-y-3">
-                    <p className="text-lg font-semibold text-indigo-700">
+                  <div className="py-1 space-y-1 flex flex-col">
+                    {/* <p className="text-lg font-semibold text-indigo-700">
                       {item.trek}
-                    </p>
+                    </p> */}
                     <div className="flex text-yellow-500">
                       {Array(item.rating)
                         .fill()
