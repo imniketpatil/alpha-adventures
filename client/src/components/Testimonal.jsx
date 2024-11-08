@@ -18,7 +18,7 @@ export default function Testimonial() {
 
   const settings = {
     dots: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 500,
     autoplay: true,
@@ -85,24 +85,24 @@ export default function Testimonial() {
             {testimonialDetails.map((item) => (
               <div key={item._id}>
                 <div className="flex flex-col  p-8 shadow-lg mx-6 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 ">
-                  <div className="flex justify-start items-center ">
+                  <div className="flex justify-start items-center gap-4">
                     {/* Optional Profile Image */}
-                    {/* <img
-            src={item.images[0]}
-            alt={item.name}
-            className="w-20 h-20 rounded-full object-cover shadow-md"
-          /> */}
+                    <img
+                      src={item.images[0]}
+                      alt={item.name}
+                      className="w-20 h-20 rounded-full object-cover"
+                    />
                     <div>
                       <p className="text-2xl font-bold text-gray-800 flex">
                         {item.name}
                       </p>
-                      {/* <p className="text-gray-500">{item.work}</p> */}
+                      <p className="text-gray-500">{item.work}</p>
                     </div>
                   </div>
                   <div className="py-1 space-y-1 flex flex-col">
-                    {/* <p className="text-lg font-semibold text-indigo-700">
+                    <p className="text-lg font-semibold text-indigo-700">
                       {item.trek}
-                    </p> */}
+                    </p>
                     <div className="flex text-yellow-500">
                       {Array(item.rating)
                         .fill()

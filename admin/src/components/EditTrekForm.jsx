@@ -255,19 +255,19 @@ function EditTrekForm({ setOpenTrekForm }) {
             </div>
 
             <div className="flex gap-5">
-              {/* <div className="flex flex-col flex-1">
+              <div className="flex flex-col flex-1">
                 <label htmlFor="altitude" className="mb-2 text-gray-700">
-                  Altitude (m)
+                  Duration
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   id="altitude"
                   className="p-2 border border-gray-300 rounded-lg"
                   value={altitude}
                   onChange={(e) => setAltitude(e.target.value)}
                   required
                 />
-              </div> */}
+              </div>
 
               <div className="flex flex-col flex-1">
                 <label htmlFor="trekLocation" className="mb-2 text-gray-700">

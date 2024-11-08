@@ -83,10 +83,10 @@ function TrekInfoAndDate({
   let hasWithTravel = false;
   let hasWithoutTravel = false;
 
-  if (withTravel?.length > 0 && withTravel[0]?.price !== "") {
+  if (withTravel?.length > 0 && withTravel[0]?.description !== "") {
     hasWithTravel = true;
   }
-  if (withoutTravel?.length > 0 && withoutTravel[0]?.price !== "") {
+  if (withoutTravel?.length > 0 && withoutTravel[0]?.description !== "") {
     hasWithoutTravel = true;
   }
 

@@ -15,13 +15,13 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
   if (firstTrek?.priceDetails) {
     if (
       firstTrek.priceDetails.withTravel?.length > 0 &&
-      firstTrek.priceDetails.withTravel[0]?.price !== ""
+      firstTrek.priceDetails.withTravel[0]?.description !== ""
     ) {
       hasWithTravel = true;
     }
     if (
       firstTrek.priceDetails.withoutTravel?.length > 0 &&
-      firstTrek.priceDetails.withoutTravel[0]?.price !== ""
+      firstTrek.priceDetails.withoutTravel[0]?.description !== ""
     ) {
       hasWithoutTravel = true;
     }
@@ -44,19 +44,24 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
                 <p className="text-gray-700 text-base md:text-md font-medium">
                   {data?.description}
                 </p>
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-                  <p className="flex gap-2 items-center text-md md:text-lg font-bold text-gray-700">
-                    <LocationOnIcon className="text-blue-600" />
-                    From: {data?.from}
-                  </p>
-                  <p className="flex gap-2 items-center text-md md:text-lg font-bold text-gray-700">
-                    <LocationOnIcon className="text-blue-600" />
-                    To: {data?.to}
-                  </p>
-                </div>
-                <p className="flex items-center text-md md:text-lg font-bold text-gray-700">
-                  Price: {data?.price} <CurrencyRupeeIcon className="ml-1" />
-                </p>
+                {data?.from && (
+                  <>
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+                      <p className="flex gap-2 items-center text-md md:text-lg font-bold text-gray-700">
+                        <LocationOnIcon className="text-blue-600" />
+                        From: {data?.from}
+                      </p>
+                      <p className="flex gap-2 items-center text-md md:text-lg font-bold text-gray-700">
+                        <LocationOnIcon className="text-blue-600" />
+                        To: {data?.to}
+                      </p>
+                    </div>
+                    <p className="flex items-center text-md md:text-lg font-bold text-gray-700">
+                      Price: {data?.price}{" "}
+                      <CurrencyRupeeIcon className="ml-1" />
+                    </p>
+                  </>
+                )}
               </div>
             ))}
           </div>

@@ -98,6 +98,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                     <h3 className="text-md w-full font-medium text-gray-700 mb-2 md:mb-4 text-start flex-1 ">
                       {trek.trekTitle}
                     </h3>
+                    {/* <div className="w-full flex justify-center items-center"> */}
                     {/* <div className="w-full text-gray-600 mb-0 md:mb-4">
                       <p className="mb-2 text-sm">
                         <span className="font-semibold">Type:</span>{" "}
@@ -128,7 +129,7 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                       </div>
                     </div> */}
                     <button
-                      className="button mb-2 md:mb-0 "
+                      className="button mb-2 md:mb-0 w-full"
                       onClick={() => handleGetInfo(trek._id, trek.dates[0])}
                     >
                       Get Trek

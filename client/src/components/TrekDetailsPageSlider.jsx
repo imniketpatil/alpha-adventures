@@ -48,20 +48,20 @@ function TrekDetailsPageSlider({
   };
 
   return (
-    <div className="relative h-screen lg:max-h-[550px] w-full m-auto mb-10 group">
+    <div className="relative h-screen lg:max-h-[600px] w-full m-auto mb-10 group">
       {/* Slide */}
       <div
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
-        className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat duration-500 filter brightness-75"
+        className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat duration-500 filter brightness-50"
         role="img"
         aria-label={`${trekName} slide ${currentIndex + 1}`}
       ></div>
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full gap-6 text-white px-4">
-        <h1 className="text-3xl lg:text-5xl font-bold text-center">
+        <h1 className="text-3xl lg:text-5xl font-bold text-center text-white shadow-2xl">
           {trekName}
         </h1>
-        <p className="text-xl lg:text-2xl font-semibold text-center">
+        <p className="text-xl lg:text-2xl font-semibold text-center text-white shadow-2xl">
           {trekTitle}
         </p>
         <button
