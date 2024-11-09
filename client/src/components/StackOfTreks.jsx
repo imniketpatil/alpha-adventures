@@ -12,6 +12,8 @@ function StackOfTreks({ treksBasedOnTrekType }) {
 
   const handleGetInfo = (id, trekDateId) => {
     if (id && trekDateId) {
+      console.log(id);
+
       addCourse(id);
       addDateId(trekDateId);
       navigate("/trekdetails");
@@ -66,7 +68,7 @@ function StackOfTreks({ treksBasedOnTrekType }) {
                     Suitable for Ages : {trek.suitableForAge}
                   </p>
 
-                  <div className="mt-4 md:mt-0">
+                  <div className="mt-0 md:mt-0">
                     {/* <div className="flex items-center justify-between">
                       <span className="text-lg font-semibold text-gray-800"> */}
                     {/* {trek.altitude}m Height */}
@@ -77,19 +79,19 @@ function StackOfTreks({ treksBasedOnTrekType }) {
                     {/* </span>
                     </div> */}
 
-                    <div className="flex items-center justify-between">
+                    {/* <div className="flex items-center justify-between">
                       <p className="text-md font-semibold text-gray-800 mt-2">
                         Start Date :{" "}
                         {new Date(trek.startDate).toLocaleDateString("en-GB")}
-                      </p>
-                      <p className="text-md font-semibold text-gray-800 mt-2">
-                        Duration : {trek.dateDifference} Days
-                      </p>
-                    </div>
+                      </p> */}
+                    <p className="text-md font-semibold text-gray-800 ">
+                      Duration : {trek.altitude} Days
+                    </p>
+                    {/* </div> */}
 
                     <button
                       className="w-full mt-4 bg-blue-600 text-white text-lg font-bold py-2 rounded-lg transition duration-300 hover:bg-blue-700"
-                      onClick={() => handleGetInfo(trek._id, trek.trekDateId)}
+                      onClick={() => handleGetInfo(trek._id, trek.dates[0])}
                     >
                       Get More Details For {trek.trekName}
                     </button>
