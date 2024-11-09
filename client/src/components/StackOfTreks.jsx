@@ -87,6 +87,7 @@ function StackOfTreks({ treksBasedOnTrekType }) {
                     <p className="text-md font-semibold text-gray-800 ">
                       Duration : {trek.altitude} Days
                     </p>
+
                     {/* </div> */}
 
                     <button
