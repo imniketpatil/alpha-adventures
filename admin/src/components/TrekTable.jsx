@@ -37,11 +37,11 @@ const columns = [
   { field: "trekName", headerName: "Trek Name", width: 150 },
   { field: "trekTitle", headerName: "Trek Title", width: 150 },
   { field: "suitableForAge", headerName: "Suitable For Age", width: 70 },
-  { field: "altitude", type: "number", headerName: "Altitude", width: 70 },
+  { field: "altitude", type: "number", headerName: "Duration", width: 70 },
   { field: "trekLocation", headerName: "Location", width: 100 },
   { field: "trekDescription", headerName: "Description", width: 150 },
   { field: "trekInfo", headerName: "Information", width: 150 },
-  { field: "trekHighlights", headerName: "Highlights", width: 150 },
+  { field: "trekHighlights", headerName: "Note", width: 150 },
   { field: "trekInclusions", headerName: "Inclusions", width: 150 },
   { field: "trekExclusions", headerName: "Exclusions", width: 150 },
   {

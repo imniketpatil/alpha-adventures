@@ -55,7 +55,7 @@ function AddHighlightsInTrek({ trekHighlights, setTrekHighlights }) {
             name="highlight"
             value={x.highlight}
             onChange={(e) => handleInputChange(e, i)}
-            placeholder="Enter highlight"
+            placeholder="Enter Note"
           />
           <div className="flex gap-1">
             {inputList.length !== 1 && (

@@ -161,10 +161,10 @@ function InclusionExclusionInfoDetails({
 
           <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 mb-4">
-              <span role="img" aria-label="Trek Highlights">
+              {/* <span role="img" aria-label="Trek Highlights">
                 ❗️
-              </span>
-              Trek Notes
+              </span> */}
+              Notes
             </h2>
             <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
               {isLoadingDate || isLoadingTrek ? (

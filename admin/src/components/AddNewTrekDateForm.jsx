@@ -1,6 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AddNewTrekDateTrekIdContext from "../context/AddNewTrekDateTrekIdContext";
 import addNewDateForTrek from "../hooks/addNewDateForTrek";
+import useIdStore from "../app/IdStore";
+import { useQuery } from "@tanstack/react-query";
+import getTrekDetailsById from "../hooks/getTrekDetailsById";
 
 function AddNewTrekDateForm({ setOpenTrekForm }) {
   const [startDate, setStartDate] = useState("");
@@ -15,6 +18,42 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
 
   const { IdForTrek } = useContext(AddNewTrekDateTrekIdContext);
   const mutation = addNewDateForTrek();
+
+  const trekId = useIdStore((state) => state.trekId);
+
+  const {
+    data: fetchedTrekData,
+    err,
+    isLoading,
+  } = useQuery({
+    queryKey: ["getDateDetailsById", trekId],
+    queryFn: async () => getTrekDetailsById(trekId),
+  });
+
+  console.log("fetchedTrekData", fetchedTrekData);
+
+  useEffect(() => {
+    if (fetchedTrekData) {
+      // const { startDate, endDate, priceData, trekTimelineData } =
+      //   fetchedTrekData;
+      // const { withTravel, withoutTravel } = priceData;
+
+      // setStartDate(startDate);
+      // setEndDate(endDate);
+
+      setWithoutTravel(
+        fetchedTrekData.withoutTravel || [
+          { description: "", from: "", to: "", price: "" },
+        ]
+      );
+      setWithTravel(
+        fetchedTrekData.withTravel || [
+          { description: "", from: "", to: "", price: "" },
+        ]
+      );
+      setScheduleTimeline(fetchedTrekData.scheduleTimeline || []);
+    }
+  }, [fetchedTrekData]);
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");

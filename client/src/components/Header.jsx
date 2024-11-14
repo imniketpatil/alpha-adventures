@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useCourseStore from "../app/courseStore";
-import LogoAA from "/images/Alpha Logo.png";
+import LogoAA from "/images/Logo Alpha.png";
 import useGetTrekTypes from "../hooks/useGetTrekTypes";
 
 const Header = ({ type }) => {
