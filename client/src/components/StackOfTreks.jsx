@@ -85,7 +85,7 @@ function StackOfTreks({ treksBasedOnTrekType }) {
                         {new Date(trek.startDate).toLocaleDateString("en-GB")}
                       </p> */}
                     <p className="text-md font-semibold text-gray-800 ">
-                      Duration : {trek.altitude} Days
+                      Duration : {trek.altitude}
                     </p>
 
                     {/* </div> */}
