@@ -48,6 +48,7 @@ function TrekInfoAndDate({
 
   const toggleActive = (index, dateid) => {
     setActiveIndex(activeIndex === index ? null : index);
+    setIsExpanded(true);
     addDateId(dateid);
   };
 
