@@ -89,7 +89,7 @@ function TrekInfoAndDate({
         <div className="flex flex-col lg:flex-row lg:items-start gap-8">
           <div className="flex flex-col items-center mt-2">
             <div
-              className="flex flex-col lg:flex-row"
+              className="flex flex-col lg:flex-row gap-3"
               style={{
                 maxHeight: isExpanded ? "none" : "300px",
                 overflow: "hidden",
