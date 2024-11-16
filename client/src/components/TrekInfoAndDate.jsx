@@ -185,6 +185,19 @@ function TrekInfoAndDate({
                           </button>
                         </div>
                       )}
+                      {!isExpanded && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            height: "80px",
+                            background:
+                              "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+                          }}
+                        />
+                      )}
                     </div>
                   ))
                 ) : (

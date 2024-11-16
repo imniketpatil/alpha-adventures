@@ -29,6 +29,7 @@ import AddNewTrekDateTrekIdContextProvider from "./context/AddNewTrekDateTrekIdC
 import EditDateDetails from "./pages/EditDateDetails";
 import EditDateDetailsIdContextProvider from "./context/EditDateDetailsIdContextProvider";
 import EditTrekDetailsIdContextProvider from "./context/EditTrekDetailsIdContextProvider";
+import Error from "./pages/Error";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -158,6 +159,12 @@ function App() {
                                             <PrivateRoute
                                               component={EditDateDetails}
                                             />
+                                          }
+                                        />
+                                        <Route
+                                          path="*"
+                                          element={
+                                            <PrivateRoute component={Error} />
                                           }
                                         />
                                       </Routes>
