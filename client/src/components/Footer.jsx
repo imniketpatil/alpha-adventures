@@ -12,12 +12,7 @@ const Footer = () => {
               to="/"
               className="flex items-center justify-center font-medium text-gray-900 title-font md:justify-center"
             >
-              <img
-                loading="lazy"
-                src={LogoAAFooter}
-                alt="AA Logo"
-                className="h-20"
-              />
+              <img src={LogoAAFooter} alt="AA Logo" className="h-20" />
             </Link>
             <p className="mt-2 text-md text-gray-500">Raw, Wild, Untamed</p>
             <div className="mt-4">
