@@ -39,7 +39,7 @@ function Banner() {
 
   return (
     <div
-      className="h-[50vh] lg:h-[60vh] w-full bg-center bg-cover bg-no-repeat bg-transparent bg-slate-400 flex flex-col gap-6 items-center justify-center font-body z-0"
+      className="h-[60vh] lg:h-[70vh] w-full bg-center bg-cover bg-no-repeat bg-transparent bg-slate-400 flex flex-col gap-6 items-center justify-center font-body z-0"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url(${HomeBannerBG})`,
       }}

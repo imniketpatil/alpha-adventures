@@ -12,7 +12,12 @@ const Footer = () => {
               to="/"
               className="flex items-center justify-center font-medium text-gray-900 title-font md:justify-center"
             >
-              <img src={LogoAAFooter} alt="AA Logo" className="h-20" />
+              <img
+                loading="lazy"
+                src={LogoAAFooter}
+                alt="AA Logo"
+                className="h-20"
+              />
             </Link>
             <p className="mt-2 text-md text-gray-500">Raw, Wild, Untamed</p>
             <div className="mt-4">
@@ -177,7 +182,6 @@ const Footer = () => {
                 height="300"
                 style={{ border: "0" }} // Fix: Use style object
                 allowFullScreen=""
-                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div> */}
