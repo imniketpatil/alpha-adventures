@@ -6,13 +6,13 @@ function ContactUsMainPageBelowSlider() {
       <div className="max-w-[1400px] flex flex-col lg:flex-row items-start justify-around lg:gap-6">
         <div className="mb-2 lg:mb-0">
           <h2 className="text-lg lg:text-xl font-bold">
-            Have questions? Speak to our expert Trip Advisors
+            Have questions? Speak to our expert Advisors
           </h2>
         </div>
         <div>
           <p className="text-md lg:text-lg">
             We have an expert team of Trip Advisors to help you choose the right
-            trek.
+            trip.
           </p>
           <p className="text-md lg:text-lg hidden lg:block">
             So if you have questions like, "Can I do this trip?" or "Who else is

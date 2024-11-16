@@ -13,6 +13,7 @@ import TrekDetails from "./pages/TrekDetails.jsx";
 import TrekTypeTreksPage from "./pages/TrekTypeTreksPage.jsx";
 import TermsAndCondition from "./pages/TermsAndCondition.jsx";
 import RefundCancellationPolicy from "./pages/RefundCancellationPolicy.jsx";
+import Error from "./pages/Error.jsx";
 
 function App() {
   const router = createBrowserRouter(
@@ -29,6 +30,7 @@ function App() {
           path="/RefundCancellationPolicy"
           element={<RefundCancellationPolicy />}
         />
+        <Route path="*" element={<Error />} />
       </>
     )
   );

@@ -100,7 +100,7 @@ function TrekSheduleAndDateDetails({ trekDateData, scheduleTimeline }) {
       {/* Trek Timeline Section */}
       <div className="p-6 md:p-8 lg:p-10 rounded-lg bg-white shadow-lg">
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 text-center mb-6">
-          Trek Timeline
+          Timeline
         </h2>
         <ScheduleTimeline scheduleTimeline={scheduleTimeline} />
       </div>

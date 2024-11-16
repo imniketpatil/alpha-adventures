@@ -53,11 +53,10 @@ function TrekSliderComponent({ upcommingtrekslist }) {
 
   const handleGetInfo = (id, trekDateId) => {
     console.log(trekDateId);
-
     if (id && trekDateId) {
+      navigate("/trekdetails");
       addCourse(id);
       addDateId(trekDateId);
-      navigate("/trekdetails");
     }
   };
 

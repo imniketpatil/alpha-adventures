@@ -23,7 +23,7 @@ const TrekDetailsIconSection = ({
     // },
     {
       imgSrc: DurationIcon,
-      label: "Trip DURATION",
+      label: "DURATION",
       value: altitude ? `${altitude}` : "N/A", // Handle case where dateDifference is undefined or null
     },
     // {
