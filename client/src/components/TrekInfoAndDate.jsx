@@ -145,7 +145,7 @@ function TrekInfoAndDate({
                   }}
                 />
               )}
-              <div className="lg:w-1/3 bg-gray-50 px-6 py-3 rounded-lg shadow-lg border-4 border-yellow-400">
+              <div className="lg:w-1/3 bg-gray-50 px-6 py-3 rounded-lg shadow-lg border-4 border-yellow-400 h-min">
                 <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-6">
                   Dates with Prices
                 </h2>
