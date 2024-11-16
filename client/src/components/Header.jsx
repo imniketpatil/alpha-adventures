@@ -87,7 +87,7 @@ const Header = ({ type }) => {
             id="menu-toggle"
             type="button"
             onClick={handleMenuToggle}
-            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
+            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  lg:hidden"
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -139,7 +139,7 @@ const Header = ({ type }) => {
 
               <div
                 id="dropdownNavbar"
-                className={`z-10 font-normal md:w-[60%] lg:w-80 w-[90%]  divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700 dark:divide-gray-600 ${
+                className={`z-10 font-normal md:w-[60%] lg:w-80 w-[90%]  divide-y divide-gray-100 rounded-lg shadow   ${
                   isDropdownOpen ? "fixed" : "hidden"
                 }`}
               >
@@ -151,7 +151,7 @@ const Header = ({ type }) => {
                     <li key={trek._id} className="py-2 pr-4 pl-3 lg:p-0 ">
                       <NavLink to="/trektypetreks">
                         <div
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          className="block px-4 py-2 hover:bg-gray-100 "
                           onClick={() => handleTrekListClick(trek._id)}
                         >
                           {trek.name}
