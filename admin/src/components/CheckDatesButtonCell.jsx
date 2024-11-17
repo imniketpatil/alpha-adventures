@@ -18,7 +18,7 @@ const CheckDatesButtonCell = ({ value }) => {
     addTrekId(value);
     console.log(value);
 
-    setIdForTrek(value);
+    // setIdForTrek(value);
 
     setIdValue(value);
   };
