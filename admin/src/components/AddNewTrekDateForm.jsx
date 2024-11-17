@@ -31,6 +31,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
   });
 
   console.log("fetchedTrekData", fetchedTrekData);
+  console.log(trekId);
 
   useEffect(() => {
     if (fetchedTrekData) {
