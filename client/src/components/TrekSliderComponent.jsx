@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import useCourseStore from "../app/courseStore";
 import { useNavigate } from "react-router-dom";
 
-function TrekSliderComponent({ upcommingtrekslist }) {
+const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
 
@@ -69,36 +69,36 @@ function TrekSliderComponent({ upcommingtrekslist }) {
           <Slider {...settings}>
             {upcommingtrekslist.map((trek, index) => {
               const [loading, setLoading] = useState(true);
-
-              return (
-                <div
-                  key={index}
-                  className="bg-slate-200  shadow-lg rounded-xl hover:cursor-pointer "
-                >
-                  <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden">
-                    {loading && (
-                      <div className="spinner absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
-                        <span>Loading...</span>
-                      </div>
-                    )}
-                    <img
-                      src={trek.images[0]}
-                      alt={trek.trekName}
-                      className={`object-cover h-full w-full ${
-                        loading ? "hidden" : ""
-                      }`}
-                      onLoad={() => setLoading(false)}
-                    />
-                  </div>
-                  <div className="info flex flex-col items-start justify-start px-6 py-2 md:py-6 md:px-6 min-h-60">
-                    <h2 className="text-lg w-full font-bold text-indigo-600 mb-2 md:mb-2 text-start flex-1 ">
-                      {trek.trekName}
-                    </h2>
-                    <h3 className="text-md w-full font-medium text-gray-700 mb-2 md:mb-4 text-start flex-1 ">
-                      {trek.trekTitle}
-                    </h3>
-                    {/* <div className="w-full flex justify-center items-center"> */}
-                    {/* <div className="w-full text-gray-600 mb-0 md:mb-4">
+              if (trek.dates[0])
+                return (
+                  <div
+                    key={index}
+                    className="bg-slate-200  shadow-lg rounded-xl hover:cursor-pointer "
+                  >
+                    <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-start items-center rounded-t-xl overflow-hidden">
+                      {loading && (
+                        <div className="spinner absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
+                          <span>Loading...</span>
+                        </div>
+                      )}
+                      <img
+                        src={trek.images[0]}
+                        alt={trek.trekName}
+                        className={`object-cover h-full w-full ${
+                          loading ? "hidden" : ""
+                        }`}
+                        onLoad={() => setLoading(false)}
+                      />
+                    </div>
+                    <div className="info flex flex-col items-start justify-start px-6 py-2 md:py-6 md:px-6 min-h-60">
+                      <h2 className="text-lg w-full font-bold text-indigo-600 mb-2 md:mb-2 text-start flex-1 ">
+                        {trek.trekName}
+                      </h2>
+                      <h3 className="text-md w-full font-medium text-gray-700 mb-2 md:mb-4 text-start flex-1 ">
+                        {trek.trekTitle}
+                      </h3>
+                      {/* <div className="w-full flex justify-center items-center"> */}
+                      {/* <div className="w-full text-gray-600 mb-0 md:mb-4">
                       <p className="mb-2 text-sm">
                         <span className="font-semibold">Type:</span>{" "}
                         {trek.trekType}
@@ -127,22 +127,25 @@ function TrekSliderComponent({ upcommingtrekslist }) {
                         </p>
                       </div>
                     </div> */}
-                    <button
-                      className="button mb-2 md:mb-0 w-full"
-                      onClick={() => handleGetInfo(trek._id, trek.dates[0])}
-                    >
-                      Get Trek
-                      <span className=" text-sm "> ─ Information & Dates</span>
-                    </button>
+                      <button
+                        className="button mb-2 md:mb-0 w-full"
+                        onClick={() => handleGetInfo(trek._id, trek.dates[0])}
+                      >
+                        Get Trek
+                        <span className=" text-sm ">
+                          {" "}
+                          ─ Information & Dates
+                        </span>
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
+                );
             })}
           </Slider>
         )}
       </div>
     </div>
   );
-}
+});
 
 export default TrekSliderComponent;

@@ -2,16 +2,24 @@ import { useContext } from "react";
 import TrekIdContext from "../context/TrekIdContext";
 import TrekDatesContext from "../context/TrekDatesContext";
 import AddNewTrekDateTrekIdContext from "../context/AddNewTrekDateTrekIdContext";
+import useIdStore from "../app/IdStore";
 
 const CheckDatesButtonCell = ({ value }) => {
   const { setDatesBox } = useContext(TrekDatesContext);
+  const { addTrekId } = useIdStore((state) => ({
+    addTrekId: state.addTrekId,
+  }));
 
   const { setIdValue } = useContext(TrekIdContext);
   const { setIdForTrek } = useContext(AddNewTrekDateTrekIdContext);
 
   const handleCheckDates = () => {
     setDatesBox(true);
+    addTrekId(value);
+    console.log(value);
+
     setIdForTrek(value);
+
     setIdValue(value);
   };
 

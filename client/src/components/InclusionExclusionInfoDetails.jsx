@@ -1,53 +1,54 @@
 import React from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-function InclusionExclusionInfoDetails({
-  trekInfo = [],
-  trekInclusions = [],
-  trekExclusions = [],
-  trekCancellationPolicy = [],
-  trekHighlights = [],
-  isLoadingDate = false,
-  isLoadingTrek = false,
-}) {
-  let show = false;
+const InclusionExclusionInfoDetails = React.memo(
+  ({
+    trekInfo = [],
+    trekInclusions = [],
+    trekExclusions = [],
+    trekCancellationPolicy = [],
+    trekHighlights = [],
+    isLoadingDate = false,
+    isLoadingTrek = false,
+  }) => {
+    let show = false;
 
-  if (trekHighlights.length > 0 && trekHighlights[0] !== "") {
-    show = true;
-  }
+    if (trekHighlights.length > 0 && trekHighlights[0] !== "") {
+      show = true;
+    }
 
-  return (
-    <div className="container mx-auto max-w-[1450px] w-full px-4 sm:px-6 md:px-8 lg:px-10 rounded-xl mb-6">
-      {/* Trek Info, Highlights, and Cancellation Policy Sections */}
-      <div className="flex flex-col lg:flex-row gap-6 md:gap-8 mb-6">
-        {/* Trek Info Section */}
-        <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
-            <span role="img" aria-label="Trek Overview">
-              🏞️
-            </span>
-            Overview
-          </h2>
-          <div className="space-y-3 md:space-y-4">
-            {isLoadingDate || isLoadingTrek ? (
-              <div className="flex justify-center py-4">
-                <LoadingSpinner />
-              </div>
-            ) : (
-              trekInfo.map((info, index) => (
-                <p
-                  key={index}
-                  className="text-gray-700 text-base md:text-lg font-medium leading-relaxed"
-                >
-                  <span>•</span> {info}
-                </p>
-              ))
-            )}
+    return (
+      <div className="container mx-auto max-w-[1450px] w-full px-4 sm:px-6 md:px-8 lg:px-10 rounded-xl mb-6">
+        {/* Trek Info, Highlights, and Cancellation Policy Sections */}
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-8 mb-6">
+          {/* Trek Info Section */}
+          <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+              <span role="img" aria-label="Trek Overview">
+                🏞️
+              </span>
+              Overview
+            </h2>
+            <div className="space-y-3 md:space-y-4">
+              {isLoadingDate || isLoadingTrek ? (
+                <div className="flex justify-center py-4">
+                  <LoadingSpinner />
+                </div>
+              ) : (
+                trekInfo.map((info, index) => (
+                  <p
+                    key={index}
+                    className="text-gray-700 text-base md:text-lg font-medium leading-relaxed"
+                  >
+                    <span>•</span> {info}
+                  </p>
+                ))
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Highlights Section */}
-        {/* {show && (
+          {/* Highlights Section */}
+          {/* {show && (
           <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 mb-4">
               <span role="img" aria-label="Trek Highlights">
@@ -74,97 +75,13 @@ function InclusionExclusionInfoDetails({
           </div>
         )} */}
 
-        {/* Cancellation Policy Section */}
-        <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
-            <span role="img" aria-label="Cancellation Policy">
-              📢
-            </span>
-            Cancellation Policy
-          </h2>
-          <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
-            {isLoadingDate || isLoadingTrek ? (
-              <div className="flex justify-center py-4">
-                <LoadingSpinner />
-              </div>
-            ) : (
-              trekCancellationPolicy.map((policy, index) => (
-                <li
-                  key={index}
-                  className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
-                >
-                  <span>•</span> {policy}
-                </li>
-              ))
-            )}
-          </ul>
-        </div>
-      </div>
-
-      {/* Exclusions and Inclusions Sections */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 ">
-        <div className="p-4 md:p-6 lg:p-8 rounded-lg bg-red-100 shadow-lg">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
-            <span role="img" aria-label="Exclusions">
-              🚫
-            </span>
-            What's Not Included
-          </h2>
-          <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
-            {isLoadingDate || isLoadingTrek ? (
-              <div className="flex justify-center py-4">
-                <LoadingSpinner />
-              </div>
-            ) : (
-              trekExclusions.map((exclusion, index) => (
-                <li
-                  key={index}
-                  className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
-                >
-                  <span>•</span> {exclusion}
-                </li>
-              ))
-            )}
-          </ul>
-        </div>
-
-        <div className="p-4 md:p-6 lg:p-8 rounded-lg bg-green-100 shadow-lg">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
-            <span role="img" aria-label="Inclusions">
-              ✅
-            </span>
-            What's Included
-          </h2>
-          <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
-            {isLoadingDate || isLoadingTrek ? (
-              <div className="flex justify-center py-4">
-                <LoadingSpinner />
-              </div>
-            ) : (
-              trekInclusions.map((inclusion, index) => (
-                <li
-                  key={index}
-                  className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
-                >
-                  <span>•</span>
-                  {inclusion}
-                </li>
-              ))
-            )}
-          </ul>
-        </div>
-      </div>
-
-      {show && (
-        <div className="flex flex-col lg:flex-row gap-6 md:gap-8 mt-6">
-          {/* Highlights Section */}
-
-          <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 mb-4">
-              {/* <span role="img" aria-label="Trek Highlights">
-                ❗️
-              </span> */}
-              Notes
+          {/* Cancellation Policy Section */}
+          <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg bg-white shadow-lg">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+              <span role="img" aria-label="Cancellation Policy">
+                📢
+              </span>
+              Cancellation Policy
             </h2>
             <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
               {isLoadingDate || isLoadingTrek ? (
@@ -172,21 +89,106 @@ function InclusionExclusionInfoDetails({
                   <LoadingSpinner />
                 </div>
               ) : (
-                trekHighlights.map((highlight, index) => (
+                trekCancellationPolicy.map((policy, index) => (
                   <li
                     key={index}
                     className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
                   >
-                    <span>•</span> {highlight}
+                    <span>•</span> {policy}
                   </li>
                 ))
               )}
             </ul>
           </div>
         </div>
-      )}
-    </div>
-  );
-}
+
+        {/* Exclusions and Inclusions Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 ">
+          <div className="p-4 md:p-6 lg:p-8 rounded-lg bg-red-100 shadow-lg">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+              <span role="img" aria-label="Exclusions">
+                🚫
+              </span>
+              What's Not Included
+            </h2>
+            <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
+              {isLoadingDate || isLoadingTrek ? (
+                <div className="flex justify-center py-4">
+                  <LoadingSpinner />
+                </div>
+              ) : (
+                trekExclusions.map((exclusion, index) => (
+                  <li
+                    key={index}
+                    className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
+                  >
+                    <span>•</span> {exclusion}
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+
+          <div className="p-4 md:p-6 lg:p-8 rounded-lg bg-green-100 shadow-lg">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+              <span role="img" aria-label="Inclusions">
+                ✅
+              </span>
+              What's Included
+            </h2>
+            <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
+              {isLoadingDate || isLoadingTrek ? (
+                <div className="flex justify-center py-4">
+                  <LoadingSpinner />
+                </div>
+              ) : (
+                trekInclusions.map((inclusion, index) => (
+                  <li
+                    key={index}
+                    className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
+                  >
+                    <span>•</span>
+                    {inclusion}
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+        </div>
+
+        {show && (
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-8 mt-6">
+            {/* Highlights Section */}
+
+            <div className="flex-1 p-4 md:p-6 lg:p-8 rounded-lg shadow-lg">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 mb-4">
+                {/* <span role="img" aria-label="Trek Highlights">
+                ❗️
+              </span> */}
+                Notes
+              </h2>
+              <ul className="list-disc list-inside text-base md:text-lg text-gray-800 space-y-2 pl-4">
+                {isLoadingDate || isLoadingTrek ? (
+                  <div className="flex justify-center py-4">
+                    <LoadingSpinner />
+                  </div>
+                ) : (
+                  trekHighlights.map((highlight, index) => (
+                    <li
+                      key={index}
+                      className="flex gap-2 md:gap-3 text-gray-700 text-base md:text-lg font-medium"
+                    >
+                      <span>•</span> {highlight}
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 export default InclusionExclusionInfoDetails;

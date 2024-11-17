@@ -36,70 +36,73 @@ function StackOfTreks({ treksBasedOnTrekType }) {
             </p>
           </div>
           <div className="flex flex-col gap-8">
-            {treksBasedOnTrekType.map((trek) => (
-              <div
-                key={trek._id}
-                className="bg-white p-6 rounded-xl shadow-lg  flex flex-col md:flex-row gap-6"
-              >
-                {/* Image Section */}
-                <div className="w-full md:w-[300px] overflow-hidden rounded-lg flex-shrink-0">
-                  <img
-                    src={trek.images[0]}
-                    alt={trek.name}
-                    className="w-full h-64 object-cover "
-                  />
-                </div>
+            {treksBasedOnTrekType.map((trek) => {
+              if (trek.dates[0])
+                return (
+                  <div
+                    key={trek._id}
+                    className="bg-white p-6 rounded-xl shadow-lg  flex flex-col md:flex-row gap-6"
+                  >
+                    {/* Image Section */}
+                    <div className="w-full md:w-[300px] overflow-hidden rounded-lg flex-shrink-0">
+                      <img
+                        src={trek.images[0]}
+                        alt={trek.name}
+                        className="w-full h-64 object-cover "
+                      />
+                    </div>
 
-                {/* Trek Details Section */}
-                <div className="flex flex-col justify-between flex-grow">
-                  <div>
-                    <h2 className="text-2xl  font-bold text-gray-800">
-                      {trek.trekName}
-                    </h2>
-                    <p className="text-md font-semibold text-gray-800 mt-2">
-                      {trek.trekTitle}
-                    </p>
-                    <p className="text-md font-semibold text-gray-800 mt-1">
-                      {trek.trekLocation}
-                    </p>
-                  </div>
+                    {/* Trek Details Section */}
+                    <div className="flex flex-col justify-between flex-grow">
+                      <div>
+                        <h2 className="text-2xl  font-bold text-gray-800">
+                          {trek.trekName}
+                        </h2>
+                        <p className="text-md font-semibold text-gray-800 mt-2">
+                          {trek.trekTitle}
+                        </p>
+                        <p className="text-md font-semibold text-gray-800 mt-1">
+                          {trek.trekLocation}
+                        </p>
+                      </div>
 
-                  <p className="text-md font-semibold text-gray-800 ">
-                    Suitable for Ages : {trek.suitableForAge}
-                  </p>
+                      <p className="text-md font-semibold text-gray-800 ">
+                        Suitable for Ages : {trek.suitableForAge}
+                      </p>
 
-                  <div className="mt-0 md:mt-0">
-                    {/* <div className="flex items-center justify-between">
+                      <div className="mt-0 md:mt-0">
+                        {/* <div className="flex items-center justify-between">
                       <span className="text-lg font-semibold text-gray-800"> */}
-                    {/* {trek.altitude}m Height */}
-                    {/* </span>
+                        {/* {trek.altitude}m Height */}
+                        {/* </span>
                       <span className="bg-green-600 text-white text-md px-3 py-1 rounded-md"> */}
-                    {/* {trek.trekDifficulty.charAt(0).toUpperCase() +
+                        {/* {trek.trekDifficulty.charAt(0).toUpperCase() +
                           trek.trekDifficulty.slice(1)} */}
-                    {/* </span>
+                        {/* </span>
                     </div> */}
 
-                    {/* <div className="flex items-center justify-between">
+                        {/* <div className="flex items-center justify-between">
                       <p className="text-md font-semibold text-gray-800 mt-2">
                         Start Date :{" "}
                         {new Date(trek.startDate).toLocaleDateString("en-GB")}
                       </p> */}
-                    <p className="text-md font-semibold text-gray-800 ">
-                      Duration : {trek.altitude}
-                    </p>
+                        <p className="text-md font-semibold text-gray-800 ">
+                          Duration : {trek.altitude}
+                        </p>
 
-                    {/* </div> */}
+                        {/* </div> */}
 
-                    <button
-                      className="w-full mt-4 bg-blue-600 text-white text-lg font-bold py-2 rounded-lg transition duration-300 hover:bg-blue-700"
-                      onClick={() => handleGetInfo(trek._id, trek.dates[0])}
-                    >
-                      Get More Details For {trek.trekName}
-                    </button>
+                        <button
+                          className="w-full mt-4 bg-blue-600 text-white text-lg font-bold py-2 rounded-lg transition duration-300 hover:bg-blue-700"
+                          onClick={() => handleGetInfo(trek._id, trek.dates[0])}
+                        >
+                          Get More Details For {trek.trekName}
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+            })}
           </div>
         </>
       )}
