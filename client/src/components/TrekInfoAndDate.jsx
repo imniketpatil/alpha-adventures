@@ -7,12 +7,14 @@ import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 
 // Utility functions
-const formatDate = (date) =>
-  new Date(date).toLocaleDateString("en-IN", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+const formatDate = (date) => {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, "0"); // Pad day with leading zero
+  const month = d.toLocaleDateString("en-IN", { month: "short" }); // Short month
+  const year = d.getFullYear();
+
+  return `${day} ${month} ${year}`;
+};
 
 const generateWhatsAppLink = (number, message) =>
   `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
