@@ -100,6 +100,19 @@ const TrekInfoAndDate = React.memo(
                   transition: "max-height 0.3s ease",
                 }}
               >
+                {!isExpanded && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "80px",
+                      background:
+                        "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+                    }}
+                  />
+                )}
                 <div className="lg:w-2/3 relative mb-10">
                   <h1 className="text-4xl font-extrabold mb-4">
                     {trekName}
@@ -122,6 +135,19 @@ const TrekInfoAndDate = React.memo(
                     </div>
                   ))}
                 </div>
+                {!isExpanded && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "80px",
+                      background:
+                        "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+                    }}
+                  />
+                )}
                 <div className="lg:w-1/3 bg-gray-50 px-6 py-3 rounded-lg shadow-lg border-4 border-yellow-400 h-min">
                   <h2 className="text-2xl font-extrabold text-center text-gray-800 mb-6">
                     Dates with Prices
@@ -163,6 +189,19 @@ const TrekInfoAndDate = React.memo(
                               Enquire For {trekName}
                             </button>
                           </div>
+                        )}
+                        {!isExpanded && (
+                          <div
+                            style={{
+                              position: "absolute",
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              height: "80px",
+                              background:
+                                "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+                            }}
+                          />
                         )}
                       </div>
                     ))
