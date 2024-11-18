@@ -8,7 +8,7 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 
 // Utility functions
 const formatDate = (date) =>
-  new Date(date).toLocaleDateString("en-US", {
+  new Date(date).toLocaleDateString("en-IN", {
     year: "numeric",
     month: "long",
     day: "numeric",
