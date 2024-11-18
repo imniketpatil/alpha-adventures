@@ -41,7 +41,7 @@ const TrekSheduleAndDateDetails = React.memo(
                 With Travel
               </h2>
               {firstTrek.priceDetails.withTravel.map((data) => (
-                <div className="space-y-4 w-full mt-4" key={data?._id}>
+                <div className="space-y-4 w-full my-4" key={data?._id}>
                   <p className="text-gray-700 text-base md:text-md font-medium">
                     {data?.description}
                   </p>
@@ -75,7 +75,7 @@ const TrekSheduleAndDateDetails = React.memo(
                 Without Travel
               </h2>
               {firstTrek.priceDetails.withoutTravel.map((data) => (
-                <div className="space-y-4 w-full mt-4" key={data?._id}>
+                <div className="space-y-4 w-full my-4" key={data?._id}>
                   <p className="text-gray-700 text-base md:text-md font-medium">
                     {data?.description}
                   </p>
