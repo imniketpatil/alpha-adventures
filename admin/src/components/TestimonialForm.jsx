@@ -102,7 +102,6 @@ function TestimonialForm({ setOpenTestimonialForm }) {
                   className="p-2 border border-gray-300 rounded-lg"
                   value={work}
                   onChange={(e) => setWork(e.target.value)}
-                  required
                 />
               </div>
               <div className="flex flex-col">
@@ -115,7 +114,6 @@ function TestimonialForm({ setOpenTestimonialForm }) {
                   className="p-2 border border-gray-300 rounded-lg"
                   value={trek}
                   onChange={(e) => setTrek(e.target.value)}
-                  required
                 />
               </div>
               <div className="flex items-center justify-between">
