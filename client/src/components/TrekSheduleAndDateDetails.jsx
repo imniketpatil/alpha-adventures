@@ -59,7 +59,7 @@ const TrekSheduleAndDateDetails = React.memo(
                       </div>
                       <p className="flex items-center text-md md:text-lg font-bold text-gray-700">
                         Price: {data?.price}{" "}
-                        <CurrencyRupeeIcon className="ml-1" />
+                        {/* <CurrencyRupeeIcon className="ml-1" /> */}
                       </p>
                     </>
                   )}
@@ -90,7 +90,8 @@ const TrekSheduleAndDateDetails = React.memo(
                     </p>
                   </div>
                   <p className="flex items-center text-md md:text-lg font-bold text-gray-700">
-                    Price: {data?.price} <CurrencyRupeeIcon className="ml-1" />
+                    Price: {data?.price}
+                    {/* <CurrencyRupeeIcon className="ml-1" /> */}
                   </p>
                 </div>
               ))}
