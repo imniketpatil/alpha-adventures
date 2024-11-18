@@ -96,7 +96,7 @@ const TrekInfoAndDate = React.memo(
               <div
                 className="flex flex-col lg:flex-row gap-3"
                 style={{
-                  maxHeight: isExpanded ? "none" : "300px",
+                  maxHeight: isExpanded ? "none" : "350px",
                   overflow: "hidden",
                   position: "relative",
                   transition: "max-height 0.3s ease",

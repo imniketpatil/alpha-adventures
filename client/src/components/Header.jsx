@@ -87,7 +87,7 @@ const Header = ({ type }) => {
             id="menu-toggle"
             type="button"
             onClick={handleMenuToggle}
-            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  lg:hidden"
+            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200  lg:hidden"
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -107,7 +107,7 @@ const Header = ({ type }) => {
         </div>
 
         <div
-          className={`w-full lg:block lg:w-auto ${
+          className={`w-full lg:block lg:w-auto  ${
             isMobileMenuOpen ? "relative" : "hidden"
           }`}
           id="mobile-menu"
@@ -121,7 +121,7 @@ const Header = ({ type }) => {
               >
                 Upcoming Trips{" "}
                 <svg
-                  className="w-2.5 h-2.5 ms-2.5"
+                  className="w-2.5 h-2.5 ms-2.5 "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -139,7 +139,7 @@ const Header = ({ type }) => {
 
               <div
                 id="dropdownNavbar"
-                className={`z-10 font-normal md:w-[60%] lg:w-80 w-[90%]  divide-y divide-gray-100 rounded-lg shadow   ${
+                className={`z-10 font-normal md:w-[60%] lg:w-80 w-[90%]  divide-y  divide-gray-100 rounded-lg shadow   ${
                   isDropdownOpen ? "fixed" : "hidden"
                 }`}
               >
