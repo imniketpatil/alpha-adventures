@@ -10,7 +10,7 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 const formatDate = (date) =>
   new Date(date).toLocaleDateString("en-IN", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 
