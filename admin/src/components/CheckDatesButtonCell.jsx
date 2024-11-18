@@ -16,7 +16,7 @@ const CheckDatesButtonCell = ({ value }) => {
   const handleCheckDates = () => {
     setDatesBox(true);
     addTrekId(value);
-    console.log(value);
+    // console.log(value);
 
     setIdForTrek(value);
 

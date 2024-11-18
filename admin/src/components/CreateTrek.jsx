@@ -113,7 +113,7 @@ function CreateTrek({ setOpenTrekForm }) {
     });
 
     try {
-      console.log("formData", formData);
+      // console.log("formData", formData);
 
       mutation.mutate(formData);
 

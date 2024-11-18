@@ -13,7 +13,7 @@ const TeamSection = () => {
     queryFn: getMembers,
   });
 
-  console.log(leaders);
+  // console.log(leaders);
 
   return (
     <div className="bg-white py-12 sm:py-24 font-body">

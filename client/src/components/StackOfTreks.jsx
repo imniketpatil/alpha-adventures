@@ -3,7 +3,7 @@ import useCourseStore from "../app/courseStore";
 import { useNavigate } from "react-router-dom";
 
 function StackOfTreks({ treksBasedOnTrekType }) {
-  console.log(treksBasedOnTrekType);
+  // console.log(treksBasedOnTrekType);
 
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
@@ -12,7 +12,7 @@ function StackOfTreks({ treksBasedOnTrekType }) {
 
   const handleGetInfo = (id, trekDateId) => {
     if (id && trekDateId) {
-      console.log(id);
+      // console.log(id);
 
       addCourse(id);
       addDateId(trekDateId);

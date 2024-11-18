@@ -42,7 +42,7 @@ function TrekDetailsMainPage() {
       console.error("Error fetching Trek Date Details:", error),
   });
 
-  console.log(trekDateData);
+  // console.log(trekDateData);
 
   const trekDetails = trekData[0] || {};
   const {
@@ -73,7 +73,7 @@ function TrekDetailsMainPage() {
     withoutTravel: startDateWithoutTravel = [],
   } = allStartDate;
 
-  console.log(allStartDate);
+  // console.log(allStartDate);
 
   const {
     trekTimelineDetails = {},
@@ -86,12 +86,12 @@ function TrekDetailsMainPage() {
   const { withTravel: withTravel = [], withoutTravel: withoutTravel = [] } =
     priceDetails;
 
-  console.log(withTravel);
-  console.log(withoutTravel);
+  // console.log(withTravel);
+  // console.log(withoutTravel);
 
   const { scheduleTimeline = [] } = trekTimelineDetails;
 
-  console.log("trekDateData", trekDateData);
+  // console.log("trekDateData", trekDateData);
 
   return (
     <div>

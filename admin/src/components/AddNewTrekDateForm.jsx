@@ -30,8 +30,8 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
     queryFn: async () => getTrekDetailsById(trekId),
   });
 
-  console.log("fetchedTrekData", fetchedTrekData);
-  console.log(trekId);
+  // console.log("fetchedTrekData", fetchedTrekData);
+  // console.log(trekId);
 
   useEffect(() => {
     if (fetchedTrekData) {

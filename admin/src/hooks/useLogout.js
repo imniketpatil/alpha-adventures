@@ -9,7 +9,7 @@ const useLogout = () => {
 
   return useMutation({
     mutationFn: ({ authToken }) => {
-      console.log("authToken for useLogout", authToken);
+      // console.log("authToken for useLogout", authToken);
 
       return axios.post(
         `${client_url}/users/logout`,

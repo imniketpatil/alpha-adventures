@@ -27,7 +27,7 @@ function EditDateForTrek() {
     queryFn: async () => getDateDetailsById(trekId),
   });
 
-  console.log(fetchedTrekGuide);
+  // console.log(fetchedTrekGuide);
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");

@@ -12,7 +12,7 @@ const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
 
   const navigate = useNavigate();
 
-  console.log(upcommingtrekslist);
+  // console.log(upcommingtrekslist);
 
   // const { trekList } = useTrekStore((state) => ({ trekList: state.trekList }));
 
@@ -52,7 +52,7 @@ const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
   };
 
   const handleGetInfo = (id, trekDateId) => {
-    console.log(trekDateId);
+    // console.log(trekDateId);
     if (id && trekDateId) {
       navigate("/trekdetails");
       addCourse(id);

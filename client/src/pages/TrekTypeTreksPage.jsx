@@ -12,7 +12,7 @@ function TrekTypeTreksPage() {
     trekTypeId: state.trekTypeId,
   }));
 
-  console.log(trekTypeId);
+  // console.log(trekTypeId);
 
   const {
     data: treksBasedOnTrekType = [],
@@ -25,7 +25,7 @@ function TrekTypeTreksPage() {
       console.error("Error fetching Trek Date Details:", error),
   });
 
-  console.log(treksBasedOnTrekType);
+  // console.log(treksBasedOnTrekType);
 
   return (
     <>

@@ -50,7 +50,7 @@ function EditTrekForm({ setOpenTrekForm }) {
     queryFn: async () => getTrekDetailsById(trekId),
   });
 
-  console.log("fetchedTrekData", fetchedTrekData);
+  // console.log("fetchedTrekData", fetchedTrekData);
 
   useEffect(() => {
     if (fetchedTrekData) {

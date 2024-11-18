@@ -28,8 +28,8 @@ const TrekSheduleAndDateDetails = React.memo(
       }
     }
 
-    console.log(firstTrek?.priceDetails?.withTravel);
-    console.log(firstTrek?.priceDetails?.withoutTravel);
+    // console.log(firstTrek?.priceDetails?.withTravel);
+    // console.log(firstTrek?.priceDetails?.withoutTravel);
 
     return (
       <div className="container mx-auto max-w-[1450px] w-full px-4 sm:px-6 md:px-8 lg:px-10 rounded-xl pt-4 mb-8">
