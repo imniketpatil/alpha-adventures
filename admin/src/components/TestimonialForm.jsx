@@ -16,7 +16,7 @@ function TestimonialForm({ setOpenTestimonialForm }) {
     setOpenTestimonialForm(false);
     e.preventDefault();
 
-    if (!name || !comment || !work || !trek || !image) {
+    if (!name || !comment || !image) {
       console.error("All fields are required.");
       return;
     }
