@@ -8,6 +8,8 @@ import getTrekDetailsById from "../hooks/getTrekDetailsById";
 function AddNewTrekDateForm({ setOpenTrekForm }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [availablity, setAvailablity] = useState("");
+
   const [withTravel, setWithTravel] = useState([
     { description: "", from: "", to: "", price: "" },
   ]);
@@ -41,6 +43,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
 
       // setStartDate(startDate);
       // setEndDate(endDate);
+      setAvailablity(fetchedTrekData.availablity || "");
 
       setWithoutTravel(
         fetchedTrekData.withoutTravel || [
@@ -80,6 +83,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
     const formData = {
       startDate,
       endDate,
+      availablity: availablity || "",
       withTravel,
       withoutTravel,
       scheduleTimeline,
@@ -98,6 +102,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
   const resetForm = () => {
     setStartDate("");
     setEndDate("");
+    setAvailablity("");
     setWithTravel([{ description: "", from: "", to: "", price: "" }]);
     setWithoutTravel([{ description: "", from: "", to: "", price: "" }]);
     setScheduleTimeline([{ day: "", time: "", work: "" }]);
@@ -139,6 +144,19 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                 className="p-2 border border-gray-300 rounded-lg"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-col flex-1">
+              <label htmlFor="endDate" className="mb-2 text-gray-700">
+                Availablity
+              </label>
+              <input
+                type="text"
+                id="availablity"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={availablity}
+                onChange={(e) => setAvailablity(e.target.value)}
               />
             </div>
           </div>

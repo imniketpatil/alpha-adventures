@@ -69,6 +69,7 @@ function TrekDetailsMainPage() {
   const {
     dateid = [],
     date = [],
+    availablity = [],
     withTravel: startDateWithTravel = [],
     withoutTravel: startDateWithoutTravel = [],
   } = allStartDate;
@@ -79,6 +80,7 @@ function TrekDetailsMainPage() {
     trekTimelineDetails = {},
     endDate,
     startDate,
+
     priceDetails = {},
     dateDifference = [],
   } = trekDateData[0] || {};
@@ -121,6 +123,7 @@ function TrekDetailsMainPage() {
         trekTypeDescription={trekTypeDescription}
         dateid={dateid}
         date={date}
+        availablity={availablity}
         startDateWithTravel={startDateWithTravel}
         startDateWithoutTravel={startDateWithoutTravel}
         allEndDate={allEndDate}

@@ -19,6 +19,8 @@ function CreateTrek({ setOpenTrekForm }) {
     { descTitle: "", desc: "" },
   ]);
   const [trekInfo, setTrekInfo] = useState([]);
+  const [availablity, setAvailablity] = useState("");
+
   const [trekHighlights, setTrekHighlights] = useState([]);
   const [trekType, setTrekType] = useState("");
   const [trekInclusions, setTrekInclusions] = useState([]);
@@ -99,7 +101,7 @@ function CreateTrek({ setOpenTrekForm }) {
 
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
-
+    formData.append("availablity", availablity);
     // Important: Stringify travel-related fields
     formData.append("withTravel", JSON.stringify(withTravel));
     formData.append("withoutTravel", JSON.stringify(withoutTravel));
@@ -114,6 +116,7 @@ function CreateTrek({ setOpenTrekForm }) {
 
     try {
       // console.log("formData", formData);
+      console.log(formData);
 
       mutation.mutate(formData);
 
@@ -140,7 +143,7 @@ function CreateTrek({ setOpenTrekForm }) {
     setTrekCancellationPolicy([{ trekCancellationPolicy: "" }]);
     setStartDate("");
     setEndDate("");
-
+    setAvailablity("");
     setwithTravel([{ description: "", from: "", to: "", price: 0 }]);
 
     setwithoutTravel([{ description: "", from: "", to: "", price: 0 }]);
@@ -454,6 +457,19 @@ function CreateTrek({ setOpenTrekForm }) {
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                   required
+                />
+              </div>
+
+              <div className="flex flex-col flex-1">
+                <label htmlFor="startDate" className="mb-2 text-gray-700">
+                  Avalibility
+                </label>
+                <input
+                  type="text"
+                  id="avalibility"
+                  className="p-2 border border-gray-300 rounded-lg"
+                  value={availablity}
+                  onChange={(e) => setAvailablity(e.target.value)}
                 />
               </div>
             </div>
