@@ -15,6 +15,14 @@ const formatDate = (date) => {
   return `${day} ${month} ${year}`;
 };
 
+const formatStartDate = (date) => {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = d.toLocaleDateString("en-IN", { month: "short" });
+  const year = d.getFullYear();
+  return `${day} ${month} `;
+};
+
 const generateWhatsAppLink = (number, message) =>
   `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
@@ -35,11 +43,11 @@ const TrekInfoAndDate = ({
 }) => {
   const addDateId = useCourseStore((state) => state.addDateId);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const trekRef = useRef(null);
 
   const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
+    setIsExpanded(isExpanded);
   };
 
   const toggleActive = (index, dateid) => {
@@ -102,7 +110,7 @@ const TrekInfoAndDate = ({
               <div
                 className={`overflow-hidden transition-max-height duration-300 ease-in-out p-4 rounded-lg`}
                 style={{
-                  maxHeight: !isExpanded ? "none" : "full",
+                  maxHeight: !isExpanded ? "full" : "full",
                 }}
               >
                 <p className="text-lg text-gray-800 leading-relaxed">
@@ -118,7 +126,7 @@ const TrekInfoAndDate = ({
                     </div>
                   ))}
               </div>
-              <button
+              {/* <button
                 className="mt-4 flex justify-center mx-auto px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300"
                 onClick={toggleExpand}
               >
@@ -127,7 +135,7 @@ const TrekInfoAndDate = ({
                 ) : (
                   <KeyboardDoubleArrowDownIcon />
                 )}
-              </button>
+              </button> */}
             </div>
 
             {/* Dates Section */}
@@ -136,43 +144,63 @@ const TrekInfoAndDate = ({
                 Available Dates
               </h2>
               {date.length > 0 ? (
-                date.map((d, index) => (
-                  <div
-                    key={index}
-                    className={`mb-4 p-4 rounded-lg shadow-md transition-transform duration-300 transform ${
-                      activeIndex === index
-                        ? "bg-yellow-100 scale-105 shadow-lg"
-                        : "bg-white hover:shadow-lg hover:scale-105"
-                    }`}
-                    onClick={() => toggleActive(index, dateid[index])}
-                  >
-                    <p className="text-lg font-bold text-center">{`Batch ${
-                      index + 1
-                    }`}</p>
-                    <p className="text-center text-gray-600">
-                      {formatDate(d)} to {formatDate(allEndDate[index])}
-                    </p>
-                    {availablity && (
-                      <p className="text-center text-green-600">
-                        {availablity[index]}
-                      </p>
-                    )}
-                    {activeIndex === index && (
-                      <div className="mt-4">
-                        {withTravel.length > 0 &&
-                          renderPricing(withTravel, "Price with Travel")}
-                        {withoutTravel.length > 0 &&
-                          renderPricing(withoutTravel, "Price without Travel")}
-                        <button
-                          className="w-full mt-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold rounded-lg hover:from-indigo-600 hover:to-purple-600"
-                          onClick={() => handleBooking(trekName, date[index])}
+                date.map((d, index) => {
+                  const currentDate = new Date();
+                  const trekDate = new Date(d);
+
+                  // Only render if current date is <= trek date (i.e., trekDate >= currentDate)
+                  if (trekDate >= currentDate) {
+                    return (
+                      <div
+                        key={index}
+                        className={`mb-4 p-4 rounded-lg shadow-md transition-transform duration-300 transform ${
+                          activeIndex === index
+                            ? "bg-yellow-100 scale-105 shadow-lg"
+                            : "bg-white hover:shadow-lg hover:scale-105"
+                        }`}
+                        onClick={() => toggleActive(index, dateid[index])}
+                      >
+                        <div
+                          className={`flex ${
+                            availablity[index]
+                              ? "justify-between"
+                              : "justify-center"
+                          } items-center`}
                         >
-                          Enquire Now
-                        </button>
+                          <p className="text-center text-gray-600 font-semibold">
+                            {formatStartDate(d)} to{" "}
+                            {formatDate(allEndDate[index])}
+                          </p>
+                          {availablity && (
+                            <p className="text-center text-green-600">
+                              {availablity[index]}
+                            </p>
+                          )}
+                        </div>
+                        {activeIndex === index && (
+                          <div className="mt-4">
+                            {withTravel.length > 0 &&
+                              renderPricing(withTravel, "Price with Travel")}
+                            {withoutTravel.length > 0 &&
+                              renderPricing(
+                                withoutTravel,
+                                "Price without Travel"
+                              )}
+                            <button
+                              className="w-full mt-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold rounded-lg hover:from-indigo-600 hover:to-purple-600"
+                              onClick={() =>
+                                handleBooking(trekName, date[index])
+                              }
+                            >
+                              Enquire Now
+                            </button>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))
+                    );
+                  }
+                  return null; // If the trek date is in the past, do not render it
+                })
               ) : (
                 <p className="text-center text-gray-600">No dates available</p>
               )}
