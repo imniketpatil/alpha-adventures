@@ -12,7 +12,7 @@ const Achievements = () => {
     },
     {
       img: HappyTrekkers,
-      label: "Happy Trekkers",
+      label: "Happy Travellers ",
       value: 5000,
     },
     {

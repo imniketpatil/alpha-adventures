@@ -68,7 +68,7 @@ export default function Testimonial() {
             Our Testimonials
           </h1>
           <p className="font-bold text-slate-900 text-3xl sm:text-4xl">
-            What Trekkers Say About Us
+            What Travellers Say About Us
           </p>
           <p className="text-gray-500 mt-2 text-lg max-w-lg mx-auto">
             Read the experiences from our trekkers who enjoyed their journey
