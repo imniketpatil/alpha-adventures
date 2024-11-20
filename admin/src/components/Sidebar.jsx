@@ -72,7 +72,7 @@ function Sidebar() {
             </li>
           </NavLink>
           <hr />
-          <p className="text-sm text-gray-400 pl-6">Trekkers Testimonials</p>
+          <p className="text-sm text-gray-400 pl-6">Travellers Testimonials</p>
           <NavLink to={"/testimonials"}>
             <li className="flex gap-2 hover:cursor-pointer text-gray-500 hover:text-black pl-6">
               <RateReviewRoundedIcon className="text-blue-600" />

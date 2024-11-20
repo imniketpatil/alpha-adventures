@@ -8,7 +8,7 @@ function AboutSectionUIComponent() {
       value: 6,
     },
     {
-      label: "Happy Trekkers",
+      label: "Happy Travellers ",
       value: 5000,
     },
     {
@@ -86,7 +86,7 @@ function AboutSectionUIComponent() {
             smiles of over{" "}
             <span className="text-yellow-500 font-normal">
               {" "}
-              5,000 Happy Trekkers{" "}
+              5,000 Happy Travellers{" "}
             </span>
             .
           </p>
