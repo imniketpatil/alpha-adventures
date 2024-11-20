@@ -83,12 +83,16 @@ const TrekInfoAndDate = ({
         <>
           <div className="flex flex-col lg:flex-row gap-8 relative">
             {/* Trek Information */}
-            <div className="lg:w-2/3 h-min sticky top-6">
+            <div className="lg:w-2/3 h-min static lg:sticky top-6">
               {/* Sticky Header */}
               <div className="mb-6">
-                <h1 className="text-4xl font-extrabold mb-4">{trekName}</h1>
-                <h2 className="text-3xl text-gray-600 mb-4">{trekTitle}</h2>
-                <p className="text-xl font-medium text-gray-700 flex items-center mb-4">
+                <h1 className="text-3xl lg:text-4xl font-extrabold mb-4">
+                  {trekName}
+                </h1>
+                <h2 className="text-2xl lg:text-3xl text-gray-600 mb-4">
+                  {trekTitle}
+                </h2>
+                <p className="text-lg lg:text-xl font-medium text-gray-700 flex items-center mb-4">
                   <FaMapMarkerAlt className="mr-2 text-blue-600" />
                   {trekLocation}
                 </p>
@@ -96,9 +100,9 @@ const TrekInfoAndDate = ({
 
               {/* Expandable and Sticky Description */}
               <div
-                className={`overflow-hidden transition-max-height duration-300 ease-in-out   p-4 rounded-lg  `}
+                className={`overflow-hidden transition-max-height duration-300 ease-in-out p-4 rounded-lg`}
                 style={{
-                  maxHeight: !isExpanded ? "none" : "350px",
+                  maxHeight: !isExpanded ? "none" : "full",
                 }}
               >
                 <p className="text-lg text-gray-800 leading-relaxed">
@@ -127,7 +131,7 @@ const TrekInfoAndDate = ({
             </div>
 
             {/* Dates Section */}
-            <div className="lg:w-1/3 bg-gray-50 px-6 py-4 rounded-lg shadow-md border-4 h-min border-yellow-300 sticky top-6">
+            <div className="lg:w-1/3 bg-gray-50 px-6 py-4 rounded-lg shadow-md border-4 h-min border-yellow-300 static lg:sticky top-6 mt-6 lg:mt-0">
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Available Dates
               </h2>
