@@ -56,7 +56,7 @@ const Header = ({ type }) => {
 
   return (
     <nav
-      className={`flex font-body w-screen items-center overflow-hidden z-50 sm:px-2 py-6 px-2 transition-all duration-300 ease-in-out ${
+      className={`flex font-body w-full items-center overflow-hidden z-50 sm:px-2 py-6 px-2 transition-all duration-300 ease-in-out ${
         isSticky || type === "list"
           ? `bg-slate-800 text-slate-200 fixed top-0 ${
               showNavbar && type === "list"
