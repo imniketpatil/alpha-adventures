@@ -77,7 +77,7 @@ export default function Testimonial() {
         </div>
       </div>
 
-      <div className="px-4 sm:px-8 lg:px-16">
+      <div className="px-4 container overflow-hidden sm:px-8 lg:px-16">
         {testimonialDetails.length === 0 ? (
           <p>No testimonials available.</p>
         ) : (
