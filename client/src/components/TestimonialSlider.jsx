@@ -68,7 +68,7 @@ export default function TestimonialSlider() {
         <Slider {...settings}>
           {testimonialDetails.map((item) => (
             <div key={item._id}>
-              <div className="flex flex-col p-2 md:p-8  shadow-lg mx-6 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 ">
+              <div className="flex flex-col p-2 md:p-2  shadow-lg mx-6 rounded-xl bg-gradient-to-r from-gray-50 to-gray-100 ">
                 <div className="flex justify-start items-center gap-4">
                   {/* Optional Profile Image */}
                   <img
