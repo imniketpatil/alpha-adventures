@@ -7,60 +7,6 @@ import useGetTestimonials from "../hooks/useGetTestimonials";
 import TestimonialSlider from "./TestimonialSlider";
 
 export default function Testimonial() {
-  const {
-    data: testimonialDetails = [], // Provide a default empty array
-    error,
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["Testimonials"],
-    queryFn: useGetTestimonials,
-  });
-
-  const settings = {
-    dots: true,
-    arrows: true,
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    cssEase: "linear",
-    pauseOnHover: true,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1500,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  if (isLoading) {
-    return <div>Loading testimonials...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading testimonials</div>;
-  }
-
   return (
     <div className="py-14 mb-2 bg-gray-100">
       <div className="flex justify-center items-center">
@@ -78,7 +24,7 @@ export default function Testimonial() {
         </div>
       </div>
 
-      <div className="container overflow-hidden px-2 pt-8  lg:pt-8 mx-auto">
+      <div className="container overflow-hidden mx-auto">
         <TestimonialSlider />
       </div>
     </div>
