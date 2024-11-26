@@ -51,7 +51,7 @@ function Banner() {
         </span>
       </h1>
       <h1 className="text-white text-xl font-normal text-center">
-        Your Adventure Travel Partner.
+        Raw, Wild, Untamed
       </h1>
     </div>
   );

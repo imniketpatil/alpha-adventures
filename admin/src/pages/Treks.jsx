@@ -160,70 +160,71 @@ function Treks() {
               )}
               {openDatesBox && (
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-scroll">
-                  <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full h-content mx-4 relative">
-                    <h1 className="text-2xl font-semibold text-center mb-4 text-blue-600">
-                      Trek Dates
-                    </h1>
-                    {isLoading ? (
-                      <p className="text-center text-gray-600">Loading...</p>
-                    ) : error ? (
-                      <p className="text-center text-red-600">
-                        Error loading trek dates.
-                      </p>
-                    ) : (
-                      <div className="space-y-4">
-                        {trekData.map((trek) =>
-                          trek.trekDates?.map((trekDate, index) => {
-                            const isDateHovered =
-                              hoveredDate &&
-                              hoveredDate.startDate === trekDate.startDate &&
-                              hoveredDate.endDate === trekDate.endDate;
-                            return (
-                              <div
-                                key={index}
-                                className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-5 p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 ease-in-out"
-                              >
-                                <p className="font-medium text-lg">
-                                  Trek Batch {index + 1}
-                                </p>
-                                <p className="text-gray-700 text-lg font-medium">
-                                  Start Date:{" "}
-                                  <span
-                                    className="font-semibold"
-                                    onMouseEnter={() =>
-                                      setHoveredDate(trekDate)
-                                    }
-                                    onMouseLeave={() => setHoveredDate(null)}
-                                  >
-                                    {new Date(
-                                      trekDate.startDate
-                                    ).toLocaleDateString("en-GB", {
-                                      day: "2-digit",
-                                      month: "2-digit",
-                                      year: "numeric",
-                                    })}
-                                  </span>
-                                </p>
-                                <p className="text-gray-700 text-lg font-medium">
-                                  End Date:{" "}
-                                  <span
-                                    className="font-semibold"
-                                    onMouseEnter={() =>
-                                      setHoveredDate(trekDate)
-                                    }
-                                    onMouseLeave={() => setHoveredDate(null)}
-                                  >
-                                    {new Date(
-                                      trekDate.endDate
-                                    ).toLocaleDateString("en-GB", {
-                                      day: "2-digit",
-                                      month: "2-digit",
-                                      year: "numeric",
-                                    })}
-                                  </span>
-                                </p>
+                  <div className=" bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full h-content mx-4 relative ">
+                    <div className="absolute left-0 top-0 w-full bg-white h-content p-8">
+                      <h1 className="text-2xl font-semibold text-center mb-4 text-blue-600">
+                        Trek Dates
+                      </h1>
+                      {isLoading ? (
+                        <p className="text-center text-gray-600">Loading...</p>
+                      ) : error ? (
+                        <p className="text-center text-red-600">
+                          Error loading trek dates.
+                        </p>
+                      ) : (
+                        <div className="space-y-4  ">
+                          {trekData.map((trek) =>
+                            trek.trekDates?.map((trekDate, index) => {
+                              const isDateHovered =
+                                hoveredDate &&
+                                hoveredDate.startDate === trekDate.startDate &&
+                                hoveredDate.endDate === trekDate.endDate;
+                              return (
+                                <div
+                                  key={index}
+                                  className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-5 p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 ease-in-out"
+                                >
+                                  <p className="font-medium text-lg">
+                                    Trek Batch {index + 1}
+                                  </p>
+                                  <p className="text-gray-700 text-lg font-medium">
+                                    Start Date:{" "}
+                                    <span
+                                      className="font-semibold"
+                                      onMouseEnter={() =>
+                                        setHoveredDate(trekDate)
+                                      }
+                                      onMouseLeave={() => setHoveredDate(null)}
+                                    >
+                                      {new Date(
+                                        trekDate.startDate
+                                      ).toLocaleDateString("en-GB", {
+                                        day: "2-digit",
+                                        month: "2-digit",
+                                        year: "numeric",
+                                      })}
+                                    </span>
+                                  </p>
+                                  <p className="text-gray-700 text-lg font-medium">
+                                    End Date:{" "}
+                                    <span
+                                      className="font-semibold"
+                                      onMouseEnter={() =>
+                                        setHoveredDate(trekDate)
+                                      }
+                                      onMouseLeave={() => setHoveredDate(null)}
+                                    >
+                                      {new Date(
+                                        trekDate.endDate
+                                      ).toLocaleDateString("en-GB", {
+                                        day: "2-digit",
+                                        month: "2-digit",
+                                        year: "numeric",
+                                      })}
+                                    </span>
+                                  </p>
 
-                                {/* {isDateHovered && (
+                                  {/* {isDateHovered && (
                                   <div
                                     className="absolute top-full left-80 mt-2 bg-white border border-gray-300 shadow-lg rounded-lg p-2 z-10"
                                     style={{
@@ -252,47 +253,51 @@ function Treks() {
                                   </div>
                                 )} */}
 
-                                <div className="flex justify-between gap-6">
-                                  <button
-                                    onClick={() =>
-                                      handleEditTrekClick(trekDate._id)
-                                    }
-                                  >
-                                    <EditIcon
-                                      style={{ color: "#4F46E5", fontSize: 32 }}
-                                    />
-                                  </button>
+                                  <div className="flex justify-between gap-6">
+                                    <button
+                                      onClick={() =>
+                                        handleEditTrekClick(trekDate._id)
+                                      }
+                                    >
+                                      <EditIcon
+                                        style={{
+                                          color: "#4F46E5",
+                                          fontSize: 32,
+                                        }}
+                                      />
+                                    </button>
 
-                                  <button
-                                    onClick={() =>
-                                      handleDeleteTrekDateClick(trekDate._id)
-                                    }
-                                  >
-                                    <DeleteOutlineIcon
-                                      style={{ color: "red", fontSize: 32 }}
-                                    />
-                                  </button>
+                                    <button
+                                      onClick={() =>
+                                        handleDeleteTrekDateClick(trekDate._id)
+                                      }
+                                    >
+                                      <DeleteOutlineIcon
+                                        style={{ color: "red", fontSize: 32 }}
+                                      />
+                                    </button>
+                                  </div>
                                 </div>
-                              </div>
-                            );
-                          })
-                        )}
-                      </div>
-                    )}
+                              );
+                            })
+                          )}
+                        </div>
+                      )}
 
-                    <div className="flex justify-center gap-4 mt-6">
-                      <button
-                        className="bg-blue-500 hover:bg-blue-600 transition duration-200 ease-in-out text-white py-2 px-4 rounded-lg shadow-md"
-                        onClick={handleNewDateClick}
-                      >
-                        Add New Date
-                      </button>
-                      <button
-                        className="bg-gray-300 hover:bg-gray-400 transition duration-200 ease-in-out text-gray-800 py-2 px-4 rounded-lg shadow-md"
-                        onClick={handleCancelDate}
-                      >
-                        Close
-                      </button>
+                      <div className="flex justify-center gap-4 mt-6">
+                        <button
+                          className="bg-blue-500 hover:bg-blue-600 transition duration-200 ease-in-out text-white py-2 px-4 rounded-lg shadow-md"
+                          onClick={handleNewDateClick}
+                        >
+                          Add New Date
+                        </button>
+                        <button
+                          className="bg-gray-300 hover:bg-gray-400 transition duration-200 ease-in-out text-gray-800 py-2 px-4 rounded-lg shadow-md"
+                          onClick={handleCancelDate}
+                        >
+                          Close
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -15,29 +15,25 @@ const TrekDetailsIconSection = React.memo(
     isLoadingTrek,
   }) => {
     const details = [
-      // {
-      //   imgSrc: ClimbingIcon,
-      //   label: "TREK DIFFICULTY",
-      //   value: trekDifficulty
-      //     ? trekDifficulty.charAt(0).toUpperCase() + trekDifficulty.slice(1)
-      //     : "N/A", // Provide a default value or handle the undefined case
-      // },
+      {
+        imgSrc: ClimbingIcon,
+        label: "TREK DIFFICULTY",
+        value:
+          trekDifficulty === "hide" || !trekDifficulty
+            ? null // Remove trekDifficulty from details if it's "hide" or undefined
+            : trekDifficulty.charAt(0).toUpperCase() + trekDifficulty.slice(1),
+      },
       {
         imgSrc: DurationIcon,
         label: "DURATION",
-        value: altitude ? `${altitude}` : "N/A", // Handle case where dateDifference is undefined or null
+        value: altitude ? `${altitude}` : "N/A", // Handle case where altitude is undefined or null
       },
-      // {
-      //   imgSrc: MountainIcon,
-      //   label: "HIGHEST ALTITUDE",
-      //   value: altitude ? `${altitude} Meters` : "N/A", // Handle case where altitude is undefined
-      // },
       {
         imgSrc: AgeIcon,
         label: "AGE LIMIT",
         value: suitableForAge ? suitableForAge : "N/A", // Ensure suitableForAge is not undefined
       },
-    ];
+    ].filter((item) => item.value !== null); // Filter out items where value is null
 
     return (
       <div className="flex justify-around py-4 bg-gray-50">

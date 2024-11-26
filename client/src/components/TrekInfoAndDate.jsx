@@ -5,6 +5,7 @@ import useCourseStore from "../app/courseStore";
 import LoadingSpinner from "./LoadingSpinner";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+import { RxLetterCaseLowercase } from "react-icons/rx";
 
 // Utility functions
 const formatDate = (date) => {
@@ -172,7 +173,13 @@ const TrekInfoAndDate = ({
                             {formatDate(allEndDate[index])}
                           </p>
                           {availablity && (
-                            <p className="text-center text-green-600">
+                            <p
+                              className={`text-center ${
+                                availablity[index].toLowerCase() === "sold out"
+                                  ? "text-red-600"
+                                  : "text-green-600"
+                              }`}
+                            >
                               {availablity[index]}
                             </p>
                           )}

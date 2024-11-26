@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import useCourseStore from "../app/courseStore";
 import { useNavigate } from "react-router-dom";
 
 function StackOfTreks({ treksBasedOnTrekType }) {
   const addCourse = useCourseStore((state) => state.addCourse);
   const addDateId = useCourseStore((state) => state.addDateId);
-
   const navigate = useNavigate();
+
+  // State to track the hovered trek index (but no longer the hovered image index)
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const handleGetInfo = (id, trekDateId) => {
     if (id && trekDateId) {
@@ -32,37 +34,48 @@ function StackOfTreks({ treksBasedOnTrekType }) {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {treksBasedOnTrekType.map((trek) => {
+            {treksBasedOnTrekType.map((trek, index) => {
               if (trek.dates[0])
                 return (
                   <div
-                    className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer"
+                    key={trek._id}
+                    className="group bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer"
                     onClick={() => handleGetInfo(trek._id, trek.dates[0])}
+                    onMouseEnter={() => setHoveredIndex(index)} // Only track hovered index
+                    onMouseLeave={() => setHoveredIndex(null)} // Reset the hovered index on mouse leave
                   >
                     <div className="relative h-56 bg-gradient-to-r from-indigo-100 to-blue-100 rounded-xl overflow-hidden">
-                      {/* Darkened Image */}
+                      {/* Image stays the same, no change on hover */}
                       <img
-                        src={trek.images[0]}
+                        src={trek.images[0]} // Always use the first image
                         alt={trek.trekName}
-                        className="object-cover h-full w-full opacity-70"
+                        className="object-cover h-full w-full transition-transform duration-500 ease-in-out group-hover:scale-110"
                       />
                       {/* Text Overlay */}
                       <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/60 to-transparent">
-                        <h2 className="text-lg font-bold text-white mb-1">
+                        {/* Hide text on hover */}
+                        <h2
+                          className={`text-lg font-bold text-white mb-1 ${
+                            hoveredIndex === index ? "opacity-0" : "opacity-100"
+                          }`}
+                        >
                           {trek.trekName}
                         </h2>
-                        <h3 className="text-sm font-medium text-gray-200">
+                        <h3
+                          className={`text-sm font-medium text-gray-200 ${
+                            hoveredIndex === index ? "opacity-0" : "opacity-100"
+                          }`}
+                        >
                           {trek.trekTitle}
                         </h3>
                       </div>
+                      {/* Hover Text */}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <span className="text-white text-lg font-bold text-center">
+                          Get Details
+                        </span>
+                      </div>
                     </div>
-                    {/* Info Section */}
-                    {/* <div className="info flex flex-col items-start justify-start px-6 py-2 md:py-6 md:px-6 min-h-60">
-                      <button className="button mb-2 md:mb-0 w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-bold hover:bg-blue-700 transition duration-300">
-                        Get Trek
-                        <span className="text-sm"> ─ Information & Dates</span>
-                      </button>
-                    </div> */}
                   </div>
                 );
             })}

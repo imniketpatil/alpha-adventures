@@ -214,7 +214,7 @@ function CreateTrek({ setOpenTrekForm }) {
                 />
               </div>
 
-              {/* <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1">
                 <label htmlFor="trekDifficulty" className="mb-2 text-gray-700">
                   Trek Difficulty
                 </label>
@@ -225,11 +225,12 @@ function CreateTrek({ setOpenTrekForm }) {
                   onChange={(e) => setTrekDifficulty(e.target.value)}
                   required
                 >
+                  <option value="empty">Null</option>
                   <option value="easy">Easy</option>
                   <option value="moderate">Moderate</option>
                   <option value="difficult">Difficult</option>
                 </select>
-              </div> */}
+              </div>
 
               <div className="flex flex-col flex-1">
                 <label htmlFor="suitableForAge" className="mb-2 text-gray-700">
