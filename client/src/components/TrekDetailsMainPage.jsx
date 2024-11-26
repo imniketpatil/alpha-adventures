@@ -9,6 +9,7 @@ import TrekInfoAndDate from "./TrekInfoAndDate";
 import TrekDetailsPageSlider from "./TrekDetailsPageSlider";
 import InclusionExclusionInfoDetails from "./InclusionExclusionInfoDetails";
 import TrekSheduleAndDateDetails from "./TrekSheduleAndDateDetails";
+import { useNavigate } from "react-router";
 
 function TrekDetailsMainPage() {
   const { courses, trekDateId } = useCourseStore((state) => ({
@@ -20,6 +21,12 @@ function TrekDetailsMainPage() {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, [courses]);
+
+  let navigate = useNavigate();
+
+  if (!courses) {
+    navigate("/");
+  }
 
   const {
     data: trekData = [],
