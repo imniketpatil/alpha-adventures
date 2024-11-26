@@ -12,6 +12,8 @@ import TrekSheduleAndDateDetails from "./TrekSheduleAndDateDetails";
 import { useNavigate } from "react-router";
 
 function TrekDetailsMainPage() {
+  let navigate = useNavigate();
+
   const { courses, trekDateId } = useCourseStore((state) => ({
     courses: state.courses,
     trekDateId: state.trekDateId,
@@ -21,8 +23,6 @@ function TrekDetailsMainPage() {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
   }, [courses]);
-
-  let navigate = useNavigate();
 
   if (!courses) {
     navigate("/");
