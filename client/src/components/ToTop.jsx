@@ -23,12 +23,12 @@ function ToTop() {
 
   return (
     <div
-      className={`bg-slate-800 h-12 font-body w-12 md:h-16 md:w-16 rounded-full right-12 bottom-24 md:bottom-28 md:right-18  flex items-center justify-center fixed hover:cursor-pointer transition-all duration-300 ease-in-out ${
+      className={`bg-slate-800 h-10 font-body w-10 md:h-12 md:w-12 rounded-full right-14 bottom-24 md:bottom-28 md:right-18  flex items-center justify-center fixed hover:cursor-pointer transition-all duration-300 ease-in-out ${
         show ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
       onClick={handleClick}
     >
-      <ArrowUpwardOutlinedIcon style={{ color: "white", fontSize: "3rem" }} />
+      <ArrowUpwardOutlinedIcon style={{ color: "white", fontSize: "2.5rem" }} />
     </div>
   );
 }
