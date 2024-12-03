@@ -27,6 +27,7 @@ function TrekDetailsMainPage() {
   if (!courses) {
     navigate("/");
   }
+  console.log(courses);
 
   const {
     data: trekData = [],
@@ -37,6 +38,8 @@ function TrekDetailsMainPage() {
     queryFn: () => useGetTrekDetailsById({ id: courses }),
     onError: (error) => console.error("Error fetching Trek Details:", error),
   });
+
+  console.log(trekData);
 
   const {
     data: trekDateData = [],
@@ -49,7 +52,7 @@ function TrekDetailsMainPage() {
       console.error("Error fetching Trek Date Details:", error),
   });
 
-  // console.log(trekDateData);
+  console.log(trekDateData);
 
   const trekDetails = trekData[0] || {};
   const {
@@ -73,15 +76,18 @@ function TrekDetailsMainPage() {
     allEndDate = [],
   } = trekDetails;
 
+  console.log(trekDetails);
+
   const {
     dateid = [],
     date = [],
     availablity = [],
+    trekDateOffer,
     withTravel: startDateWithTravel = [],
     withoutTravel: startDateWithoutTravel = [],
   } = allStartDate;
 
-  // console.log(allStartDate);
+  console.log(trekDateOffer);
 
   const {
     trekTimelineDetails = {},
@@ -130,6 +136,7 @@ function TrekDetailsMainPage() {
         trekTypeDescription={trekTypeDescription}
         dateid={dateid}
         date={date}
+        trekDateOffer={trekDateOffer}
         availablity={availablity}
         startDateWithTravel={startDateWithTravel}
         startDateWithoutTravel={startDateWithoutTravel}

@@ -34,7 +34,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
     queryFn: async () => getTrekDetailsById(trekId),
   });
 
-  // console.log("fetchedTrekData", fetchedTrekData);
+  console.log("fetchedTrekData", fetchedTrekData);
   // console.log(trekId);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
 
       // setStartDate(startDate);
       // setEndDate(endDate);
+      setTrekDateOffer(fetchedTrekData.trekDateOffer || "");
       setAvailablity(fetchedTrekData.availablity || "");
 
       setWithoutTravel(
@@ -85,7 +86,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
     const formData = {
       startDate,
       endDate,
-      trekOffer: trekOffer || "",
+      trekDateOffer: trekDateOffer || "",
       availablity: availablity || "",
       withTravel,
       withoutTravel,

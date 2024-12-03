@@ -44,6 +44,7 @@ const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
       },
     ],
   };
+  console.log(upcommingtrekslist);
 
   const handleGetInfo = (id, trekDateId) => {
     if (id && trekDateId) {
@@ -81,13 +82,34 @@ const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
               return (
                 <div
                   key={index}
-                  className="bg-slate-200 shadow-lg rounded-xl hover:cursor-pointer transition-transform hover:scale-105"
+                  className="bg-slate-200 relative shadow-lg rounded-xl hover:cursor-pointer transition-transform hover:scale-105"
                   onMouseEnter={() => setHovered(true)}
                   onMouseLeave={() => {
                     setHovered(false);
                     setCurrentImageIndex(0); // Reset to first image
                   }}
                 >
+                  {/* Check if trekOffer is present */}
+                  {trek.trekOffer && (
+                    <div
+                      className="absolute top-3 left-0 z-50 bg-yellow-400 text-black font-bold text-sm flex items-center justify-center p-2  rounded-r-full shadow-2xl"
+                      title="Trek Offer"
+                    >
+                      {trek.trekOffer}
+                    </div>
+                  )}
+
+                  {trek?.allStartDate?.trekDateOffer?.length > 0 &&
+                    Math.max(...trek.allStartDate.trekDateOffer.map(Number)) >
+                      0 && (
+                      <span className="absolute top-3 right-0 z-50 bg-red-500 text-white font-bold text-sm px-4 py-1 rounded-l-full shadow-md">
+                        {Math.max(
+                          ...trek.allStartDate.trekDateOffer.map(Number)
+                        )}{" "}
+                        % OFF
+                      </span>
+                    )}
+
                   <div className="h-56 bg-gradient-to-r from-indigo-500 to-blue-500 flex justify-center items-center rounded-t-xl overflow-hidden relative">
                     {loading && (
                       <div className="spinner absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
@@ -117,7 +139,12 @@ const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
                     </h3>
                     <button
                       className="w-full py-3 px-5 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:scale-105 hover:text-orange-400 hover:from-blue-600 hover:to-indigo-600 transition-transform duration-300 ease-in-out"
-                      onClick={() => handleGetInfo(trek._id, trek.dates[0])}
+                      onClick={() =>
+                        handleGetInfo(
+                          trek._id,
+                          trek.allStartDate?.dateid?.[0] || null // Safely access dateid
+                        )
+                      }
                     >
                       Get Trek
                       <span className="text-sm ml-2 font-medium opacity-90 hover:text-orange-400">

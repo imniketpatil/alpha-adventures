@@ -32,7 +32,10 @@ export default function ScheduleTimeline({ scheduleTimeline }) {
           {scheduleTimeline.map((item) => (
             <TimelineItem key={item._id}>
               <TimelineSeparator>
-                <TimelineDot color="primary" sx={{ alignItems: "center" }} />
+                <TimelineDot
+                  color="primary"
+                  sx={{ alignItems: "center", position: "relative" }}
+                />
                 {item._id !==
                   scheduleTimeline[scheduleTimeline.length - 1]._id && (
                   <TimelineConnector />

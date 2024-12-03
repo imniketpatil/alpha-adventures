@@ -38,6 +38,7 @@ const TrekInfoAndDate = ({
   availablity = "",
   dateid = [],
   date = [],
+  trekDateOffer,
   allEndDate = [],
   isLoadingDate = false,
   isLoadingTrek = false,
@@ -70,7 +71,7 @@ const TrekInfoAndDate = ({
       {pricingArray.map((item, idx) => (
         <div
           key={idx}
-          className="flex justify-between items-center bg-yellow-100 p-2 rounded-lg"
+          className="flex justify-between items-center bg-yellow-50 p-2 rounded-lg"
         >
           <p className="text-gray-800">{item.description}</p>
           <p className="text-green-700 font-bold">{item.price}</p>
@@ -144,6 +145,7 @@ const TrekInfoAndDate = ({
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Available Dates
               </h2>
+
               {date.length > 0 ? (
                 date.map((d, index) => {
                   const currentDate = new Date();
@@ -154,27 +156,32 @@ const TrekInfoAndDate = ({
                     return (
                       <div
                         key={index}
-                        className={`mb-4 p-4 rounded-lg shadow-md transition-transform duration-300 transform ${
+                        className={`mb-6 p-5 relative rounded-lg shadow-sm border transition-transform duration-300 transform ${
                           activeIndex === index
-                            ? "bg-yellow-100 scale-105 shadow-lg"
-                            : "bg-white hover:shadow-lg hover:scale-105"
+                            ? "bg-yellow-50 scale-105 shadow-md border-yellow-300"
+                            : "bg-white hover:shadow-md hover:scale-105 border-gray-200"
                         }`}
                         onClick={() => toggleActive(index, dateid[index])}
                       >
+                        {trekDateOffer[index] !== "" && (
+                          <span className="absolute top-0 right-0 z-10 bg-red-500 text-white font-medium text-xs px-3 py-1 rounded-bl-lg shadow-md">
+                            {trekDateOffer[index]}% OFF
+                          </span>
+                        )}
                         <div
-                          className={`flex ${
+                          className={`flex items-center ${
                             availablity[index]
                               ? "justify-between"
                               : "justify-center"
-                          } items-center`}
+                          }`}
                         >
-                          <p className="text-center text-gray-600 font-semibold">
+                          <p className="text-gray-700 font-medium">
                             {formatStartDate(d)} to{" "}
                             {formatDate(allEndDate[index])}
                           </p>
-                          {availablity && (
+                          {availablity[index] && (
                             <p
-                              className={`text-center ${
+                              className={`font-semibold text-sm ${
                                 availablity[index].toLowerCase() === "sold out"
                                   ? "text-red-600"
                                   : "text-green-600"
@@ -185,7 +192,7 @@ const TrekInfoAndDate = ({
                           )}
                         </div>
                         {activeIndex === index && (
-                          <div className="mt-4">
+                          <div className="mt-4 space-y-3">
                             {withTravel.length > 0 &&
                               renderPricing(withTravel, "Price with Travel")}
                             {withoutTravel.length > 0 &&
@@ -194,7 +201,7 @@ const TrekInfoAndDate = ({
                                 "Price without Travel"
                               )}
                             <button
-                              className="w-full mt-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold rounded-lg hover:from-indigo-600 hover:to-purple-600"
+                              className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-colors"
                               onClick={() =>
                                 handleBooking(trekName, date[index])
                               }
