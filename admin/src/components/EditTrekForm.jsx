@@ -14,6 +14,8 @@ import LoadingSpinner from "../components/LoadingSpinner";
 function EditTrekForm({ setOpenTrekForm }) {
   const [trekName, setTrekName] = useState("");
   const [trekTitle, setTrekTitle] = useState("");
+  const [trekOffer, setTrekOffer] = useState("");
+
   const [trekDifficulty, setTrekDifficulty] = useState("easy");
   const [suitableForAge, setSuitableForAge] = useState("Suitable For All");
   const [altitude, setAltitude] = useState(0);
@@ -58,6 +60,7 @@ function EditTrekForm({ setOpenTrekForm }) {
         trekName,
         trekTitle,
         trekDifficulty,
+        trekOffer,
         suitableForAge,
         altitude,
         trekLocation,
@@ -74,6 +77,8 @@ function EditTrekForm({ setOpenTrekForm }) {
 
       setTrekName(trekName || "");
       setTrekTitle(trekTitle || "");
+      setTrekOffer(trekOffer || "");
+
       setTrekDifficulty(trekDifficulty || "hide");
       setSuitableForAge(suitableForAge || "Suitable For All");
       setAltitude(altitude || 0);
@@ -111,6 +116,8 @@ function EditTrekForm({ setOpenTrekForm }) {
     const formData = new FormData();
     formData.append("trekName", trekName);
     formData.append("trekTitle", trekTitle);
+    formData.append("trekOffer", trekOffer);
+
     formData.append("altitude", altitude);
     formData.append("trekDifficulty", trekDifficulty);
     formData.append("trekLocation", trekLocation);
@@ -148,6 +155,7 @@ function EditTrekForm({ setOpenTrekForm }) {
   const resetForm = () => {
     setTrekName("");
     setTrekTitle("");
+    setTrekOffer("");
     setTrekDifficulty("easy");
     setSuitableForAge("Suitable For All");
     setAltitude(0);
@@ -267,6 +275,18 @@ function EditTrekForm({ setOpenTrekForm }) {
                   value={altitude}
                   onChange={(e) => setAltitude(e.target.value)}
                   required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="trekOffer" className="mb-2 text-gray-700">
+                  Trek Offer
+                </label>
+                <textarea
+                  id="trekOffer"
+                  className="p-2 border border-gray-300 rounded-lg"
+                  value={trekOffer}
+                  onChange={(e) => setTrekOffer(e.target.value)}
                 />
               </div>
 

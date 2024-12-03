@@ -10,6 +10,8 @@ import useCreateTrek from "../hooks/useCreateTrek";
 function CreateTrek({ setOpenTrekForm }) {
   const [trekName, setTrekName] = useState("");
   const [trekTitle, setTrekTitle] = useState("");
+  const [trekOffer, setTrekOffer] = useState("");
+
   const [trekDifficulty, setTrekDifficulty] = useState("easy");
   const [suitableForAge, setSuitableForAge] = useState("Suitable For All");
   const [altitude, setAltitude] = useState(0);
@@ -28,6 +30,7 @@ function CreateTrek({ setOpenTrekForm }) {
   const [trekCancellationPolicy, setTrekCancellationPolicy] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [trekDateOffer, setTrekDateOffer] = useState("");
 
   const [withTravel, setwithTravel] = useState([
     { description: "", from: "", to: "", price: "" },
@@ -77,6 +80,8 @@ function CreateTrek({ setOpenTrekForm }) {
     formData.append("trekName", trekName);
     formData.append("trekTitle", trekTitle);
     formData.append("altitude", altitude);
+    formData.append("trekOffer", trekOffer || "");
+
     formData.append("trekDifficulty", trekDifficulty);
     formData.append("trekLocation", trekLocation);
     formData.append("trekType", trekType);
@@ -101,6 +106,8 @@ function CreateTrek({ setOpenTrekForm }) {
 
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
+    formData.append("trekDateOffer", trekDateOffer);
+
     formData.append("availablity", availablity);
     // Important: Stringify travel-related fields
     formData.append("withTravel", JSON.stringify(withTravel));
@@ -145,7 +152,8 @@ function CreateTrek({ setOpenTrekForm }) {
     setEndDate("");
     setAvailablity("");
     setwithTravel([{ description: "", from: "", to: "", price: 0 }]);
-
+    setTrekOffer("");
+    setTrekDateOffer("");
     setwithoutTravel([{ description: "", from: "", to: "", price: 0 }]);
 
     setScheduleTimeline([{ day: "", time: "", work: "" }]);
@@ -283,6 +291,19 @@ function CreateTrek({ setOpenTrekForm }) {
                   value={trekLocation}
                   onChange={(e) => setTrekLocation(e.target.value)}
                   required
+                />
+              </div>
+
+              <div className="flex flex-col flex-1">
+                <label htmlFor="trekOffer" className="mb-2 text-gray-700">
+                  Trek Offer
+                </label>
+                <input
+                  type="text"
+                  id="trekOffer"
+                  className="p-2 border border-gray-300 rounded-lg"
+                  value={trekOffer}
+                  onChange={(e) => setTrekOffer(e.target.value)}
                 />
               </div>
             </div>
@@ -458,6 +479,19 @@ function CreateTrek({ setOpenTrekForm }) {
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                   required
+                />
+              </div>
+
+              <div className="flex flex-col flex-1">
+                <label htmlFor="trekDateOffer" className="mb-2 text-gray-700">
+                  Trek Date Offer
+                </label>
+                <input
+                  type="text"
+                  id="trekDateOffer"
+                  className="p-2 border border-gray-300 rounded-lg"
+                  value={trekDateOffer}
+                  onChange={(e) => setTrekDateOffer(e.target.value)}
                 />
               </div>
 

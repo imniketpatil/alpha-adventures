@@ -28,6 +28,8 @@ function EditDateForTrek() {
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [trekDateOffer, setTrekDateOffer] = useState("");
+
   const [availablity, setAvailablity] = useState("");
 
   const [showStartDate, setShowStartDate] = useState("");
@@ -44,12 +46,19 @@ function EditDateForTrek() {
 
   useEffect(() => {
     if (fetchedTrekGuide) {
-      const { startDate, endDate, availablity, priceData, trekTimelineData } =
-        fetchedTrekGuide;
+      const {
+        startDate,
+        endDate,
+        trekDateOffer,
+        availablity,
+        priceData,
+        trekTimelineData,
+      } = fetchedTrekGuide;
       const { withTravel, withoutTravel } = priceData;
 
       setStartDate(startDate);
       setEndDate(endDate);
+      setTrekDateOffer(trekDateOffer || "");
       setAvailablity(availablity || "");
       setShowStartDate(formatDate(startDate));
       setShowEndDate(formatDate(endDate));
@@ -87,6 +96,8 @@ function EditDateForTrek() {
 
     formData.append("startDate", startDate);
     formData.append("endDate", endDate);
+    formData.append("trekDateOffer", trekDateOffer || "");
+
     formData.append("availablity", availablity || "");
     formData.append("withTravel", JSON.stringify(withTravel));
     formData.append("withoutTravel", JSON.stringify(withoutTravel));
@@ -104,6 +115,7 @@ function EditDateForTrek() {
   const resetForm = () => {
     setStartDate("");
     setEndDate("");
+    setTrekDateOffer("");
     setAvailablity("");
     setwithTravel([{ description: "", from: "", to: "", price: "" }]);
     setwithoutTravel([{ description: "", from: "", to: "", price: "" }]);
@@ -173,6 +185,7 @@ function EditDateForTrek() {
                 />
               </div>
             </div>
+
             {/* Availablity */}
             <div className="flex flex-col flex-1">
               <label htmlFor="availablity" className="mb-2 text-gray-700">
@@ -184,6 +197,19 @@ function EditDateForTrek() {
                 className="p-2 border border-gray-300 rounded-lg"
                 value={availablity}
                 onChange={(e) => setAvailablity(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-col flex-1">
+              <label htmlFor="trekDateOffer" className="mb-2 text-gray-700">
+                Trek Date Offer
+              </label>
+              <input
+                type="text"
+                id="trekDateOffer"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={trekDateOffer}
+                onChange={(e) => setTrekDateOffer(e.target.value)}
               />
             </div>
           </div>

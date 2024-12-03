@@ -8,6 +8,8 @@ import getTrekDetailsById from "../hooks/getTrekDetailsById";
 function AddNewTrekDateForm({ setOpenTrekForm }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [trekDateOffer, setTrekDateOffer] = useState("");
+
   const [availablity, setAvailablity] = useState("");
 
   const [withTravel, setWithTravel] = useState([
@@ -83,6 +85,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
     const formData = {
       startDate,
       endDate,
+      trekOffer: trekOffer || "",
       availablity: availablity || "",
       withTravel,
       withoutTravel,
@@ -102,6 +105,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
   const resetForm = () => {
     setStartDate("");
     setEndDate("");
+    setTrekDateOffer("");
     setAvailablity("");
     setWithTravel([{ description: "", from: "", to: "", price: "" }]);
     setWithoutTravel([{ description: "", from: "", to: "", price: "" }]);
@@ -144,6 +148,19 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                 className="p-2 border border-gray-300 rounded-lg"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-col flex-1">
+              <label htmlFor="trekDateOffer" className="mb-2 text-gray-700">
+                Trek Date Offer
+              </label>
+              <input
+                type="text"
+                id="trekDateOffer"
+                className="p-2 border border-gray-300 rounded-lg"
+                value={trekDateOffer}
+                onChange={(e) => setTrekDateOffer(e.target.value)}
               />
             </div>
 
