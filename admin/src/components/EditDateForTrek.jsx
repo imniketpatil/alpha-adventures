@@ -71,6 +71,7 @@ function EditDateForTrek() {
       setScheduleTimeline(trekTimelineData.scheduleTimeline || []);
     }
   }, [fetchedTrekGuide]);
+  console.log(fetchedTrekGuide);
 
   const mutation = updateDateDetails();
 

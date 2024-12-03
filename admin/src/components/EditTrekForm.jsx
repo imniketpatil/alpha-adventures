@@ -116,7 +116,7 @@ function EditTrekForm({ setOpenTrekForm }) {
     const formData = new FormData();
     formData.append("trekName", trekName);
     formData.append("trekTitle", trekTitle);
-    formData.append("trekOffer", trekOffer);
+    formData.append("trekOffer", trekOffer || "");
 
     formData.append("altitude", altitude);
     formData.append("trekDifficulty", trekDifficulty);
