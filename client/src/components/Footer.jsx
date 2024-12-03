@@ -186,7 +186,7 @@ const Footer = () => {
           <div className="container  px-5 py-4 mx-auto">
             <a
               className=" left-2 flex bottom-1"
-              href="https://www.linkedin.com/in/niket-patil-8a86942b6/"
+              href="https://www.linkedin.com/in/imniketpatil/"
               target="_blank"
             >
               Developed By{""}
