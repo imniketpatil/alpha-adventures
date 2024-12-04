@@ -4,32 +4,25 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import ScheduleTimeline from "./ScheduleTimeline";
 
 const TrekSheduleAndDateDetails = React.memo(
-  ({ trekDateData, scheduleTimeline }) => {
+  ({ withTravel, withoutTravel, scheduleTimeline }) => {
     // Check if trekDateData has at least one element
-    const firstTrek = trekDateData.length > 0 ? trekDateData[0] : null;
 
     // Initialize flags for travel options
     let hasWithTravel = false;
     let hasWithoutTravel = false;
 
     // Check for price details if firstTrek exists
-    if (firstTrek?.priceDetails) {
-      if (
-        firstTrek.priceDetails.withTravel?.length > 0 &&
-        firstTrek.priceDetails.withTravel[0]?.description !== ""
-      ) {
+    if (withTravel || withoutTravel) {
+      if (withTravel?.length > 0 && withTravel[0]?.description !== "") {
         hasWithTravel = true;
       }
-      if (
-        firstTrek.priceDetails.withoutTravel?.length > 0 &&
-        firstTrek.priceDetails.withoutTravel[0]?.description !== ""
-      ) {
+      if (withoutTravel?.length > 0 && withoutTravel[0]?.description !== "") {
         hasWithoutTravel = true;
       }
     }
 
-    // console.log(firstTrek?.priceDetails?.withTravel);
-    // console.log(firstTrek?.priceDetails?.withoutTravel);
+    // console.log(withTravel);
+    // console.log(withoutTravel);
 
     return (
       <div className="container mx-auto max-w-[1450px] w-full px-4 sm:px-6 md:px-8 lg:px-10 rounded-xl pt-4 mb-8">
@@ -40,7 +33,7 @@ const TrekSheduleAndDateDetails = React.memo(
               <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
                 With Travel
               </h2>
-              {firstTrek.priceDetails.withTravel.map((data) => (
+              {withTravel.map((data) => (
                 <div className="space-y-4 w-full my-4" key={data?._id}>
                   <p className="text-gray-700 text-base md:text-md font-medium">
                     {data?.description}
@@ -74,7 +67,7 @@ const TrekSheduleAndDateDetails = React.memo(
               <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
                 Without Travel
               </h2>
-              {firstTrek.priceDetails.withoutTravel.map((data) => (
+              {withoutTravel.map((data) => (
                 <div className="space-y-4 w-full my-4" key={data?._id}>
                   <p className="text-gray-700 text-base md:text-md font-medium">
                     {data?.description}

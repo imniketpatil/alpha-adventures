@@ -18,6 +18,8 @@ function UpcomingTreks() {
     queryFn: useGetUpcommingTreks,
   });
 
+  console.log(upcommingtrekslist);
+
   return (
     <>
       {/* <div className="flex flex-col">

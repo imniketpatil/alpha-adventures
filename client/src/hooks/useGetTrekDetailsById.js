@@ -1,10 +1,13 @@
 import axios from "axios";
 import client_url from "../utils/config.js";
+import { useSearchParams } from "react-router-dom";
 
-const useGetTrekDetailsById = async ({ id }) => {
+const useGetTrekDetailsById = async ({ trekId, trekDateId }) => {
   try {
     const response = await axios.get(
-      `${client_url}/trek/getTrekInfoDataForClientTrekMainPage/${id}`,
+      `${client_url}/trek/treks?${trekId ? `trekId=${trekId}` : ""}${
+        trekDateId ? `&trekDateId=${trekDateId}` : ""
+      }`,
       {
         withCredentials: true, // To send cookies with the request
       }

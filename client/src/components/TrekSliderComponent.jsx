@@ -6,8 +6,6 @@ import useCourseStore from "../app/courseStore";
 import { useNavigate } from "react-router-dom";
 
 const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
-  const addCourse = useCourseStore((state) => state.addCourse);
-  const addDateId = useCourseStore((state) => state.addDateId);
   const navigate = useNavigate();
 
   const settings = {
@@ -46,11 +44,12 @@ const TrekSliderComponent = React.memo(({ upcommingtrekslist }) => {
   };
   console.log(upcommingtrekslist);
 
-  const handleGetInfo = (id, trekDateId) => {
-    if (id && trekDateId) {
-      navigate("/trekdetails");
-      addCourse(id);
-      addDateId(trekDateId);
+  const handleGetInfo = (trekId, trekDateId) => {
+    if (trekId && trekDateId) {
+      const link = `treks?${trekId ? `trekId=${trekId}` : ""}${
+        trekDateId ? `&trekDateId=${trekDateId}` : ""
+      }`;
+      navigate(`/${link}`);
     }
   };
 

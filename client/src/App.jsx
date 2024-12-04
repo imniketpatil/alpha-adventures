@@ -23,7 +23,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/faqs" element={<FAQs />} />
-        <Route path="/trekdetails" element={<TrekDetails />} />
+        <Route path="/treks" element={<TrekDetails />} />
+        {/* <Route path="/trekdetails" element={<TrekDetails />} /> */}
         <Route path="/trektypetreks" element={<TrekTypeTreksPage />} />
         <Route path="/termsandcondition" element={<TermsAndCondition />} />
         <Route

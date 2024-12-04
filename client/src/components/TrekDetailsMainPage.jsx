@@ -1,131 +1,117 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useCourseStore from "../app/courseStore";
+import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router-dom";
+
 import useGetTrekDetailsById from "../hooks/useGetTrekDetailsById";
-import useGetTrekDateDetailsById from "../hooks/useGetTrekDateDetailsById";
 import ContactUsMainPageBelowSlider from "./ContactUsMainPageBelowSlider";
 import TrekDetailsIconSection from "./TrekDetailsIconSection";
 import TrekInfoAndDate from "./TrekInfoAndDate";
 import TrekDetailsPageSlider from "./TrekDetailsPageSlider";
 import InclusionExclusionInfoDetails from "./InclusionExclusionInfoDetails";
 import TrekSheduleAndDateDetails from "./TrekSheduleAndDateDetails";
-import { useNavigate } from "react-router";
+import LoadingSpinner from "./LoadingSpinner";
 
 function TrekDetailsMainPage() {
-  let navigate = useNavigate();
-
-  const { courses, trekDateId } = useCourseStore((state) => ({
-    courses: state.courses,
-    trekDateId: state.trekDateId,
-  }));
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const trekId = searchParams.get("trekId");
+  const trekDateId = searchParams.get("trekDateId");
 
   useEffect(() => {
     // Scroll to the top when the component mounts
     window.scrollTo(0, 0);
-  }, [courses]);
+  }, []);
 
-  if (!courses) {
-    navigate("/");
-  }
-  console.log(courses);
-
+  // Fetch Trek Details using React Query
   const {
-    data: trekData = [],
-    error: trekError,
-    isLoading: isLoadingTrek,
+    data: mainData = {},
+    error,
+    isLoading,
   } = useQuery({
-    queryKey: ["TrekData", courses],
-    queryFn: () => useGetTrekDetailsById({ id: courses }),
-    onError: (error) => console.error("Error fetching Trek Details:", error),
+    queryKey: ["TrekData", trekId, trekDateId],
+    queryFn: () => useGetTrekDetailsById({ trekId, trekDateId }),
+    onError: (err) => console.error("Error fetching Trek Details:", err),
+    enabled: Boolean(trekId), // Ensure query only runs if trekId is present
   });
 
-  console.log(trekData);
+  // Destructure fetched data
+  const trekDetails = mainData.trekData || {};
+  const trekDateDetails = mainData.trekDateData || {};
+
+  console.log(trekDateDetails);
 
   const {
-    data: trekDateData = [],
-    error: dateError,
-    isLoading: isLoadingDate,
-  } = useQuery({
-    queryKey: ["TrekDateData", trekDateId],
-    queryFn: () => useGetTrekDateDetailsById({ id: trekDateId }),
-    onError: (error) =>
-      console.error("Error fetching Trek Date Details:", error),
-  });
-
-  console.log(trekDateData);
-
-  const trekDetails = trekData[0] || {};
-  const {
-    trekName,
-    trekTitle,
-    suitableForAge,
-    altitude,
-    trekLocation,
-    trekHighlights,
-    trekDescription,
-    subDescription,
+    trekName = "",
+    trekTitle = "",
+    suitableForAge = "",
+    altitude = "",
+    trekLocation = "",
+    trekHighlights = [],
+    trekDescription = "",
+    subDescription = "",
     trekType = [],
     trekTypeDescription = [],
-    trekInfo,
-    trekInclusions,
-    trekExclusions,
-    trekCancellationPolicy,
-    trekDifficulty,
-    images,
-    allStartDate = {},
-    allEndDate = [],
+    trekInfo = "",
+    trekInclusions = [],
+    trekExclusions = [],
+    trekCancellationPolicy = "",
+    trekDifficulty = "",
+    images = [],
+    trekOffer,
+    dateDetails,
   } = trekDetails;
 
-  console.log(trekDetails);
+  const { dateid, date, endDate, availablity, trekDateOffer } =
+    dateDetails?.[0] || {};
 
-  const {
-    dateid = [],
-    date = [],
-    availablity = [],
-    trekDateOffer,
-    withTravel: startDateWithTravel = [],
-    withoutTravel: startDateWithoutTravel = [],
-  } = allStartDate;
+  const { trekTimelineDetails, priceDetails = {} } = trekDateDetails;
 
-  console.log(trekDateOffer);
+  // console.log(trekTimelineDetails);
 
-  const {
-    trekTimelineDetails = {},
-    endDate,
-    startDate,
+  const { withTravel = [], withoutTravel = [] } = priceDetails;
 
-    priceDetails = {},
-    dateDifference = [],
-  } = trekDateData[0] || {};
+  const trekDateData = [...withTravel, ...withoutTravel];
 
-  const { withTravel: withTravel = [], withoutTravel: withoutTravel = [] } =
-    priceDetails;
+  // console.log(trekDateData);
 
   // console.log(withTravel);
   // console.log(withoutTravel);
 
-  const { scheduleTimeline = [] } = trekTimelineDetails;
+  if (error) {
+    return <div>Error loading trek details. Please try again later.</div>;
+  }
 
-  // console.log("trekDateData", trekDateData);
+  if (isLoading) {
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div>
+      {/* Trek Slider */}
       <TrekDetailsPageSlider
         trekName={trekName}
         trekTitle={trekTitle}
         images={images}
-        isLoadingDate={isLoadingDate}
-        isLoadingTrek={isLoadingTrek}
+        isLoading={isLoading}
       />
+
+      {/* Contact Us Section */}
       <ContactUsMainPageBelowSlider />
+
+      {/* Icon Section */}
       <TrekDetailsIconSection
         suitableForAge={suitableForAge}
         altitude={altitude}
         trekDifficulty={trekDifficulty}
-        dateDifference={dateDifference}
-        isLoadingDate={isLoadingDate}
-        isLoadingTrek={isLoadingTrek}
+        isLoading={isLoading}
       />
+
+      {/* Trek Info and Dates */}
       <TrekInfoAndDate
         trekName={trekName}
         trekTitle={trekTitle}
@@ -136,28 +122,30 @@ function TrekDetailsMainPage() {
         trekTypeDescription={trekTypeDescription}
         dateid={dateid}
         date={date}
+        endDate={endDate}
         trekDateOffer={trekDateOffer}
         availablity={availablity}
-        startDateWithTravel={startDateWithTravel}
-        startDateWithoutTravel={startDateWithoutTravel}
-        allEndDate={allEndDate}
         withTravel={withTravel}
         withoutTravel={withoutTravel}
-        isLoadingDate={isLoadingDate}
-        isLoadingTrek={isLoadingTrek}
+        isLoading={isLoading}
       />
+
+      {/* Inclusion and Exclusion */}
       <InclusionExclusionInfoDetails
         trekInfo={trekInfo}
         trekInclusions={trekInclusions}
         trekExclusions={trekExclusions}
         trekCancellationPolicy={trekCancellationPolicy}
         trekHighlights={trekHighlights}
-        isLoadingDate={isLoadingDate}
-        isLoadingTrek={isLoadingTrek}
+        isLoading={isLoading}
       />
+
+      {/* Schedule and Date Details */}
       <TrekSheduleAndDateDetails
-        trekDateData={trekDateData}
-        scheduleTimeline={scheduleTimeline}
+        withTravel={withTravel}
+        withoutTravel={withoutTravel}
+        // trekDateData={trekDateData}
+        scheduleTimeline={trekTimelineDetails.scheduleTimeline || []}
       />
     </div>
   );

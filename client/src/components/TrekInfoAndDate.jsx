@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
 import useCourseStore from "../app/courseStore";
@@ -6,6 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { RxLetterCaseLowercase } from "react-icons/rx";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 // Utility functions
 const formatDate = (date) => {
@@ -39,23 +40,50 @@ const TrekInfoAndDate = ({
   dateid = [],
   date = [],
   trekDateOffer,
-  allEndDate = [],
+  endDate = [],
   isLoadingDate = false,
   isLoadingTrek = false,
 }) => {
-  const addDateId = useCourseStore((state) => state.addDateId);
+  // const addDateId = useCourseStore((state) => state.addDateId);
   const [activeIndex, setActiveIndex] = useState(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const trekRef = useRef(null);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const trekId = searchParams.get("trekId");
+  const trekDateId = searchParams.get("trekDateId");
 
   const toggleExpand = () => {
     setIsExpanded(isExpanded);
   };
 
-  const toggleActive = (index, dateid) => {
-    setActiveIndex(activeIndex === index ? null : index);
-    addDateId(dateid);
+  const toggleActive = (index, trekDateId) => {
+    if (trekDateId) {
+      console.log(trekDateId);
+      const link = `treks?${trekId ? `trekId=${trekId}` : ""}${
+        trekDateId ? `&trekDateId=${trekDateId}` : ""
+      }`;
+      navigate(`/${link}`);
+    }
   };
+
+  console.log(endDate);
+
+  useEffect(() => {
+    // console.log("trekId:", trekDateId);
+    // console.log("dateid:", dateid);
+
+    if (trekDateId && dateid && Array.isArray(dateid)) {
+      for (let i = 0; i < dateid.length; i++) {
+        if (trekDateId === dateid[i]) {
+          setActiveIndex(i);
+          break;
+        }
+      }
+    }
+  }, [trekDateId, dateid]);
+
+  // console.log(activeIndex);
 
   const handleBooking = (trekName, date) => {
     const formattedDate = date ? formatDate(date) : "N/A";
@@ -128,16 +156,6 @@ const TrekInfoAndDate = ({
                     </div>
                   ))}
               </div>
-              {/* <button
-                className="mt-4 flex justify-center mx-auto px-4 py-2 bg-gray-200 rounded-full hover:bg-gray-300"
-                onClick={toggleExpand}
-              >
-                {isExpanded ? (
-                  <KeyboardDoubleArrowUpIcon />
-                ) : (
-                  <KeyboardDoubleArrowDownIcon />
-                )}
-              </button> */}
             </div>
 
             {/* Dates Section */}
@@ -176,8 +194,7 @@ const TrekInfoAndDate = ({
                           }`}
                         >
                           <p className="text-gray-700 font-medium">
-                            {formatStartDate(d)} to{" "}
-                            {formatDate(allEndDate[index])}
+                            {formatStartDate(d)} to {formatDate(endDate[index])}
                           </p>
                           {availablity[index] && (
                             <p
@@ -233,7 +250,7 @@ TrekInfoAndDate.propTypes = {
   trekLocation: PropTypes.string,
   dateid: PropTypes.arrayOf(PropTypes.string),
   date: PropTypes.arrayOf(PropTypes.string),
-  allEndDate: PropTypes.arrayOf(PropTypes.string),
+  endDate: PropTypes.arrayOf(PropTypes.string),
   withTravel: PropTypes.array,
   withoutTravel: PropTypes.array,
   isLoadingDate: PropTypes.bool,

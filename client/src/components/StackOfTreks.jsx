@@ -1,22 +1,34 @@
 import React, { useState } from "react";
 import useCourseStore from "../app/courseStore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function StackOfTreks({ treksBasedOnTrekType }) {
-  const addCourse = useCourseStore((state) => state.addCourse);
-  const addDateId = useCourseStore((state) => state.addDateId);
+  // const addCourse = useCourseStore((state) => state.addCourse);
+  // const addDateId = useCourseStore((state) => state.addDateId);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const trekId = searchParams.get("trekId");
+  const trekDateId = searchParams.get("trekDateId");
 
   // State to track the hovered trek index (but no longer the hovered image index)
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const handleGetInfo = (id, trekDateId) => {
-    if (id && trekDateId) {
-      addCourse(id);
-      addDateId(trekDateId);
-      navigate("/trekdetails");
+  const handleGetInfo = (trekId, trekDateId) => {
+    if (trekId && trekDateId) {
+      const link = `treks?${trekId ? `trekId=${trekId}` : ""}${
+        trekDateId ? `&trekDateId=${trekDateId}` : ""
+      }`;
+      navigate(`/${link}`);
     }
   };
+
+  // const handleGetInfo = (id, trekDateId) => {
+  //   if (id && trekDateId) {
+  //     addCourse(id);
+  //     addDateId(trekDateId);
+  //     navigate("/trekdetails");
+  //   }
+  // };
 
   return (
     <div className="max-w-screen-xl px-4 py-10 mx-auto">
