@@ -79,12 +79,12 @@ function TrekDetailsMainPage() {
   // console.log(withoutTravel);
 
   if (error) {
-    return <div>Error loading trek details. Please try again later.</div>;
+    navigate("/");
   }
 
   if (isLoading) {
     return (
-      <div>
+      <div className="h-full w-full">
         <LoadingSpinner />
       </div>
     );
