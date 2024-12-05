@@ -4,7 +4,7 @@ import { RxDotFilled } from "react-icons/rx";
 import LoadingSpinner from "./LoadingSpinner"; // Assuming you have a LoadingSpinner component
 
 const TrekDetailsPageSlider = React.memo(
-  ({ images, trekName, trekTitle, isLoadingTrek, isLoadingDate }) => {
+  ({ images, trekName, trekTitle, isLoading, isLoadingDate }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const prevSlide = () => {
@@ -23,7 +23,7 @@ const TrekDetailsPageSlider = React.memo(
       setCurrentIndex(slideIndex);
     };
 
-    if (isLoadingTrek || isLoadingDate) {
+    if (isLoading) {
       return (
         <div className="relative h-[380px] lg:h-[530px] w-full m-auto mb-10 flex items-center justify-center">
           <LoadingSpinner />

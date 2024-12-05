@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useQuery } from "@tanstack/react-query";
 import useGetTestimonials from "../hooks/useGetTestimonials";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function TestimonialSlider() {
   const {
@@ -53,17 +54,23 @@ export default function TestimonialSlider() {
   };
 
   if (isLoading) {
-    return <div>Loading testimonials...</div>;
+    <div className=" h-screen w-screen flex items-center justify-center">
+      <LoadingSpinner />
+    </div>;
   }
 
   if (error) {
-    return <div>Error loading testimonials</div>;
+    <div className="h-screen w-screen flex items-center justify-center">
+      <LoadingSpinner />
+    </div>;
   }
 
   return (
     <div className="px-4  sm:px-8 lg:px-16">
       {testimonialDetails.length === 0 ? (
-        <p>No testimonials available.</p>
+        <p className=" flex items-center justify-center">
+          <LoadingSpinner />
+        </p>
       ) : (
         <Slider {...settings}>
           {testimonialDetails.map((item) => (

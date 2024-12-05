@@ -14,6 +14,8 @@ const addNewDateForTrek = () => {
 
   return useMutation({
     mutationFn: ({ id, formData }) => {
+      console.log(formData);
+
       return axios.post(`${client_url}/trek/add-new-date/${id}`, formData, {
         withCredentials: true,
       });

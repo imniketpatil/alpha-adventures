@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import getMembers from "../hooks/getMembers";
+import LoadingSpinner from "./LoadingSpinner";
 
 const TeamSection = () => {
   const {
@@ -14,6 +15,12 @@ const TeamSection = () => {
   });
 
   // console.log(leaders);
+
+  if (isLoading) {
+    <div className="h-screen w-screen flex items-center justify-center">
+      <LoadingSpinner />
+    </div>;
+  }
 
   return (
     <div className="bg-white py-12 sm:py-24 font-body">

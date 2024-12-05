@@ -39,7 +39,7 @@ function TrekDetailsMainPage() {
   const trekDetails = mainData.trekData || {};
   const trekDateDetails = mainData.trekDateData || {};
 
-  console.log(trekDateDetails);
+  // console.log(trekDateDetails);
 
   const {
     trekName = "",
@@ -84,8 +84,10 @@ function TrekDetailsMainPage() {
 
   if (isLoading) {
     return (
-      <div className="h-full w-full">
-        <LoadingSpinner />
+      <div className="h-screen w-screen flex items-center justify-center">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <LoadingSpinner />
+        </div>
       </div>
     );
   }
@@ -146,6 +148,7 @@ function TrekDetailsMainPage() {
         withoutTravel={withoutTravel}
         // trekDateData={trekDateData}
         scheduleTimeline={trekTimelineDetails.scheduleTimeline || []}
+        isLoading={isLoading}
       />
     </div>
   );

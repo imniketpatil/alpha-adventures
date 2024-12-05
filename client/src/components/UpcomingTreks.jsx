@@ -18,8 +18,6 @@ function UpcomingTreks() {
     queryFn: useGetUpcommingTreks,
   });
 
-  console.log(upcommingtrekslist);
-
   return (
     <>
       {/* <div className="flex flex-col">
@@ -40,7 +38,9 @@ function UpcomingTreks() {
       </div>
       <div className="flex flex-wrap sm:m-4 mx-4 mb-10 mt-8 items-center justify-center gap-5 lg:gap-14">
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <LoadingSpinner />
+          </div>
         ) : (
           <TrekSliderComponent upcommingtrekslist={upcommingtrekslist} />
         )}

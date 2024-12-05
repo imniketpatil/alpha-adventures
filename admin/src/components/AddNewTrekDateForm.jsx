@@ -75,7 +75,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
       !startDate ||
       !endDate ||
       scheduleTimeline.some(
-        (timeline) => !timeline.day || !timeline.work || !timeline.time
+        (timeline) => !timeline.day || !timeline.time || !timeline.work
       )
     ) {
       setError("All fields are required.");
@@ -93,8 +93,11 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
       scheduleTimeline,
     };
 
+    console.log(formData);
+
     try {
       await mutation.mutateAsync({ id: IdForTrek, formData });
+
       setSuccess("Trek date created successfully!");
       resetForm();
     } catch (err) {
@@ -363,18 +366,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                     className="p-2 border border-gray-300 rounded-lg flex-1"
                     required
                   />
-                  <input
-                    type="text"
-                    placeholder="Work"
-                    value={timeline.work}
-                    onChange={(e) => {
-                      const newTimeline = [...scheduleTimeline];
-                      newTimeline[index].work = e.target.value;
-                      setScheduleTimeline(newTimeline);
-                    }}
-                    className="p-2 border border-gray-300 rounded-lg flex-1"
-                    required
-                  />
+
                   <input
                     type="text"
                     placeholder="Time"
@@ -382,6 +374,18 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
                     onChange={(e) => {
                       const newTimeline = [...scheduleTimeline];
                       newTimeline[index].time = e.target.value;
+                      setScheduleTimeline(newTimeline);
+                    }}
+                    className="p-2 border border-gray-300 rounded-lg flex-1"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Work"
+                    value={timeline.work}
+                    onChange={(e) => {
+                      const newTimeline = [...scheduleTimeline];
+                      newTimeline[index].work = e.target.value;
                       setScheduleTimeline(newTimeline);
                     }}
                     className="p-2 border border-gray-300 rounded-lg flex-1"
@@ -406,7 +410,7 @@ function AddNewTrekDateForm({ setOpenTrekForm }) {
               onClick={() =>
                 setScheduleTimeline([
                   ...scheduleTimeline,
-                  { day: "", work: "", time: "" },
+                  { day: "", time: "", work: "" },
                 ])
               }
               className="p-2 border border-gray-300 rounded-lg bg-blue-500 text-white mt-2"
