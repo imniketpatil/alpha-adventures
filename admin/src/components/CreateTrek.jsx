@@ -233,7 +233,7 @@ function CreateTrek({ setOpenTrekForm }) {
                   onChange={(e) => setTrekDifficulty(e.target.value)}
                   required
                 >
-                  <option value="empty">Null</option>
+                  <option value="hide">Null</option>
                   <option value="easy">Easy</option>
                   <option value="moderate">Moderate</option>
                   <option value="difficult">Difficult</option>
