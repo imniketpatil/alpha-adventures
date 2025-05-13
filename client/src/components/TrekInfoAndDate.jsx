@@ -67,7 +67,7 @@ const TrekInfoAndDate = ({
     }
   };
 
-  console.log(endDate);
+  // console.log(endDate);
 
   useEffect(() => {
     // console.log("trekId:", trekDateId);
@@ -83,7 +83,7 @@ const TrekInfoAndDate = ({
     }
   }, [trekDateId, dateid]);
 
-  console.log(date);
+  // console.log(date);
 
   const handleBooking = (trekName, date) => {
     const formattedDate = date ? formatDate(date) : "N/A";
@@ -165,79 +165,80 @@ const TrekInfoAndDate = ({
               </h2>
 
               {date.length > 0 ? (
-                date.map((d, index) => {
-                  const currentDate = new Date();
-                  const trekDate = new Date(d);
+                date.filter((d) => new Date(d) >= new Date()).length > 0 ? (
+                  date.map((d, index) => {
+                    const currentDate = new Date();
+                    const trekDate = new Date(d);
 
-                  // Only render if current date is <= trek date (i.e., trekDate >= currentDate)
-                  if (trekDate >= currentDate) {
-                    return (
-                      <div
-                        key={index}
-                        className={`mb-6 p-5 relative rounded-lg shadow-sm border transition-transform duration-300 transform ${
-                          activeIndex === index
-                            ? "bg-yellow-50 scale-105 shadow-md border-yellow-300"
-                            : "bg-white hover:shadow-md hover:scale-105 border-gray-200"
-                        }`}
-                        onClick={() => toggleActive(index, dateid[index])}
-                      >
-                        {trekDateOffer[index] !== "" && (
-                          <span className="absolute top-0 right-0 z-10 bg-red-500 text-white font-medium text-xs px-3 py-1 rounded-bl-lg shadow-md">
-                            {trekDateOffer[index]}
-                          </span>
-                        )}
+                    if (trekDate >= currentDate) {
+                      return (
                         <div
-                          className={`flex items-center ${
-                            availablity[index]
-                              ? "justify-between"
-                              : "justify-center"
+                          key={index}
+                          className={`mb-6 p-5 relative rounded-lg shadow-sm border transition-transform duration-300 transform ${
+                            activeIndex === index
+                              ? "bg-yellow-50 scale-105 shadow-md border-yellow-300"
+                              : "bg-white hover:shadow-md hover:scale-105 border-gray-200"
                           }`}
+                          onClick={() => toggleActive(index, dateid[index])}
                         >
-                          <p className="text-gray-700 font-medium">
-                            {formatStartDate(d)} to {formatDate(endDate[index])}
-                          </p>
-                          {availablity[index] && (
-                            <p
-                              className={`font-semibold text-sm ${
-                                availablity[index].toLowerCase() === "sold out"
-                                  ? "text-red-600"
-                                  : "text-green-600"
-                              }`}
-                            >
-                              {availablity[index]}
+                          {trekDateOffer[index] !== "" && (
+                            <span className="absolute top-0 right-0 z-10 bg-red-500 text-white font-medium text-xs px-3 py-1 rounded-bl-lg shadow-md">
+                              {trekDateOffer[index]}
+                            </span>
+                          )}
+                          <div
+                            className={`flex items-center ${
+                              availablity[index]
+                                ? "justify-between"
+                                : "justify-center"
+                            }`}
+                          >
+                            <p className="text-gray-700 font-medium">
+                              {formatStartDate(d)} to{" "}
+                              {formatDate(endDate[index])}
                             </p>
+                            {availablity[index] && (
+                              <p
+                                className={`font-semibold text-sm ${
+                                  availablity[index].toLowerCase() ===
+                                  "sold out"
+                                    ? "text-red-600"
+                                    : "text-green-600"
+                                }`}
+                              >
+                                {availablity[index]}
+                              </p>
+                            )}
+                          </div>
+                          {activeIndex === index && (
+                            <div className="mt-4 space-y-3">
+                              {withTravel.length > 0 &&
+                                renderPricing(withTravel, "Price with Travel")}
+                              {withoutTravel.length > 0 &&
+                                renderPricing(
+                                  withoutTravel,
+                                  "Price without Travel"
+                                )}
+                              <button
+                                className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-colors"
+                                onClick={() =>
+                                  handleBooking(trekName, date[index])
+                                }
+                              >
+                                Enquire Now
+                              </button>
+                            </div>
                           )}
                         </div>
-                        {activeIndex === index && (
-                          <div className="mt-4 space-y-3">
-                            {withTravel.length > 0 &&
-                              renderPricing(withTravel, "Price with Travel")}
-                            {withoutTravel.length > 0 &&
-                              renderPricing(
-                                withoutTravel,
-                                "Price without Travel"
-                              )}
-                            <button
-                              className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-600 transition-colors"
-                              onClick={() =>
-                                handleBooking(trekName, date[index])
-                              }
-                            >
-                              Enquire Now
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  }
-                  return (
-                    <>
-                      <p>
-                        No Adventures Aligned with This Movement – Stay Tuned!
-                      </p>
-                    </>
-                  ); // If the trek date is in the past, do not render it
-                })
+                      );
+                    }
+                    return null;
+                  })
+                ) : (
+                  <p className="text-center text-gray-600">
+                    No Adventures Aligned with This Movement – Stay Tuned!
+                  </p>
+                )
               ) : (
                 <p className="text-center text-gray-600">
                   No Adventures Aligned with This Movement – Stay Tuned!
