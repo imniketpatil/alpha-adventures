@@ -183,7 +183,7 @@ const TrekInfoAndDate = ({
                       >
                         {trekDateOffer[index] !== "" && (
                           <span className="absolute top-0 right-0 z-10 bg-red-500 text-white font-medium text-xs px-3 py-1 rounded-bl-lg shadow-md">
-                            {trekDateOffer[index]}% OFF
+                            {trekDateOffer[index]}
                           </span>
                         )}
                         <div
