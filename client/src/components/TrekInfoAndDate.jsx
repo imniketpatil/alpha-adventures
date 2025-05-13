@@ -83,7 +83,7 @@ const TrekInfoAndDate = ({
     }
   }, [trekDateId, dateid]);
 
-  // console.log(activeIndex);
+  console.log(date);
 
   const handleBooking = (trekName, date) => {
     const formattedDate = date ? formatDate(date) : "N/A";
@@ -230,10 +230,18 @@ const TrekInfoAndDate = ({
                       </div>
                     );
                   }
-                  return null; // If the trek date is in the past, do not render it
+                  return (
+                    <>
+                      <p>
+                        No Adventures Aligned with This Movement – Stay Tuned!
+                      </p>
+                    </>
+                  ); // If the trek date is in the past, do not render it
                 })
               ) : (
-                <p className="text-center text-gray-600">No dates available</p>
+                <p className="text-center text-gray-600">
+                  No Adventures Aligned with This Movement – Stay Tuned!
+                </p>
               )}
             </div>
           </div>
